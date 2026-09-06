@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nostálgica — O desafio diário dos anos 90</title>
+<meta name="description" content="Um desafio por dia: descubra o clássico dos anos 90 com poucas pistas. Volte todo dia pra manter sua sequência!">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rosa:#ff2d95; --azul:#00e5ff; --amarelo:#ffe600;
+    --verde:#39ff14; --roxo:#b026ff;
+    --fundo:#12002b;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body{ height:100%; }
+  body{
+    font-family:'VT323',monospace; background:var(--fundo); color:#fff;
+    overflow-x:hidden;
+  }
+  .bg{ position:fixed; inset:0; z-index:-2;
+    background:
+      radial-gradient(circle at 20% 15%, rgba(255,45,149,.32), transparent 45%),
+      radial-gradient(circle at 82% 10%, rgba(0,229,255,.3), transparent 45%),
+      radial-gradient(circle at 80% 92%, rgba(176,38,255,.35), transparent 50%),
+      radial-gradient(circle at 12% 88%, rgba(57,255,20,.18), transparent 45%),
+      var(--fundo);
+  }
+  .scanlines{ position:fixed; inset:0; z-index:-1; pointer-events:none;
+    background:repeating-linear-gradient(0deg, rgba(0,0,0,.15) 0 1px, transparent 1px 3px);
+    opacity:.55;
+  }
+  .wrap{ max-width:620px; margin:0 auto; padding:18px 14px 60px; }
+  @keyframes tv{ 0%{transform:scale(.2);opacity:0;filter:brightness(5);} 60%{transform:scale(1.04);opacity:1;} 100%{transform:scale(1);} }
+  .tv{ animation:tv .5s ease-out; }
+
+  .topo{ display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px; }
+  .logo{
+    font-family:'Press Start 2P',monospace; font-size:clamp(11px,3vw,17px);
+    color:var(--amarelo); text-shadow:2px 2px 0 var(--rosa),4px 4px 0 var(--azul);
+    line-height:1.3;
+  }
+  .stats{ display:flex; gap:6px; font-size:clamp(13px,2.6vw,17px); text-align:center; }
+  .stat{ background:rgba(0,0,0,.45); border:1px solid rgba(255,255,255,.25); border-radius:8px; padding:3px 8px; min-width:52px; }
+  .stat b{ display:block; font-size:clamp(16px,3vw,22px); color:var(--azul); }
+  .stat.fogo b{ color:var(--amarelo); }
+  .sub{ text-align:center; font-size:clamp(16px,3.2vw,21px); margin:4px 0 12px; color:#ffe; }
+
+  .card{ background:rgba(255,255,255,.06); border:2px solid var(--azul);
+    box-shadow:0 0 12px rgba(0,229,255,.35), inset 0 0 30px rgba(0,0,0,.4);
+    border-radius:12px; padding:16px; margin-bottom:14px; }
+  .chave{ text-align:center; font-size:clamp(17px,3.4vw,22px); color:var(--rosa); letter-spacing:2px; margin-bottom:8px; }
+  .pista{ font-size:clamp(19px,4.4vw,27px); line-height:1.2; min-height:5em; text-align:center; display:flex; align-items:center; justify-content:center; }
+  .linha{ font-size:clamp(17px,3.4vw,22px); padding:8px 10px; border:1px dashed rgba(255,255,255,.25); border-radius:8px; margin:6px 0; }
+  .linha.ativa{ border:2px solid var(--amarelo); box-shadow:0 0 10px rgba(255,230,0,.3); }
+  .linha.oculta{ display:none; }
+  .linha.revelada{ border-style:solid; border-color:rgba(255,255,255,.35); }
+  .linha .n{ color:var(--verde); }
+  .linha.vencida{ border-color:var(--verde); background:rgba(57,255,20,.12); box-shadow:0 0 12px rgba(57,255,20,.4); }
+  .linha.perdida{ border-color:var(--rosa); background:rgba(255,45,149,.1); }
+  .resp-msg{ text-align:center; font-size:clamp(16px,3.2vw,21px); margin-top:6px; min-height:1.6em; }
+  .resp-msg.certa{ color:var(--verde); }
+  .resp-msg.errada{ color:var(--rosa); }
+
+  .entrada{ display:flex; gap:8px; margin-top:10px; flex-wrap:wrap; }
+  input[type=text]{
+    flex:1; min-width:150px; font-family:'VT323',monospace; font-size:24px;
+    padding:10px 12px; border-radius:8px; border:2px solid var(--roxo);
+    background:rgba(0,0,0,.5); color:#fff; outline:none;
+  }
+  input[type=text]:focus{ box-shadow:0 0 10px rgba(176,38,255,.6); }
+  .btn{
+    font-family:'Press Start 2P',monospace; font-size:11px; padding:12px 10px;
+    border:none; border-radius:8px; cursor:pointer; text-transform:uppercase;
+    background:var(--amarelo); color:#000; box-shadow:3px 3px 0 var(--rosa);
+  }
+  .btn:hover{ transform:translate(-1px,-1px); }
+  .btn:active{ transform:translate(2px,2px); box-shadow:1px 1px 0 var(--rosa); }
+  .btn:disabled{ opacity:.4; cursor:not-allowed; transform:none; box-shadow:none; }
+  .btn-pular{ background:#fff; color:#000; box-shadow:3px 3px 0 var(--roxo); }
+  .btn-verde{ background:var(--verde); color:#000; box-shadow:3px 3px 0 #0a5c00; }
+  .btn-azul{ background:var(--azul); color:#000; box-shadow:3px 3px 0 #006c80; }
+  .btn-whats{ background:#25d366; color:#fff; box-shadow:3px 3px 0 #0a5c2c; }
+  .botoes{ display:grid; gap:9px; margin-top:10px; }
+
+  .fim-titulo{ font-family:'Press Start 2P',monospace; font-size:clamp(13px,3.4vw,18px); text-align:center; line-height:1.6; color:var(--amarelo); text-shadow:2px 2px 0 var(--rosa); }
+  .resposta-final{ font-family:'Press Start 2P',monospace; text-align:center; font-size:clamp(16px,4.6vw,28px); color:var(--verde); text-shadow:3px 3px 0 rgba(0,0,0,.6); margin:10px 0; }
+  .grid-share{ display:flex; justify-content:center; gap:6px; margin:10px 0; }
+  .grid-share span{ width:34px; height:34px; font-size:22px; text-align:center; line-height:34px; }
+
+  .ad{ margin:18px auto; text-align:center; border:2px dashed rgba(255,255,255,.22); border-radius:10px; padding:10px; font-size:14px; color:rgba(255,255,255,.4); }
+  .rodape{ margin-top:16px; text-align:center; font-size:16px; color:rgba(255,255,255,.45); line-height:1.5; }
+  a{ color:var(--azul); }
+  .toast{ position:fixed; left:50%; bottom:18px; transform:translateX(-50%); background:#000; border:2px solid var(--verde); color:var(--verde); padding:9px 15px; font-size:18px; border-radius:8px; z-index:99; opacity:0; transition:opacity .3s; pointer-events:none; }
+  .toast.show{ opacity:1; }
+  .pequeno{ font-size:16px; color:rgba(255,255,255,.55); text-align:center; }
+</style>
+</head>
+<body>
+<div class="bg"></div><div class="scanlines"></div>
+
+<div class="wrap tv">
+  <div class="topo">
+    <div class="logo">🕹 NOSTÁLGICA</div>
+    <div class="stats">
+      <div class="stat fogo"><b id="stSeq">0</b>seq</div>
+      <div class="stat"><b id="stMax">0</b>max</div>
+      <div class="stat"><b id="stJog">0</b>jogos</div>
+      <div class="stat"><b id="stVit">0</b>acertos</div>
+    </div>
+  </div>
+  <p class="sub">Descubra o clássico dos anos 90 com o menor número de pistas!</p>
+
+  <!-- JOGO -->
+  <div class="card">
+    <div class="chave" id="chaveDesafio">DESAFIO #1</div>
+    <div id="listaPistas"></div>
+    <div class="resp-msg" id="respMsg"></div>
+    <div class="entrada" id="areaJogo">
+      <input type="text" id="campo" placeholder="Sua resposta..." autocomplete="off" autocapitalize="off" maxlength="40">
+      <button class="btn btn-verde" id="btnResp" onclick="enviarResposta()">OK</button>
+      <button class="btn btn-pular" id="btnPular" onclick="pularPista()">Próx. pista ➜</button>
+    </div>
+    <div class="botoes hidden" id="areaFim"></div>
+  </div>
+
+  <div class="ad">Espaço reservado pra anúncios (AdSense)</div>
+
+  <div class="pequeno" id="voltarAmanha">⏰ Amanhã tem um novo desafio. Volte pra não perder a sequência!</div>
+  <div class="pequeno" id="arquivoBox" style="margin-top:6px;"><a href="#" onclick="verArquivo(); return false;">📼 Ver desafios anteriores</a></div>
+  <div class="rodape">Feito com 💜 e saudade dos anos 90</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   BANCO DE DESAFIOS — pista 1 (vaga) → pista 6 (óbvia)
+   Conteúdo 100% original em texto (sem imagens/músicas protegidas).
+   ============================================================ */
+var POOL = [
+  {
+    resp: "Tamagotchi",
+    alias: ["tamagotchi","bichinho virtual","bicho virtual"],
+    pistas: [
+      "Um bichinho de estimação que vivia no seu bolso.",
+      "Ele bipava pedindo atenção o dia inteiro, até no meio da aula.",
+      "Você precisava alimentar, brincar e limpar a sujeirinha dele.",
+      "Se você descuidasse, ele ficava doente. E o pior: podia morrer.",
+      "Era um ovinho de plástico com telinha e três botõezinhos.",
+      "A febre dos bichinhos virtuais que tomou conta da garotada."
+    ]
+  },
+  {
+    resp: "TV Colosso",
+    alias: ["colosso","tv colosso"],
+    pistas: [
+      "Um programa infantil famoso na TV aberta brasileira.",
+      "Era apresentado por um cachorro muito grande.",
+      "Ele morava num 'canil' cheio de cães que falavam.",
+      "A plateia era formada por crianças que iam à gravação.",
+      "O apresentador canino recebia convidados e fazia perguntas.",
+      "'Au au!' — o cão gigante que comandava a atração da Globo."
+    ]
+  },
+  {
+    resp: "Tazo",
+    alias: ["tazo","tazos"],
+    pistas: [
+      "Discos de papelão que viraram guerra nos recreios.",
+      "Vinham dentro de pacotes de salgadinho.",
+      "Você batalhava contra os discos dos colegas no chão.",
+      "Ganhava quem fizesse o disco do outro virar de cabeça pra baixo.",
+      "Alguns eram brilhantes, raros e valiam 'status' na escola.",
+      "A febre dos discos colecionáveis dos anos 90."
+    ]
+  },
+  {
+    resp: "Super Nintendo",
+    alias: ["super nintendo","snes","nintendo"],
+    pistas: [
+      "Console que dominou as salas de estar no começo dos anos 90.",
+      "Usava cartuchos e brigava pelo mercado com um rival da Sega.",
+      "Seu controle tinha os botões A, B, X e Y na frente.",
+      "Um de seus jogos mais amados era a corrida do encanador bigodudo.",
+      "O rival da época respondia pelo nome Mega Drive.",
+      "A sigla SNES revela tudo: é o console da Nintendo superpoderoso."
+    ]
+  },
+  {
+    resp: "Eliana",
+    alias: ["eliana","programa eliana"],
+    pistas: [
+      "Uma apresentadora loira que reinava aos domingos.",
+      "Seu programa tinha plateia, brincadeiras e muita música.",
+      "Ela também cantava e fazia sucesso com o público infantil.",
+      "Tinha uma assistente que era uma boneca falante.",
+      "A garotada repetia seu grito de guerra o tempo todo.",
+      "'É pimba!' — dizia a loira mais famosa da TV infantil."
+    ]
+  },
+  {
+    resp: "Fita VHS",
+    alias: ["vhs","fita vhs","fita cassete","videocassete","fita de video","fita"],
+    pistas: [
+      "Era pra onde iam os filmes antes do streaming existir.",
+      "Pra assistir de novo, você precisava rebobinar.",
+      "A locadora era o programa de sexta à noite da família.",
+      "Esquecer de rebobinar era pecado na locadora.",
+      "Era uma caixinha preta retangular com dois carretéis e uma fita.",
+      "As iniciais VHS dizem tudo: Video Home System."
+    ]
+  },
+  {
+    resp: "Discman",
+    alias: ["discman","disc man","discman sony"],
+    pistas: [
+      "O jeito portátil de ouvir os seus CDs.",
+      "Tocava um disco por vez e cabia (quase) no bolso.",
+      "Era o irmão mais novo do aparelho que tocava fitas.",
+      "Se você andasse rápido demais, a música pulava.",
+      "Antes do MP3 player, era esse o presente dos sonhos.",
+      "O nome veio da Sony: 'disc' + 'man', o homem do CD."
+    ]
+  },
+  {
+    resp: "Walkman",
+    alias: ["walkman","walk man","walkman sony"],
+    pistas: [
+      "O pai de todos os tocadores portáteis de música.",
+      "Nele você ouvia as fitinhas cassete.",
+      "Você levava pra todo lugar e dividia o fone com o amigo.",
+      "Funcionava com duas pilhas AA e um fone de ouvido.",
+      "O aparelho que fez a juventude andar 'cantando' pela rua.",
+      "O nome em inglês significa literalmente 'homem que caminha'."
+    ]
+  },
+  {
+    resp: "Kibon",
+    alias: ["kibon","kibom","sorvete kibon"],
+    pistas: [
+      "Marca de sorvete que mandava no verão brasileiro.",
+      "Seu carrinho tocava uma musiquinha que anunciava a chegada.",
+      "Todo o bairro corria quando a musiquinha se aproximava.",
+      "Os picolés de limão e as paletas eram os campeões de venda.",
+      "O nome começa com a letra K.",
+      "A gigante dos picolés e sorvetes, parceira da Nestlé no Brasil."
+    ]
+  },
+  {
+    resp: "Bombril",
+    alias: ["bombril","lã de aço"],
+    pistas: [
+      "Produto de limpeza que virou estrela da publicidade.",
+      "Sua campanha durou anos com o mesmo garoto-propaganda.",
+      "O ator aparecia fantasiado de vários personagens famosos.",
+      "O slogan garantia que ele tinha 'mil e uma utilidades'.",
+      "É a famosa lã de aço que tira o queimado da panela.",
+      "O 'palhaço' dos comerciais limpava panelas de verdade."
+    ]
+  },
+  {
+    resp: "Xuxa",
+    alias: ["xuxa","rainha dos baixinhos","xou da xuxa"],
+    pistas: [
+      "A maior rainha do público infantil dos anos 90.",
+      "Apresentava um programa de auditório cheio de crianças.",
+      "Era cercada por assistentes de roupas coloridas.",
+      "Ganhava o mundo: fez sucesso também fora do Brasil.",
+      "Seu programa tinha nomes como 'Xou', 'Parque' e 'H'.",
+      "Loira dos cabelos compridos, tinha um baú de surpresas."
+    ]
+  },
+  {
+    resp: "Super Trunfo",
+    alias: ["super trunfo","trunfo"],
+    pistas: [
+      "Jogo de cartas que você levava pra qualquer lugar.",
+      "Cada carta trazia desenhos e atributos com números.",
+      "Você escolhia uma categoria e desafiava o adversário.",
+      "Quem tivesse o maior número na categoria escolhida vencia a rodada.",
+      "Existiam versões de carros, dinossauros, animais e times.",
+      "O clássico jogo de 'comparar números' das rodas de amigos."
+    ]
+  },
+  {
+    resp: "Game Boy",
+    alias: ["game boy","gameboy","nintendo game boy"],
+    pistas: [
+      "Console portátil que cabia na palma da mão.",
+      "A tela era pequena, esverdeada e sem luz de fundo.",
+      "Rodava cartuchos do tamanho de uma caixinha de fósforos.",
+      "Um dos jogos mais famosos era o quebra-cabeça de bloquinhos caindo.",
+      "Você jogava escondido debaixo da carteira na aula.",
+      "Duas palavras em inglês: jogo + menino, da Nintendo."
+    ]
+  }
+];
+
+/* ============================================================
+   UTILIDADES
+   ============================================================ */
+function normalizar(s){
+  return (s||"").toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+    .replace(/[^a-z0-9 ]/g," ").replace(/\s+/g," ").trim();
+}
+function hojeData(){ var d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+function hojeMeiaNoite(){ var d=new Date(); return new Date(d.getFullYear(),d.getMonth(),d.getDate()).getTime(); }
+
+/* Desafio nº: 1º desafio = 2026-09-06 */
+var REF_MS = new Date(2026,8,6).getTime();
+var REF_NO = 1;
+function numeroDesafioPara(ms){ return REF_NO + Math.round((ms - REF_MS)/86400000); }
+var hojeMs = hojeMeiaNoite();
+var desafioHoje = numeroDesafioPara(hojeMs);
+var desafioAtual = desafioHoje;
+var modoArquivo = false;
+var FIM_ULTIMO_DIA = 7; /* limite de desafios anteriores disponíveis */
+
+var chave = function(k){ return "nostalgia90_" + k; };
+
+function carregarEstado(){
+  var st = localStorage.getItem(chave("stats"));
+  return st ? JSON.parse(st) : { seq:0, max:0, jogos:0, acertos:0, ultimaVitoria:null, ultimaPartida:null };
+}
+var stats = carregarEstado();
+
+/* ============================================================
+   ESTADO DA PARTIDA (por dia)
+   ============================================================ */
+function diaAtualKey(){ return "d"+desafioAtual; }
+function getPartida(){ var p = localStorage.getItem(chave("partida_"+diaAtualKey())); return p ? JSON.parse(p) : null; }
+function salvarPartida(p){ localStorage.setItem(chave("partida_"+diaAtualKey()), JSON.stringify(p)); }
+
+var partida = getPartida();
+var respostaUser = "";
+
+function entryAtual(){ return POOL[((desafioAtual-1) % POOL.length + POOL.length) % POOL.length]; }
+
+function checarResposta(texto){
+  var e = entryAtual();
+  var t = normalizar(texto);
+  if(t === normalizar(e.resp)) return true;
+  return (e.alias||[]).some(function(a){ return t === normalizar(a); });
+}
+
+/* ============================================================
+   RENDER
+   ============================================================ */
+function renderEstatisticas(){
+  document.getElementById("stSeq").textContent = stats.seq;
+  document.getElementById("stMax").textContent = stats.max;
+  document.getElementById("stJog").textContent = stats.jogos;
+  document.getElementById("stVit").textContent = stats.acertos;
+}
+
+function renderPistas(){
+  var e = entryAtual();
+  var box = document.getElementById("listaPistas");
+  box.innerHTML = "";
+  for(var i=1; i<=6; i++){
+    var div = document.createElement("div");
+    div.className = "linha";
+    div.id = "pista"+i;
+    div.innerHTML = '<span class="n">['+i+']</span> <span class="txt"></span>';
+    div.querySelector(".txt").textContent = e.pistas[i-1];
+    box.appendChild(div);
+  }
+}
+
+function pistaAtualIndex(){
+  var i = (partida ? partida.pista : 1);
+  return Math.min(i,6);
+}
+
+function revelarAte(n){
+  for(var i=1; i<=6; i++){
+    var el = document.getElementById("pista"+i);
+    if(i <= n){
+      el.classList.remove("oculta");
+      if(i === n && !partidaFinalizada()) el.classList.add("ativa");
+      else if(i < n && !partidaFinalizada()) el.classList.add("revelada");
+    } else {
+      el.classList.add("oculta");
+    }
+  }
+}
+
+function partidaFinalizada(){
+  return partida && (partida.venceu===true || partida.perdeu===true);
+}
+
+function desenhar(){
+  renderEstatisticas();
+  var e = entryAtual();
+  document.getElementById("chaveDesafio").textContent = "DESAFIO #" + desafioAtual;
+
+  if(partidaFinalizada()){
+    mostrarFim();
+    return;
+  }
+  renderPistas();
+  revelarAte(partida ? partida.pista : 1);
+  var campo = document.getElementById("campo");
+  if(partida && partida.tentativas) respostaUser = partida.tentativas[partida.tentativas.length-1] || "";
+  campo.value = respostaUser;
+  campo.focus();
+}
+
+function passarTentativa(){
+  if(partida && partida.tentativas && partida.tentativas.length > 0){
+    var ult = partida.tentativas[partida.tentativas.length-1];
+    return ult;
+  }
+  return "";
+}
+function registrarTentativaComoSemResposta(ultima){
+  if(partida.tentativas){ partida.tentativas.push(""); }
+}
+
+/* ============================================================
+   AÇÕES
+   ============================================================ */
+function enviarResposta(){
+  if(partidaFinalizada()) return;
+  var campo = document.getElementById("campo");
+  var texto = campo.value.trim();
+  if(!texto){ toast("Digite uma resposta primeiro!"); return; }
+  respostaUser = texto;
+
+  if(!partida){
+    partida = { pista:1, tentativas:[], venceu:false, perdeu:false, num:desafioAtual };
+  }
+  partida.tentativas.push(texto);
+
+  if(checarResposta(texto)){
+    partida.venceu = true;
+    salvarPartida(partida);
+    registrarVitoria(partida.pista);
+    mostrarFim();
+  } else {
+    var msg = document.getElementById("respMsg");
+    msg.textContent = "❌ Não é essa... " + (partida.pista < 6 ? "quer outra pista?" : "Essa era a última pista!");
+    msg.className = "resp-msg errada";
+    salvarPartida(partida);
+    campo.value = "";
+    campo.focus();
+  }
+}
+
+function pularPista(){
+  if(partidaFinalizada()) return;
+  if(!partida){
+    partida = { pista:1, tentativas:[], venceu:false, perdeu:false, num:desafioAtual };
+  }
+  /* pular SEM registrar resposta vazia que conta como tentativa? aqui apenas revela próxima pista */
+  var msg = document.getElementById("respMsg");
+  msg.textContent = "";
+  msg.className = "resp-msg";
+  if(partida.pista >= 6){
+    /* usou as 6 pistas e não acertou ainda → derrota */
+    partida.perdeu = true;
+    salvarPartida(partida);
+    registrarDerrota();
+    mostrarFim();
+    return;
+  }
+  partida.pista++;
+  salvarPartida(partida);
+  revelarAte(partida.pista);
+  document.getElementById("campo").focus();
+}
+
+function registrarVitoria(pistasUsadas){
+  var hoje = hojeData();
+  stats.jogos++;
+  stats.acertos++;
+  var ontem = new Date(Date.now()-86400000);
+  var ontemData = ontem.getFullYear()+"-"+String(ontem.getMonth()+1).padStart(2,"0")+"-"+String(ontem.getDate()).padStart(2,"0");
+  if(stats.ultimaVitoria === ontemData){ stats.seq++; }
+  else if(stats.ultimaVitoria === hoje){ /* já contado */ }
+  else { stats.seq = 1; }
+  stats.ultimaVitoria = hoje;
+  stats.ultimaPartida = hoje;
+  if(stats.seq > stats.max) stats.max = stats.seq;
+  localStorage.setItem(chave("stats"), JSON.stringify(stats));
+  renderEstatisticas();
+}
+
+function registrarDerrota(){
+  var hoje = hojeData();
+  stats.jogos++;
+  stats.seq = 0;
+  stats.ultimaPartida = hoje;
+  localStorage.setItem(chave("stats"), JSON.stringify(stats));
+  renderEstatisticas();
+}
+
+/* ============================================================
+   TELA FINAL
+   ============================================================ */
+function emojiGrid(pistasUsadas){
+  var arr = [];
+  for(var i=1;i<=6;i++){
+    if(i < pistasUsadas) arr.push("🟨");
+    else if(i === pistasUsadas) arr.push("🟩");
+    else arr.push("⬛");
+  }
+  return arr.join("");
+}
+
+function textoCompartilhamento(win){
+  var e = entryAtual();
+  var n = partida.num;
+  if(win){
+    return "🕹 NOSTÁLGICA #"+n+"\n"+
+      "Acertei: "+e.resp.toUpperCase()+"\n"+
+      "Com "+partida.pista+" de 6 pistas! 🎯\n"+
+      emojiGrid(partida.pista)+"\n"+
+      "Será que você é da época? 😜 "+ window.location.href;
+  } else {
+    return "🕹 NOSTÁLGICA #"+n+"\n"+
+      "Errei... a resposta era: "+e.resp.toUpperCase()+"\n"+
+      emojiGrid(7)+"\n"+
+      "Tenta você! 😜 "+ window.location.href;
+  }
+}
+
+function mostrarFim(){
+  var e = entryAtual();
+  var area = document.getElementById("areaJogo");
+  area.classList.add("hidden");
+  var fim = document.getElementById("areaFim");
+  fim.classList.remove("hidden");
+  var win = partida.venceu;
+
+  var lista = document.getElementById("listaPistas");
+  for(var i=1;i<=6;i++){
+    var el = document.getElementById("pista"+i);
+    el.classList.remove("ativa","oculta");
+    el.classList.add("revelada");
+    if(win && i===partida.pista) el.classList.add("vencida");
+    if(!win) el.classList.add("perdida");
+  }
+
+  var grid = win
+    ? emojiGrid(partida.pista)
+    : emojiGrid(7).replace("🟩","❌");
+
+  fim.innerHTML =
+    '<div class="fim-titulo">'+(win?"🎉 VOCÊ É DOS ANOS 90!":"😵 QUASE!")+'</div>'+
+    '<div class="resposta-final">'+e.resp+'</div>'+
+    '<div class="grid-share" id="gridShare"></div>'+
+    '<div class="resp-msg '+(win?'certa':'errada')+'">'+
+      (win ? 'Você acertou usando '+partida.pista+' de 6 pistas!' : 'A resposta era acima. Amanhã tem outro!')+
+    '</div>'+
+    '<div class="botoes">'+
+      '<button class="btn btn-whats" onclick="shareWhats()">📲 Compartilhar resultado</button>'+
+      '<button class="btn btn-azul" onclick="copiar()">📋 Copiar resultado</button>'+
+      (modoArquivo ? '' : '<button class="btn btn-pular" onclick="verArquivo()">📼 Jogar desafios antigos</button>')+
+    '</div>';
+
+  document.getElementById("gridShare").textContent = grid;
+  document.getElementById("respMsg").textContent = "";
+  document.getElementById("respMsg").className = "resp-msg";
+  document.getElementById("voltarAmanha").style.display = win && !modoArquivo ? "block" : "none";
+  document.getElementById("arquivoBox").style.display = modoArquivo ? "none" : "block";
+  window.scrollTo(0,0);
+}
+
+function shareWhats(){
+  var win = partida.venceu;
+  var msg = encodeURIComponent(textoCompartilhamento(win));
+  window.open("https://wa.me/?text="+msg, "_blank");
+}
+
+function copiar(){
+  var win = partida.venceu;
+  var texto = textoCompartilhamento(win);
+  function ok(){ toast("Resultado copiado! Cola no WhatsApp 😉"); }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(texto).then(ok).catch(function(){ copiarFallback(texto); });
+  } else copiarFallback(texto);
+}
+function copiarFallback(texto){
+  var ta=document.createElement("textarea"); ta.value=texto; ta.style.position="fixed"; ta.style.left="-9999px";
+  document.body.appendChild(ta); ta.select();
+  try{ document.execCommand("copy"); toast("Resultado copiado! 😉"); }catch(e){ toast("Não consegui copiar. Use o WhatsApp!"); }
+  document.body.removeChild(ta);
+}
+
+/* ============================================================
+   ARQUIVO (desafios anteriores — não vale sequência)
+   ============================================================ */
+function verArquivo(){
+  var min = Math.max(REF_NO, desafioHoje - FIM_ULTIMO_DIA);
+  var lista = [];
+  for(var n=desafioHoje-1; n>=min; n--) lista.push(n);
+  if(!lista.length){ toast("Ainda não há desafios anteriores."); return; }
+  var n = lista[0];
+  desafioAtual = n;
+  modoArquivo = true;
+  partida = getPartida();
+  if(!partida) partida = null;
+  iniciarPartidaArquivo();
+}
+
+function iniciarPartidaArquivo(){
+  document.getElementById("chaveDesafio").textContent = "DESAFIO #" + desafioAtual + " (arquivo)";
+  var nav = document.getElementById("arquivoBox");
+  nav.style.display = "block";
+  nav.innerHTML = '<a href="#" onclick="voltarHoje(); return false;">⬅ Voltar pro desafio de hoje</a> · '+
+    '<a href="#" onclick="verArquivo(); return false;">Outro antigo ➜</a>';
+  document.getElementById("voltarAmanha").style.display = "none";
+  if(partidaFinalizada()){ mostrarFim(); }
+  else { desenhar(); }
+}
+
+function voltarHoje(){
+  desafioAtual = desafioHoje;
+  modoArquivo = false;
+  partida = getPartida();
+  document.getElementById("arquivoBox").style.display = "block";
+  document.getElementById("arquivoBox").innerHTML = '<a href="#" onclick="verArquivo(); return false;">📼 Ver desafios anteriores</a>';
+  if(partidaFinalizada()) mostrarFim();
+  else desenhar();
+}
+
+/* ============================================================
+   TOAST
+   ============================================================ */
+function toast(msg){
+  var t=document.getElementById("toast");
+  t.textContent=msg; t.classList.add("show");
+  clearTimeout(t._t); t._t=setTimeout(function(){ t.classList.remove("show"); },2600);
+}
+
+/* ============================================================
+   ENTER no campo dispara resposta
+   ============================================================ */
+document.addEventListener("DOMContentLoaded", function(){
+  document.getElementById("campo").addEventListener("keydown", function(ev){
+    if(ev.key === "Enter"){ ev.preventDefault(); enviarResposta(); }
+  });
+  desenhar();
+});
+</script>
+</body>
+</html>
