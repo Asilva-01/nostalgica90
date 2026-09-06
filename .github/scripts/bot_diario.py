@@ -178,7 +178,7 @@ REF_NO = 1
 
 def numero_do_desafio(data):
     delta = int((data.timestamp() - REF_MS) / 86400)
-    max(REF_NO, REF_NO + delta)
+    return max(REF_NO, REF_NO + delta)
 
 
 def desafio_para(data):
