@@ -1,0 +1,16 @@
+{
+  "name": "Nostálgica 90 — O desafio diário dos anos 90",
+  "short_name": "Nostálgica 90",
+  "description": "Você lembra disso? 1 desafio por dia, 6 pistas, streak e muita nostalgia dos anos 90.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0d0120",
+  "theme_color": "#0d0120",
+  "lang": "pt-BR",
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

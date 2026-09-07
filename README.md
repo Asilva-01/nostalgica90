@@ -47,8 +47,30 @@ clique em **Run workflow** para rodar manualmente uma vez e confirmar que chega 
 Depois disso, a postagem diária é 100% automática.
 
 ## ➕ Adicionar mais desafios
-Edite `POOL` em `.github/scripts/bot_diario.py` **e** a lista `POOL` em `index.html`
-(devem estar sincronizadas — mesma ordem). O desafio `N` usa `POOL[(N-1) % len(POOL)]`.
+
+**FONTE ÚNICA:** edite `challenges.json` — o jogo (`index.html` via `data.js`) **e**
+o bot (`bot_diario.py`) leem o mesmo arquivo. O desafio `N` usa `POOL[(N-1) % len(POOL)]`.
+
+Cada desafio tem os campos:
+```json
+{
+  "resp": "Nome",
+  "alias": ["apelido1", "apelido2"],
+  "cat": "TV | GAMES | CINEMA | MÚSICA | BRINQUEDOS | TECNOLOGIA | CULTURA",
+  "emoji": "📺",
+  "ano": "1993",
+  "curiosidade": "Fato divertido para a seção 'Você lembra?'.",
+  "pistas": ["Pista 1 (vaga)", "Pista 2", "...", "Pista 6 (óbvia)"]
+}
+```
+
+Para gerar novos assets (SFX WAV, ícones, OG image) rode:
+```bash
+python tools/generate_assets.py
+```
+
+## 🏛️ Museu dos Anos 90
+Edite `museum.json` (categorias com itens) para ampliar o acervo.
 
 ---
 

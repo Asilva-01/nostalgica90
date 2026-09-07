@@ -272,14 +272,49 @@ var NostalMusica = (function () {
     if (overlay) overlay.style.display = "none";
   }
 
+  /* Controle explícito (para iniciar por gesto do usuário) */
+  function ligar() {
+    if (!ctx) { iniciar(); return; }
+    retomar();
+  }
+
+  function desligar() {
+    if (!ctx) return;
+    ligado = false;
+    master.gain.setTargetAtTime(0.0001, ctx.currentTime, 0.05);
+    atualizarBtn();
+  }
+
+  function definirtema(tema) {
+    _tema = tema || "desafio";
+    if (ctx) {
+      current = null;
+      currentRiffIndex = -1;
+      idx = 0;
+      nextTime = ctx.currentTime + 0.08;
+    }
+  }
+
+  function estaLigada() { return ligado && ctx && ctx.state === "running"; }
+
   return {
     init: function (tema) {
       _tema = tema || "desafio";
       criarBotao();
       criarOverlay();
       atualizarBtn();
+    },
+    initAutoplay: function (tema) {
+      _tema = tema || "desafio";
+      criarBotao();
+      criarOverlay();
+      atualizarBtn();
       setTimeout(function () { iniciar(); }, 250);
     },
-    toggle: toggle
+    toggle: toggle,
+    ligar: ligar,
+    desligar: desligar,
+    definirtema: definirtema,
+    estaLigada: estaLigada
   };
 })();
