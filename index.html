@@ -47,6 +47,16 @@
   .stat.fogo b{ color:var(--amarelo); }
   .sub{ text-align:center; font-size:clamp(16px,3.2vw,21px); margin:4px 0 12px; color:#ffe; }
 
+  .menu-novo{ display:flex; gap:10px; justify-content:center; margin-bottom:14px; flex-wrap:wrap; }
+  .btn-link{
+    font-family:'VT323',monospace; font-size:clamp(17px,3.4vw,22px);
+    text-decoration:none; color:#000; background:var(--amarelo);
+    border-radius:8px; padding:6px 14px;
+    box-shadow:3px 3px 0 var(--rosa);
+  }
+  .btn-link:hover{ transform:translate(-1px,-1px); }
+  .btn-link:active{ transform:translate(2px,2px); box-shadow:1px 1px 0 var(--rosa); }
+
   .card{ background:rgba(255,255,255,.06); border:2px solid var(--azul);
     box-shadow:0 0 12px rgba(0,229,255,.35), inset 0 0 30px rgba(0,0,0,.4);
     border-radius:12px; padding:16px; margin-bottom:14px; }
@@ -111,6 +121,11 @@
     </div>
   </div>
   <p class="sub">Descubra o clássico dos anos 90 com o menor número de pistas!</p>
+
+  <div class="menu-novo">
+    <a class="btn-link" href="speciais.html">🥊 Speciais</a>
+    <a class="btn-link" href="jogar-de-novo.html">🎮 Jogar de novo</a>
+  </div>
 
   <!-- JOGO -->
   <div class="card">
@@ -463,6 +478,102 @@ var POOL = [
     "Sua 'Garota do Tempo' marcou época.",
     "Mudou de emissora e desafiou a audiência dominical.",
     "Seu nome era de um personagem japonês da sogra.",
+  ]},
+  { resp: "Street Fighter II", alias: ["street fighter 2","street fighter ii","sf2","street fighter"], pistas: [
+    "O jogo de luta mais famoso de todos os fliperamas.",
+    "Você escolhia entre lutadores do mundo inteiro.",
+    "O personagem da capa soltava o golpe 'Hadouken'.",
+    "Tinha versões Champion Edition e Turbo.",
+    "Dois jogadores se enfrentavam disputando o salão.",
+    "'Hadouken!' e 'Shoryuken!' ecoavam pelo fliperama.",
+  ]},
+  { resp: "Mortal Kombat", alias: ["mortal kombat","mk"], pistas: [
+    "O jogo de luta mais polêmico dos anos 90.",
+    "Foi o primeiro a popularizar sangue nos fliperamas.",
+    "'Finish Him!' soava antes do golpe final.",
+    "Sub-Zero congelava o adversário para o golpe fatal.",
+    "Scorpion, Raiden e Liu Kang estavam no elenco.",
+    "No Brasil, o jogo até virou caso de polícia e foi apreendido.",
+  ]},
+  { resp: "The King of Fighters", alias: ["the king of fighters","king of fighters","kof"], pistas: [
+    "A luta da SNK que dominava os fliperamas nos anos 90.",
+    "Você montava um time com 3 lutadores.",
+    "Dava pra trocar de personagem no meio da luta.",
+    "Kyo, Iori e a rivalidade das famílias centenárias.",
+    "As versões '96, '98 e '2002 são as mais lembradas.",
+    "No final, um chefe soltava raios e esmagava o chão.",
+  ]},
+  { resp: "Fatal Fury", alias: ["fatal fury","fatal fury 2"], pistas: [
+    "A série de luta da SNK que veio antes do KOF.",
+    "O herói lutava ao lado do irmão mais novo.",
+    "O golpe 'Power Wave' deslizava pelo chão.",
+    "O protagonista era loiro e usava jaqueta vermelha.",
+    "O vilão de cabelo branco atirava do alto do prédio.",
+    "'Are you okay? BUSTA WOLF!' era sua fala de vitória.",
+  ]},
+  { resp: "Samurai Shodown", alias: ["samurai shodown","samurai showdown"], pistas: [
+    "Luta com espadas no Japão feudal, pela SNK.",
+    "Os samurais podiam quebrar a lâmina do rival.",
+    "Os golpes finais eram mostrados em câmera lenta.",
+    "O guerreiro da capa usava uma espada lendária.",
+    "Uma guerreira indígena lutava com um falcão ao lado.",
+    "O medidor de raiva enchia quando você apanhava.",
+  ]},
+  { resp: "Metal Slug", alias: ["metal slug"], pistas: [
+    "O jogo de tiro mais frenético dos fliperamas.",
+    "Dois soldados avançavam por campos de guerra.",
+    "O tanque 'Metal Slug' era o prêmio de cada fase.",
+    "Reféns resgatados soltavam itens e armas.",
+    "'Heavy Machine Gun!' tocava ao pegar a arma.",
+    "A animação era tão boa que você morria só de admirar.",
+  ]},
+  { resp: "Neo Geo", alias: ["neo geo","neogeo"], pistas: [
+    "O sistema da SNK que era fliperama E videogame.",
+    "Os jogos do salão eram os mesmos de casa.",
+    "Era o hardware mais potente da época.",
+    "Os cartuchos custavam mais que o próprio console.",
+    "KOF, Metal Slug e Samurai Shodown nasceram nele.",
+    "'100 Mega Shock!' era o seu grito de guerra.",
+  ]},
+  { resp: "Pac-Man", alias: ["pac man","pacman"], pistas: [
+    "O círculo amarelo que virou símbolo do fliperama.",
+    "Ele corria por um labirinto comendo bolinhas.",
+    "Quatro fantasmas coloridos o caçavam.",
+    "A bolinha maior o deixava invencível por instantes.",
+    "Os fantasmas tinham nome: Blinky, Pinky, Inky e Clyde.",
+    "Foi criado pra atrair as meninas pros fliperamas.",
+  ]},
+  { resp: "Donkey Kong", alias: ["donkey kong"], pistas: [
+    "O jogo que apresentou o maior herói dos videogames.",
+    "Um macaco gigante segurava a moça no topo.",
+    "O herói pulava barris rolando pelo cenário.",
+    "Na época, o herói era um simples carpinteiro.",
+    "O macaco era o grande vilão da trama.",
+    "O gorila foi batizado em homenagem a um primata famoso.",
+  ]},
+  { resp: "Double Dragon", alias: ["double dragon"], pistas: [
+    "A briga de rua que lotava os fliperamas.",
+    "Dois irmãos mestres em artes marciais.",
+    "A missão era resgatar a namorada de uma gangue.",
+    "Billy e Jimmy eram os irmãos protagonistas.",
+    "Dava pra jogar em dupla... e acertar o colega.",
+    "Nunchaku, chutes e muito 'soco na cara'.",
+  ]},
+  { resp: "Final Fight", alias: ["final fight"], pistas: [
+    "A pancadaria da Capcom nas ruas de Metro City.",
+    "Três heróis: dois lutadores e o prefeito fortão.",
+    "O objetivo era resgatar a filha do prefeito.",
+    "Nasceu de um projeto que seria um 'Street Fighter'.",
+    "O prefeito Haggar usava um suplex devastador.",
+    "Uma gangue de rua tomava conta da cidade.",
+  ]},
+  { resp: "Time Crisis", alias: ["time crisis"], pistas: [
+    "O jogo de tiro com arma de plástico do fliperama.",
+    "Um pedal no chão fazia você se esconder.",
+    "Cada fase terminava num duelo contra um vilão.",
+    "O vilão 'Wild Dog' atirava de qualquer canto.",
+    "Se não se escondesse, morria em segundos.",
+    "O relógio e a tensão eram o tempero da diversão.",
   ]}
 ];
 

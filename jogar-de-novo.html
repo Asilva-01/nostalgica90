@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jogar de novo — Emuladores legais dos anos 90</title>
+<meta name="description" content="Como reviver NES, SNES, Mega Drive, Master System, Neo Geo, MAME, PlayStation e mais, de forma legal e gratuita.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rosa:#ff2d95; --azul:#00e5ff; --amarelo:#ffe600;
+    --verde:#39ff14; --roxo:#b026ff; --fundo:#12002b;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'VT323',monospace; background:var(--fundo); color:#fff; overflow-x:hidden; }
+  .bg { position:fixed; inset:0; z-index:-2;
+    background:
+      radial-gradient(circle at 20% 15%, rgba(255,45,149,.32), transparent 45%),
+      radial-gradient(circle at 82% 10%, rgba(0,229,255,.3), transparent 45%),
+      radial-gradient(circle at 80% 92%, rgba(176,38,255,.35), transparent 50%),
+      radial-gradient(circle at 12% 88%, rgba(57,255,20,.18), transparent 45%),
+      var(--fundo);
+  }
+  .scanlines { position:fixed; inset:0; z-index:-1; pointer-events:none;
+    background:repeating-linear-gradient(0deg, rgba(0,0,0,.15) 0 1px, transparent 1px 3px); opacity:.55; }
+  .wrap { max-width:760px; margin:0 auto; padding:18px 14px 60px; }
+  @keyframes tv { 0%{transform:scale(.2);opacity:0;filter:brightness(5);} 60%{transform:scale(1.04);opacity:1;} 100%{transform:scale(1);} }
+  .tv { animation:tv .5s ease-out; }
+
+  .nav { text-align:center; font-size:clamp(17px,3.2vw,21px); margin-bottom:10px; }
+  a { color:var(--azul); }
+  .logo {
+    font-family:'Press Start 2P',monospace; font-size:clamp(13px,3.4vw,20px);
+    color:var(--amarelo); text-shadow:2px 2px 0 var(--rosa),4px 4px 0 var(--azul);
+    text-align:center; line-height:1.5; margin:6px 0;
+  }
+  .sub { text-align:center; font-size:clamp(17px,3.4vw,22px); color:#ffe; margin-bottom:16px; }
+
+  .card { background:rgba(255,255,255,.06); border:2px solid var(--azul);
+    box-shadow:0 0 12px rgba(0,229,255,.35), inset 0 0 30px rgba(0,0,0,.4);
+    border-radius:12px; padding:16px; margin-bottom:16px; }
+  .card h2 {
+    font-family:'Press Start 2P',monospace; font-size:clamp(11px,2.8vw,15px);
+    color:var(--amarelo); text-shadow:2px 2px 0 var(--rosa); margin-bottom:10px; line-height:1.6;
+  }
+  table { width:100%; border-collapse:collapse; font-size:clamp(17px,3.2vw,22px); }
+  th, td { text-align:left; padding:7px 6px; border-bottom:1px solid rgba(255,255,255,.15); vertical-align:top; }
+  th { color:var(--verde); font-weight:normal; border-bottom:2px solid var(--verde); }
+  td:first-child { color:var(--amarelo); white-space:nowrap; }
+
+  .aviso {
+    background:rgba(255,45,149,.12); border:2px solid var(--rosa);
+    border-radius:10px; padding:12px; font-size:clamp(17px,3.2vw,21px);
+    line-height:1.35; margin-bottom:16px;
+  }
+  .lista { font-size:clamp(17px,3.2vw,21px); line-height:1.4; }
+  .lista li { margin:6px 0 6px 20px; }
+  .ad { margin:18px auto; text-align:center; border:2px dashed rgba(255,255,255,.22); border-radius:10px; padding:10px; font-size:14px; color:rgba(255,255,255,.4); }
+  .rodape { margin-top:16px; text-align:center; font-size:16px; color:rgba(255,255,255,.45); line-height:1.5; }
+</style>
+</head>
+<body>
+<div class="bg"></div><div class="scanlines"></div>
+
+<div class="wrap tv">
+  <div class="nav"><a href="index.html">🕹 ← Voltar ao desafio diário</a></div>
+  <div class="logo">JOGAR DE NOVO</div>
+  <p class="sub">Reviva os clássicos sem dor de cabeça legal 🎮</p>
+
+  <div class="aviso">
+    ⚠️ <b>Nota importante:</b> Emuladores são <b>legais</b>. Baixar ROMs de jogos
+    protegidos da internet <b>não é</b> (Lei 9.610/98 — direito autoral).
+    Por isso, <b>não listamos sites de ROMs piratas aqui</b>. As opções abaixo são
+    100% legais: emuladores gratuitos, coleções oficiais e relançamentos.
+  </div>
+
+  <div class="card">
+    <h2>🖥 EMULADORES GRATUITOS E LEGAIS</h2>
+    <table>
+      <tr><th>Emulador</th><th>Roda jogos de</th></tr>
+      <tr><td>RetroArch</td><td>Praticamente tudo: NES, SNES, Mega Drive, Master System, Neo Geo, MAME, GBA, PS1... num só app</td></tr>
+      <tr><td>MAME</td><td>Fliperamas clássicos (o "templo" dos arcades)</td></tr>
+      <tr><td>DuckStation</td><td>PlayStation 1</td></tr>
+      <tr><td>PCSX2</td><td>PlayStation 2</td></tr>
+      <tr><td>higan / Mesen</td><td>Nintendo (NES/SNES) com precisão máxima</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>✅ FORMAS 100% LEGAIS DE JOGAR DE NOVO</h2>
+    <ul class="lista">
+      <li><b>Nintendo Switch Online</b> — catálogo oficial de NES, SNES, N64 e Game Boy (assinatura)</li>
+      <li><b>Mega Drive Mini / SNES Classic</b> — consoles "mini" com dezenas de jogos embutidos</li>
+      <li><b>Arcade Archives (Hamster)</b> — lançamentos oficiais de clássicos de fliperama</li>
+      <li><b>Street Fighter 30th Anniversary Collection</b> — todos os SFs clássicos numa coletânea</li>
+      <li><b>Coleções da SNK</b> — KOF, Samurai Shodown, Metal Slug vendidos oficialmente</li>
+      <li><b>Sega Forever / coleções oficiais da Sega</b> — Sonic e clássicos do Mega Drive</li>
+      <li><b>Capcom Beat 'Em Up Bundle</b> — Final Fight, Captain Commando e amigos</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🎮 COMO FUNCIONA NA PRÁTICA</h2>
+    <ul class="lista">
+      <li>1. Instale um emulador gratuito (tabela acima).</li>
+      <li>2. Os emuladores vêm <b>sem jogos</b> — você precisa do arquivo do jogo.</li>
+      <li>3. Jogos que você já tem em mídia física podem ser extraídos (backup pessoal).</li>
+      <li>4. Prefira sempre as versões oficiais: elas são baratas, funcionam e você apoia quem criou.</li>
+    </ul>
+  </div>
+
+  <div class="ad">Espaço reservado pra anúncios (AdSense)</div>
+  <div class="rodape">Feito com 💜 e saudade dos anos 90<br><a href="index.html">Voltar ao desafio diário</a></div>
+</div>
+</body>
+</html>

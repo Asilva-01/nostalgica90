@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Speciais — Os golpes lendários dos fliperamas anos 90</title>
+<meta name="description" content="Guia nostálgico dos golpes especiais de Street Fighter, Mortal Kombat, KOF, Fatal Fury e mais, com a notação clássica dos fliperamas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rosa:#ff2d95; --azul:#00e5ff; --amarelo:#ffe600;
+    --verde:#39ff14; --roxo:#b026ff; --fundo:#12002b;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'VT323',monospace; background:var(--fundo); color:#fff; overflow-x:hidden; }
+  .bg { position:fixed; inset:0; z-index:-2;
+    background:
+      radial-gradient(circle at 20% 15%, rgba(255,45,149,.32), transparent 45%),
+      radial-gradient(circle at 82% 10%, rgba(0,229,255,.3), transparent 45%),
+      radial-gradient(circle at 80% 92%, rgba(176,38,255,.35), transparent 50%),
+      radial-gradient(circle at 12% 88%, rgba(57,255,20,.18), transparent 45%),
+      var(--fundo);
+  }
+  .scanlines { position:fixed; inset:0; z-index:-1; pointer-events:none;
+    background:repeating-linear-gradient(0deg, rgba(0,0,0,.15) 0 1px, transparent 1px 3px); opacity:.55; }
+  .wrap { max-width:760px; margin:0 auto; padding:18px 14px 60px; }
+  @keyframes tv { 0%{transform:scale(.2);opacity:0;filter:brightness(5);} 60%{transform:scale(1.04);opacity:1;} 100%{transform:scale(1);} }
+  .tv { animation:tv .5s ease-out; }
+
+  .nav { text-align:center; font-size:clamp(17px,3.2vw,21px); margin-bottom:10px; }
+  a { color:var(--azul); }
+  .logo {
+    font-family:'Press Start 2P',monospace; font-size:clamp(13px,3.4vw,20px);
+    color:var(--amarelo); text-shadow:2px 2px 0 var(--rosa),4px 4px 0 var(--azul);
+    text-align:center; line-height:1.5; margin:6px 0;
+  }
+  .sub { text-align:center; font-size:clamp(17px,3.4vw,22px); color:#ffe; margin-bottom:16px; }
+
+  .card { background:rgba(255,255,255,.06); border:2px solid var(--azul);
+    box-shadow:0 0 12px rgba(0,229,255,.35), inset 0 0 30px rgba(0,0,0,.4);
+    border-radius:12px; padding:16px; margin-bottom:16px; }
+  .card h2 {
+    font-family:'Press Start 2P',monospace; font-size:clamp(11px,2.8vw,15px);
+    color:var(--amarelo); text-shadow:2px 2px 0 var(--rosa); margin-bottom:10px; line-height:1.6;
+  }
+  table { width:100%; border-collapse:collapse; font-size:clamp(17px,3.2vw,22px); }
+  th, td { text-align:left; padding:7px 6px; border-bottom:1px solid rgba(255,255,255,.15); vertical-align:top; }
+  th { color:var(--verde); font-weight:normal; border-bottom:2px solid var(--verde); }
+  td.golpe { color:var(--amarelo); }
+  td.cmd { font-family:'Press Start 2P',monospace; font-size:clamp(8px,2.2vw,11px); color:#fff; line-height:1.8; }
+
+  .legenda { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; font-size:clamp(16px,3vw,20px); margin-top:6px; }
+  .legenda span { background:rgba(0,0,0,.45); border:1px solid rgba(255,255,255,.25); border-radius:6px; padding:2px 8px; }
+
+  .nota { font-size:clamp(16px,3vw,20px); color:rgba(255,255,255,.6); text-align:center; margin-top:10px; }
+  .ad { margin:18px auto; text-align:center; border:2px dashed rgba(255,255,255,.22); border-radius:10px; padding:10px; font-size:14px; color:rgba(255,255,255,.4); }
+  .rodape { margin-top:16px; text-align:center; font-size:16px; color:rgba(255,255,255,.45); line-height:1.5; }
+</style>
+</head>
+<body>
+<div class="bg"></div><div class="scanlines"></div>
+
+<div class="wrap tv">
+  <div class="nav"><a href="index.html">🕹 ← Voltar ao desafio diário</a></div>
+  <div class="logo">SPECIAIS</div>
+  <p class="sub">Os golpes lendários dos fliperamas — que mão quase quebrava o joystick! 🕹️</p>
+
+  <div class="card">
+    <h2>📖 COMO LER OS COMANDOS</h2>
+    <div class="legenda">
+      <span>↓ ↘ →  = meia-lua pra frente</span>
+      <span>→ ↓ ↘  = "hadouken"</span>
+      <span>↓ ↙ ←  = meia-lua pra trás</span>
+      <span>P = soco (Punch)</span>
+      <span>K = chute (Kick)</span>
+      <span>(segurar) = carregar movimento</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🥊 STREET FIGHTER II</h2>
+    <table>
+      <tr><th>Lutador</th><th>Golpe</th><th>Comando clássico</th></tr>
+      <tr><td>Ryu / Ken</td><td class="golpe">Hadouken (bola de fogo)</td><td class="cmd">↓ ↘ → + P</td></tr>
+      <tr><td>Ryu / Ken</td><td class="golpe">Shoryuken (uppercut)</td><td class="cmd">→ ↓ ↘ + P</td></tr>
+      <tr><td>Ryu / Ken</td><td class="golpe">Tatsumaki (chute giratório)</td><td class="cmd">↓ ↙ ← + K</td></tr>
+      <tr><td>Guile</td><td class="golpe">Sonic Boom</td><td class="cmd">(← segurar) → + P</td></tr>
+      <tr><td>Guile</td><td class="golpe">Flash Kick</td><td class="cmd">(↓ segurar) ↑ + K</td></tr>
+      <tr><td>Blanka</td><td class="golpe">Electric Thunder</td><td class="cmd">↓ ↙ ← + P (3x rápido)</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>☠️ MORTAL KOMBAT — os "Fatalities"</h2>
+    <table>
+      <tr><th>Lutador</th><th>Famoso por</th><th>Nota</th></tr>
+      <tr><td>Scorpion</td><td class="golpe">"Get over here!"</td><td>Lança a corrente e puxa o inimigo</td></tr>
+      <tr><td>Sub-Zero</td><td class="golpe">Congelamento</td><td>Congela o rival para o golpe final</td></tr>
+      <tr><td>Raiden</td><td class="golpe">Trovão</td><td>"Finish Him!" seguido de eletricidade</td></tr>
+      <tr><td>Liu Kang</td><td class="golpe">Dragão</td><td>Voadora + socos em sequência</td></tr>
+    </table>
+    <p class="nota">Os comandos exatos dos fatalities variavam entre MK1, MK2 e MK3. O que todo mundo lembra é o grito <b>"Finish Him!"</b> e o boneco voando pelos ares. 🤣</p>
+  </div>
+
+  <div class="card">
+    <h2>🌪 THE KING OF FIGHTERS</h2>
+    <table>
+      <tr><th>Lutador</th><th>Golpe</th><th>Comando clássico</th></tr>
+      <tr><td>Kyo Kusanagi</td><td class="golpe">Orochinagi (fogo)</td><td class="cmd">↓ ↙ ← ↙ ↓ ↘ → + P</td></tr>
+      <tr><td>Iori Yagami</td><td class="golpe">Bola de fogo roxa</td><td class="cmd">↓ ↘ → + P</td></tr>
+      <tr><td>Terry Bogard</td><td class="golpe">Power Wave</td><td class="cmd">↓ ↘ → + P</td></tr>
+      <tr><td>Terry Bogard</td><td class="golpe">Buster Wolf</td><td class="cmd">↓ ↙ ← ↙ ↓ ↘ → + K</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>⚔️ FATAL FURY & SAMURAI SHODOWN</h2>
+    <table>
+      <tr><th>Jogo</th><th>Golpe</th><th>Comando clássico</th></tr>
+      <tr><td>Fatal Fury</td><td class="golpe">Terry — Burn Knuckle</td><td class="cmd">↓ ↙ ← + P</td></tr>
+      <tr><td>Fatal Fury</td><td class="golpe">Andy — Kama... (risada seca)</td><td class="cmd">↓ ↘ → + K</td></tr>
+      <tr><td>SamSho</td><td class="golpe">Haohmaru — lâmina demoníaca</td><td class="cmd">↓ ↘ → + P (espada)</td></tr>
+      <tr><td>SamSho</td><td class="golpe">Nakoruru — falcão</td><td class="cmd">↓ ↙ ← + P</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>🎮 OUTROS LENDÁRIOS</h2>
+    <table>
+      <tr><th>Jogo</th><th>Movimento inesquecível</th></tr>
+      <tr><td>Metal Slug</td><td class="golpe">"Heavy Machine Gun!" e a corrida frenética</td></tr>
+      <tr><td>Double Dragon</td><td class="golpe">Nunchaku do inimigo que você tomava</td></tr>
+      <tr><td>Final Fight</td><td class="golpe">Suplex do prefeito Haggar</td></tr>
+    </table>
+  </div>
+
+  <div class="ad">Espaço reservado pra anúncios (AdSense)</div>
+  <div class="rodape">Feito com 💜 e saudade dos fliperamas<br><a href="index.html">Voltar ao desafio diário</a></div>
+</div>
+</body>
+</html>

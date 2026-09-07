@@ -400,6 +400,138 @@ POOL = [
             "Seu nome era de um personagem japonês da sogra.",
         ],
     },
+    {
+        "resp": "Street Fighter II",
+        "pistas": [
+            "O jogo de luta mais famoso de todos os fliperamas.",
+            "Você escolhia entre lutadores do mundo inteiro.",
+            "O personagem da capa soltava o golpe 'Hadouken'.",
+            "Tinha versões Champion Edition e Turbo.",
+            "Dois jogadores se enfrentavam disputando o salão.",
+            "'Hadouken!' e 'Shoryuken!' ecoavam pelo fliperama.",
+        ],
+    },
+    {
+        "resp": "Mortal Kombat",
+        "pistas": [
+            "O jogo de luta mais polêmico dos anos 90.",
+            "Foi o primeiro a popularizar sangue nos fliperamas.",
+            "'Finish Him!' soava antes do golpe final.",
+            "Sub-Zero congelava o adversário para o golpe fatal.",
+            "Scorpion, Raiden e Liu Kang estavam no elenco.",
+            "No Brasil, o jogo até virou caso de polícia e foi apreendido.",
+        ],
+    },
+    {
+        "resp": "The King of Fighters",
+        "pistas": [
+            "A luta da SNK que dominava os fliperamas nos anos 90.",
+            "Você montava um time com 3 lutadores.",
+            "Dava pra trocar de personagem no meio da luta.",
+            "Kyo, Iori e a rivalidade das famílias centenárias.",
+            "As versões '96, '98 e '2002 são as mais lembradas.",
+            "No final, um chefe soltava raios e esmagava o chão.",
+        ],
+    },
+    {
+        "resp": "Fatal Fury",
+        "pistas": [
+            "A série de luta da SNK que veio antes do KOF.",
+            "O herói lutava ao lado do irmão mais novo.",
+            "O golpe 'Power Wave' deslizava pelo chão.",
+            "O protagonista era loiro e usava jaqueta vermelha.",
+            "O vilão de cabelo branco atirava do alto do prédio.",
+            "'Are you okay? BUSTA WOLF!' era sua fala de vitória.",
+        ],
+    },
+    {
+        "resp": "Samurai Shodown",
+        "pistas": [
+            "Luta com espadas no Japão feudal, pela SNK.",
+            "Os samurais podiam quebrar a lâmina do rival.",
+            "Os golpes finais eram mostrados em câmera lenta.",
+            "O guerreiro da capa usava uma espada lendária.",
+            "Uma guerreira indígena lutava com um falcão ao lado.",
+            "O medidor de raiva enchia quando você apanhava.",
+        ],
+    },
+    {
+        "resp": "Metal Slug",
+        "pistas": [
+            "O jogo de tiro mais frenético dos fliperamas.",
+            "Dois soldados avançavam por campos de guerra.",
+            "O tanque 'Metal Slug' era o prêmio de cada fase.",
+            "Reféns resgatados soltavam itens e armas.",
+            "'Heavy Machine Gun!' tocava ao pegar a arma.",
+            "A animação era tão boa que você morria só de admirar.",
+        ],
+    },
+    {
+        "resp": "Neo Geo",
+        "pistas": [
+            "O sistema da SNK que era fliperama E videogame.",
+            "Os jogos do salão eram os mesmos de casa.",
+            "Era o hardware mais potente da época.",
+            "Os cartuchos custavam mais que o próprio console.",
+            "KOF, Metal Slug e Samurai Shodown nasceram nele.",
+            "'100 Mega Shock!' era o seu grito de guerra.",
+        ],
+    },
+    {
+        "resp": "Pac-Man",
+        "pistas": [
+            "O círculo amarelo que virou símbolo do fliperama.",
+            "Ele corria por um labirinto comendo bolinhas.",
+            "Quatro fantasmas coloridos o caçavam.",
+            "A bolinha maior o deixava invencível por instantes.",
+            "Os fantasmas tinham nome: Blinky, Pinky, Inky e Clyde.",
+            "Foi criado pra atrair as meninas pros fliperamas.",
+        ],
+    },
+    {
+        "resp": "Donkey Kong",
+        "pistas": [
+            "O jogo que apresentou o maior herói dos videogames.",
+            "Um macaco gigante segurava a moça no topo.",
+            "O herói pulava barris rolando pelo cenário.",
+            "Na época, o herói era um simples carpinteiro.",
+            "O macaco era o grande vilão da trama.",
+            "O gorila foi batizado em homenagem a um primata famoso.",
+        ],
+    },
+    {
+        "resp": "Double Dragon",
+        "pistas": [
+            "A briga de rua que lotava os fliperamas.",
+            "Dois irmãos mestres em artes marciais.",
+            "A missão era resgatar a namorada de uma gangue.",
+            "Billy e Jimmy eram os irmãos protagonistas.",
+            "Dava pra jogar em dupla... e acertar o colega.",
+            "Nunchaku, chutes e muito 'soco na cara'.",
+        ],
+    },
+    {
+        "resp": "Final Fight",
+        "pistas": [
+            "A pancadaria da Capcom nas ruas de Metro City.",
+            "Três heróis: dois lutadores e o prefeito fortão.",
+            "O objetivo era resgatar a filha do prefeito.",
+            "Nasceu de um projeto que seria um 'Street Fighter'.",
+            "O prefeito Haggar usava um suplex devastador.",
+            "Uma gangue de rua tomava conta da cidade.",
+        ],
+    },
+    {
+        "resp": "Time Crisis",
+        "pistas": [
+            "O jogo de tiro com arma de plástico do fliperama.",
+            "Um pedal no chão fazia você se esconder.",
+            "Cada fase terminava num duelo contra um vilão.",
+            "O vilão 'Wild Dog' atirava de qualquer canto.",
+            "Se não se escondesse, morria em segundos.",
+            "O relógio e a tensão eram o tempero da diversão.",
+        ],
+    },
 ]
 
 # Desafio nº1 = dia 2026-09-06 (data de referência do projeto)
