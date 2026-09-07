@@ -532,6 +532,116 @@ POOL = [
             "O relógio e a tensão eram o tempero da diversão.",
         ],
     },
+    {
+        "resp": "Vale Tudo",
+        "pistas": [
+            "Novela da Globo que todo mundo comentava no dia seguinte.",
+            "Tinha a vilã mais marcante da TV brasileira.",
+            "'Quem matou Odete Roitman?' virou febre nacional.",
+            "A filha ambiciosa queria ganhar dinheiro a qualquer custo.",
+            "A mãe vendia comida na praia pra sobreviver.",
+            "A pergunta do século ficou guardada até o último capítulo.",
+        ],
+    },
+    {
+        "resp": "Roque Santeiro",
+        "pistas": [
+            "Novela ambientada numa cidade chamada Asa Branca.",
+            "Um herói da cidade era dado como morto... mas estava vivo.",
+            "O vilão era dono de tudo e se chamava Sinhozinho Malta.",
+            "A viúva mais famosa da TV morava na cidade.",
+            "O bordão da época brincava: 'Quem matou o Roque?'",
+            "Marcou gerações com a disputa entre o herói e o coronel.",
+        ],
+    },
+    {
+        "resp": "Tieta",
+        "pistas": [
+            "Novela baseada em obra de Jorge Amado.",
+            "A cidade era Santana do Agreste.",
+            "A protagonista voltou rica de São Paulo pra se vingar.",
+            "O irmão dela era o delegado 'cheiroso' da cidade.",
+            "Os caprinos eram os personagens mais 'cheirosos' da trama.",
+            "Uma das novelas mais libertadoras e divertidas da Globo.",
+        ],
+    },
+    {
+        "resp": "O Rei do Gado",
+        "pistas": [
+            "Novela com disputa de terras e uma história de amor.",
+            "O protagonista era dono de milhares de cabeças de gado.",
+            "A moça por quem ele se apaixonou tinha um passado de luta.",
+            "Antônio Fagundes vivia o personagem principal.",
+            "A música 'Admirável Gado Novo' marcou a abertura.",
+            "Boi, terra, paixão e muita lágrima na Globo dos anos 90.",
+        ],
+    },
+    {
+        "resp": "Terra Nostra",
+        "pistas": [
+            "Novela sobre imigrantes italianos que chegaram ao Brasil.",
+            "O amor começou durante a travessia de navio.",
+            "Giuliana e Matteo eram o casal da história.",
+            "Mostrava o trabalho árduo nas fazendas de café.",
+            "A música tema cantava sobre saudade e esperança.",
+            "Uma das novelas mais bonitas e marcantes do fim dos anos 90.",
+        ],
+    },
+    {
+        "resp": "Mulheres de Areia",
+        "pistas": [
+            "Novela com duas irmãs gêmeas de personalidades opostas.",
+            "Uma era boazinha, a outra maquiavélica.",
+            "As duas eram apaixonadas pelo mesmo homem.",
+            "O personagem Tonho da Lua era um sonhador inesquecível.",
+            "O mar, a praia e a lua eram cenário constante.",
+            "A pergunta era sempre: qual das duas você vai encontrar?",
+        ],
+    },
+    {
+        "resp": "A Viagem",
+        "pistas": [
+            "Novela de Glória Perez sobre o que existe depois da morte.",
+            "Abordava reencarnação e vida espiritual.",
+            "Um romance atravessado por um espírito vingativo.",
+            "Foi exibida na faixa das 18h da Globo.",
+            "A abertura mostrava uma estrada no céu.",
+            "Mexia com fé, medo e a crença de milhões de telespectadores.",
+        ],
+    },
+    {
+        "resp": "Chiquititas",
+        "pistas": [
+            "Novela infantil que emocionou o SBT.",
+            "As crianças viviam num orfanato chamado Raio de Luz.",
+            "A protagonista era a doce Mili.",
+            "Tinha mensagens de amizade e esperança em cada capítulo.",
+            "As meninas usavam roupinhas combinando.",
+            "A música de abertura virou hino das crianças dos anos 90.",
+        ],
+    },
+    {
+        "resp": "Carrossel",
+        "pistas": [
+            "Novela infantil exibida no SBT com grande sucesso.",
+            "A turma estudava na Escola Mundial.",
+            "A professora chamava-se Helena e era adorada.",
+            "Cirilo vivia apaixonado pela Maria Joaquina.",
+            "'Bate, bate no coração' marcava a abertura.",
+            "Valeu, professora! Era o grito mais famoso da garotada.",
+        ],
+    },
+    {
+        "resp": "Éramos Seis",
+        "pistas": [
+            "Novela baseada no livro de Maria José Dupré.",
+            "A família Lemos era o centro da história.",
+            "A mãe dedicada criava os filhos com muito sacrifício.",
+            "Foi exibida pelo SBT em meados dos anos 90.",
+            "A casa e a mesa da família eram cenário de toda a trama.",
+            "Uma história simples e emocionante de família brasileira.",
+        ],
+    },
 ]
 
 # Desafio nº1 = dia 2026-09-06 (data de referência do projeto)
