@@ -522,10 +522,10 @@ button { font-family: inherit; }
 /* ---------- APP SHELL ---------- */
 .app { max-width: 760px; margin: 0 auto; padding: 14px 14px 70px; }
 
-/* DESKTOP: layout de canal (desafio em destaque + coluna lateral) */
+/* O desafio e o programa. Museu e cenas ficam abaixo, fechados. */
 @media (min-width: 940px) {
-  .app { max-width: 1000px; }
-  .app-corpo { display: grid; grid-template-columns: 1.25fr 0.9fr; gap: 16px; align-items: start; }
+  .app { max-width: 760px; }
+  .app-corpo { display: block; }
   .app-coluna { display: grid; gap: 16px; }
 }
 @media (max-width: 939px) {

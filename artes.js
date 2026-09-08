@@ -123,21 +123,119 @@ window.Arte = (function () {
     }
   };
 
+  /* Objeto do desafio, nao a categoria. Sem nome da resposta. */
+  var OBJETOS = {
+    tazo: {
+      selo: "COLEÇÃO", moto: "RECREIO",
+      elem: function () {
+        return '<svg class="art-elem" viewBox="0 0 160 90" role="presentation">' +
+          '<ellipse cx="52" cy="50" rx="24" ry="24" fill="#ff7a1a" stroke="#241d3f" stroke-width="3"/>' +
+          '<ellipse cx="74" cy="44" rx="26" ry="26" fill="#ffe600" stroke="#241d3f" stroke-width="3"/>' +
+          '<ellipse cx="98" cy="50" rx="24" ry="24" fill="#2ecf5b" stroke="#241d3f" stroke-width="3"/>' +
+          '<circle cx="90" cy="46" r="2.5" fill="#241d3f"/><circle cx="106" cy="46" r="2.5" fill="#241d3f"/>' +
+          '<path d="M90 58 Q99 64 110 54" fill="none" stroke="#241d3f" stroke-width="2"/>' +
+          '<rect x="118" y="18" width="26" height="42" rx="3" fill="#e6293c" stroke="#241d3f" stroke-width="2" transform="rotate(14 131 42)"/>' +
+          '</svg>';
+      }
+    },
+    tamagotchi: {
+      selo: "BIP", moto: "OVO",
+      elem: function () {
+        return '<svg class="art-elem" viewBox="0 0 160 90" role="presentation">' +
+          '<ellipse cx="80" cy="46" rx="34" ry="40" fill="#f4c7d8" stroke="#241d3f" stroke-width="3"/>' +
+          '<rect x="58" y="28" width="44" height="28" rx="4" fill="#9fe7a2" stroke="#241d3f" stroke-width="2"/>' +
+          '<circle cx="74" cy="40" r="3" fill="#241d3f"/><circle cx="86" cy="40" r="3" fill="#241d3f"/>' +
+          '<path d="M72 48 Q80 52 88 48" fill="none" stroke="#241d3f" stroke-width="2"/>' +
+          '<circle cx="62" cy="72" r="5" fill="#241d3f"/><circle cx="80" cy="74" r="5" fill="#241d3f"/><circle cx="98" cy="72" r="5" fill="#241d3f"/>' +
+          '</svg>';
+      }
+    },
+    "super-nintendo": {
+      selo: "CARTUCHO", moto: "CONSOLE",
+      elem: function () {
+        return '<svg class="art-elem" viewBox="0 0 160 90" role="presentation">' +
+          '<rect x="28" y="28" width="104" height="36" rx="10" fill="#cfc8be" stroke="#241d3f" stroke-width="3"/>' +
+          '<rect x="40" y="38" width="22" height="16" rx="3" fill="#241d3f"/>' +
+          '<circle cx="92" cy="46" r="5" fill="#2f6fed"/><circle cx="106" cy="46" r="5" fill="#e6293c"/>' +
+          '<circle cx="99" cy="56" r="4" fill="#2ecf5b"/><circle cx="114" cy="54" r="4" fill="#ffe600"/>' +
+          '<rect x="48" y="18" width="18" height="16" rx="2" fill="#6b5cff" stroke="#241d3f" stroke-width="2"/>' +
+          '</svg>';
+      }
+    },
+    "fita-vhs": {
+      selo: "FITA", moto: "REBOBINA",
+      elem: function () {
+        return '<svg class="art-elem" viewBox="0 0 160 90" role="presentation">' +
+          '<rect x="24" y="22" width="112" height="52" rx="4" fill="#1c1a24" stroke="#e6e9ff" stroke-width="3"/>' +
+          '<rect x="36" y="30" width="34" height="22" rx="2" fill="#d9e2ff"/>' +
+          '<rect x="90" y="30" width="34" height="22" rx="2" fill="#d9e2ff"/>' +
+          '<circle cx="53" cy="41" r="7" fill="none" stroke="#241d3f" stroke-width="2"/>' +
+          '<circle cx="107" cy="41" r="7" fill="none" stroke="#241d3f" stroke-width="2"/>' +
+          '<rect x="62" y="58" width="36" height="8" rx="2" fill="#ffe600"/>' +
+          '</svg>';
+      }
+    },
+    discman: {
+      selo: "CD", moto: "PLAY",
+      elem: function () {
+        return '<svg class="art-elem" viewBox="0 0 160 90" role="presentation">' +
+          '<rect x="36" y="22" width="72" height="52" rx="8" fill="#ffe600" stroke="#241d3f" stroke-width="3"/>' +
+          '<circle cx="72" cy="48" r="16" fill="#dfe6ff" stroke="#241d3f" stroke-width="2"/>' +
+          '<circle cx="72" cy="48" r="5" fill="#241d3f"/>' +
+          '<path d="M108 40 C128 28 136 58 118 62" fill="none" stroke="#241d3f" stroke-width="3"/>' +
+          '<circle cx="122" cy="34" r="6" fill="#241d3f"/><circle cx="128" cy="62" r="6" fill="#241d3f"/>' +
+          '</svg>';
+      }
+    },
+    walkman: {
+      selo: "FITA", moto: "FONE",
+      elem: function () {
+        return '<svg class="art-elem" viewBox="0 0 160 90" role="presentation">' +
+          '<rect x="48" y="24" width="48" height="44" rx="6" fill="#2f6fed" stroke="#241d3f" stroke-width="3"/>' +
+          '<rect x="56" y="32" width="32" height="16" rx="2" fill="#d9e2ff"/>' +
+          '<circle cx="64" cy="40" r="4" fill="#241d3f"/><circle cx="80" cy="40" r="4" fill="#241d3f"/>' +
+          '<path d="M40 36 C28 36 24 58 36 62" fill="none" stroke="#241d3f" stroke-width="3"/>' +
+          '<path d="M120 36 C132 36 136 58 124 62" fill="none" stroke="#241d3f" stroke-width="3"/>' +
+          '<rect x="30" y="58" width="14" height="10" rx="3" fill="#241d3f"/>' +
+          '<rect x="116" y="58" width="14" height="10" rx="3" fill="#241d3f"/>' +
+          '</svg>';
+      }
+    },
+    kibon: {
+      selo: "PICOLÉ", moto: "CAMINHÃO",
+      elem: function () {
+        return '<svg class="art-elem" viewBox="0 0 160 90" role="presentation">' +
+          '<rect x="62" y="16" width="36" height="46" rx="8" fill="#f4d2b0" stroke="#241d3f" stroke-width="3"/>' +
+          '<rect x="62" y="16" width="36" height="16" rx="8" fill="#7a4a2a"/>' +
+          '<rect x="76" y="60" width="8" height="16" rx="2" fill="#c9844a"/>' +
+          '</svg>';
+      }
+    }
+  };
+
+  function objetoDo(e) {
+    if (!e || !e.slug) return null;
+    return OBJETOS[e.slug] || null;
+  }
   function infoCategoria(cat) {
     return CATES[cat] || CATES.CULTURA;
   }
 
   function gerar(e, info) {
     var c = infoCategoria(e.cat);
+    var obj = objetoDo(e);
+    var selo = obj ? obj.selo : c.selo;
+    var moto = obj ? obj.moto : c.moto;
+    var elem = obj ? obj.elem(e, info) : c.elem(e, info);
     var fallbackHtml = (
       '<div class="art-fundo ' + c.fundo + '"></div>' +
-      c.elem(e, info) +
-      '<div class="art-faixa"><span class="art-selo">' + c.selo + '</span><span class="art-cat">' + (e.cat || "") + '</span><span class="art-ano">' + (e.ano || "") + '</span></div>' +
-      '<div class="art-moto">' + c.moto + '</div>' +
+      elem +
+      '<div class="art-faixa"><span class="art-selo">' + selo + '</span><span class="art-cat">' + (e.cat || "") + '</span><span class="art-ano">' + (e.ano || "") + '</span></div>' +
+      '<div class="art-moto">' + moto + '</div>' +
       '<div class="art-scan"></div>'
     );
     // se houver imagem real, usa (sem spoiler no alt); fallback procedural se falhar
-    if (e.image) {
+    if (e.image && !obj) {
       return '<img class="img-real" src="' + e.image + '" alt="" loading="lazy" data-fallback="' + _b64(fallbackHtml) + '" onerror="Arte.mostrarFallback(this)">';
     }
     return fallbackHtml;
