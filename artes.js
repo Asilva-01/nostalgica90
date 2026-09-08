@@ -230,7 +230,7 @@ window.Arte = (function () {
     var fallbackHtml = (
       '<div class="art-fundo ' + c.fundo + '"></div>' +
       elem +
-      '<div class="art-faixa"><span class="art-selo">' + selo + '</span><span class="art-cat">' + (e.cat || "") + '</span><span class="art-ano">' + (e.ano || "") + '</span></div>' +
+      '<div class="art-faixa"><span class="art-selo">' + selo + '</span><span class="art-cat" hidden>' + (e.cat || "") + '</span><span class="art-ano">' + (e.ano || "") + '</span></div>' +
       '<div class="art-moto">' + moto + '</div>' +
       '<div class="art-scan"></div>'
     );
