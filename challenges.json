@@ -1,11 +1,26 @@
 [
   {
+    "id": 1,
+    "slug": "tamagotchi",
+    "categorySlug": "brinquedos",
     "resp": "Tamagotchi",
-    "alias": [],
+    "alias": [
+      "tamagotchi",
+      "bichinho virtual",
+      "bicho virtual"
+    ],
     "cat": "BRINQUEDOS",
     "emoji": "🥚",
     "ano": "1996",
     "curiosidade": "A febre dos bichinhos virtuais fez a Mídia parar: escolas proibiram os aparelhos porque bipavam durante a aula.",
+    "tags": [
+      "brinquedos",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": "assets/images/challenges/piloto-001.svg",
+    "dificuldade": null,
     "pistas": [
       "Um bichinho de estimação que vivia no seu bolso.",
       "Ele bipava pedindo atenção o dia inteiro, até no meio da aula.",
@@ -16,12 +31,26 @@
     ]
   },
   {
+    "id": 2,
+    "slug": "tv-colosso",
+    "categorySlug": "tv",
     "resp": "TV Colosso",
-    "alias": [],
+    "alias": [
+      "colosso",
+      "tv colosso"
+    ],
     "cat": "TV",
     "emoji": "🐶",
     "ano": "1993",
     "curiosidade": "A 'TV do cão' foi o primeiro programa infantil da Globo feito só para crianças, com plateia de verdade e cachorros dublados.",
+    "tags": [
+      "tv",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": "assets/images/challenges/piloto-002.svg",
+    "dificuldade": null,
     "pistas": [
       "Um programa infantil famoso na TV aberta brasileira.",
       "Era apresentado por um cachorro muito grande.",
@@ -32,12 +61,26 @@
     ]
   },
   {
+    "id": 3,
+    "slug": "tazo",
+    "categorySlug": "brinquedos",
     "resp": "Tazo",
-    "alias": [],
+    "alias": [
+      "tazo",
+      "tazos"
+    ],
     "cat": "BRINQUEDOS",
     "emoji": "🌀",
     "ano": "1998",
     "curiosidade": "Os discos vieram dentro de salgadinhos e criaram um mercado próprio: os raros 'brilhantes' valiam verdadeiras fortunas no recreio.",
+    "tags": [
+      "brinquedos",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "Discos de papelão que viraram guerra nos recreios.",
       "Vinham dentro de pacotes de salgadinho.",
@@ -48,12 +91,27 @@
     ]
   },
   {
+    "id": 4,
+    "slug": "super-nintendo",
+    "categorySlug": "games",
     "resp": "Super Nintendo",
-    "alias": [],
+    "alias": [
+      "super nintendo",
+      "snes",
+      "nintendo"
+    ],
     "cat": "GAMES",
     "emoji": "🕹️",
     "ano": "1990",
     "curiosidade": "O SNES vendeu quase 50 milhões de unidades e trouxe clássicos como Super Mario World e Donkey Kong Country.",
+    "tags": [
+      "games",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "Console que dominou as salas de estar no começo dos anos 90.",
       "Usava cartuchos e brigava pelo mercado com um rival da Sega.",
@@ -64,12 +122,26 @@
     ]
   },
   {
+    "id": 5,
+    "slug": "eliana",
+    "categorySlug": "tv",
     "resp": "Eliana",
-    "alias": [],
+    "alias": [
+      "eliana",
+      "programa eliana"
+    ],
     "cat": "TV",
     "emoji": "🎤",
     "ano": "1991",
     "curiosidade": "O bordão 'É pimba!' nasceu de um trocadilho e virou marca registrada da apresentadora no SBT.",
+    "tags": [
+      "tv",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "Uma apresentadora loira que reinava aos domingos.",
       "Seu programa tinha plateia, brincadeiras e muita música.",
@@ -80,12 +152,30 @@
     ]
   },
   {
+    "id": 6,
+    "slug": "fita-vhs",
+    "categorySlug": "cultura",
     "resp": "Fita VHS",
-    "alias": [],
+    "alias": [
+      "vhs",
+      "fita vhs",
+      "fita cassete",
+      "videocassete",
+      "fita de video",
+      "fita"
+    ],
     "cat": "CULTURA",
     "emoji": "📼",
     "ano": "1970",
     "curiosidade": "A VHS dominou por décadas; rebobinar antes de devolver na locadora era a regra de ouro que todo mundo odiava.",
+    "tags": [
+      "cultura",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": "assets/images/challenges/piloto-006.svg",
+    "dificuldade": null,
     "pistas": [
       "Era pra onde iam os filmes antes do streaming existir.",
       "Pra assistir de novo, você precisava rebobinar.",
@@ -96,12 +186,27 @@
     ]
   },
   {
+    "id": 7,
+    "slug": "discman",
+    "categorySlug": "tecnologia",
     "resp": "Discman",
-    "alias": [],
+    "alias": [
+      "discman",
+      "disc man",
+      "discman sony"
+    ],
     "cat": "TECNOLOGIA",
     "emoji": "💿",
     "ano": "1984",
     "curiosidade": "O Discman da Sony transformou o CD em produto portátil, mas pulava a música se você andasse rápido.",
+    "tags": [
+      "tecnologia",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": "assets/images/challenges/piloto-007.svg",
+    "dificuldade": null,
     "pistas": [
       "O jeito portátil de ouvir os seus CDs.",
       "Tocava um disco por vez e cabia (quase) no bolso.",
@@ -112,12 +217,27 @@
     ]
   },
   {
+    "id": 8,
+    "slug": "walkman",
+    "categorySlug": "tecnologia",
     "resp": "Walkman",
-    "alias": [],
+    "alias": [
+      "walkman",
+      "walk man",
+      "walkman sony"
+    ],
     "cat": "TECNOLOGIA",
     "emoji": "🎧",
     "ano": "1979",
     "curiosidade": "O Walkman mudou a forma de ouvir música e virou sinônimo de tocador portátil por décadas.",
+    "tags": [
+      "tecnologia",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "O pai de todos os tocadores portáteis de música.",
       "Nele você ouvia as fitinhas cassete.",
@@ -128,12 +248,27 @@
     ]
   },
   {
+    "id": 9,
+    "slug": "kibon",
+    "categorySlug": "cultura",
     "resp": "Kibon",
-    "alias": [],
+    "alias": [
+      "kibon",
+      "kibom",
+      "sorvete kibon"
+    ],
     "cat": "CULTURA",
     "emoji": "🍦",
     "ano": "1941",
     "curiosidade": "O caminhãozinho da Kibon tocava uma musiquinha inconfundível que anunciava o verão nas ruas do Brasil.",
+    "tags": [
+      "cultura",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "Marca de sorvete que mandava no verão brasileiro.",
       "Seu carrinho tocava uma musiquinha que anunciava a chegada.",
@@ -144,12 +279,26 @@
     ]
   },
   {
+    "id": 10,
+    "slug": "bombril",
+    "categorySlug": "tv",
     "resp": "Bombril",
-    "alias": [],
+    "alias": [
+      "bombril",
+      "lã de aço"
+    ],
     "cat": "TV",
     "emoji": "🪠",
     "ano": "1955",
     "curiosidade": "O garoto-propaganda apareceu em mais de 200 comerciais, com perucas e fantasias dos personagens mais famosos do mundo.",
+    "tags": [
+      "tv",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "Produto de limpeza que virou estrela da publicidade.",
       "Sua campanha durou anos com o mesmo garoto-propaganda.",
@@ -160,12 +309,27 @@
     ]
   },
   {
+    "id": 11,
+    "slug": "xuxa",
+    "categorySlug": "tv",
     "resp": "Xuxa",
-    "alias": [],
+    "alias": [
+      "xuxa",
+      "rainha dos baixinhos",
+      "xou da xuxa"
+    ],
     "cat": "TV",
     "emoji": "👑",
     "ano": "1986",
     "curiosidade": "A Rainha dos Baixinhos levou o Brasil para a TV internacional e criou o maior programa infantil da América Latina.",
+    "tags": [
+      "tv",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "A maior rainha do público infantil dos anos 90.",
       "Apresentava um programa de auditório cheio de crianças.",
@@ -176,12 +340,26 @@
     ]
   },
   {
+    "id": 12,
+    "slug": "super-trunfo",
+    "categorySlug": "brinquedos",
     "resp": "Super Trunfo",
-    "alias": [],
+    "alias": [
+      "super trunfo",
+      "trunfo"
+    ],
     "cat": "BRINQUEDOS",
     "emoji": "🃏",
     "ano": "1972",
     "curiosidade": "O jogo de comparar números nasceu na Inglaterra e virou febre nas rodas de amigos e famílias brasileiras.",
+    "tags": [
+      "brinquedos",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "Jogo de cartas que você levava pra qualquer lugar.",
       "Cada carta trazia desenhos e atributos com números.",
@@ -192,12 +370,27 @@
     ]
   },
   {
+    "id": 13,
+    "slug": "game-boy",
+    "categorySlug": "games",
     "resp": "Game Boy",
-    "alias": [],
+    "alias": [
+      "game boy",
+      "gameboy",
+      "nintendo game boy"
+    ],
     "cat": "GAMES",
     "emoji": "🎮",
     "ano": "1989",
     "curiosidade": "O Game Boy da Nintendo vendia milhões graças a um jogo de blocos que caiam: o Tetris.",
+    "tags": [
+      "games",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "Console portátil que cabia na palma da mão.",
       "A tela era pequena, esverdeada e sem luz de fundo.",
@@ -208,12 +401,23 @@
     ]
   },
   {
+    "id": 14,
+    "slug": "senna",
+    "categorySlug": "cultura",
     "resp": "Senna",
     "alias": [],
     "cat": "CULTURA",
     "emoji": "🏎️",
     "ano": "1990",
     "curiosidade": "Ayrton Senna é o maior ídolo do esporte brasileiro; sua morte em 1994 parou o país inteiro.",
+    "tags": [
+      "cultura",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "O maior ídolo do automobilismo brasileiro de todos os tempos.",
       "Foi tricampeão mundial de Fórmula 1 nos anos 90.",
@@ -224,12 +428,23 @@
     ]
   },
   {
+    "id": 15,
+    "slug": "formula-1",
+    "categorySlug": "cultura",
     "resp": "Fórmula 1",
     "alias": [],
     "cat": "CULTURA",
     "emoji": "🏁",
     "ano": "1950",
     "curiosidade": "Nos anos 90, a F1 era assistida aos domingos de manhã com café, e o Brasil vibrava com Senna e companhia.",
+    "tags": [
+      "cultura",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "A categoria máxima do automobilismo mundial nos anos 90.",
       "No Brasil, era assistida aos domingos de manhã com empolgação.",
@@ -240,12 +455,23 @@
     ]
   },
   {
+    "id": 16,
+    "slug": "copa-do-mundo",
+    "categorySlug": "cultura",
     "resp": "Copa do Mundo",
     "alias": [],
     "cat": "CULTURA",
     "emoji": "⚽",
     "ano": "1994",
     "curiosidade": "O tetra veio em 1994 na disputa de pênaltis contra a Itália, com a final emocionando o Brasil inteiro.",
+    "tags": [
+      "cultura",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "O evento que parava o Brasil inteiro a cada quatro anos.",
       "Nos anos 90, era assistido em quase toda casa aos domingos.",
@@ -256,12 +482,23 @@
     ]
   },
   {
+    "id": 17,
+    "slug": "romario",
+    "categorySlug": "cultura",
     "resp": "Romário",
     "alias": [],
     "cat": "CULTURA",
     "emoji": "⚽",
     "ano": "1994",
     "curiosidade": "O Baixinho foi o artilheiro do tetra em 1994, marcando 5 gols e sendo eleito o melhor do mundo.",
+    "tags": [
+      "cultura",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "Atacante baixinho que foi o herói do tetra em 1994.",
       "Diziam que ele 'parava a bola' com a ponta da chuteira.",
@@ -272,12 +509,23 @@
     ]
   },
   {
+    "id": 18,
+    "slug": "ronaldo",
+    "categorySlug": "cultura",
     "resp": "Ronaldo",
     "alias": [],
     "cat": "CULTURA",
     "emoji": "⚽",
     "ano": "1997",
     "curiosidade": "O Fenômeno explodiu no Barcelona e na Inter, e se consagrou em 2002 com o penta.",
+    "tags": [
+      "cultura",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "Atacante que explodiu como 'Fenômeno' ainda muito jovem.",
       "Brilhou na Copa de 1998 antes da final em que passou mal.",
@@ -288,12 +536,23 @@
     ]
   },
   {
+    "id": 19,
+    "slug": "dragon-ball-z",
+    "categorySlug": "tv",
     "resp": "Dragon Ball Z",
     "alias": [],
     "cat": "TV",
     "emoji": "🐉",
     "ano": "1989",
     "curiosidade": "O 'Kamehameha' virou cultura pop mundial; a saga Saiyajin dominou as manhãs da TV brasileira.",
+    "tags": [
+      "tv",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "Animê que dominava as manhãs da TV brasileira.",
       "O herói soltava o grito 'Kamehameha' ao atacar.",
@@ -304,12 +563,23 @@
     ]
   },
   {
+    "id": 20,
+    "slug": "cavaleiros-do-zodiaco",
+    "categorySlug": "tv",
     "resp": "Cavaleiros do Zodíaco",
     "alias": [],
     "cat": "TV",
     "emoji": "🛡️",
     "ano": "1986",
     "curiosidade": "O animê de Seiya e companhia foi um dos maiores fenômenos da TV brasileira, com a 'armadura de Pégaso'.",
+    "tags": [
+      "tv",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "Animê de cinco guerreiros com armaduras douradas.",
       "Seiya usava a armadura de Pégaso.",
@@ -320,12 +590,23 @@
     ]
   },
   {
+    "id": 21,
+    "slug": "sailor-moon",
+    "categorySlug": "tv",
     "resp": "Sailor Moon",
     "alias": [],
     "cat": "TV",
     "emoji": "🌙",
     "ano": "1992",
     "curiosidade": "A 'guerreira da lua' conquistou o público feminino e abriu espaço para os animês mágicos no Brasil.",
+    "tags": [
+      "tv",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "Animê de garotas mágicas que conquistou o público feminino.",
       "A protagonista se transformava com um broche.",
@@ -336,12 +617,23 @@
     ]
   },
   {
+    "id": 22,
+    "slug": "pokemon",
+    "categorySlug": "games",
     "resp": "Pokémon",
     "alias": [],
     "cat": "GAMES",
     "emoji": "⚡",
     "ano": "1996",
     "curiosidade": "A febre dos monstrinhos explodiu com 'Preciso pegá-los!' e virou o maior fenômeno de mídia dos anos 90.",
+    "tags": [
+      "games",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "A febre dos monstrinhos que explodiu no fim dos anos 90.",
       "O treinador queria ser o 'melhor de todos'.",
@@ -352,12 +644,23 @@
     ]
   },
   {
+    "id": 23,
+    "slug": "digimon",
+    "categorySlug": "games",
     "resp": "Digimon",
     "alias": [],
     "cat": "GAMES",
     "emoji": "🦖",
     "ano": "1997",
     "curiosidade": "Os monstrinhos digitais rivalizaram com Pokémon e marcaram as manhãs com o dispositivo de pulso.",
+    "tags": [
+      "games",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "Monstrinhos digitais, a rival da febre japonesa do fim dos anos 90.",
       "Digimolevavam para formas cada vez mais fortes.",
@@ -368,12 +671,23 @@
     ]
   },
   {
+    "id": 24,
+    "slug": "chaves",
+    "categorySlug": "tv",
     "resp": "Chaves",
     "alias": [],
     "cat": "TV",
     "emoji": "🛢️",
     "ano": "1972",
     "curiosidade": "O seriado mexicano foi reprisado infinitamente na TV brasileira e o 'foi sem querer querendo' virou frase eterna.",
+    "tags": [
+      "tv",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "A turma de uma vila muito pobre que divertia a garotada.",
       "O menino morava num barril.",
@@ -384,12 +698,23 @@
     ]
   },
   {
+    "id": 25,
+    "slug": "rugrats",
+    "categorySlug": "tv",
     "resp": "Rugrats",
     "alias": [],
     "cat": "TV",
     "emoji": "👶",
     "ano": "1991",
     "curiosidade": "Os bebês do desenho viviam aventuras secretas que os adultos nunca entendiam.",
+    "tags": [
+      "tv",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "Desenho sobre um grupo de bebês com aventuras secretas.",
       "O primo com óculos e cabelo espetado era o 'chefinho'.",
@@ -400,12 +725,23 @@
     ]
   },
   {
+    "id": 26,
+    "slug": "turma-da-monica",
+    "categorySlug": "cultura",
     "resp": "Turma da Mônica",
     "alias": [],
     "cat": "CULTURA",
     "emoji": "🐰",
     "ano": "1963",
     "curiosidade": "Mauricio de Sousa criou a turma do Bairro do Limoeiro, que marcou gerações com as revistinhas.",
+    "tags": [
+      "cultura",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "As histórias em quadrinhos infantis mais famosas do Brasil.",
       "Criadas pela desenhista brasileira mais renomada.",
@@ -416,12 +752,23 @@
     ]
   },
   {
+    "id": 27,
+    "slug": "castelo-ra-tim-bum",
+    "categorySlug": "tv",
     "resp": "Castelo Rá-Tim-Bum",
     "alias": [],
     "cat": "TV",
     "emoji": "🏰",
     "ano": "1994",
     "curiosidade": "O programa da TV Cultura com o menino de 300 anos ensinou ciências e português brincando.",
+    "tags": [
+      "tv",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "Programa infantil gravado num castelo roxo.",
       "Um menino de 300 anos morava lá ensinando brincando.",
@@ -432,12 +779,23 @@
     ]
   },
   {
+    "id": 28,
+    "slug": "titanic",
+    "categorySlug": "cinema",
     "resp": "Titanic",
     "alias": [],
     "cat": "CINEMA",
     "emoji": "🚢",
     "ano": "1997",
     "curiosidade": "O filme de James Cameron foi o mais caro de sua época e virou o maior blockbuster de todos os tempos.",
+    "tags": [
+      "cinema",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": "assets/images/challenges/piloto-028.svg",
+    "dificuldade": null,
     "pistas": [
       "O filme mais comentado do fim dos anos 90.",
       "Um romance impossível entre um rapaz pobre e uma moça rica.",
@@ -448,12 +806,23 @@
     ]
   },
   {
+    "id": 29,
+    "slug": "jurassic-park",
+    "categorySlug": "cinema",
     "resp": "Jurassic Park",
     "alias": [],
     "cat": "CINEMA",
     "emoji": "🦕",
     "ano": "1993",
     "curiosidade": "Spielberg trouxe dinossauros à vida com efeitos revolucionários e fez 'A vida encontra um jeito' famoso.",
+    "tags": [
+      "cinema",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "Filme que trouxe os dinossauros de volta à vida.",
       "Um parque criado numa ilha remota.",
@@ -464,12 +833,23 @@
     ]
   },
   {
+    "id": 30,
+    "slug": "friends",
+    "categorySlug": "tv",
     "resp": "Friends",
     "alias": [],
     "cat": "TV",
     "emoji": "☕",
     "ano": "1994",
     "curiosidade": "A sitcom mais famosa do mundo; o café Central Perk e o 'How you doing?' viraram ícones.",
+    "tags": [
+      "tv",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "Série de comédia americana que virou fenômeno mundial.",
       "Seis amigos moravam perto um do outro em Nova York.",
@@ -480,12 +860,23 @@
     ]
   },
   {
+    "id": 31,
+    "slug": "power-rangers",
+    "categorySlug": "tv",
     "resp": "Power Rangers",
     "alias": [],
     "cat": "TV",
     "emoji": "⚡",
     "ano": "1993",
     "curiosidade": "Os heróis de trajes coloridos ensinaram 'É hora de morfar!' e dominaram a TV com os Megazords.",
+    "tags": [
+      "tv",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "Heróis americanos baseados num tokusatsu japonês.",
       "Cada um usava um traje colorido e um robô ancestral.",
@@ -496,12 +887,23 @@
     ]
   },
   {
+    "id": 32,
+    "slug": "jaspion",
+    "categorySlug": "tv",
     "resp": "Jaspion",
     "alias": [],
     "cat": "TV",
     "emoji": "🤖",
     "ano": "1985",
     "curiosidade": "O tokusatsu japonês abriu caminho para Jiraiya e companhia no Brasil, com o robô dourado.",
+    "tags": [
+      "tv",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "O tokusatsu japonês que conquistou o Brasil.",
       "O herói usava uma espada e pilotava um robô dourado.",
@@ -512,12 +914,23 @@
     ]
   },
   {
+    "id": 33,
+    "slug": "silvio-santos",
+    "categorySlug": "tv",
     "resp": "Silvio Santos",
     "alias": [],
     "cat": "TV",
     "emoji": "💰",
     "ano": "1963",
     "curiosidade": "O dono do SBT e do Baú da Felicidade é o maior apresentador da história da TV brasileira.",
+    "tags": [
+      "tv",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "Maior apresentador e dono de uma emissora brasileira.",
       "'Quem quer dinheiro?' era sua pergunta mais famosa.",
@@ -528,12 +941,23 @@
     ]
   },
   {
+    "id": 34,
+    "slug": "gugu-liberato",
+    "categorySlug": "tv",
     "resp": "Gugu Liberato",
     "alias": [],
     "cat": "TV",
     "emoji": "🎪",
     "ano": "1980",
     "curiosidade": "Gugu comandou o Domingo Legal e criou quadros inesquecíveis como a 'Garota do Tempo'.",
+    "tags": [
+      "tv",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "Apresentador que rivalizava com Silvio Santos aos domingos.",
       "Comandava o 'Domingo Legal' no SBT.",
@@ -544,12 +968,28 @@
     ]
   },
   {
+    "id": 35,
+    "slug": "street-fighter-ii",
+    "categorySlug": "games",
     "resp": "Street Fighter II",
-    "alias": [],
+    "alias": [
+      "street fighter 2",
+      "street fighter ii",
+      "sf2",
+      "street fighter"
+    ],
     "cat": "GAMES",
     "emoji": "🥊",
     "ano": "1991",
     "curiosidade": "O jogo que definiu o gênero de luta nos fliperamas, com o Hadouken virando grito universal.",
+    "tags": [
+      "games",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": "assets/images/challenges/piloto-035.svg",
+    "dificuldade": null,
     "pistas": [
       "O jogo de luta mais famoso de todos os fliperamas.",
       "Você escolhia entre lutadores do mundo inteiro.",
@@ -560,12 +1000,26 @@
     ]
   },
   {
+    "id": 36,
+    "slug": "mortal-kombat",
+    "categorySlug": "games",
     "resp": "Mortal Kombat",
-    "alias": [],
+    "alias": [
+      "mortal kombat",
+      "mk"
+    ],
     "cat": "GAMES",
     "emoji": "☠️",
     "ano": "1992",
     "curiosidade": "O game polêmico com 'Finish Him!' virou caso de polícia no Brasil por causa da violência.",
+    "tags": [
+      "games",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "O jogo de luta mais polêmico dos anos 90.",
       "Foi o primeiro a popularizar sangue nos fliperamas.",
@@ -576,12 +1030,27 @@
     ]
   },
   {
+    "id": 37,
+    "slug": "the-king-of-fighters",
+    "categorySlug": "games",
     "resp": "The King of Fighters",
-    "alias": [],
+    "alias": [
+      "the king of fighters",
+      "king of fighters",
+      "kof"
+    ],
     "cat": "GAMES",
     "emoji": "🌪️",
     "ano": "1994",
     "curiosidade": "O torneio da SNK com times de 3 lutadores dominou os fliperamas com Kyo e Iori.",
+    "tags": [
+      "games",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "A luta da SNK que dominava os fliperamas nos anos 90.",
       "Você montava um time com 3 lutadores.",
@@ -592,12 +1061,26 @@
     ]
   },
   {
+    "id": 38,
+    "slug": "fatal-fury",
+    "categorySlug": "games",
     "resp": "Fatal Fury",
-    "alias": [],
+    "alias": [
+      "fatal fury",
+      "fatal fury 2"
+    ],
     "cat": "GAMES",
     "emoji": "🐺",
     "ano": "1991",
     "curiosidade": "Terry Bogard e o 'BUSTA WOLF!' são lendas dos fliperamas, precursores do KOF.",
+    "tags": [
+      "games",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "A série de luta da SNK que veio antes do KOF.",
       "O herói lutava ao lado do irmão mais novo.",
@@ -608,12 +1091,26 @@
     ]
   },
   {
+    "id": 39,
+    "slug": "samurai-shodown",
+    "categorySlug": "games",
     "resp": "Samurai Shodown",
-    "alias": [],
+    "alias": [
+      "samurai shodown",
+      "samurai showdown"
+    ],
     "cat": "GAMES",
     "emoji": "⚔️",
     "ano": "1993",
     "curiosidade": "A luta de espadas da SNK com medidor de raiva e golpes finais em câmera lenta.",
+    "tags": [
+      "games",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "Luta com espadas no Japão feudal, pela SNK.",
       "Os samurais podiam quebrar a lâmina do rival.",
@@ -624,12 +1121,25 @@
     ]
   },
   {
+    "id": 40,
+    "slug": "metal-slug",
+    "categorySlug": "games",
     "resp": "Metal Slug",
-    "alias": [],
+    "alias": [
+      "metal slug"
+    ],
     "cat": "GAMES",
     "emoji": "🎖️",
     "ano": "1996",
     "curiosidade": "O run-and-gun mais frenético dos fliperamas, famoso pelo tanque e pelo 'Heavy Machine Gun!'.",
+    "tags": [
+      "games",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "O jogo de tiro mais frenético dos fliperamas.",
       "Dois soldados avançavam por campos de guerra.",
@@ -640,12 +1150,26 @@
     ]
   },
   {
+    "id": 41,
+    "slug": "neo-geo",
+    "categorySlug": "games",
     "resp": "Neo Geo",
-    "alias": [],
+    "alias": [
+      "neo geo",
+      "neogeo"
+    ],
     "cat": "GAMES",
     "emoji": "👑",
     "ano": "1990",
     "curiosidade": "O hardware da SNK que era arcade e console, com os cartuchos mais caros da história.",
+    "tags": [
+      "games",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "O sistema da SNK que era fliperama E videogame.",
       "Os jogos do salão eram os mesmos de casa.",
@@ -656,12 +1180,26 @@
     ]
   },
   {
+    "id": 42,
+    "slug": "pac-man",
+    "categorySlug": "games",
     "resp": "Pac-Man",
-    "alias": [],
+    "alias": [
+      "pac man",
+      "pacman"
+    ],
     "cat": "GAMES",
     "emoji": "🟡",
     "ano": "1980",
     "curiosidade": "O labirinto amarelo com os fantasmas Blinky, Pinky, Inky e Clyde é o jogo mais famoso da história.",
+    "tags": [
+      "games",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "O círculo amarelo que virou símbolo do fliperama.",
       "Ele corria por um labirinto comendo bolinhas.",
@@ -672,12 +1210,25 @@
     ]
   },
   {
+    "id": 43,
+    "slug": "donkey-kong",
+    "categorySlug": "games",
     "resp": "Donkey Kong",
-    "alias": [],
+    "alias": [
+      "donkey kong"
+    ],
     "cat": "GAMES",
     "emoji": "🦍",
     "ano": "1981",
     "curiosidade": "O jogo que apresentou Mario (então carpinteiro) e o gorila que atirava barris.",
+    "tags": [
+      "games",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "O jogo que apresentou o maior herói dos videogames.",
       "Um macaco gigante segurava a moça no topo.",
@@ -688,12 +1239,25 @@
     ]
   },
   {
+    "id": 44,
+    "slug": "double-dragon",
+    "categorySlug": "games",
     "resp": "Double Dragon",
-    "alias": [],
+    "alias": [
+      "double dragon"
+    ],
     "cat": "GAMES",
     "emoji": "🥋",
     "ano": "1987",
     "curiosidade": "A pancadaria dos irmãos Lee que lotava os fliperamas com o modo cooperativo.",
+    "tags": [
+      "games",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "A briga de rua que lotava os fliperamas.",
       "Dois irmãos mestres em artes marciais.",
@@ -704,12 +1268,25 @@
     ]
   },
   {
+    "id": 45,
+    "slug": "final-fight",
+    "categorySlug": "games",
     "resp": "Final Fight",
-    "alias": [],
+    "alias": [
+      "final fight"
+    ],
     "cat": "GAMES",
     "emoji": "💥",
     "ano": "1989",
     "curiosidade": "O beat-em-up da Capcom com o prefeito Haggar e o suplex devastador.",
+    "tags": [
+      "games",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "A pancadaria da Capcom nas ruas de Metro City.",
       "Três heróis: dois lutadores e o prefeito fortão.",
@@ -720,12 +1297,25 @@
     ]
   },
   {
+    "id": 46,
+    "slug": "time-crisis",
+    "categorySlug": "games",
     "resp": "Time Crisis",
-    "alias": [],
+    "alias": [
+      "time crisis"
+    ],
     "cat": "GAMES",
     "emoji": "🔫",
     "ano": "1995",
     "curiosidade": "O shooter de arma com pedal de cobertura que fez sucesso nos fliperamas.",
+    "tags": [
+      "games",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "O jogo de tiro com arma de plástico do fliperama.",
       "Um pedal no chão fazia você se esconder.",
@@ -736,12 +1326,25 @@
     ]
   },
   {
+    "id": 47,
+    "slug": "vale-tudo",
+    "categorySlug": "tv",
     "resp": "Vale Tudo",
-    "alias": [],
+    "alias": [
+      "vale tudo"
+    ],
     "cat": "TV",
     "emoji": "💣",
     "ano": "1988",
     "curiosidade": "A novela com 'Quem matou Odete Roitman?' virou o maior mistério da TV brasileira.",
+    "tags": [
+      "tv",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "Novela da Globo que todo mundo comentava no dia seguinte.",
       "Tinha a vilã mais marcante da TV brasileira.",
@@ -752,12 +1355,25 @@
     ]
   },
   {
+    "id": 48,
+    "slug": "roque-santeiro",
+    "categorySlug": "tv",
     "resp": "Roque Santeiro",
-    "alias": [],
+    "alias": [
+      "roque santeiro"
+    ],
     "cat": "TV",
     "emoji": "🗿",
     "ano": "1985",
     "curiosidade": "A novela em Asa Branca com o 'morto' que voltou à vida e o coronel Sinhozinho Malta.",
+    "tags": [
+      "tv",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "Novela ambientada numa cidade chamada Asa Branca.",
       "Um herói da cidade era dado como morto... mas estava vivo.",
@@ -768,12 +1384,26 @@
     ]
   },
   {
+    "id": 49,
+    "slug": "tieta",
+    "categorySlug": "tv",
     "resp": "Tieta",
-    "alias": [],
+    "alias": [
+      "tieta",
+      "tieta do agreste"
+    ],
     "cat": "TV",
     "emoji": "🐐",
     "ano": "1989",
     "curiosidade": "A obra de Jorge Amado com a protagonista que voltou rica a Santana do Agreste.",
+    "tags": [
+      "tv",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "Novela baseada em obra de Jorge Amado.",
       "A cidade era Santana do Agreste.",
@@ -784,12 +1414,26 @@
     ]
   },
   {
+    "id": 50,
+    "slug": "o-rei-do-gado",
+    "categorySlug": "tv",
     "resp": "O Rei do Gado",
-    "alias": [],
+    "alias": [
+      "rei do gado",
+      "o rei do gado"
+    ],
     "cat": "TV",
     "emoji": "🐂",
     "ano": "1996",
     "curiosidade": "Bruno, Luana e a abertura 'Admirável Gado Novo' marcaram a novela de Zeca Pagodinho.",
+    "tags": [
+      "tv",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "Novela com disputa de terras e uma história de amor.",
       "O protagonista era dono de milhares de cabeças de gado.",
@@ -800,12 +1444,25 @@
     ]
   },
   {
+    "id": 51,
+    "slug": "terra-nostra",
+    "categorySlug": "tv",
     "resp": "Terra Nostra",
-    "alias": [],
+    "alias": [
+      "terra nostra"
+    ],
     "cat": "TV",
     "emoji": "🚢",
     "ano": "1999",
     "curiosidade": "O amor de Giuliana e Matteo, imigrantes italianos, é uma das novelas mais bonitas da Globo.",
+    "tags": [
+      "tv",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "Novela sobre imigrantes italianos que chegaram ao Brasil.",
       "O amor começou durante a travessia de navio.",
@@ -816,12 +1473,25 @@
     ]
   },
   {
+    "id": 52,
+    "slug": "mulheres-de-areia",
+    "categorySlug": "tv",
     "resp": "Mulheres de Areia",
-    "alias": [],
+    "alias": [
+      "mulheres de areia"
+    ],
     "cat": "TV",
     "emoji": "👯",
     "ano": "1993",
     "curiosidade": "As gêmeas Ruth e Raquel e o inesquecível Tonho da Lua no mar de Pipa.",
+    "tags": [
+      "tv",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "Novela com duas irmãs gêmeas de personalidades opostas.",
       "Uma era boazinha, a outra maquiavélica.",
@@ -832,12 +1502,25 @@
     ]
   },
   {
+    "id": 53,
+    "slug": "a-viagem",
+    "categorySlug": "tv",
     "resp": "A Viagem",
-    "alias": [],
+    "alias": [
+      "a viagem"
+    ],
     "cat": "TV",
     "emoji": "👻",
     "ano": "1994",
     "curiosidade": "A novela de Glória Perez sobre vida após a morte e reencarnação, com a estrada no céu.",
+    "tags": [
+      "tv",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "Novela de Glória Perez sobre o que existe depois da morte.",
       "Abordava reencarnação e vida espiritual.",
@@ -848,12 +1531,25 @@
     ]
   },
   {
+    "id": 54,
+    "slug": "chiquititas",
+    "categorySlug": "tv",
     "resp": "Chiquititas",
-    "alias": [],
+    "alias": [
+      "chiquititas"
+    ],
     "cat": "TV",
     "emoji": "🎈",
     "ano": "1997",
     "curiosidade": "O orfanato Raio de Luz e a doce Mili emocionaram as crianças do SBT.",
+    "tags": [
+      "tv",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "Novela infantil que emocionou o SBT.",
       "As crianças viviam num orfanato chamado Raio de Luz.",
@@ -864,12 +1560,25 @@
     ]
   },
   {
+    "id": 55,
+    "slug": "carrossel",
+    "categorySlug": "tv",
     "resp": "Carrossel",
-    "alias": [],
+    "alias": [
+      "carrossel"
+    ],
     "cat": "TV",
     "emoji": "🏫",
     "ano": "1989",
     "curiosidade": "A Escola Mundial, a professora Helena e o Cirilo apaixonado pela Maria Joaquina.",
+    "tags": [
+      "tv",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "Novela infantil exibida no SBT com grande sucesso.",
       "A turma estudava na Escola Mundial.",
@@ -880,12 +1589,25 @@
     ]
   },
   {
+    "id": 56,
+    "slug": "eramos-seis",
+    "categorySlug": "tv",
     "resp": "Éramos Seis",
-    "alias": [],
+    "alias": [
+      "eramos seis"
+    ],
     "cat": "TV",
     "emoji": "🏠",
     "ano": "1994",
     "curiosidade": "A família Lemos e a força de uma mãe que criou os filhos sozinha no SBT.",
+    "tags": [
+      "tv",
+      "anos-90",
+      "brasil",
+      "nostalgia"
+    ],
+    "image": null,
+    "dificuldade": null,
     "pistas": [
       "Novela baseada no livro de Maria José Dupré.",
       "A família Lemos era o centro da história.",

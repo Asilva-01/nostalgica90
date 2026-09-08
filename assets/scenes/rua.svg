@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360">
+<defs>
+<linearGradient id="ceu" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#bcd8e8"/><stop offset="100%" stop-color="#e8d9b4"/></linearGradient>
+<linearGradient id="calcada" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#b8a888"/><stop offset="100%" stop-color="#9a8a6c"/></linearGradient>
+<linearGradient id="rua" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6b6b74"/><stop offset="100%" stop-color="#55555e"/></linearGradient>
+<linearGradient id="muro" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#d9c9a3"/><stop offset="100%" stop-color="#c4b48c"/></linearGradient>
+</defs>
+<rect width="640" height="360" fill="url(#ceu)"/>
+<g fill="#e8d9b4" opacity="0.8">
+<circle cx="120" cy="60" r="22"/><circle cx="180" cy="48" r="16"/><circle cx="90" cy="86" r="14"/>
+</g>
+<rect x="0" y="220" width="640" height="140" fill="url(#muro)"/>
+<rect x="0" y="220" width="640" height="10" fill="#8a6d45"/>
+<g fill="#8a6d45" opacity="0.5">
+<rect x="30" y="236" width="60" height="6" rx="2"/><rect x="120" y="236" width="80" height="6" rx="2"/><rect x="250" y="236" width="60" height="6" rx="2"/>
+<rect x="380" y="236" width="70" height="6" rx="2"/><rect x="500" y="236" width="90" height="6" rx="2"/>
+</g>
+<g fill="#6b4f2e">
+<rect x="470" y="150" width="70" height="70" rx="3"/>
+<rect x="480" y="160" width="24" height="24" rx="2" fill="#3a2f4a"/>
+<rect x="508" y="160" width="24" height="24" rx="2" fill="#3a2f4a"/>
+<rect x="480" y="188" width="24" height="24" rx="2" fill="#3a2f4a"/>
+<rect x="508" y="188" width="24" height="24" rx="2" fill="#3a2f4a"/>
+</g>
+<rect x="40" y="150" width="80" height="70" rx="3" fill="#6b4f2e"/>
+<rect x="48" y="158" width="30" height="30" rx="2" fill="#c0572d"/>
+<rect x="82" y="158" width="30" height="30" rx="2" fill="#c0572d"/>
+<rect x="48" y="192" width="30" height="20" rx="2" fill="#3f7f8a"/>
+<rect x="82" y="192" width="30" height="20" rx="2" fill="#3f7f8a"/>
+<g stroke="#6b4f2e" stroke-width="4">
+<line x1="150" y1="30" x2="150" y2="150"/>
+<line x1="150" y1="60" x2="250" y2="60"/><line x1="250" y1="60" x2="250" y2="110"/>
+<line x1="150" y1="90" x2="210" y2="90"/>
+</g>
+<g fill="#2b2139">
+<circle cx="150" cy="30" r="7"/><circle cx="250" cy="60" r="7"/>
+<circle cx="150" cy="110" r="4"/><circle cx="210" cy="90" r="4"/>
+</g>
+<rect x="0" y="300" width="640" height="60" fill="url(#calcada)"/>
+<rect x="0" y="300" width="640" height="8" fill="#8a6d45"/>
+<rect x="0" y="308" width="640" height="4" fill="#c4b48c"/>
+<g stroke="#9a8a6c" stroke-width="2" opacity="0.6">
+<line x1="80" y1="312" x2="80" y2="360"/><line x1="200" y1="312" x2="200" y2="360"/><line x1="320" y1="312" x2="320" y2="360"/><line x1="440" y1="312" x2="440" y2="360"/><line x1="560" y1="312" x2="560" y2="360"/>
+</g>
+<rect x="0" y="250" width="640" height="50" fill="url(#rua)"/>
+<g stroke="#8a8a94" stroke-width="2" opacity="0.5" stroke-dasharray="12 10">
+<line x1="0" y1="275" x2="640" y2="275"/>
+</g>
+<g fill="#2ecf5b">
+<circle cx="560" cy="80" r="30"/><circle cx="600" cy="60" r="24"/>
+</g>
+<g fill="#3a2f4a">
+<circle cx="300" cy="120" r="10"/>
+</g>
+<g fill="#c0572d" opacity="0.9">
+<rect x="330" y="60" width="46" height="30" rx="3"/>
+<rect x="380" y="60" width="46" height="30" rx="3"/>
+</g>
+<g fill="#2b2139">
+<rect x="580" y="150" width="10" height="40"/>
+<rect x="596" y="150" width="10" height="40"/>
+</g>
+<g fill="#8a6d45" opacity="0.6">
+<rect x="420" y="220" width="6" height="80"/>
+</g>
+</svg>

@@ -27,13 +27,33 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Nunito:wght@400;700;800&family=VT323&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="bg"></div>
 <div class="bg-grid"></div>
 <div class="bg-pixel"></div>
+
+<!-- AMBIENTE: universo de memórias 90s (camada fixa, atrás de tudo) -->
+<div class="ambiente" aria-hidden="true">
+  <div class="amb-prateleira">
+    <span class="vhs-mini c1"></span><span class="vhs-mini c2"></span><span class="vhs-mini c3"></span>
+    <span class="vhs-mini c4"></span><span class="vhs-mini c5"></span><span class="vhs-mini c1"></span>
+    <span class="vhs-mini c2"></span><span class="vhs-mini c3"></span><span class="vhs-mini c4"></span>
+    <span class="vhs-mini c5"></span><span class="vhs-mini c1"></span><span class="vhs-mini c2"></span>
+  </div>
+  <div class="memo memo-cd amb-1"><span class="cd-reflexo"></span></div>
+  <div class="memo memo-cartucho amb-2"><span class="cart-rotulo">90</span></div>
+  <div class="memo memo-cassete amb-3"><span class="cas-carretel a"></span><span class="cas-carretel b"></span></div>
+  <div class="memo memo-telefone amb-4"><span class="tel-disco"></span></div>
+  <div class="memo memo-computador amb-5"><span class="comp-tela"></span></div>
+  <div class="memo memo-revista amb-6"><span class="rev-linha a"></span><span class="rev-linha b"></span></div>
+  <div class="memo memo-ingresso amb-7"><span class="ing-perfurada"></span></div>
+  <div class="memo memo-camera amb-8"><span class="cam-lente"></span></div>
+  <div class="memo memo-cd amb-9"><span class="cd-reflexo"></span></div>
+  <div class="memo memo-fliperama amb-10"><span class="flip-joystick"></span></div>
+</div>
 
 <!-- LOADING VHS -->
 <div class="loading" id="loading">
@@ -47,21 +67,84 @@
 
 <!-- HERO -->
 <section class="hero" id="hero">
-  <div class="hero-emojis">📺🎮🕹️📼🥤</div>
-  <h1 class="hero-logo">NOSTÁLGICA<br>90</h1>
-  <p class="hero-sub">O DESAFIO DIÁRIO DOS ANOS 90</p>
-  <p class="hero-tag">“Você lembra disso?”</p>
-  <div class="hero-acoes">
-    <button class="btn-hero btn-hero-primario" id="btnComecar">▶ COMEÇAR DESAFIO</button>
-    <button class="btn-hero btn-hero-som" id="btnSom">🔊 LIGAR NOSTALGIA</button>
+  <div class="hero-inner">
+
+    <!-- ESQUERDA: texto e CTA -->
+    <div class="hero-texto">
+      <div class="hero-selo" aria-hidden="true">📼 LOCADORA NOSTÁLGICA</div>
+      <h1 class="hero-logo">
+        <span class="hero-logo-linha">NOSTÁLGICA</span>
+        <span class="hero-logo-num">90</span>
+      </h1>
+      <p class="hero-sub">O DESAFIO DIÁRIO DOS ANOS 90</p>
+      <p class="hero-tag">“Você lembra disso?”</p>
+      <div class="hero-acoes">
+        <button class="btn-hero btn-hero-primario" id="btnComecar">▶ COMEÇAR DESAFIO</button>
+        <button class="btn-hero btn-hero-som" id="btnSom">🔊 LIGAR NOSTALGIA</button>
+      </div>
+      <div class="hero-badge">
+        <span class="selo-90">90</span>
+        <span>1 desafio por dia · 6 pistas · streak · +pontos</span>
+      </div>
+    </div>
+
+    <!-- DIREITA: composição visual (TV CRT + VHS + controle + personagem) -->
+    <div class="hero-cena" aria-hidden="true">
+      <div class="cena-tv">
+        <div class="cena-tv-carcaca">
+          <div class="cena-tela">
+            <div class="cena-estatica"></div>
+            <div class="cena-tela-conteudo">
+              <span class="cena-tela-num">📺</span>
+              <span class="cena-tela-texto">O CANAL DA<br>NOSTALGIA</span>
+            </div>
+          </div>
+          <div class="cena-botoes-tv">
+            <span class="tv-botao-vermelho"></span>
+            <span class="tv-botao-verde"></span>
+            <span class="tv-botao-amarelo"></span>
+          </div>
+        </div>
+        <div class="cena-tv-perna"></div>
+      </div>
+
+      <div class="cena-vhs">
+        <div class="cena-vhs-rotulo">
+          <span class="cena-vhs-logo">N°90</span>
+          <span class="cena-vhs-titulo">A NOSTÁLGICA</span>
+          <span class="cena-vhs-genero">DESAFIO · TV · GAMES</span>
+        </div>
+        <div class="cena-vhs-fita" aria-hidden="true"></div>
+      </div>
+
+      <div class="cena-controle" aria-hidden="true">
+        <div class="controle-corpo">
+          <div class="controle-direcional"></div>
+          <div class="controle-botoes"><span class="bot-a"></span><span class="bot-b"></span></div>
+          <div class="controle-select">SELECT<br>START</div>
+        </div>
+      </div>
+
+      <div class="cena-mascote" aria-hidden="true">
+        <div class="mascote-corpo">
+          <div class="mascote-olho esq"></div>
+          <div class="mascote-olho dir"></div>
+          <div class="mascote-boca"></div>
+        </div>
+        <div class="mascote-legenda">“Lembra?”</div>
+      </div>
+    </div>
+
   </div>
-  <div class="hero-badge">1 desafio por dia · 6 pistas · streak · +pontos</div>
 </section>
 
 <!-- APP -->
 <main class="app hidden" id="app">
   <header class="topo">
-    <div class="topo-logo" id="topoLogo" title="Nostálgica 90">🕹 NOSTÁLGICA</div>
+    <div class="topo-logo" id="topoLogo" title="Nostálgica 90"><span class="topo-logo-icone">📺</span><span class="topo-logo-txt">NOSTÁLGICA</span><span class="topo-logo-90">90</span></div>
+    <div class="topo-canal" aria-hidden="true">
+      <span class="canal-ch">CH 90</span><span class="canal-sep">·</span><span class="canal-no-ar">NO AR</span>
+    </div>
     <div class="topo-controles">
       <button class="icone-btn ativo" id="btnSfxToggle" aria-pressed="true" aria-label="Efeitos sonoros" title="Efeitos">🔔</button>
       <button class="icone-btn" id="btnMusicaToggle" aria-pressed="false" aria-label="Música" title="Música">🎵</button>
@@ -69,71 +152,119 @@
     </div>
   </header>
 
-  <div class="stats">
-    <div class="stat fogo"><b id="stSeq">0</b><small>🔥 seq</small></div>
-    <div class="stat"><b id="stMax">0</b><small>melhor</small></div>
-    <div class="stat"><b id="stJog">0</b><small>jogos</small></div>
-    <div class="stat"><b id="stVit">0</b><small>acertos</small></div>
-    <div class="stat"><b id="stPts">0</b><small>pontos</small></div>
+  <!-- PLACAR DE AUDITÓRIO (faixa LED única) -->
+  <div class="placar">
+    <span class="placar-rotulo">🏆 PLACAR DE HOJE</span>
+    <div class="placar-led">
+      <span class="led-pts"><b id="stPts">0</b><small>PTS</small></span>
+      <span class="led-sep"></span>
+      <span class="led-item fogo"><b id="stSeq">0</b><small>SEQ</small></span>
+      <span class="led-item"><b id="stMax">0</b><small>MELHOR</small></span>
+      <span class="led-item"><b id="stJog">0</b><small>JOGOS</small></span>
+      <span class="led-item"><b id="stVit">0</b><small>ACERTOS</small></span>
+    </div>
   </div>
 
-  <!-- JOGO -->
-  <section class="card" id="secJogo">
-    <div class="desafio-cabecalho">
-      <span class="desafio-num" id="chaveDesafio">DESAFIO #1</span>
-      <span class="cat-pill" id="catPill" style="color:#00e5ff">📺</span>
-    </div>
-    <div class="challenge-img" id="challengeImg" aria-label="Arte do desafio"></div>
-    <div class="pontos-info">
-      <span>🎯 Pontos desta pista:</span><span><b id="pontosPossiveis">100</b> pts</span>
-    </div>
-    <div class="pontos-barra"><div id="pontosBarra"></div></div>
-    <div id="listaPistas"></div>
+  <!-- DESAFIO DE HOJE = PROGRAMA NO AR (TV CRT) -->
+  <div class="app-corpo">
+    <div class="app-coluna">
+      <div class="tv-shell" id="secJogo">
+        <div class="tv-cabeca">
+          <span class="tv-etiqueta">PROGRAMAÇÃO DE HOJE</span>
+          <span class="desafio-num" id="chaveDesafio">DESAFIO #1</span>
+        </div>
+        <div class="tv-carcaca">
+          <div class="tv-tela">
+            <div class="tv-bug">
+              <span class="tv-bug-ao-vivo">● AO VIVO</span>
+              <span class="tv-bug-ch">CH 90</span>
+              <span class="tv-bug-rec">REC ●</span>
+            </div>
+            <div class="desafio-cabecalho">
+              <span class="cat-pill" id="catPill" style="color:#00e5ff">📺</span>
+            </div>
+            <div class="challenge-img" id="challengeImg" aria-label="Arte do desafio"></div>
+            <div class="pontos-info">
+              <span>🎯 Pontos desta pista:</span><span><b id="pontosPossiveis">100</b> pts</span>
+            </div>
+            <div class="pontos-barra"><div id="pontosBarra"></div></div>
+            <div id="listaPistas"></div>
 
-    <div class="feedback" id="respMsg"></div>
-    <div class="entrada" id="areaJogo">
-      <input type="text" id="campo" placeholder="Sua resposta..." autocomplete="off" autocapitalize="off" maxlength="40" aria-label="Sua resposta">
-      <button class="btn btn-verde" onclick="Jogo.enviarResposta()">OK</button>
-      <button class="btn btn-pular" onclick="Jogo.pularPista()">Próx. pista ➜</button>
+            <div class="feedback" id="respMsg"></div>
+            <div class="entrada" id="areaJogo">
+              <input type="text" id="campo" placeholder="Sua resposta..." autocomplete="off" autocapitalize="off" maxlength="40" aria-label="Sua resposta">
+              <button class="btn btn-verde" onclick="Jogo.enviarResposta()">OK</button>
+              <button class="btn btn-pular" onclick="Jogo.pularPista()">Próx. pista ➜</button>
+            </div>
+            <div class="botoes hidden" id="areaFim"></div>
+            <div class="hidden" id="arquivoNav" style="margin-top:10px;text-align:center">
+              <button class="btn btn-azul" onclick="Jogo.voltarHoje()">⬅ Voltar pro desafio de hoje</button>
+            </div>
+          </div>
+          <div class="tv-painel">
+            <div class="tv-botoes-fisicos">
+              <span class="tv-fisico on"></span>
+              <span class="tv-fisico ch"></span>
+              <span class="tv-fisico vol"></span>
+            </div>
+            <span class="tv-marca">NOSTÁLGICA 90</span>
+          </div>
+        </div>
+        <div class="tv-perna"></div>
+      </div>
+
+      <p class="hidden" id="voltarAmanha" style="text-align:center;font-family:var(--font-display);font-size:15px;color:var(--amarelo);margin-bottom:10px;text-shadow:1px 1px 0 rgba(0,0,0,0.4)">
+        ⏰ Amanhã tem um novo desafio. Volte pra não perder a sequência! 🔥
+      </p>
     </div>
-    <div class="botoes hidden" id="areaFim"></div>
-    <div class="hidden" id="arquivoNav" style="margin-top:10px;text-align:center">
-      <button class="btn btn-azul" onclick="Jogo.voltarHoje()">⬅ Voltar pro desafio de hoje</button>
+
+    <div class="app-coluna">
+      <!-- CENAS DE MEMÓRIA (PILOTO 2I-E) -->
+      <section class="card card-secundario secao secao-aberta" id="secCenas">
+        <div class="secao-cab" onclick="Jogo.abrirSecao('secCenas')">
+          <div class="card-titulo" style="margin-bottom:0">📼 CENAS DE MEMÓRIA</div>
+          <span class="seta">▶</span>
+        </div>
+        <p class="cenas-tag">Entre em um lugar dos anos 90 e encontre as memórias.</p>
+        <div class="cenas-grid" id="cenasGrid"></div>
+        <div class="cena" id="cenaVisor" aria-label="Cena de memória"></div>
+      </section>
+
+      <!-- GRADE SEMANAL (streak) -->
+      <section class="card card-secundario secao" id="secSemana">
+        <div class="secao-cab" onclick="Jogo.abrirSecao('secSemana')">
+          <div class="card-titulo" style="margin-bottom:0">🔥 SUA SEQUÊNCIA</div>
+          <span class="seta">▶</span>
+        </div>
+        <div id="semana" class="semana"></div>
+      </section>
+
+      <!-- MUSEU DOS ANOS 90 (álbum de memórias) -->
+      <section class="card card-secundario secao" id="secMuseu">
+        <div class="secao-cab" onclick="Jogo.abrirSecao('secMuseu')">
+          <div class="card-titulo" style="margin-bottom:0">🏛️ MUSEU DOS ANOS 90</div>
+          <span class="seta">▶</span>
+        </div>
+        <p class="museu-tag">Colecione memórias de uma década inesquecível.</p>
+        <div class="museu-grid" id="museuGrid" style="margin-top:10px"></div>
+        <div class="museu-itens" id="museuItens"></div>
+      </section>
+
+      <!-- ARQUIVO DA NOSTALGIA (programas anteriores) -->
+      <section class="card card-secundario secao" id="secArquivo">
+        <div class="secao-cab" onclick="Jogo.abrirSecao('secArquivo')">
+          <div class="card-titulo" style="margin-bottom:0">📼 ARQUIVO DA NOSTALGIA</div>
+          <span class="seta">▶</span>
+        </div>
+        <p class="museu-tag">Reveja os desafios dos dias anteriores.</p>
+        <div class="filtros" id="filtros"></div>
+        <div class="galeria" id="galeria"></div>
+      </section>
     </div>
-  </section>
+  </div>
 
-  <p class="hidden" id="voltarAmanha" style="text-align:center;font-family:var(--font-retro);font-size:20px;color:var(--cinza);margin-bottom:10px">
-    ⏰ Amanhã tem um novo desafio. Volte pra não perder a sequência! 🔥
-  </p>
-
-  <!-- SEQUÊNCIA -->
-  <section class="card secao" id="secSemana">
-    <div class="card-titulo">🔥 SUA SEQUÊNCIA</div>
-    <div id="semana" class="semana"></div>
-  </section>
-
-  <!-- MUSEU -->
-  <section class="card secao secao-aberta" id="secMuseu">
-    <div class="secao-cab" onclick="Jogo.abrirSecao('secMuseu')">
-      <div class="card-titulo" style="margin-bottom:0">🏛️ MUSEU DOS ANOS 90</div>
-      <span class="seta">▶</span>
-    </div>
-    <div class="museu-grid" id="museuGrid" style="margin-top:10px"></div>
-    <div class="museu-itens" id="museuItens"></div>
-  </section>
-
-  <!-- DESAFIOS ANTERIORES -->
-  <section class="card secao" id="secArquivo">
-    <div class="secao-cab" onclick="Jogo.abrirSecao('secArquivo')">
-      <div class="card-titulo" style="margin-bottom:0">📼 DESAFIOS ANTERIORES</div>
-      <span class="seta">▶</span>
-    </div>
-    <div class="filtros" id="filtros"></div>
-    <div class="galeria" id="galeria"></div>
-  </section>
-
-  <div class="ad">Espaço reservado pra anúncios (AdSense)</div>
   <div class="rodape">
+    <span class="rodape-sigla">NOSTÁLGICA 90 · CANAL DA NOSTALGIA</span><br>
     <a href="speciais.html">🥊 Speciais</a> · <a href="jogar-de-novo.html">🎮 Jogar de novo</a> · <a href="novelas.html">📺 Novelas</a><br>
     Feito com 💜 e saudade dos anos 90
   </div>
@@ -150,6 +281,9 @@
 <div class="toast" id="toast"></div>
 
 <script src="data.js"></script>
+<script src="artes.js"></script>
+<script src="museu-artes.js"></script>
+<script src="cenas.js"></script>
 <script src="musica.js"></script>
 <script src="som.js"></script>
 <script src="efeitos.js"></script>
@@ -163,29 +297,148 @@
 </script>
 <script>
 (function () {
+  function tem(fn) { return typeof fn === "function"; }
+
   function montarMuseuGrid() {
     var box = document.getElementById("museuGrid");
+    if (!box) return;
+    if (!window.Dados || !tem(window.Dados.listaMuseu)) {
+      console.warn("[BOOT] Dados.listaMuseu indisponível — pulando museu.");
+      return;
+    }
     var dados = window.Dados.listaMuseu();
     box.innerHTML = "";
     dados.forEach(function (g) {
-      box.innerHTML += '<div class="museu-cat" onclick="Jogo.mostrarMuseu(\'' + g.cat + '\')"><div class="e">' + g.emoji + '</div><div class="t">' + g.cat + '</div></div>';
+      var cls = "cat-" + g.cat.replace(/\s+/g, "");
+      var qt = g.itens ? g.itens.length : 0;
+      box.innerHTML += '<div class="museu-cat ' + cls + '" onclick="Jogo.mostrarMuseu(\'' + g.cat + '\')"><div class="e">' + g.emoji + '</div><div class="t">' + g.cat + '</div><div class="qt">' + qt + ' itens</div></div>';
     });
   }
 
-  window.Dados.carregar().then(function () {
-    montarMuseuGrid();
-    window.Jogo.mostrarMuseu();
-    window.Jogo.mostrarGaleria("TODOS");
-    window.NostalgicaInit();
-    // loading -> some
+  /* CENAS DE MEMÓRIA (PILOTO 2I-E) */
+  var cenaAtual = null;
+
+  function montarCenasGrid() {
+    var box = document.getElementById("cenasGrid");
+    if (!box) return;
+    if (!window.Dados || !tem(window.Dados.listaCenas)) {
+      console.warn("[BOOT] Dados.listaCenas indisponível — pulando cenas.");
+      return;
+    }
+    if (!window.Cenas) {
+      console.warn("[BOOT] window.Cenas indisponível — pulando cenas.");
+      return;
+    }
+    var cenas = window.Dados.listaCenas();
+    if (!cenas || !cenas.length) return;
+    box.innerHTML = "";
+    cenas.forEach(function (c) {
+      var visual = c.visual || {};
+      box.innerHTML += '<button class="cena-card" onclick="Cenas.abrirCena(\'' + c.id + '\')"><div class="e">📼</div><div class="t">' + c.title + '</div></button>';
+    });
+  }
+
+  function renderCena(id) {
+    var visor = document.getElementById("cenaVisor");
+    if (!visor) return;
+    if (!window.Cenas || !tem(window.Cenas.renderizarCena)) {
+      console.warn("[BOOT] Cenas.renderizarCena indisponível — pulando cena.");
+      return;
+    }
+    cenaAtual = id;
+    visor.innerHTML = window.Cenas.renderizarCena(id);
+    // integra os memory SVGs inline (remove fundo do card, usa scenePosition/sceneLayer)
+    if (window.Cenas && tem(window.Cenas.integrarObjetos)) window.Cenas.integrarObjetos(visor);
+    // delegação de clique nos objetos da cena
+    var objs = visor.querySelectorAll('.cena-objeto');
+    objs.forEach(function (ob) {
+      ob.addEventListener('click', function (ev) {
+        ev.stopPropagation();
+        var mid = ob.getAttribute('data-memoria');
+        if (!window.Dados || !tem(window.Dados.memoriaPorId)) return;
+        var m = window.Dados.memoriaPorId(mid);
+        if (!m) return;
+        if (window.Cenas && tem(window.Cenas.tocarSom)) window.Cenas.tocarSom(m);
+        if (window.Jogo && tem(window.Jogo.abrirMemoria)) window.Jogo.abrirMemoria(m);
+      });
+    });
+  }
+
+  if (window.Cenas) {
+    window.Cenas.abrirCena = function (id) {
+      renderCena(id);
+      if (window.Cenas.tocarSomCena) window.Cenas.tocarSomCena(id);
+    };
+
+    window.Cenas.tocarSomCena = function (id) {
+      if (!window.Dados || !tem(window.Dados.cenaPorId)) return;
+      var c = window.Dados.cenaPorId(id);
+      if (!c) return;
+      // som da primeira memória da cena como ambiente
+      var m = window.Dados.memoriaPorId((c.objects || [])[0]);
+      if (m) window.Cenas.tocarSom(m);
+    };
+  } else {
+    console.warn("[BOOT] window.Cenas indisponível — cenas desabilitadas.");
+  }
+
+  function removerLoading() {
     var barra = document.getElementById("loadingBarra");
-    barra.style.width = "100%";
+    if (barra) barra.style.width = "100%";
     setTimeout(function () {
       var l = document.getElementById("loading");
+      if (!l) return;
       l.classList.add("sai");
-      setTimeout(function () { l.remove(); }, 450);
+      // dispara entrada "ligar TV" no hero
+      var reduzido = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var hero = document.getElementById("hero");
+      if (hero) {
+        if (!reduzido) {
+          hero.classList.add("hero-ligando");
+          setTimeout(function () { hero.classList.remove("hero-ligando"); hero.classList.add("hero-pronto"); }, 950);
+        } else {
+          hero.classList.add("hero-pronto");
+        }
+      }
+      setTimeout(function () { if (l && l.parentNode) l.remove(); }, 450);
     }, 350);
-  });
+  }
+
+  function mostrarErroBoot(msg) {
+    var t = document.getElementById("toast");
+    if (t) {
+      t.textContent = msg;
+      t.classList.add("show");
+      clearTimeout(t._t);
+      t._t = setTimeout(function () { t.classList.remove("show"); }, 5000);
+    }
+  }
+
+  if (!window.Dados || !tem(window.Dados.carregar)) {
+    console.error("[BOOT] Dados.carregar indisponível — versão incompatível dos scripts.");
+    mostrarErroBoot("⚠️ Falha ao carregar os dados. Recarregue com Ctrl+F5.");
+    removerLoading();
+  } else {
+    window.Dados.carregar()
+      .then(function () {
+        console.log("[BOOT] Dados carregados com sucesso.");
+        montarMuseuGrid();
+        montarCenasGrid();
+        if (window.Jogo && tem(window.Jogo.mostrarMuseu)) window.Jogo.mostrarMuseu();
+        if (window.Jogo && tem(window.Jogo.mostrarGaleria)) window.Jogo.mostrarGaleria("TODOS");
+        if (tem(window.NostalgicaInit)) window.NostalgicaInit();
+        // abre a primeira cena por padrão
+        var cenas = window.Dados.listaCenas();
+        if (cenas && cenas.length) renderCena(cenas[0].id);
+      })
+      .catch(function (err) {
+        console.error("[BOOT] Erro na inicialização:", err);
+        mostrarErroBoot("⚠️ Algo deu errado ao carregar. Recarregue a página.");
+      })
+      .finally(function () {
+        removerLoading();
+      });
+  }
 })();
 </script>
 </body>

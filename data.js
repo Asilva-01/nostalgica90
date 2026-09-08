@@ -6,6 +6,8 @@
 window.Dados = (function () {
   var desafios = [];
   var museu = [];
+  var memorias = [];
+  var cenas = [];
   var carregado = false;
   var promessa = null;
 
@@ -22,14 +24,20 @@ window.Dados = (function () {
     if (promessa) return promessa;
     promessa = Promise.all([
       fetch('challenges.json').then(function (r) { if (!r.ok) throw new Error('http'); return r.json(); }),
-      fetch('museum.json').then(function (r) { if (!r.ok) return []; return r.json(); }).catch(function () { return []; })
+      fetch('museum.json').then(function (r) { if (!r.ok) return []; return r.json(); }).catch(function () { return []; }),
+      fetch('memories.json').then(function (r) { if (!r.ok) return []; return r.json(); }).catch(function () { return []; }),
+      fetch('scenes.json').then(function (r) { if (!r.ok) return []; return r.json(); }).catch(function () { return []; })
     ]).then(function (res) {
       desafios = res[0];
       museu = res[1];
+      memorias = res[2];
+      cenas = res[3];
       carregado = true;
     }).catch(function () {
       desafios = FALLBACK;
       museu = [];
+      memorias = [];
+      cenas = [];
       carregado = true;
     });
     return promessa;
@@ -41,7 +49,25 @@ window.Dados = (function () {
     var idx = ((n - 1) % desafios.length + desafios.length) % desafios.length;
     return desafios[idx];
   }
+  function itemPorId(id) {
+    for (var i = 0; i < desafios.length; i++) if (desafios[i].id === id) return desafios[i];
+    return null;
+  }
+  function itemPorSlug(slug) {
+    for (var i = 0; i < desafios.length; i++) if (desafios[i].slug === slug) return desafios[i];
+    return null;
+  }
   function listaMuseu() { return museu; }
+  function listaMemorias() { return memorias; }
+  function listaCenas() { return cenas; }
+  function memoriaPorId(id) {
+    for (var i = 0; i < memorias.length; i++) if (memorias[i].id === id) return memorias[i];
+    return null;
+  }
+  function cenaPorId(id) {
+    for (var i = 0; i < cenas.length; i++) if (cenas[i].id === id) return cenas[i];
+    return null;
+  }
 
   var CATEGORIAS = ["TV", "GAMES", "CINEMA", "MÚSICA", "BRINQUEDOS", "TECNOLOGIA", "CULTURA"];
   var CAT_EMOJI = { TV: "📺", GAMES: "🎮", CINEMA: "🎬", MÚSICA: "🎵", BRINQUEDOS: "🧸", TECNOLOGIA: "💻", CULTURA: "📼" };
@@ -52,7 +78,13 @@ window.Dados = (function () {
     lista: lista,
     total: total,
     item: item,
+    itemPorId: itemPorId,
+    itemPorSlug: itemPorSlug,
     listaMuseu: listaMuseu,
+    listaMemorias: listaMemorias,
+    listaCenas: listaCenas,
+    memoriaPorId: memoriaPorId,
+    cenaPorId: cenaPorId,
     CATEGORIAS: CATEGORIAS,
     CAT_EMOJI: CAT_EMOJI,
     CAT_COR: CAT_COR

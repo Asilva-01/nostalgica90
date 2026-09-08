@@ -1,0 +1,177 @@
+[
+  {
+    "id": "tamagotchi",
+    "title": "Tamagotchi",
+    "yearRange": "1996–1999",
+    "category": "brinquedos",
+    "memoryType": "objeto",
+    "context": "O bichinho virtual que bipava na aula e precisava de atenção o dia inteiro.",
+    "sceneId": "escola",
+    "scenePosition": { "x": 0.20, "y": 0.68, "z": 3 },
+    "sceneLayer": "front",
+    "interactionType": "click",
+    "object": "Aparelho eletrônico portátil em formato de ovo, com tela de cristal líquido e três botões.",
+    "description": "Você alimentava, brincava e limpava. Se descuidasse, ele ficava doente — e podia morrer.",
+    "emotionalHook": "Escolas chegaram a proibir porque os aparelhos bipavam a aula inteira.",
+    "visual": {
+      "type": "original",
+      "source": "ilustração contextual própria",
+      "path": "assets/memory/tamagotchi.svg",
+      "alt": "Aparelho Tamagotchi em formato de ovo com tela mostrando um bichinho, sobre uma carteira de escola"
+    },
+    "audio": {
+      "type": "contextual",
+      "source": "síntese original (bip agudo), sem música licenciada",
+      "path": "assets/audio/tamagotchi-bip.wav",
+      "unavailableMessage": null
+    },
+    "relatedMemories": ["tazo", "polly-pocket", "barbie"],
+    "challengeReferences": [1, 3, 12]
+  },
+  {
+    "id": "tazo",
+    "title": "Tazo",
+    "yearRange": "1997–2000",
+    "category": "brinquedos",
+    "memoryType": "colecionavel",
+    "context": "Os discos colecionáveis que vinham dentro dos salgadinhos e movimentavam o recreio.",
+    "sceneId": "escola",
+    "scenePosition": { "x": 0.78, "y": 0.70, "z": 3 },
+    "sceneLayer": "front",
+    "interactionType": "click",
+    "object": "Disquinho colecionável impresso (Tazo), geralmente holográfico, com estampas de personagens.",
+    "description": "Você batalhava contra os discos dos colegas no chão; ganhava quem fizesse o outro virar.",
+    "emotionalHook": "Os raros 'brilhantes' valiam status no recreio — e a Elma Chips lançava coleções novas.",
+    "visual": {
+      "type": "original",
+      "source": "ilustração contextual própria",
+      "path": "assets/memory/tazo.svg",
+      "alt": "Disquinho Tazo holográfico sobre uma carteira, com pacote de salgadinho e outros tazos espalhados"
+    },
+    "audio": {
+      "type": "contextual",
+      "source": "síntese original (som de ficha/estalo), sem música licenciada",
+      "path": "assets/audio/tazo-estalo.wav",
+      "unavailableMessage": null
+    },
+    "relatedMemories": ["tamagotchi", "polly-pocket"],
+    "challengeReferences": [3, 1]
+  },
+  {
+    "id": "videolocadora",
+    "title": "Videolocadora",
+    "yearRange": "1985–2000",
+    "category": "cultura",
+    "memoryType": "lugar",
+    "context": "A locadora de VHS da sexta à noite, onde você alugava filmes para o fim de semana.",
+    "sceneId": "videolocadora",
+    "scenePosition": { "x": 0.44, "y": 0.72, "z": 2 },
+    "sceneLayer": "front",
+    "interactionType": "click",
+    "object": "Prateleiras cheias de fitas VHS, balcão de atendimento, TV de vitrine e pôsteres de filmes.",
+    "description": "Alugar 2 fitas por 3 reais na sexta, rebobinar antes de devolver, escolher o filme pela capa.",
+    "emotionalHook": "O ritual de escolher o filme pela caixa e a regra sagrada de rebobinar antes de devolver.",
+    "visual": {
+      "type": "original",
+      "source": "ilustração contextual própria",
+      "path": "assets/memory/videolocadora.svg",
+      "alt": "Interior de videolocadora com prateleiras de fitas VHS, balcão e pôsteres de filmes"
+    },
+    "audio": {
+      "type": "contextual",
+      "source": "síntese original (som de VHS), sem música licenciada",
+      "path": "assets/audio/videolocadora-vhs.wav",
+      "unavailableMessage": null
+    },
+    "relatedMemories": ["fita-vhs", "cinema"],
+    "challengeReferences": [6, 28, 29]
+  },
+  {
+    "id": "orelhao",
+    "title": "Orelhão",
+    "yearRange": "1980–2000",
+    "category": "cultura",
+    "memoryType": "habito",
+    "context": "Ligar do orelhão da rua com ficha ou cartão — e o telefone fixo em casa que ninguém atendia.",
+    "sceneId": "rua",
+    "scenePosition": { "x": 0.70, "y": 0.70, "z": 3 },
+    "sceneLayer": "front",
+    "interactionType": "click",
+    "object": "Cabine telefônica pública (orelhão) com fone, teclado e moeda/ficha — ambiente urbano dos anos 90.",
+    "description": "Discar, pôr a ficha, esperar o 'tum'. Se a ligação caísse, a ficha voltava.",
+    "emotionalHook": "A ficha que caía quando acabava o crédito, e a mania de 'ligar a cobrar'.",
+    "visual": {
+      "type": "original",
+      "source": "ilustração contextual própria",
+      "path": "assets/memory/orelhao.svg",
+      "alt": "Orelhão de rua com fone, teclado e ficha, em ambiente urbano dos anos 90"
+    },
+    "audio": {
+      "type": "contextual",
+      "source": "síntese original (som de discar/ocupado), sem música licenciada",
+      "path": "assets/audio/orelhao-discar.wav",
+      "unavailableMessage": null
+    },
+    "relatedMemories": ["telefone-fixo"],
+    "challengeReferences": [8, 7]
+  },
+  {
+    "id": "street-fighter-2",
+    "title": "Street Fighter II",
+    "yearRange": "1991–1996",
+    "category": "games",
+    "memoryType": "jogo",
+    "context": "A máquina arcade do fliperama do bairro, com o joystick e os botões que você dominava.",
+    "sceneId": "fliperama",
+    "scenePosition": { "x": 0.62, "y": 0.68, "z": 3 },
+    "sceneLayer": "front",
+    "interactionType": "click",
+    "object": "Máquina arcade de luta com joystick, seis botões e tela CRT — ambiente escuro de fliperama.",
+    "description": "Pôr a moeda, escolher o lutador, e soltar o Hadouken com a sequência de botões.",
+    "emotionalHook": "O salão escuro cheio de máquinas, e a fila esperando a vez de jogar.",
+    "visual": {
+      "type": "original",
+      "source": "ilustração contextual própria",
+      "path": "assets/memory/street-fighter-2.svg",
+      "alt": "Máquina arcade de Street Fighter II com joystick, botões e tela, em ambiente de fliperama"
+    },
+    "audio": {
+      "type": "contextual",
+      "source": "síntese original (insert coin / arcade), sem música licenciada",
+      "path": "assets/audio/fliperama-arcade.wav",
+      "unavailableMessage": null
+    },
+    "relatedMemories": ["mortal-kombat", "neo-geo"],
+    "challengeReferences": [35, 36, 41]
+  },
+  {
+    "id": "windows-95",
+    "title": "Windows 95 / Internet discada",
+    "yearRange": "1995–1999",
+    "category": "tecnologia",
+    "memoryType": "tecnologia",
+    "context": "Ligar o PC CRT no quarto e ouvir o modem discando para entrar na internet.",
+    "sceneId": "quarto-1997",
+    "scenePosition": { "x": 0.40, "y": 0.32, "z": 3 },
+    "sceneLayer": "front",
+    "interactionType": "click",
+    "hotspotOnly": true,
+    "object": "Computador CRT com teclado, mouse, modem e telefone na mesa do quarto — anos 90.",
+    "description": "A tela de 'Iniciar', o som do modem conectando, e o telefone ocupado enquanto você navegava.",
+    "emotionalHook": "O barulho do modem discando e a frustração de não poder usar o telefone ao mesmo tempo.",
+    "visual": {
+      "type": "original",
+      "source": "ilustração contextual própria",
+      "path": "assets/memory/windows-95.svg",
+      "alt": "Computador CRT com teclado e mouse, modem e telefone na mesa de um quarto dos anos 90"
+    },
+    "audio": {
+      "type": "contextual",
+      "source": "síntese original (som de modem), sem música licenciada",
+      "path": "assets/audio/modem-discada.wav",
+      "unavailableMessage": null
+    },
+    "relatedMemories": ["disquete", "cd-rom"],
+    "challengeReferences": [7, 8]
+  }
+]

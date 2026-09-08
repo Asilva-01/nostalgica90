@@ -19,7 +19,6 @@ window.Som = (function () {
       var p = localStorage.getItem(CHAVE);
       if (p) {
         var obj = JSON.parse(p);
-        prefs = { sfx: true, musica: false, volume: 0.8, _base: obj };
         prefs.sfx = obj.sfx !== undefined ? obj.sfx : true;
         prefs.musica = obj.musica !== undefined ? obj.musica : false;
         prefs.volume = obj.volume !== undefined ? obj.volume : 0.8;
@@ -67,6 +66,11 @@ window.Som = (function () {
       if (nome === 'ui-success') { o.frequency.setValueAtTime(523, t0); o.frequency.setValueAtTime(659, t0 + 0.12); o.frequency.setValueAtTime(784, t0 + 0.24); o.frequency.setValueAtTime(1046, t0 + 0.36); g.gain.setValueAtTime(0.2, t0); g.gain.exponentialRampToValueAtTime(0.001, t0 + 0.5); o.start(t0); o.stop(t0 + 0.5); }
       else if (nome === 'ui-error') { o.frequency.setValueAtTime(220, t0); o.frequency.setValueAtTime(165, t0 + 0.18); g.gain.setValueAtTime(0.2, t0); g.gain.exponentialRampToValueAtTime(0.001, t0 + 0.45); o.start(t0); o.stop(t0 + 0.45); }
       else if (nome === 'ui-arcade') { o.frequency.setValueAtTime(1318, t0); o.frequency.setValueAtTime(1760, t0 + 0.1); g.gain.setValueAtTime(0.2, t0); g.gain.exponentialRampToValueAtTime(0.001, t0 + 0.3); o.start(t0); o.stop(t0 + 0.3); }
+      else if (nome === 'ui-vhs') { o.type = 'sawtooth'; o.frequency.setValueAtTime(180, t0); o.frequency.linearRampToValueAtTime(90, t0 + 0.3); g.gain.setValueAtTime(0.18, t0); g.gain.exponentialRampToValueAtTime(0.001, t0 + 0.4); o.start(t0); o.stop(t0 + 0.4); }
+      else if (nome === 'ui-boot') { o.frequency.setValueAtTime(160, t0); o.frequency.linearRampToValueAtTime(90, t0 + 0.5); g.gain.setValueAtTime(0.16, t0); g.gain.exponentialRampToValueAtTime(0.001, t0 + 0.5); o.start(t0); o.stop(t0 + 0.5); }
+      else if (nome === 'ui-channel') { o.type = 'triangle'; o.frequency.setValueAtTime(900, t0); o.frequency.setValueAtTime(1200, t0 + 0.06); o.frequency.setValueAtTime(700, t0 + 0.12); g.gain.setValueAtTime(0.16, t0); g.gain.exponentialRampToValueAtTime(0.001, t0 + 0.2); o.start(t0); o.stop(t0 + 0.2); }
+      else if (nome === 'ui-modem') { o.frequency.setValueAtTime(700, t0); o.frequency.setValueAtTime(900, t0 + 0.1); o.frequency.setValueAtTime(500, t0 + 0.2); o.frequency.setValueAtTime(1100, t0 + 0.3); g.gain.setValueAtTime(0.14, t0); g.gain.exponentialRampToValueAtTime(0.001, t0 + 0.4); o.start(t0); o.stop(t0 + 0.4); }
+      else if (nome === 'ui-click') { o.frequency.setValueAtTime(900, t0); g.gain.setValueAtTime(0.15, t0); g.gain.exponentialRampToValueAtTime(0.001, t0 + 0.07); o.start(t0); o.stop(t0 + 0.07); }
       else { o.frequency.setValueAtTime(700, t0); g.gain.setValueAtTime(0.15, t0); g.gain.exponentialRampToValueAtTime(0.001, t0 + 0.12); o.start(t0); o.stop(t0 + 0.12); }
       o.connect(g); g.connect(ctxAudio.destination);
     } catch (e) {}

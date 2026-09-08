@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f2e6c8"/><stop offset="100%" stop-color="#d9c9a3"/></linearGradient>
+<linearGradient id="parede" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e8d9b4"/><stop offset="100%" stop-color="#d3c094"/></linearGradient>
+<linearGradient id="piso" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#a8875a"/><stop offset="100%" stop-color="#8a6d45"/></linearGradient>
+<linearGradient id="quadro" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2e5a46"/><stop offset="100%" stop-color="#1f4233"/></linearGradient>
+<linearGradient id="janela" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#bfe0e8"/><stop offset="100%" stop-color="#8fc6d4"/></linearGradient>
+</defs>
+<rect width="640" height="360" fill="url(#bg)"/>
+<rect x="0" y="0" width="640" height="230" fill="url(#parede)"/>
+<rect x="0" y="222" width="640" height="10" fill="#8a6d45"/>
+<rect x="0" y="232" width="640" height="128" fill="url(#piso)"/>
+<g stroke="#d9c9a3" stroke-width="2" opacity="0.6">
+<line x1="0" y1="260" x2="640" y2="260"/><line x1="0" y1="290" x2="640" y2="290"/><line x1="0" y1="320" x2="640" y2="320"/>
+<line x1="80" y1="232" x2="80" y2="360"/><line x1="200" y1="232" x2="200" y2="360"/><line x1="320" y1="232" x2="320" y2="360"/><line x1="440" y1="232" x2="440" y2="360"/><line x1="560" y1="232" x2="560" y2="360"/>
+</g>
+<rect x="40" y="36" width="300" height="140" rx="6" fill="#6b4f2e" stroke="#2b2139" stroke-width="5"/>
+<rect x="54" y="50" width="272" height="112" rx="4" fill="url(#quadro)"/>
+<rect x="70" y="164" width="240" height="10" rx="4" fill="#c9b787"/>
+<g fill="#f2e6c8" opacity="0.85">
+<circle cx="110" cy="90" r="7"/><circle cx="140" cy="82" r="9"/><circle cx="176" cy="96" r="6"/><circle cx="210" cy="84" r="8"/>
+</g>
+<g fill="#d9c9a3">
+<rect x="96" y="176" width="26" height="9" rx="3"/><rect x="138" y="176" width="26" height="9" rx="3"/>
+</g>
+<rect x="400" y="40" width="170" height="130" rx="6" fill="#6b4f2e" stroke="#2b2139" stroke-width="5"/>
+<rect x="414" y="54" width="142" height="102" fill="url(#janela)"/>
+<rect x="412" y="54" width="146" height="8" fill="#6b4f2e"/>
+<line x1="485" y1="54" x2="485" y2="156" stroke="#6b4f2e" stroke-width="6"/>
+<line x1="414" y1="104" x2="556" y2="104" stroke="#6b4f2e" stroke-width="6"/>
+<circle cx="560" cy="150" r="12" fill="#2b2139"/>
+<line x1="560" y1="150" x2="568" y2="138" stroke="#2b2139" stroke-width="3"/><line x1="560" y1="150" x2="552" y2="138" stroke="#2b2139" stroke-width="3"/>
+<line x1="560" y1="150" x2="560" y2="158" stroke="#2b2139" stroke-width="3"/>
+<rect x="250" y="196" width="340" height="8" rx="4" fill="#c9b787"/>
+<g fill="#e8d9b4" stroke="#2b2139" stroke-width="3">
+<rect x="120" y="258" width="60" height="46" rx="4"/><rect x="132" y="264" width="36" height="30" fill="#f2e6c8"/>
+<rect x="230" y="258" width="60" height="46" rx="4"/><rect x="242" y="264" width="36" height="30" fill="#f2e6c8"/>
+<rect x="430" y="258" width="60" height="46" rx="4"/><rect x="442" y="264" width="36" height="30" fill="#f2e6c8"/>
+</g>
+<g fill="#a8875a">
+<circle cx="90" cy="330" r="4"/><circle cx="150" cy="336" r="4"/><circle cx="300" cy="328" r="4"/><circle cx="520" cy="334" r="4"/><circle cx="590" cy="326" r="4"/>
+</g>
+<g stroke="#c0572d" stroke-width="3" opacity="0.7">
+<path d="M330 210 q8 -16 0 -30 q-8 -14 0 -28" fill="none"/>
+</g>
+</svg>

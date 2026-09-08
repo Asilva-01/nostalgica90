@@ -117,19 +117,24 @@
   function catInfo(cat) {
     var emoji = window.Dados.CAT_EMOJI[cat] || "📼";
     var cor = (window.Dados.CAT_COR[cat] || ["#388e3c", "#0b4a1e"]);
-    return { emoji: emoji, cor: cor };
+    var classe = "cat-" + (cat || "CULTURA").replace(/\s+/g, "");
+    return { emoji: emoji, cor: cor, classe: classe };
   }
 
   function renderChallengeImage(e) {
     var box = el("challengeImg");
     if (!box) return;
     var info = catInfo(e.cat);
-    box.innerHTML =
-      '<div class="fundo" style="background:linear-gradient(135deg,' + info.cor[0] + ',transparent 60%),linear-gradient(315deg,' + info.cor[1] + ',transparent 60%),#000;"></div>' +
-      '<div class="sinal">● AO VIVO</div>' +
-      '<div class="emoji">' + e.emoji + '</div>' +
-      '<div class="scan"></div>' +
-      '<div class="legenda">' + info.emoji + ' ' + (e.cat || "") + ' · ' + (e.ano || "") + '</div>';
+    // FASE 2I-A: sistema de artes por categoria (Arte.gerar)
+    var html;
+    if (window.Arte && window.Arte.gerar) {
+      html = window.Arte.gerar(e, info);
+    } else {
+      html = '<div class="art-fundo ' + (info.classe || "canal-tv") + '"></div>' +
+        '<div class="tc-emoji">' + info.emoji + '</div>' +
+        '<div class="art-scan"></div>';
+    }
+    box.innerHTML = html + '<div class="legenda">' + info.emoji + ' ' + (e.cat || "") + ' · ' + (e.ano || "") + '</div>';
   }
 
   function renderPistas() {
@@ -140,7 +145,7 @@
       var div = document.createElement("div");
       div.className = "pista-linha";
       div.id = "pista" + i;
-      div.innerHTML = '<span class="n">[' + i + ']</span> <span class="txt"></span>';
+      div.innerHTML = '<span class="n">CLUE 0' + i + '</span> <span class="txt"></span>';
       div.querySelector(".txt").textContent = e.pistas[i - 1] || "";
       box.appendChild(div);
     }
@@ -153,7 +158,13 @@
       if (i <= n) {
         el2.classList.add("revelada");
         el2.classList.remove("ativa");
-        if (i === n && !partidaFinalizada()) el2.classList.add("ativa");
+        if (i === n && !partidaFinalizada()) {
+          el2.classList.add("ativa");
+          // microinteração: pista recém-liberada
+          el2.classList.remove("pista-nova");
+          void el2.offsetWidth;
+          el2.classList.add("pista-nova");
+        }
       } else el2.classList.remove("revelada", "ativa");
     }
     var pb = el("pontosBarra");
@@ -168,6 +179,25 @@
     var e = entryAtual();
     renderEstatisticas();
     el("chaveDesafio").textContent = "DESAFIO #" + desafioAtual + (modoArquivo ? " (arquivo)" : "");
+    // microinteração: entrada do desafio ("troca de programação")
+    var secJogo = el("secJogo");
+    if (secJogo) {
+      var base = ["cat-TV","cat-GAMES","cat-CINEMA","cat-MÚSICA","cat-BRINQUEDOS","cat-TECNOLOGIA","cat-CULTURA","cat-c","venceu"];
+      for (var i = 0; i < base.length; i++) secJogo.classList.remove(base[i]);
+      secJogo.classList.add(catInfo(e.cat).classe);
+      // reinicia animação de entrada
+      secJogo.classList.remove("desafio-render");
+      void secJogo.offsetWidth;
+      secJogo.classList.add("desafio-render", "entra");
+    }
+    // atualiza pill de categoria
+    var pill = el("catPill");
+    if (pill) {
+      var info = catInfo(e.cat);
+      pill.className = "cat-pill " + info.classe;
+      pill.style.background = "";
+      pill.innerHTML = '<span class="pill-emoji">' + info.emoji + '</span> ' + (e.cat || "");
+    }
     renderChallengeImage(e);
     if (partidaFinalizada()) { mostrarFim(); return; }
     renderPistas();
@@ -177,11 +207,14 @@
       campo.value = "";
       if (!modoArquivo) campo.focus();
     }
-    el("respMsg").textContent = "";
-    el("respMsg").className = "feedback";
-    el("areaJogo").classList.remove("hidden");
-    el("areaFim").classList.add("hidden");
-    el("curiosidadeBox").classList.add("hidden");
+    var respMsg = el("respMsg");
+    if (respMsg) { respMsg.textContent = ""; respMsg.className = "feedback"; }
+    var areaJogo = el("areaJogo");
+    if (areaJogo) areaJogo.classList.remove("hidden");
+    var areaFim = el("areaFim");
+    if (areaFim) areaFim.classList.add("hidden");
+    var cb = el("curiosidadeBox");
+    if (cb) cb.classList.add("hidden");
   }
 
   /* ---------- ações ---------- */
@@ -199,6 +232,11 @@
       registrarVitoria(partida.pista);
       window.Som.tocar('ui-success');
       window.Efeitos.confete();
+      // microinteração: card "venceu" + pulso nos pontos
+      var sj = el("secJogo");
+      if (sj) sj.classList.add("venceu");
+      pulsarValor("stPts");
+      pulsarValor("stSeq");
       mostrarFim();
     } else {
       var msg = el("respMsg");
@@ -210,6 +248,15 @@
       campo.value = "";
       campo.focus();
     }
+  }
+
+  /* microinteração: pulso breve em um valor de placar */
+  function pulsarValor(id) {
+    var v = el(id);
+    if (!v) return;
+    v.classList.remove("pulso");
+    void v.offsetWidth;
+    v.classList.add("pulso");
   }
 
   function pularPista() {
@@ -332,6 +379,7 @@
     if (!box) return;
     box.innerHTML = "";
     var min = Math.max(REF_NO, desafioHoje - FIM_ULTIMO_DIA);
+    var idx = 0;
     for (var n = min; n <= desafioHoje; n++) {
       var e = window.Dados.item(n);
       if (filtro !== "TODOS" && e.cat !== filtro) continue;
@@ -344,19 +392,21 @@
         else if (rj.perdeu) { res = "❌"; cls = "nao"; }
       }
       box.innerHTML +=
-        '<div class="gal-card" onclick="Jogo.abrirArquivo(' + n + ')">' +
+        '<div class="gal-card ' + catInfo(e.cat).classe + '" style="animation-delay:' + (idx * 40) + 'ms" onclick="Jogo.abrirArquivo(' + n + ')">' +
         '<div class="num">#' + n + '</div>' +
         '<div class="e">' + e.emoji + '</div>' +
         '<div class="cat">' + e.cat + '</div>' +
         '<div class="res ' + cls + '">' + res + '</div>' +
         '</div>';
+      idx++;
     }
     // filtros
     var fb = el("filtros");
     if (fb) {
       fb.innerHTML = '<button class="filtro' + (filtro === "TODOS" ? " ativo" : "") + '" onclick="Jogo.mostrarGaleria(\'TODOS\')">TODOS</button>';
       window.Dados.CATEGORIAS.forEach(function (c) {
-        fb.innerHTML += '<button class="filtro' + (filtro === c ? " ativo" : "") + '" onclick="Jogo.mostrarGaleria(\'' + c + '\')">' + (window.Dados.CAT_EMOJI[c] || "") + ' ' + c + '</button>';
+        var cl = "filtro" + (filtro === c ? " ativo" : "") + " " + catInfo(c).classe;
+        fb.innerHTML += '<button class="' + cl + '" onclick="Jogo.mostrarGaleria(\'' + c + '\')">' + (window.Dados.CAT_EMOJI[c] || "") + ' ' + c + '</button>';
       });
     }
   }
@@ -396,35 +446,78 @@
     var dados = window.Dados.listaMuseu();
     if (!box) return;
     box.innerHTML = "";
+    var idx = 0;
     dados.forEach(function (g) {
       if (cat && g.cat !== cat) return;
+      var emojiItem = g.emoji || "📼";
       g.itens.forEach(function (it) {
         box.innerHTML +=
-          '<div class="museu-item" onclick="Jogo.abrirMuseuItem(\'' + g.cat + '\',\'' + it.nome.replace(/'/g, "\\'") + '\')">' +
-          '<div class="e">' + it.emoji + '</div><div class="t">' + it.nome + '</div></div>';
+          '<div class="museu-item ' + catInfo(g.cat).classe + '" style="animation-delay:' + (idx * 45) + 'ms" onclick="Jogo.abrirMuseuItem(\'' + g.cat + '\',\'' + it.nome.replace(/'/g, "\\'") + '\')">' +
+          '<div class="e">' + (it.emoji || emojiItem) + '</div><div class="t">' + it.nome + '</div></div>';
+        idx++;
       });
     });
+  }
+
+    /* áudio temático por categoria do museu */
+  function somMuseu(cat) {
+    var sons = {
+      'MÚSICA': 'ui-arcade', 'GAMES': 'ui-arcade', 'TECNOLOGIA': 'ui-boot',
+      'VHS': 'ui-vhs', 'CULTURA': 'ui-vhs', 'TV': 'ui-channel',
+      'CINEMA': 'ui-reveal', 'RÁDIO': 'ui-click', 'BRINQUEDOS': 'ui-success'
+    };
+    return sons[cat] || 'ui-reveal';
   }
 
   function abrirMuseuItem(cat, nome) {
     var dados = window.Dados.listaMuseu();
     var alvo = null;
+    var emojiCat = "📼";
     dados.forEach(function (g) {
+      if (g.cat === cat) emojiCat = g.emoji || emojiCat;
       g.itens.forEach(function (it) { if (g.cat === cat && it.nome === nome) alvo = it; });
     });
     if (!alvo) return;
     var m = el("modal");
+    // arte semântica (SVG por item) se disponível; senão emoji
+    var arte = (window.MuseuArtes && window.MuseuArtes.artePorItem) ? window.MuseuArtes.artePorItem(alvo) : null;
+    var arteHtml = arte ? arte : ('<div class="arte">' + (alvo.emoji || emojiCat) + '</div>');
     el("modalCorpo").innerHTML =
-      '<div class="arte">' + alvo.emoji + '</div>' +
+      arteHtml +
       '<h3>' + alvo.nome + '</h3>' +
       '<div class="ano">' + (alvo.ano || "") + ' · ' + cat + '</div>' +
       '<p>' + (alvo.desc || "") + '</p>' +
       '<div class="curio">💭 ' + (alvo.curiosidade || "") + '</div>' +
       '<div class="lembra">VOCÊ LEMBRA DISSO?</div>';
     m.classList.remove("hidden");
-    window.Som.tocar('ui-reveal');
+    // associação semântica de áudio: MÚSICA toca trilha temática; demais tocam som da categoria
+    if (cat === 'MÚSICA') {
+      window.Som.ativar();
+      if (window.NostalMusica) window.NostalMusica.definirtema('novela');
+      if (window.NostalMusica) window.NostalMusica.ligar();
+      window.Som.prefs.musica = true;
+    } else {
+      window.Som.tocar(somMuseu(cat));
+    }
   }
-  function fecharModal() { el("modal").classList.add("hidden"); }
+  function fecharModal() {
+    el("modal").classList.add("hidden");
+    // ao fechar, restaura trilha do jogo se estava tocando música
+    if (window.NostalMusica && window.Som.prefs.musica) window.NostalMusica.definirtema('desafio');
+  }
+
+  /* abre o detalhe de uma memória (piloto 2I-E) no modal */
+  function abrirMemoria(m) {
+    if (!m) return;
+    var modal = el("modal");
+    var corpo = el("modalCorpo");
+    if (corpo && window.Cenas && window.Cenas.detalheMemoria) {
+      corpo.innerHTML = window.Cenas.detalheMemoria(m);
+      modal.classList.remove("hidden");
+      // som contextual da memória
+      if (window.Cenas.tocarSom) window.Cenas.tocarSom(m);
+    }
+  }
 
   /* ---------- hero / loading ---------- */
   function iniciarJogo() {
@@ -517,6 +610,7 @@
     mostrarGaleria: mostrarGaleria,
     mostrarMuseu: mostrarMuseu,
     abrirMuseuItem: abrirMuseuItem,
+    abrirMemoria: abrirMemoria,
     fecharModal: fecharModal,
     abrirSecao: abrirSecao,
     modoCanal90: modoCanal90

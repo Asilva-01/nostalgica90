@@ -1,7 +1,7 @@
 /* ============================================================
    Nostálgica — Trilhas chiptune procedurais (Web Audio API)
    - 10 músicas por tema, rotacionando sozinhas
-   - Tenta autoplay; se o navegador bloquear, mostra botão
+   - MOTOR interno: não cria botão/overlay (UI é do AudioManager)
    - Som 100% original, estilo 8-bit (sem direitos autorais)
    ============================================================ */
 var NostalMusica = (function () {
@@ -16,8 +16,6 @@ var NostalMusica = (function () {
   var idx = 0;
   var nextTime = 0;
   var ligado = false;
-  var btn = null;
-  var overlay = null;
   var _tema = "desafio";
 
   var VOL = 0.13;
@@ -198,12 +196,7 @@ var NostalMusica = (function () {
     ligado = true;
     timer = setInterval(agendar, 100);
     startHat();
-    atualizarBtn();
-    esconderOverlay();
     if (ctx.state === "suspended") ctx.resume().catch(function(){});
-    setTimeout(function () {
-      if (ctx.state === "suspended") mostrarOverlay();
-    }, 700);
   }
 
   function retomar() {
@@ -211,8 +204,6 @@ var NostalMusica = (function () {
     if (ctx.state === "suspended") ctx.resume().catch(function(){});
     ligado = true;
     master.gain.setTargetAtTime(VOL, ctx.currentTime, 0.05);
-    esconderOverlay();
-    atualizarBtn();
   }
 
   function toggle() {
@@ -220,59 +211,15 @@ var NostalMusica = (function () {
     if (ctx.state === "suspended") { retomar(); return; }
     ligado = !ligado;
     master.gain.setTargetAtTime(ligado ? VOL : 0.0001, ctx.currentTime, 0.05);
-    atualizarBtn();
   }
 
-  /* ---------------- UI ---------------- */
-  function atualizarBtn() {
-    if (!btn) return;
-    btn.innerHTML = (ligado && ctx && ctx.state === "running") ? "🔊" : "🔇";
-    btn.title = ligado ? "Pausar música" : "Ligar música";
-  }
+  /* ---------------- Controle de UI é do AudioManager (som.js) ----------------
+     musica.js é apenas o MOTOR de reprodução. Não cria botão nem overlay.
+     Exposições de estado para o som.js ler. */
+  function estaLigada() { return ligado && ctx && ctx.state === "running"; }
+  function estaDisponivel() { return !!ctx; }
 
-  function criarBotao() {
-    if (btn) return btn;
-    btn = document.createElement("button");
-    btn.id = "btnMusica";
-    btn.style.cssText =
-      "position:fixed;bottom:16px;right:16px;z-index:999;" +
-      "font-size:26px;width:52px;height:52px;border-radius:50%;border:2px solid #ffe600;" +
-      "background:rgba(0,0,0,.8);color:#fff;cursor:pointer;box-shadow:3px 3px 0 #ff2d95;" +
-      "display:flex;align-items:center;justify-content:center;";
-    btn.onclick = toggle;
-    document.body.appendChild(btn);
-    return btn;
-  }
-
-  function criarOverlay() {
-    if (overlay) return overlay;
-    overlay = document.createElement("div");
-    overlay.style.cssText =
-      "position:fixed;top:0;left:0;right:0;bottom:0;z-index:1000;" +
-      "display:none;align-items:center;justify-content:center;" +
-      "background:rgba(18,0,43,.92);";
-    overlay.innerHTML =
-      '<div style="text-align:center;font-family:VT323,monospace;color:#fff;padding:20px;">' +
-      '<div style="font-size:52px;">🔊</div>' +
-      '<div style="font-size:clamp(22px,5vw,34px);margin:12px 0;">Clique para ouvir a trilha nostálgica!</div>' +
-      '<button id="btnLigarSom" style="font-family:\'Press Start 2P\',monospace;font-size:14px;' +
-      'background:#ffe600;color:#000;border:none;border-radius:10px;padding:16px 26px;cursor:pointer;' +
-      'box-shadow:4px 4px 0 #ff2d95;text-transform:uppercase;">▶ LIGAR SOM</button>' +
-      '</div>';
-    overlay.querySelector("#btnLigarSom").onclick = function () { retomar(); };
-    document.body.appendChild(overlay);
-    return overlay;
-  }
-
-  function mostrarOverlay() {
-    var o = criarOverlay();
-    o.style.display = "flex";
-  }
-  function esconderOverlay() {
-    if (overlay) overlay.style.display = "none";
-  }
-
-  /* Controle explícito (para iniciar por gesto do usuário) */
+  /* Controle explícito (iniciado por gesto do usuário via som.js) */
   function ligar() {
     if (!ctx) { iniciar(); return; }
     retomar();
@@ -282,7 +229,6 @@ var NostalMusica = (function () {
     if (!ctx) return;
     ligado = false;
     master.gain.setTargetAtTime(0.0001, ctx.currentTime, 0.05);
-    atualizarBtn();
   }
 
   function definirtema(tema) {
@@ -295,26 +241,15 @@ var NostalMusica = (function () {
     }
   }
 
-  function estaLigada() { return ligado && ctx && ctx.state === "running"; }
-
   return {
     init: function (tema) {
       _tema = tema || "desafio";
-      criarBotao();
-      criarOverlay();
-      atualizarBtn();
     },
-    initAutoplay: function (tema) {
-      _tema = tema || "desafio";
-      criarBotao();
-      criarOverlay();
-      atualizarBtn();
-      setTimeout(function () { iniciar(); }, 250);
-    },
-    toggle: toggle,
     ligar: ligar,
     desligar: desligar,
     definirtema: definirtema,
-    estaLigada: estaLigada
+    estaLigada: estaLigada,
+    estaDisponivel: estaDisponivel,
+    toggle: toggle
   };
 })();

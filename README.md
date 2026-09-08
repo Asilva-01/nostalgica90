@@ -54,14 +54,30 @@ o bot (`bot_diario.py`) leem o mesmo arquivo. O desafio `N` usa `POOL[(N-1) % le
 Cada desafio tem os campos:
 ```json
 {
-  "resp": "Nome",
-  "alias": ["apelido1", "apelido2"],
-  "cat": "TV | GAMES | CINEMA | MÚSICA | BRINQUEDOS | TECNOLOGIA | CULTURA",
-  "emoji": "📺",
-  "ano": "1993",
+  "id": 1,
+  "slug": "tamagotchi",
+  "categorySlug": "brinquedos",
+  "resp": "Tamagotchi",
+  "alias": ["bichinho virtual"],
+  "cat": "BRINQUEDOS",
+  "emoji": "🥚",
+  "ano": "1996",
   "curiosidade": "Fato divertido para a seção 'Você lembra?'.",
+  "tags": ["brinquedos", "anos-90", "brasil", "nostalgia"],
+  "image": null,
+  "dificuldade": null,
   "pistas": ["Pista 1 (vaga)", "Pista 2", "...", "Pista 6 (óbvia)"]
 }
+```
+
+Para regenerar a normalização (aliases a partir do HTML antigo) rode:
+```bash
+python tools/normalize_challenges.py
+```
+
+Para rodar o teste de regressão:
+```bash
+node tools/test_core.js
 ```
 
 Para gerar novos assets (SFX WAV, ícones, OG image) rode:
@@ -71,6 +87,24 @@ python tools/generate_assets.py
 
 ## 🏛️ Museu dos Anos 90
 Edite `museum.json` (categorias com itens) para ampliar o acervo.
+
+## 🎨 Sistema de Artes dos Desafios (artes.js)
+
+Cada desafio tem uma **arte procedural com identidade por categoria** gerada por `artes.js`
+(fundos/texturas próprios + elemento SVG central + faixa categoria·ano + selo). Nada é copiado
+de material protegido — composição original inspirada na época.
+
+Categorias e suas linguagens visuais:
+- **TV** → grade de programação (estética "liguei a TV")
+- **GAMES** → pixel/arcade ("eu jogava isso")
+- **CINEMA** → pôster de VHS/locadora ("eu aluguei esse filme")
+- **MÚSICA** → CD/cassete (preparado)
+- **BRINQUEDOS** → catálogo/embalagem ("eu queria ter esse")
+- **TECNOLOGIA** → monitor CRT ("eu usei isso")
+- **CULTURA** → revista/banca ("fazia parte da minha vida")
+
+O campo `image` no `challenges.json` é usado quando houver uma arte real (ex: `assets/images/challenges/001.webp`).
+Enquanto `image` for `null`, o motor usa a arte procedural.
 
 ---
 

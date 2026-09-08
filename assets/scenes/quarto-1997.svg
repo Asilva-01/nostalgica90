@@ -1,0 +1,254 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360">
+<defs>
+<linearGradient id="parede" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0%" stop-color="#eddfc4"/><stop offset="100%" stop-color="#d3c2a2"/>
+</linearGradient>
+<linearGradient id="paredeDir" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0%" stop-color="#e2d2b2"/><stop offset="100%" stop-color="#c6b493"/>
+</linearGradient>
+<linearGradient id="piso" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0%" stop-color="#9a7a4e"/><stop offset="100%" stop-color="#685030"/>
+</linearGradient>
+<linearGradient id="janela" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0%" stop-color="#bfd9e8"/><stop offset="100%" stop-color="#7ba5bb"/>
+</linearGradient>
+<linearGradient id="tampo" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0%" stop-color="#c8a068"/><stop offset="100%" stop-color="#a07a46"/>
+</linearGradient>
+<linearGradient id="gabinete" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0%" stop-color="#f4ecda"/><stop offset="100%" stop-color="#decfb2"/>
+</linearGradient>
+<linearGradient id="amarelo" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0%" stop-color="#f4ecd4"/><stop offset="100%" stop-color="#e4d5ae"/>
+</linearGradient>
+<linearGradient id="cortina" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0%" stop-color="#b0483f"/><stop offset="100%" stop-color="#8a332d"/>
+</linearGradient>
+<radialGradient id="luzTeto" cx="0.5" cy="0.04" r="1">
+  <stop offset="0%" stop-color="#ffeab8" stop-opacity="0.6"/>
+  <stop offset="100%" stop-color="#ffeab8" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="cama" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0%" stop-color="#5a8fb0"/><stop offset="100%" stop-color="#3f6f8f"/>
+</linearGradient>
+</defs>
+
+<!-- base -->
+<rect width="640" height="360" fill="#1e150e"/>
+
+<!-- parede (fundo) -->
+<rect x="0" y="0" width="640" height="206" fill="url(#parede)"/>
+<!-- parede lateral direita (profundidade) -->
+<rect x="470" y="0" width="170" height="206" fill="url(#paredeDir)"/>
+<rect x="470" y="0" width="6" height="206" fill="#b7a684"/>
+
+<!-- luminosidade quente do teto -->
+<rect x="0" y="0" width="640" height="360" fill="url(#luzTeto)"/>
+
+<!-- rodapé da parede -->
+<rect x="0" y="200" width="640" height="8" fill="#8a6a44"/>
+<rect x="0" y="208" width="640" height="136" fill="url(#piso)"/>
+
+<!-- janela com cortina -->
+<rect x="492" y="16" width="124" height="140" rx="6" fill="#7a5c38" stroke="#3a2c16" stroke-width="4"/>
+<!-- cortina (duas faixas laterais + sanefa) -->
+<rect x="486" y="16" width="136" height="14" rx="4" fill="url(#cortina)" stroke="#5c201a" stroke-width="2"/>
+<path d="M492 30 Q500 90 492 156 L514 156 Q506 90 514 30 Z" fill="url(#cortina)" stroke="#5c201a" stroke-width="2"/>
+<path d="M616 30 Q608 90 616 156 L594 156 Q602 90 594 30 Z" fill="url(#cortina)" stroke="#5c201a" stroke-width="2"/>
+<rect x="508" y="34" width="102" height="116" fill="url(#janela)"/>
+<line x1="559" y1="34" x2="559" y2="150" stroke="#7a5c38" stroke-width="3"/>
+<line x1="508" y1="90" x2="610" y2="90" stroke="#7a5c38" stroke-width="3"/>
+<rect x="508" y="144" width="102" height="6" fill="#e6f0f6" opacity="0.4"/>
+<g fill="#e0f0f8" opacity="0.7">
+<circle cx="530" cy="56" r="9"/><circle cx="584" cy="70" r="7"/><circle cx="548" cy="110" r="8"/>
+</g>
+
+<!-- pôster pequeno de banda (esquerda, em cima) -->
+<g transform="rotate(-2 100 60)">
+<rect x="64" y="28" width="58" height="42" rx="2" fill="#e9dcbb" stroke="#3a2c16" stroke-width="2"/>
+<rect x="70" y="34" width="46" height="30" fill="#c0572d"/>
+<g fill="#111"><circle cx="86" cy="46" r="6"/><circle cx="100" cy="50" r="6"/><circle cx="92" cy="58" r="5"/><rect x="102" y="42" width="8" height="16" rx="2" fill="#111"/></g>
+<rect x="70" y="34" width="2" height="30" fill="#f4ecd4" opacity="0.4"/>
+</g>
+
+<!-- pôster de filme (direita da prateleira) -->
+<rect x="432" y="32" width="34" height="46" rx="2" fill="#e9dcbb" stroke="#3a2c16" stroke-width="2" transform="rotate(3 449 55)"/>
+<rect x="438" y="38" width="22" height="28" fill="#3f6f8f" transform="rotate(3 449 55)"/>
+<rect x="438" y="42" width="22" height="4" fill="#f4ecd4" transform="rotate(3 449 55)"/>
+
+<!-- prateleira com VHS, CDs e revistas de informática -->
+<rect x="150" y="52" width="280" height="14" rx="4" fill="#7a5c38" stroke="#3a2c16" stroke-width="3"/>
+<rect x="166" y="24" width="30" height="28" rx="2" fill="#2a2338" stroke="#3a2f4a" stroke-width="2"/>
+<rect x="170" y="22" width="22" height="10" fill="#d9a441"/>
+<rect x="200" y="24" width="30" height="28" rx="2" fill="#2a2338" stroke="#3a2f4a" stroke-width="2"/>
+<rect x="204" y="22" width="22" height="10" fill="#c0572d"/>
+<rect x="234" y="24" width="30" height="28" rx="2" fill="#2a2338" stroke="#3a2f4a" stroke-width="2"/>
+<rect x="238" y="22" width="22" height="10" fill="#3f7f8a"/>
+<rect x="268" y="24" width="30" height="28" rx="2" fill="#2a2338" stroke="#3a2f4a" stroke-width="2"/>
+<rect x="272" y="22" width="22" height="10" fill="#7a4bbf"/>
+<!-- revistas de informática na prateleira -->
+<g transform="rotate(8 326 50)">
+<rect x="316" y="30" width="26" height="34" rx="2" fill="#e9dcbb" stroke="#3a2c16" stroke-width="2"/>
+<rect x="320" y="34" width="18" height="6" fill="#c0572d"/>
+<g fill="#3a2c16"><rect x="320" y="44" width="18" height="2"/><rect x="320" y="49" width="14" height="2"/><rect x="320" y="54" width="16" height="2"/></g>
+</g>
+<g transform="rotate(-5 352 52)">
+<rect x="344" y="32" width="26" height="32" rx="2" fill="#e9dcbb" stroke="#3a2c16" stroke-width="2"/>
+<rect x="348" y="36" width="18" height="6" fill="#3f7f8a"/>
+<g fill="#3a2c16"><rect x="348" y="46" width="18" height="2"/><rect x="348" y="51" width="12" height="2"/></g>
+</g>
+<!-- CD na prateleira -->
+<g fill="#cdd6e0" stroke="#5a6a7a" stroke-width="1">
+<circle cx="382" cy="42" r="11"/><circle cx="382" cy="42" r="4"/>
+</g>
+
+<!-- mesa com sombra de contato -->
+<rect x="0" y="220" width="640" height="140" fill="#5a4322" opacity="0.35"/>
+<rect x="108" y="216" width="440" height="16" rx="5" fill="url(#tampo)" stroke="#3a2c16" stroke-width="3"/>
+<rect x="122" y="232" width="20" height="92" fill="#685030"/>
+<rect x="614" y="232" width="20" height="92" fill="#685030"/>
+<rect x="108" y="228" width="440" height="4" fill="#b28858" opacity="0.5"/>
+
+<!-- cama (à esquerda, parte visível) -->
+<path d="M0 206 L0 360 L96 360 Q96 300 70 280 L0 280 Z" fill="url(#cama)"/>
+<rect x="0" y="278" width="96" height="14" rx="4" fill="#c0572d"/>
+<rect x="0" y="274" width="96" height="6" fill="#e9dcbb"/>
+<g fill="#ffffff" opacity="0.25"><circle cx="40" cy="300" r="5"/><circle cx="66" cy="320" r="5"/><circle cx="24" cy="334" r="5"/></g>
+
+<!-- SOMBRA DE CONTATO do computador -->
+<ellipse cx="270" cy="220" rx="132" ry="10" fill="#42300f" opacity="0.45"/>
+
+<!-- gabinete horizontal bege (amarelado) -->
+<rect x="168" y="150" width="180" height="54" rx="5" fill="url(#amarelo)" stroke="#6e5434" stroke-width="3"/>
+<!-- tampa com brilho -->
+<rect x="168" y="150" width="180" height="7" fill="#fff8e4" opacity="0.5"/>
+<rect x="182" y="164" width="14" height="6" rx="2" fill="#6e5434"/>
+<rect x="202" y="164" width="14" height="6" rx="2" fill="#6e5434"/>
+<rect x="182" y="178" width="66" height="8" rx="2" fill="#a88550"/>
+<rect x="254" y="178" width="66" height="8" rx="2" fill="#a88550"/>
+<rect x="326" y="178" width="14" height="8" rx="2" fill="#8a6d45"/>
+<circle cx="334" cy="168" r="5" fill="#3ecf5b"/>
+<g fill="#8a6d45"><circle cx="336" cy="192" r="3"/><circle cx="324" cy="192" r="3"/></g>
+
+<!-- MONITOR CRT bege (Windows 95 dentro da tela) -->
+<rect x="182" y="64" width="150" height="90" rx="6" fill="url(#amarelo)" stroke="#6e5434" stroke-width="3"/>
+<rect x="182" y="64" width="150" height="8" fill="#fff8e4" opacity="0.5"/>
+<rect x="194" y="76" width="126" height="68" rx="3" fill="#1a1a2e"/>
+<!-- tela Windows 95 -->
+<rect x="194" y="76" width="126" height="68" rx="3" fill="#008080"/>
+<rect x="194" y="76" width="126" height="26" fill="#000080"/>
+<text x="203" y="93" font-family="Verdana, Arial, sans-serif" font-size="11" font-weight="bold" fill="#ffffff">Meu PC 97</text>
+<g>
+  <rect x="202" y="118" width="110" height="20" rx="1" fill="#c0c0c0"/>
+  <rect x="204" y="120" width="36" height="12" rx="1" fill="#c0c0c0" stroke="#808080" stroke-width="1"/>
+  <g transform="translate(204,121)">
+    <rect x="0" y="0" width="10" height="10" rx="1" fill="#c0c0c0" stroke="#808080"/>
+    <path d="M1 7 L3 3 L5 6 L7 4 L9 7 Z" fill="#000080"/>
+  </g>
+  <g transform="translate(206,121)">
+    <rect x="0" y="0" width="10" height="10" rx="1" fill="#c0c0c0" stroke="#808080"/>
+    <rect x="3" y="2" width="4" height="6" fill="#ffffe0"/>
+    <path d="M1 3 Q5 1 9 3" stroke="#808080" stroke-width="1" fill="none"/>
+    <rect x="1" y="8" width="8" height="1" fill="#808080"/>
+  </g>
+  <rect x="218" y="120" width="8" height="11" fill="#c0c0c0" stroke="#808080"/>
+  <rect x="228" y="120" width="8" height="11" fill="#c0c0c0" stroke="#808080"/>
+</g>
+<!-- ícone da lixeira no desktop -->
+<g transform="translate(298,86)">
+  <rect x="0" y="0" width="14" height="14" rx="1" fill="#c0c0c0" opacity="0.9"/>
+  <path d="M2 4 L12 4 L11 12 L3 12 Z" fill="#e6e6e6" opacity="0.8"/>
+  <rect x="5" y="3" width="4" height="1" fill="#fff"/>
+</g>
+<!-- botões do monitor -->
+<rect x="194" y="148" width="8" height="6" rx="1" fill="#6e5434"/>
+<rect x="310" y="148" width="8" height="6" rx="1" fill="#6e5434"/>
+<!-- suporte do monitor -->
+<rect x="242" y="154" width="30" height="8" rx="3" fill="url(#amarelo)" stroke="#6e5434" stroke-width="2"/>
+
+<!-- capa plástica translúcida (detalhe nostálgico BR) -->
+<path d="M178 112 Q182 74 250 62 L184 112 Z" fill="#ffffff" opacity="0.08"/>
+
+<!-- SOMBRA do teclado e mouse -->
+<ellipse cx="432" cy="210" rx="76" ry="6" fill="#42300f" opacity="0.3"/>
+<ellipse cx="512" cy="218" rx="22" ry="5" fill="#42300f" opacity="0.3"/>
+
+<!-- teclado bege -->
+<rect x="372" y="178" width="120" height="28" rx="4" fill="#ddd0b6" stroke="#6e5434" stroke-width="3"/>
+<g fill="#6e5434">
+<rect x="382" y="184" width="8" height="8" rx="1"/>
+<rect x="394" y="184" width="8" height="8" rx="1"/><rect x="406" y="184" width="8" height="8" rx="1"/>
+<rect x="418" y="184" width="8" height="8" rx="1"/><rect x="430" y="184" width="8" height="8" rx="1"/>
+<rect x="442" y="184" width="8" height="8" rx="1"/><rect x="454" y="184" width="8" height="8" rx="1"/>
+<rect x="466" y="184" width="8" height="8" rx="1"/>
+<rect x="382" y="194" width="40" height="8" rx="1"/><rect x="426" y="194" width="56" height="8" rx="1"/>
+</g>
+
+<!-- mouse com esfera -->
+<ellipse cx="512" cy="200" rx="17" ry="12" fill="#ddd0b6" stroke="#6e5434" stroke-width="3"/>
+<line x1="512" y1="192" x2="512" y2="208" stroke="#6e5434" stroke-width="1"/>
+
+<!-- modem externo -->
+<rect x="374" y="108" width="80" height="34" rx="4" fill="#ddd0b6" stroke="#6e5434" stroke-width="3"/>
+<g fill="#2ecf5b"><circle cx="388" cy="120" r="4"/></g>
+<g fill="#3f7f8a"><circle cx="402" cy="120" r="4"/></g>
+<rect x="414" y="116" width="34" height="8" rx="2" fill="#b89a68"/>
+
+<!-- telefone fixo médio (mais reconhecível) -->
+<rect x="432" y="118" width="52" height="36" rx="8" fill="#ddd0b6" stroke="#6e5434" stroke-width="3"/>
+<g fill="#6e5434">
+<circle cx="444" cy="130" r="5"/><circle cx="458" cy="130" r="5"/><circle cx="472" cy="130" r="5"/>
+<circle cx="444" cy="140" r="5"/><circle cx="458" cy="140" r="5"/><circle cx="472" cy="140" r="5"/>
+</g>
+<rect x="446" y="154" width="20" height="6" rx="3" fill="#ddd0b6" stroke="#6e5434" stroke-width="2"/>
+<!-- fio do telefone e do modem -->
+<path d="M508 154 Q520 138 522 122 Q522 110 500 108" fill="none" stroke="#5a452e" stroke-width="2"/>
+<path d="M414 142 Q430 140 440 152 Q448 162 458 154" fill="none" stroke="#5a452e" stroke-width="1.5"/>
+<!-- fio do teclado enrolado -->
+<path d="M372 190 Q360 188 356 178 Q352 168 340 168" fill="none" stroke="#5a452e" stroke-width="2"/>
+
+<!-- disquetes + CDs na mesa -->
+<g transform="rotate(-7 140 228)">
+<rect x="116" y="202" width="46" height="48" rx="3" fill="#3a3f5c" stroke="#262a3a" stroke-width="2"/>
+<rect x="128" y="210" width="22" height="10" rx="1" fill="#cdd6e0"/>
+<rect x="128" y="226" width="22" height="18" rx="1" fill="#6e5434" opacity="0.6"/>
+</g>
+<g transform="rotate(9 548 226)">
+<rect x="524" y="202" width="46" height="48" rx="3" fill="#8a5a1e" stroke="#262a3a" stroke-width="2"/>
+<rect x="536" y="210" width="22" height="10" rx="1" fill="#cdd6e0"/>
+<rect x="536" y="226" width="22" height="18" rx="1" fill="#6e5434" opacity="0.6"/>
+</g>
+<g fill="#cdd6e0" stroke="#8a9ab0" stroke-width="1">
+<circle cx="308" cy="214" r="13"/><circle cx="308" cy="214" r="4"/>
+<circle cx="338" cy="216" r="13"/><circle cx="338" cy="216" r="4"/>
+</g>
+<!-- caixa de CD/software na mesa -->
+<rect x="284" y="208" width="18" height="20" rx="2" fill="#e9dcbb" stroke="#3a2c16" stroke-width="2"/>
+<rect x="286" y="212" width="8" height="6" fill="#3f7f8a"/>
+<rect x="286" y="220" width="14" height="2" fill="#3a2c16"/>
+
+<!-- luminária de mesa -->
+<rect x="342" y="144" width="5" height="16" fill="#4a3b56"/>
+<rect x="332" y="138" width="25" height="7" rx="3" fill="#7a4bbf"/>
+<ellipse cx="344" cy="138" rx="13" ry="5" fill="#c9a0ff" opacity="0.85"/>
+<path d="M332 124 L324 136" stroke="#4a3b56" stroke-width="2"/>
+<ellipse cx="322" cy="139" rx="10" ry="4" fill="#e0c0ff" opacity="0.6"/>
+
+<!-- revistas no chão (à direita) -->
+<g fill="#e9dcbb" stroke="#bdad8c" stroke-width="1">
+<rect x="580" y="270" width="28" height="36" rx="2" transform="rotate(5 594 288)"/>
+<rect x="590" y="276" width="10" height="24" fill="#c0572d" transform="rotate(5 594 288)"/>
+</g>
+<g fill="#e9dcbb" stroke="#bdad8c" stroke-width="1">
+<rect x="608" y="276" width="26" height="34" rx="2" transform="rotate(-4 621 293)"/>
+<rect x="617" y="282" width="9" height="22" fill="#3f7f8a" transform="rotate(-4 621 293)"/>
+</g>
+
+<!-- mochilinha / objeto escolar no chão -->
+<path d="M44 300 L44 344 L84 344 L84 306 Q64 292 44 300 Z" fill="#c0572d" stroke="#3a2c16" stroke-width="2"/>
+<path d="M48 304 Q64 296 80 304" fill="none" stroke="#3a2c16" stroke-width="2"/>
+<rect x="58" y="318" width="12" height="10" rx="2" fill="#8a332d"/>
+
+<!-- rodapé -->
+<rect x="0" y="348" width="640" height="12" fill="#4a3820"/>
+</svg>

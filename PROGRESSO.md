@@ -1,56 +1,53 @@
-# NOSTÁLGICA 90 — ESTADO DO PROJETO (retomada)
+# NOSTÁLGICA 90 — PROGRESSO
 
-> Guardado em 2026-09-06 (sessão interrompida).
-> Para retomar: `git status` no diretório `C:\Users\admin\AppData\Local\Temp\opencode\nostalgica90`, ler este arquivo e seguir a "PRÓXIMA AÇÃO".
+## FASE 1 — CONCLUÍDA (Fundação V2 + correções críticas)
 
-## Resumo da evolução aprovada
-Transformar o Nostálgica em "portal de entretenimento da Internet brasileira dos anos 90" mantendo o desafio diário (6 pistas, streak, arquivo). Decisões tomadas:
-- Áudio: inicia por gesto explícito via botão hero "LIGAR NOSTALGIA" (sem autoplay automático), persistência em localStorage.
-- Dados: refatorar POOL duplicado para **fonte única `challenges.json`** (lido pelo jogo E pelo bot).
-- Entrega: tudo em uma passada completa.
+### O que foi feito
+- **Aliases restaurados:** 0/56 → **35/56**. Recuperados do HTML original via histórico git (`27e49c9:index.html`). Testado: Tamagotchi aceita "bichinho virtual", Street Fighter II aceita "sf2"/"street fighter 2", Éramos Seis aceita "eramos seis".
+- **Modelo de dados ampliado** (`challenges.json`): cada item agora tem `id` (1..56, estável), `slug` (único, hífen), `categorySlug`, `tags` (mínimas derivadas), `image: null`, `dificuldade: null`. Campos antigos preservados (resp, alias, cat, emoji, ano, curiosidade, pistas).
+- **data.js**: adicionado `itemPorId()` e `itemPorSlug()`; interface `item(n)` intacta.
+- **Áudio duplicado corrigido:** `musica.js` virou **motor puro** (não cria botão/overlay). `som.js` é o dono da interface. Subpáginas usam novo `audio-ui.js` (1 botão). Limpo bug do `prefs._base`.
+- **Categoria MÚSICA**: estrutura pronta (0 desafios — expansão futura, sem conteúdo artificial).
+- **Teste de regressão permanente:** `tools/test_core.js` (30 checks, rodar `node tools/test_core.js`).
 
-## ARQUIVOS CRIADOS/EDITADOS ATÉ AGORA (nesta sessão)
+### Arquivos alterados nesta fase
+- `challenges.json` (normalizado)
+- `data.js` (itemPorId/itemPorSlug)
+- `musica.js` (motor puro)
+- `som.js` (limpeza prefs)
+- `audio-ui.js` (NOVO — botão para subpáginas)
+- `speciais.html`, `novelas.html`, `jogar-de-novo.html` (incluem audio-ui.js)
+- `service-worker.js` (cache audio-ui.js)
+- `tools/normalize_challenges.py` (NOVO — gerador da normalização)
+- `tools/test_core.js` (NOVO — teste de regressão)
+- `README.md`, `PROGRESSO.md`
 
-| Arquivo | Status | Observação |
-|---|---|---|
-| `tools/generate_challenges.py` | ✅ pronto | Gera `challenges.json` lendo POOL do `bot_diario.py` (56 desafios) |
-| `challenges.json` | ✅ GERADO | 56 itens, campos: resp, alias, cat, emoji, ano, curiosidade, pistas (6 cada) |
-| `tools/generate_assets.py` | ✅ pronto | Gera WAV (SFX), ícones PWA, OG image |
-| `assets/audio/*.wav` | ✅ GERADO | ui-click, ui-success, ui-error, ui-reveal, ui-modem, ui-vhs, ui-arcade, ui-boot, ui-channel |
-| `assets/icons/icon-192.png`, `icon-512.png` | ✅ GERADO | |
-| `assets/og-image.png` | ✅ GERADO | 1200x630, estética neon 90s |
-| `museum.json` | ✅ criado | 8 categorias (TV/GAMES/MÚSICA/CINEMA/BRINQUEDOS/TECNOLOGIA/VHS/RÁDIO) |
-| `styles.css` | ✅ escrito | Design system completo (hero, loading, challenge, museu, galeria, CRT) |
-| `data.js` | ✅ escrito | Carrega challenges.json + museum.json, fallback mínimo, categorias/cores |
-| `musica.js` | ✅ editado | Adicionado `ligar()`, `desligar()`, `definirtema()`, `init()` sem autoplay |
-| `som.js` | ✅ escrito | AudioManager: SFX WAV + fallback sintetizado, controles SFX/Música/volume, persistência |
-| `efeitos.js` | ✅ escrito | Confete pixel (canvas), glitch, troca de canal, reduced-motion |
-| `game.js` | ✅ escrito | Lógica completa (desafio diário, streak, pontos, arquivo, galeria, museu, share, Konami) |
-| `index.html` | ✅ REESCRITO (novo SPA) | Hero + loading + app com todas as seções + PWA/meta tags |
+### Próxima fase sugerida
+FASE 2 — Nova identidade visual (não iniciada).
 
-## NÃO FINALIZADO / PRÓXIMAS AÇÕES (ordem sugerida)
+---
+## Histórico anterior (resumo)
+- Evolução SPA: index.html novo (hero/loading/app), challenges.json fonte única, museum.json, assets (WAV/ícones/OG), PWA (manifest+SW), bot lê challenges.json, musica.js com temas.
+- Publicado em https://asilva-01.github.io/nostalgica90/ (commit d2daff8).
 
-1. **VALIDAR tudo** (ainda não testei!):
-   - `node --check` em: game.js, data.js, som.js, efeitos.js, musica.js
-   - `python -m py_compile` em bot_diario.py e tools/*.py
-   - Abrir `index.html` localmente e conferir console/erros.
-2. **FASE 10 (PWA)**: criar `manifest.json` + `service-worker.js` (ainda NÃO criados).
-3. **FASE 11 (bot)**: atualizar `.github/scripts/bot_diario.py` para ler `challenges.json` (remove POOL embutido) e melhorar mensagem do Telegram (categoria/emoji/CTA). O workflow já existe.
-4. **Índices/links**: conferir que `index.html` referencia os scripts e que `styles.css` está linkado corretamente.
-5. **Sub-páginas** (speciais/novelas/jogar-de-novo): decidir se aplica novo visual (fica para depois; já funcionam).
-6. **FASE 12**: teste completo (desafio acertar/errar, pista, pontos, streak, arquivo, museu, share, localStorage/reload), refinamento visual, e **commit + push + deploy**.
-7. Limpar `tools/_debug.py` (arquivo de depuração temporário).
+---
 
-## Pontos de atenção
-- `game.js` expõe `window.Jogo` e `window.NostalgicaInit`; `index.html` chama `NostalgicaInit()` após `Dados.carregar()`.
-- `challenges.json` é a fonte única — o `bot_diario.py` PRECISA passar a lê-lo (remover POOL duplicado) para não dessincronizar.
-- Git: NADA foi commitado nesta sessão. `git status` mostrará muitos arquivos novos/modificados.
-- Diretório de trabalho do repo: `C:\Users\admin\AppData\Local\Temp\opencode\nostalgica90` (remoto: Asilva-01/nostalgica90).
+## FASE 0 — VITRINE (local, sem push)
 
-## Como retomar
-1. `git -C "C:\Users\admin\AppData\Local\Temp\opencode\nostalgica90" status`
-2. Validar arquivos JS/Python.
-3. Criar manifest.json + service-worker.js.
-4. Atualizar bot_diario.py p/ ler challenges.json.
-5. Testar local, refinar visual.
-6. Commit + push + verificar Pages.
+- Placeholder de AdSense removido de `index.html`, `speciais.html`, `novelas.html` e `jogar-de-novo.html`.
+- Arte do desafio continua procedural (`artes.js`). Nenhuma imagem gerada.
+- `challenges.json` não ganhou item novo: incluir desafio agora mudaria o desafio do dia (`POOL[(N-1) % len]`).
+- Cache do service worker: `nostalgica90-v6`.
+- Ainda não enviado ao GitHub Pages.
+
+### Fila editorial (Capricho) — 8 objetos que ainda não estão nos 56
+Não desenhar ainda. Só entrar no pool quando a vitrine estiver no ar e a rotação do dia for preservada (append no fim, ou calendário explícito).
+
+1. Baby-G
+2. Retroprojetor
+3. Push Pop
+4. Ma Chérie
+5. Compaq colorido
+6. Campo Minado
+7. Galinha Maggi
+8. Ponteira laser

@@ -1,0 +1,57 @@
+[
+  {
+    "id": "escola",
+    "title": "A Escola",
+    "contextDescription": "O recreio e a sala de aula dos anos 90.",
+    "objects": ["tamagotchi", "tazo"],
+    "visual": {
+      "type": "original",
+      "source": "ilustração contextual própria",
+      "path": "assets/scenes/escola.svg"
+    }
+  },
+  {
+    "id": "videolocadora",
+    "title": "A Videolocadora",
+    "contextDescription": "A locadora de VHS da sexta à noite.",
+    "objects": ["videolocadora"],
+    "visual": {
+      "type": "original",
+      "source": "ilustração contextual própria",
+      "path": "assets/scenes/videolocadora.svg"
+    }
+  },
+  {
+    "id": "fliperama",
+    "title": "O Fliperama",
+    "contextDescription": "O salão escuro de máquinas do bairro.",
+    "objects": ["street-fighter-2"],
+    "visual": {
+      "type": "original",
+      "source": "ilustração contextual própria",
+      "path": "assets/scenes/fliperama.svg"
+    }
+  },
+  {
+    "id": "quarto-1997",
+    "title": "O Quarto de 1997",
+    "contextDescription": "O quarto/escritório doméstico com o PC CRT.",
+    "objects": ["windows-95"],
+    "visual": {
+      "type": "original",
+      "source": "ilustração contextual própria",
+      "path": "assets/scenes/quarto-1997.svg"
+    }
+  },
+  {
+    "id": "rua",
+    "title": "A Rua",
+    "contextDescription": "O cotidiano urbano dos anos 90.",
+    "objects": ["orelhao"],
+    "visual": {
+      "type": "original",
+      "source": "ilustração contextual própria",
+      "path": "assets/scenes/rua.svg"
+    }
+  }
+]

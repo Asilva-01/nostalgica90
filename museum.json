@@ -3,79 +3,296 @@
     "cat": "TV",
     "emoji": "📺",
     "itens": [
-      { "nome": "TV Colosso", "ano": "1993", "desc": "O cão apresentador que comandava a TV da Globo com plateia de crianças.", "curiosidade": "Os cachorros eram dublados por atores e respondiam 'bom dia' para o Brasil inteiro." },
-      { "nome": "Sítio do Picapau Amarelo", "ano": "1977", "desc": "Emília, Narizinho e Pedrinho no sítio mais famoso do Brasil.", "curiosidade": "A boneca Emília chegou a ser interpretada por várias atrizes ao longo das décadas." },
-      { "nome": "Angel Mix", "ano": "1993", "desc": "Programa de Angélica que lotava as manhãs com brincadeiras e músicas.", "curiosidade": "Angélica era chamada de 'loira da sorte' pela torcida de auditórios lotados." },
-      { "nome": "Band Kids", "ano": "1995", "desc": "Bloco de desenhos e atrações infantis que fez a Band bombar.", "curiosidade": "Foi um dos primeiros programas a misturar games interativos com televisão." }
+      {
+        "nome": "TV Colosso",
+        "ano": "1993",
+        "desc": "O cão apresentador que comandava a TV da Globo com plateia de crianças.",
+        "curiosidade": "Os cachorros eram dublados por atores e respondiam 'bom dia' para o Brasil inteiro.",
+        "emoji": "🐶",
+        "id": "tv-colosso"
+      },
+      {
+        "nome": "Sítio do Picapau Amarelo",
+        "ano": "1977",
+        "desc": "Emília, Narizinho e Pedrinho no sítio mais famoso do Brasil.",
+        "curiosidade": "A boneca Emília chegou a ser interpretada por várias atrizes ao longo das décadas.",
+        "emoji": "🐔",
+        "id": "sitio-do-picapau-amarelo"
+      },
+      {
+        "nome": "Angel Mix",
+        "ano": "1993",
+        "desc": "Programa de Angélica que lotava as manhãs com brincadeiras e músicas.",
+        "curiosidade": "Angélica era chamada de 'loira da sorte' pela torcida de auditórios lotados.",
+        "emoji": "👱♀️",
+        "id": "angel-mix"
+      },
+      {
+        "nome": "Band Kids",
+        "ano": "1995",
+        "desc": "Bloco de desenhos e atrações infantis que fez a Band bombar.",
+        "curiosidade": "Foi um dos primeiros programas a misturar games interativos com televisão.",
+        "emoji": "🎈",
+        "id": "band-kids"
+      }
     ]
   },
   {
     "cat": "GAMES",
     "emoji": "🎮",
     "itens": [
-      { "nome": "Super Nintendo", "ano": "1990", "desc": "O console 16 bits que trouxe Super Mario World e Donkey Kong Country.", "curiosidade": "O SNES vendeu quase 50 milhões de unidades no mundo todo." },
-      { "nome": "Mega Drive", "ano": "1988", "desc": "O console da Sega, rival direto do SNES, com Sonic estrela.", "curiosidade": "O slogan 'Blast Processing' dizia que o Mega era mais rápido que o concorrente." },
-      { "nome": "Game Boy", "ano": "1989", "desc": "O portátil da Nintendo que vendia milhões graças ao Tetris.", "curiosidade": "A bateria durava horas com 4 pilhas AA, e o jogo não parava na rua." },
-      { "nome": "Master System", "ano": "1986", "desc": "O console da Sega que dominou o mercado brasileiro por anos.", "curiosidade": "No Brasil, a Tectoy fez o Master System ser o console mais vendido do país." },
-      { "nome": "Neo Geo", "ano": "1990", "desc": "O sistema da SNK que era arcade e console ao mesmo tempo.", "curiosidade": "Os cartuchos custavam mais que o próprio console — coisa de rico na época." }
+      {
+        "nome": "Super Nintendo",
+        "ano": "1990",
+        "desc": "O console 16 bits que trouxe Super Mario World e Donkey Kong Country.",
+        "curiosidade": "O SNES vendeu quase 50 milhões de unidades no mundo todo.",
+        "emoji": "🕹️",
+        "id": "super-nintendo"
+      },
+      {
+        "nome": "Mega Drive",
+        "ano": "1988",
+        "desc": "O console da Sega, rival direto do SNES, com Sonic estrela.",
+        "curiosidade": "O slogan 'Blast Processing' dizia que o Mega era mais rápido que o concorrente.",
+        "emoji": "🎮",
+        "id": "mega-drive"
+      },
+      {
+        "nome": "Game Boy",
+        "ano": "1989",
+        "desc": "O portátil da Nintendo que vendia milhões graças ao Tetris.",
+        "curiosidade": "A bateria durava horas com 4 pilhas AA, e o jogo não parava na rua.",
+        "emoji": "🕹️",
+        "id": "game-boy"
+      },
+      {
+        "nome": "Master System",
+        "ano": "1986",
+        "desc": "O console da Sega que dominou o mercado brasileiro por anos.",
+        "curiosidade": "No Brasil, a Tectoy fez o Master System ser o console mais vendido do país.",
+        "emoji": "🎮",
+        "id": "master-system"
+      },
+      {
+        "nome": "Neo Geo",
+        "ano": "1990",
+        "desc": "O sistema da SNK que era arcade e console ao mesmo tempo.",
+        "curiosidade": "Os cartuchos custavam mais que o próprio console — coisa de rico na época.",
+        "emoji": "🕹️",
+        "id": "neo-geo"
+      }
     ]
   },
   {
     "cat": "MÚSICA",
     "emoji": "🎵",
     "itens": [
-      { "nome": "Mamonas Assassinas", "ano": "1995", "desc": "A banda de rock cômico que explodiu com 'Pelados em Santos'.", "curiosidade": "Venderam mais de 2 milhões de cópias em poucos meses com um humor único." },
-      { "nome": "É o Tchan!", "ano": "1995", "desc": "A banda de axé que virou febre nacional com danças marcantes.", "curiosidade": "O 'Tchan na Selva' e a 'Dança do Bumbum' dominaram as festas por anos." },
-      { "nome": "Só Pra Contrariar", "ano": "1993", "desc": "O grupo de samba/pagode liderado por Alexandre Pires.", "curiosidade": "'Depois do Prazer' e 'Essa Tal Liberdade' viraram hinos de churrasco." },
-      { "nome": "Balão Mágico", "ano": "1983", "desc": "O grupo infantil que conquistou gerações com músicas alegres.", "curiosidade": "Super-Homem, tema do grupo, é lembrado até hoje nas festas infantis." }
+      {
+        "nome": "Mamonas Assassinas",
+        "ano": "1995",
+        "desc": "A banda de rock cômico que explodiu com 'Pelados em Santos'.",
+        "curiosidade": "Venderam mais de 2 milhões de cópias em poucos meses com um humor único.",
+        "emoji": "🎸",
+        "id": "mamonas-assassinas"
+      },
+      {
+        "nome": "É o Tchan!",
+        "ano": "1995",
+        "desc": "A banda de axé que virou febre nacional com danças marcantes.",
+        "curiosidade": "O 'Tchan na Selva' e a 'Dança do Bumbum' dominaram as festas por anos.",
+        "emoji": "🕺",
+        "id": "e-o-tchan"
+      },
+      {
+        "nome": "Só Pra Contrariar",
+        "ano": "1993",
+        "desc": "O grupo de samba/pagode liderado por Alexandre Pires.",
+        "curiosidade": "'Depois do Prazer' e 'Essa Tal Liberdade' viraram hinos de churrasco.",
+        "emoji": "🎤",
+        "id": "so-pra-contrariar"
+      },
+      {
+        "nome": "Balão Mágico",
+        "ano": "1983",
+        "desc": "O grupo infantil que conquistou gerações com músicas alegres.",
+        "curiosidade": "Super-Homem, tema do grupo, é lembrado até hoje nas festas infantis.",
+        "emoji": "🎈",
+        "id": "balao-magico"
+      }
     ]
   },
   {
     "cat": "CINEMA",
     "emoji": "🎬",
     "itens": [
-      { "nome": "Titanic", "ano": "1997", "desc": "O romance de Jack e Rose que virou o maior blockbuster da história.", "curiosidade": "Ficou 15 semanas em primeiro lugar nas bilheterias americanas." },
-      { "nome": "Jurassic Park", "ano": "1993", "desc": "Spielberg trouxe dinossauros à vida com efeitos revolucionários.", "curiosidade": "O T-Rex era parcialmente animatrônico e parcialmente digital." },
-      { "nome": "O Rei Leão", "ano": "1994", "desc": "O desenho da Disney que emocionou com a história de Simba.", "curiosidade": "Foi o filme de animação mais visto de todos os tempos no Brasil." },
-      { "nome": "Godzilla (1998)", "ano": "1998", "desc": "O lagartão gigante que invadiu Nova York nas telonas.", "curiosidade": "O filme virou piada nacional: 'é o T-rex do mal com asma'." }
+      {
+        "nome": "Titanic",
+        "ano": "1997",
+        "desc": "O romance de Jack e Rose que virou o maior blockbuster da história.",
+        "curiosidade": "Ficou 15 semanas em primeiro lugar nas bilheterias americanas.",
+        "emoji": "🚢",
+        "id": "titanic"
+      },
+      {
+        "nome": "Jurassic Park",
+        "ano": "1993",
+        "desc": "Spielberg trouxe dinossauros à vida com efeitos revolucionários.",
+        "curiosidade": "O T-Rex era parcialmente animatrônico e parcialmente digital.",
+        "emoji": "🦖",
+        "id": "jurassic-park"
+      },
+      {
+        "nome": "O Rei Leão",
+        "ano": "1994",
+        "desc": "O desenho da Disney que emocionou com a história de Simba.",
+        "curiosidade": "Foi o filme de animação mais visto de todos os tempos no Brasil.",
+        "emoji": "🦁",
+        "id": "o-rei-leao"
+      },
+      {
+        "nome": "Godzilla (1998)",
+        "ano": "1998",
+        "desc": "O lagartão gigante que invadiu Nova York nas telonas.",
+        "curiosidade": "O filme virou piada nacional: 'é o T-rex do mal com asma'.",
+        "emoji": "🦎",
+        "id": "godzilla-1998"
+      }
     ]
   },
   {
     "cat": "BRINQUEDOS",
     "emoji": "🧸",
     "itens": [
-      { "nome": "Tamagotchi", "ano": "1996", "desc": "O bichinho virtual de bolso que bipava a aula inteira.", "curiosidade": "Escolas chegaram a proibir o aparelho porque as crianças não largavam." },
-      { "nome": "Tazo", "ano": "1998", "desc": "Os discos de papelão que vinham nos salgadinhos.", "curiosidade": "Os tazos brilhantes e raros valiam verdadeiras fortunas no recreio." },
-      { "nome": "Polly Pocket", "ano": "1989", "desc": "As miniaturas em bolsinhas que cabiam no bolso.", "curiosidade": "Foram vendidas mais de 200 milhões de Polly Pocket pelo mundo." },
-      { "nome": "Barbie", "ano": "1959", "desc": "A boneca mais famosa do mundo, que nunca saiu de moda.", "curiosidade": "Barbie já teve mais de 200 profissões diferentes na história." }
+      {
+        "nome": "Tamagotchi",
+        "ano": "1996",
+        "desc": "O bichinho virtual de bolso que bipava a aula inteira.",
+        "curiosidade": "Escolas chegaram a proibir o aparelho porque as crianças não largavam.",
+        "emoji": "🥚",
+        "id": "tamagotchi"
+      },
+      {
+        "nome": "Tazo",
+        "ano": "1998",
+        "desc": "Os discos de papelão que vinham nos salgadinhos.",
+        "curiosidade": "Os tazos brilhantes e raros valiam verdadeiras fortunas no recreio.",
+        "emoji": "🌀",
+        "id": "tazo"
+      },
+      {
+        "nome": "Polly Pocket",
+        "ano": "1989",
+        "desc": "As miniaturas em bolsinhas que cabiam no bolso.",
+        "curiosidade": "Foram vendidas mais de 200 milhões de Polly Pocket pelo mundo.",
+        "emoji": "👜",
+        "id": "polly-pocket"
+      },
+      {
+        "nome": "Barbie",
+        "ano": "1959",
+        "desc": "A boneca mais famosa do mundo, que nunca saiu de moda.",
+        "curiosidade": "Barbie já teve mais de 200 profissões diferentes na história.",
+        "emoji": "👗",
+        "id": "barbie"
+      }
     ]
   },
   {
     "cat": "TECNOLOGIA",
     "emoji": "💻",
     "itens": [
-      { "nome": "Windows 95", "ano": "1995", "desc": "O sistema que apresentou o 'Iniciar' e o 'Meu Computador'.", "curiosidade": "O barulho de inicialização do Windows 95 é um dos sons mais famosos do mundo." },
-      { "nome": "Internet discada", "ano": "1995", "desc": "O 'tiiiii tu tu tu' do modem que conectava a internet.", "curiosidade": "Enquanto você navegava, a linha do telefone ficava ocupada — e todo mundo reclamava." },
-      { "nome": "Disquete", "ano": "1971", "desc": "O disco de 3,5 polegadas que guardava '1.44 MB de espaço'.", "curiosidade": "Salvar um trabalho e caber em um disquete era o sonho de todo estudante." },
-      { "nome": "CD-ROM", "ano": "1985", "desc": "O disco de 650 MB que mudou os jogos de PC.", "curiosidade": "Os jogos em CD cabiam muito mais do que os de disquete, e vieram com som real." }
+      {
+        "nome": "Windows 95",
+        "ano": "1995",
+        "desc": "O sistema que apresentou o 'Iniciar' e o 'Meu Computador'.",
+        "curiosidade": "O barulho de inicialização do Windows 95 é um dos sons mais famosos do mundo.",
+        "emoji": "🪟",
+        "id": "windows-95"
+      },
+      {
+        "nome": "Internet discada",
+        "ano": "1995",
+        "desc": "O 'tiiiii tu tu tu' do modem que conectava a internet.",
+        "curiosidade": "Enquanto você navegava, a linha do telefone ficava ocupada — e todo mundo reclamava.",
+        "emoji": "📶",
+        "id": "internet-discada"
+      },
+      {
+        "nome": "Disquete",
+        "ano": "1971",
+        "desc": "O disco de 3,5 polegadas que guardava '1.44 MB de espaço'.",
+        "curiosidade": "Salvar um trabalho e caber em um disquete era o sonho de todo estudante.",
+        "emoji": "💾",
+        "id": "disquete"
+      },
+      {
+        "nome": "CD-ROM",
+        "ano": "1985",
+        "desc": "O disco de 650 MB que mudou os jogos de PC.",
+        "curiosidade": "Os jogos em CD cabiam muito mais do que os de disquete, e vieram com som real.",
+        "emoji": "💿",
+        "id": "cd-rom"
+      }
     ]
   },
   {
     "cat": "VHS",
     "emoji": "📼",
     "itens": [
-      { "nome": "Locadora", "ano": "1980", "desc": "A loja de fitas que lotava na sexta-feira à noite.", "curiosidade": "Alugar 2 fitas por 3 reais na sexta era o programa perfeito de fim de semana." },
-      { "nome": "Videocassete", "ano": "1976", "desc": "O aparelho que gravava e tocava fitas VHS.", "curiosidade": "Gastar fitas gravando programa de TV era luxo; rebobinar era trabalho obrigatório." },
-      { "nome": "Fita VHS", "ano": "1970", "desc": "A caixinha preta com carretéis que guardava filmes e desenhos.", "curiosidade": "Uma fita VHS podia ser gravada e regravada centenas de vezes — até dar 'pelo'. " }
+      {
+        "nome": "Locadora",
+        "ano": "1980",
+        "desc": "A loja de fitas que lotava na sexta-feira à noite.",
+        "curiosidade": "Alugar 2 fitas por 3 reais na sexta era o programa perfeito de fim de semana.",
+        "emoji": "🏪",
+        "id": "locadora"
+      },
+      {
+        "nome": "Videocassete",
+        "ano": "1976",
+        "desc": "O aparelho que gravava e tocava fitas VHS.",
+        "curiosidade": "Gastar fitas gravando programa de TV era luxo; rebobinar era trabalho obrigatório.",
+        "emoji": "📼",
+        "id": "videocassete"
+      },
+      {
+        "nome": "Fita VHS",
+        "ano": "1970",
+        "desc": "A caixinha preta com carretéis que guardava filmes e desenhos.",
+        "curiosidade": "Uma fita VHS podia ser gravada e regravada centenas de vezes — até dar 'pelo'. ",
+        "emoji": "📼",
+        "id": "fita-vhs"
+      }
     ]
   },
   {
     "cat": "RÁDIO",
     "emoji": "📻",
     "itens": [
-      { "nome": "Rádio FM", "ano": "1980", "desc": "A rádio que tocava os hits do momento e anunciava as novidades.", "curiosidade": "Pedir música no rádio ao vivo e ouvir seu nome no ar era o sonho de todo jovem." },
-      { "nome": "Fita cassete", "ano": "1963", "desc": "A fita que gravava as músicas do rádio para ouvir depois.", "curiosidade": "Fazer uma 'fita de amor' gravada da rádio era a prova de afeto suprema." },
-      { "nome": "Rádio a pilha", "ano": "1950", "desc": "O rádio de pilha que ia pra praia, churrasco e até pra dentro do carro.", "curiosidade": "Funcionava onde a luz elétrica não chegava — a pilha não deixava ninguém na mão." }
+      {
+        "nome": "Rádio FM",
+        "ano": "1980",
+        "desc": "A rádio que tocava os hits do momento e anunciava as novidades.",
+        "curiosidade": "Pedir música no rádio ao vivo e ouvir seu nome no ar era o sonho de todo jovem.",
+        "emoji": "📻",
+        "id": "radio-fm"
+      },
+      {
+        "nome": "Fita cassete",
+        "ano": "1963",
+        "desc": "A fita que gravava as músicas do rádio para ouvir depois.",
+        "curiosidade": "Fazer uma 'fita de amor' gravada da rádio era a prova de afeto suprema.",
+        "emoji": "📼",
+        "id": "fita-cassete"
+      },
+      {
+        "nome": "Rádio a pilha",
+        "ano": "1950",
+        "desc": "O rádio de pilha que ia pra praia, churrasco e até pra dentro do carro.",
+        "curiosidade": "Funcionava onde a luz elétrica não chegava — a pilha não deixava ninguém na mão.",
+        "emoji": "🔋",
+        "id": "radio-a-pilha"
+      }
     ]
   }
 ]
