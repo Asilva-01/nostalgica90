@@ -199,7 +199,26 @@
       pill.innerHTML = '<span class="pill-emoji">' + info.emoji + '</span> ' + (e.cat || "");
     }
     renderChallengeImage(e);
-    if (partidaFinalizada()) { mostrarFim(); return; }
+    if (partidaFinalizada()) {
+      // Se o usuário já venceu o desafio de hoje (não arquivo), perguntar se quer refazer
+      if (!modoArquivo && partida && partida.venceu === true) {
+        var refazer = window.confirm("Você já acertou o desafio de hoje. Deseja refazer?");
+        if (refazer) {
+          // Usuário quer refazer: limpar a partida salva e permitir jogar novamente
+          localStorage.removeItem(chave("partida_" + diaAtualKey()));
+          partida = null;
+          // Continua para renderizar o jogo normalmente (não chama mostrarFim)
+        } else {
+          // Usuário não quer refazer: mostra a tela de fim como está
+          mostrarFim();
+          return;
+        }
+      } else {
+        // Perdeu ou está em arquivo: mostra fim normalmente
+        mostrarFim();
+        return;
+      }
+    }
     renderPistas();
     revelarAte(partida ? partida.pista : 1);
     var campo = el("campo");
