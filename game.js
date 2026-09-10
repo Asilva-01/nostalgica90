@@ -224,7 +224,6 @@
     var texto = campo.value.trim();
     if (!texto) { toast("Digite uma resposta primeiro!"); return; }
     if (!partida) partida = { pista: 1, tentativas: [], venceu: false, perdeu: false, num: desafioAtual };
-    partida.tentativas.push(texto);
 
     if (checarResposta(texto)) {
       partida.venceu = true;
@@ -237,6 +236,7 @@
       if (sj) sj.classList.add("venceu");
       pulsarValor("stPts");
       pulsarValor("stSeq");
+      campo.value = "";
       mostrarFim();
     } else {
       var msg = el("respMsg");
