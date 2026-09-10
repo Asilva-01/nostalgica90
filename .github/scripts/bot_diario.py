@@ -83,17 +83,14 @@ def main():
     n, e = desafio_para(hoje)
     site = os.environ.get("SITE_URL", "")
     primeira = e["pistas"][0]
-    cat = e.get("cat", "CULTURA")
-    cat_em = CAT_EMOJI.get(cat, "📼")
     texto = (
         "🕹️ NOSTÁLGICA 90 — o desafio diário dos anos 90 chegou!\n\n"
         "📺 Você lembra desse clássico?\n\n"
-        "{} {}\n\n"
         "🔎 Pista 1: {}\n\n"
         "🎯 Tente acertar com o menor número de pistas (de 6) e marque pontos!\n"
         "🔥 Volte todos os dias para não quebrar sua sequência.\n\n"
         "👉 JOGAR AGORA:\n{}"
-    ).format(cat_em, cat, primeira, site)
+    ).format(primeira, site)
     ok = postar_telegram(texto)
     sys.exit(0 if ok else 1)
 
