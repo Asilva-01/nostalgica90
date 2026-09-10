@@ -177,6 +177,11 @@
 
   function desenhar() {
     var e = entryAtual();
+    // Desafio diário: sempre limpar partida finalizada ao re-entrar, permitindo jogar de novo
+    if (!modoArquivo && partidaFinalizada()) {
+      localStorage.removeItem(chave("partida_" + diaAtualKey()));
+      partida = null;
+    }
     renderEstatisticas();
     el("chaveDesafio").textContent = "DESAFIO #" + desafioAtual + (modoArquivo ? " (arquivo)" : "");
     // microinteração: entrada do desafio ("troca de programação")
