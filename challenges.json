@@ -699,16 +699,22 @@
   },
   {
     "id": 25,
-    "slug": "rugrats",
-    "categorySlug": "tv",
-    "resp": "Rugrats",
-    "alias": [],
-    "cat": "TV",
-    "emoji": "👶",
-    "ano": "1991",
-    "curiosidade": "Os bebês do desenho viviam aventuras secretas que os adultos nunca entendiam.",
+    "slug": "videolocadora",
+    "categorySlug": "cultura",
+    "resp": "Videolocadora",
+    "alias": [
+      "locadora de vídeo",
+      "locadora de vhs",
+      "video locadora",
+      "locadora de filme",
+      "videolocadora do bairro"
+    ],
+    "cat": "CULTURA",
+    "emoji": "🏪",
+    "ano": "1990",
+    "curiosidade": "Para muita gente, o passeio até lá valia quase tanto quanto o filme: escolher, discutir na fila e chegar em casa com a sacolinha.",
     "tags": [
-      "tv",
+      "cultura",
       "anos-90",
       "brasil",
       "nostalgia"
@@ -716,12 +722,12 @@
     "image": null,
     "dificuldade": null,
     "pistas": [
-      "Desenho sobre um grupo de bebês com aventuras secretas.",
-      "O primo com óculos e cabelo espetado era o 'chefinho'.",
-      "Os adultos nunca entendiam o que os bebês faziam.",
-      "Imaginavam o quarto como um mundo gigante.",
-      "Um dos bebês só falava 'Gaa' e era tido como gênio.",
-      "Fraldas, potinhos e mamadeiras eram os 'equipamentos'."
+      "Sexta à noite começava na calçada, olhando as capas atrás do vidro.",
+      "Lá dentro, as paredes eram fileiras e fileiras de caixas plásticas coloridas.",
+      "Você escolhia com calma — às vezes uma, às vezes duas — e levava pra casa.",
+      "No balcão tinha cartão de sócio, prazo de devolução e a bronca se atrasasse.",
+      "Esquecer de voltar a fita pro começo podia render cobrança extra.",
+      "Antes do DVD e do streaming, era o lugar do bairro onde se “alugava o filme da noite”."
     ]
   },
   {
@@ -834,16 +840,22 @@
   },
   {
     "id": 30,
-    "slug": "friends",
-    "categorySlug": "tv",
-    "resp": "Friends",
-    "alias": [],
-    "cat": "TV",
-    "emoji": "☕",
-    "ano": "1994",
-    "curiosidade": "A sitcom mais famosa do mundo; o café Central Perk e o 'How you doing?' viraram ícones.",
+    "slug": "orelhao",
+    "categorySlug": "tecnologia",
+    "resp": "Orelhão",
+    "alias": [
+      "telefone público",
+      "orelhão de rua",
+      "telefone de rua",
+      "telefone orelhão",
+      "cabine telefônica"
+    ],
+    "cat": "TECNOLOGIA",
+    "emoji": "📞",
+    "ano": "1990",
+    "curiosidade": "A ficha virou quase trocado de padaria: quem tinha uma no bolso resolvia o dia; quem não tinha, improvisava.",
     "tags": [
-      "tv",
+      "tecnologia",
       "anos-90",
       "brasil",
       "nostalgia"
@@ -851,12 +863,12 @@
     "image": null,
     "dificuldade": null,
     "pistas": [
-      "Série de comédia americana que virou fenômeno mundial.",
-      "Seis amigos moravam perto um do outro em Nova York.",
-      "Central Perk era a cafeteria onde se encontravam.",
-      "Joey, Chandler, Ross, Rachel, Monica e Phoebe.",
-      "O casal Ross e Rachel era o fio condutor da história.",
-      "'How you doing?' era o charme de Joey."
+      "Na calçada, às vezes tinha gente esperando a vez com a mão no bolso.",
+      "Quando chegava a sua, você entrava naquele “abrigo” aberto e ouvia o tom de linha.",
+      "Sem ficha ou cartão, a chamada nem começava.",
+      "Se do outro lado estava ocupado, o bipe insistente virava paciência (ou desistência).",
+      "Em emergência sem crédito, a saída era pedir para a outra pessoa pagar a ligação.",
+      "Antes do celular no bolso de todo mundo, a rua falava por essas cabines espalhadas pela cidade."
     ]
   },
   {
@@ -1062,19 +1074,22 @@
   },
   {
     "id": 38,
-    "slug": "fatal-fury",
-    "categorySlug": "games",
-    "resp": "Fatal Fury",
+    "slug": "internet-discada",
+    "categorySlug": "tecnologia",
+    "resp": "Internet discada",
     "alias": [
-      "fatal fury",
-      "fatal fury 2"
+      "acesso discado",
+      "internet pelo telefone",
+      "modem discado",
+      "net discada",
+      "conexão discada"
     ],
-    "cat": "GAMES",
-    "emoji": "🐺",
-    "ano": "1991",
-    "curiosidade": "Terry Bogard e o 'BUSTA WOLF!' são lendas dos fliperamas, precursores do KOF.",
+    "cat": "TECNOLOGIA",
+    "emoji": "📟",
+    "ano": "1995",
+    "curiosidade": "A disputa clássica: alguém no corredor querendo usar o telefone enquanto a página ainda carregava.",
     "tags": [
-      "games",
+      "tecnologia",
       "anos-90",
       "brasil",
       "nostalgia"
@@ -1082,29 +1097,32 @@
     "image": null,
     "dificuldade": null,
     "pistas": [
-      "A série de luta da SNK que veio antes do KOF.",
-      "O herói lutava ao lado do irmão mais novo.",
-      "O golpe 'Power Wave' deslizava pelo chão.",
-      "O protagonista era loiro e usava jaqueta vermelha.",
-      "O vilão de cabelo branco atirava do alto do prédio.",
-      "'Are you okay? BUSTA WOLF!' era sua fala de vitória."
+      "Em casa, “entrar” não era instantâneo: tinha uma espera com barulho próprio.",
+      "O computador “telefonava” sozinho — e a linha da casa ficava comprometida.",
+      "Enquanto a sessão durava, ligar ou receber chamada virava problema de família.",
+      "Baixar qualquer coisa pedia paciência; às vezes a noite inteira.",
+      "Se a conexão caísse no meio, lá ia você ouvir de novo aquele ritual de chiados até religar.",
+      "Era assim que muita casa brasileira conheceu a rede: pelo telefone, devagar e com chiado."
     ]
   },
   {
     "id": 39,
-    "slug": "samurai-shodown",
-    "categorySlug": "games",
-    "resp": "Samurai Shodown",
+    "slug": "radio-fm",
+    "categorySlug": "musica",
+    "resp": "Rádio FM",
     "alias": [
-      "samurai shodown",
-      "samurai showdown"
+      "fm",
+      "rádio de pilha",
+      "rádio do quarto",
+      "aparelho de rádio",
+      "radio fm"
     ],
-    "cat": "GAMES",
-    "emoji": "⚔️",
-    "ano": "1993",
-    "curiosidade": "A luta de espadas da SNK com medidor de raiva e golpes finais em câmera lenta.",
+    "cat": "MÚSICA",
+    "emoji": "📻",
+    "ano": "1990",
+    "curiosidade": "O drama coletivo: gravar o hit e perder os primeiros segundos porque o “rec” atrasou um instante.",
     "tags": [
-      "games",
+      "musica",
       "anos-90",
       "brasil",
       "nostalgia"
@@ -1112,12 +1130,12 @@
     "image": null,
     "dificuldade": null,
     "pistas": [
-      "Luta com espadas no Japão feudal, pela SNK.",
-      "Os samurais podiam quebrar a lâmina do rival.",
-      "Os golpes finais eram mostrados em câmera lenta.",
-      "O guerreiro da capa usava uma espada lendária.",
-      "Uma guerreira indígena lutava com um falcão ao lado.",
-      "O medidor de raiva enchia quando você apanhava."
+      "No quarto, a antena (ou a posição do aparelho) decidia se a música vinha limpa ou chiada.",
+      "Tinha gente pedindo música ao vivo — e ficando de plantão até tocar.",
+      "Muita fita cassete nasceu assim: play+rec no ar, torcendo para o locutor não falar por cima.",
+      "A manhã começava com voz conhecida, vinheta e a “parada” do dia.",
+      "Você girava o botão até encontrar a frequência certa, marcada no dial.",
+      "Antes da playlist no bolso, a trilha sonora da casa e da rua vinha dessa faixa do dial."
     ]
   },
   {
@@ -1240,18 +1258,22 @@
   },
   {
     "id": 44,
-    "slug": "double-dragon",
-    "categorySlug": "games",
-    "resp": "Double Dragon",
+    "slug": "papel-de-carta",
+    "categorySlug": "cultura",
+    "resp": "Papel de carta",
     "alias": [
-      "double dragon"
+      "cartinha",
+      "papel de bilhete",
+      "papel de carta decorado",
+      "bloquinho de carta",
+      "folha de carta"
     ],
-    "cat": "GAMES",
-    "emoji": "🥋",
-    "ano": "1987",
-    "curiosidade": "A pancadaria dos irmãos Lee que lotava os fliperamas com o modo cooperativo.",
+    "cat": "CULTURA",
+    "emoji": "💌",
+    "ano": "1990",
+    "curiosidade": "Muita amizade dos 90 ainda tem uma caixinha (ou pasta) com esses bilhetes guardados “só mais um pouco”.",
     "tags": [
-      "games",
+      "cultura",
       "anos-90",
       "brasil",
       "nostalgia"
@@ -1259,12 +1281,12 @@
     "image": null,
     "dificuldade": null,
     "pistas": [
-      "A briga de rua que lotava os fliperamas.",
-      "Dois irmãos mestres em artes marciais.",
-      "A missão era resgatar a namorada de uma gangue.",
-      "Billy e Jimmy eram os irmãos protagonistas.",
-      "Dava pra jogar em dupla... e acertar o colega.",
-      "Nunchaku, chutes e muito 'soco na cara'."
+      "Vinham em bloquinhos coloridos, às vezes com cheiro, guardados como tesouro na pasta.",
+      "A folha tinha bordas desenhadas e o miolo livre para escrever o recado.",
+      "Trocar com a turma era quase coleção — quem tinha o modelo novo virava assunto.",
+      "Envelope combinando fechava o pacote; às vezes o recado ia de mão em mão.",
+      "Servia para amizade, segredo, desculpa e até declaração — tudo escrito à mão.",
+      "Antes do SMS e do chat, a paquera e o segredo da escola andavam no papel estampado."
     ]
   },
   {

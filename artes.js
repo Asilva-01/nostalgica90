@@ -507,6 +507,53 @@ window.Arte = (function () {
           '</svg>';
       }
     },
+    orelhao: {
+      selo: "CABINE", moto: "RUA",
+      elem: function () {
+        return '<svg class="art-elem" viewBox="0 0 160 90" role="presentation">' +
+          '<rect x="62" y="18" width="40" height="60" rx="5" fill="#ff6f00" stroke="#241d3f" stroke-width="3"/>' +
+          '<path d="M62 22 C40 22 34 34 34 46 C34 60 42 72 62 74 L62 66 C48 64 44 56 44 46 C44 36 50 30 62 30 Z" fill="#ff8a33" stroke="#241d3f" stroke-width="3" stroke-linejoin="round"/>' +
+          '<rect x="70" y="32" width="24" height="20" rx="3" fill="#eceff1" stroke="#241d3f" stroke-width="2.5"/>' +
+          '<rect x="73" y="35" width="5" height="4" rx="0.8" fill="#241d3f"/>' +
+          '<rect x="80" y="35" width="5" height="4" rx="0.8" fill="#241d3f"/>' +
+          '<rect x="87" y="35" width="5" height="4" rx="0.8" fill="#241d3f"/>' +
+          '<rect x="73" y="42" width="5" height="4" rx="0.8" fill="#241d3f"/>' +
+          '<rect x="80" y="42" width="5" height="4" rx="0.8" fill="#241d3f"/>' +
+          '<rect x="87" y="42" width="5" height="4" rx="0.8" fill="#241d3f"/>' +
+          '<rect x="74" y="58" width="16" height="3.5" rx="1" fill="#241d3f"/>' +
+          '<rect x="104" y="28" width="16" height="36" rx="8" fill="#455a64" stroke="#241d3f" stroke-width="3"/>' +
+          '<circle cx="112" cy="36" r="5" fill="#78909c" stroke="#241d3f" stroke-width="2"/>' +
+          '<circle cx="112" cy="56" r="5" fill="#78909c" stroke="#241d3f" stroke-width="2"/>' +
+          '<path d="M102 34 L104 34" stroke="#241d3f" stroke-width="3" stroke-linecap="round"/>' +
+          '</svg>';
+      }
+    },
+    "radio-fm": {
+      selo: "DIAL", moto: "FM",
+      elem: function () {
+        return '<svg class="art-elem" viewBox="0 0 160 90" role="presentation">' +
+          '<rect x="22" y="24" width="116" height="48" rx="8" fill="#eceff1" stroke="#241d3f" stroke-width="3"/>' +
+          '<circle cx="52" cy="48" r="17" fill="#37474f" stroke="#241d3f" stroke-width="3"/>' +
+          '<circle cx="52" cy="48" r="10" fill="none" stroke="#90a4ae" stroke-width="2.5"/>' +
+          '<circle cx="52" cy="48" r="3.5" fill="#241d3f"/>' +
+          '<circle cx="112" cy="46" r="15" fill="#ff8f00" stroke="#241d3f" stroke-width="3"/>' +
+          '<circle cx="112" cy="46" r="8" fill="#ffe0b2" stroke="#241d3f" stroke-width="2.5"/>' +
+          '<line x1="112" y1="46" x2="112" y2="33" stroke="#241d3f" stroke-width="3" stroke-linecap="round"/>' +
+          '<circle cx="96" cy="62" r="3.5" fill="#90a4ae" stroke="#241d3f" stroke-width="2"/>' +
+          '<circle cx="128" cy="62" r="3.5" fill="#90a4ae" stroke="#241d3f" stroke-width="2"/>' +
+          '<line x1="124" y1="24" x2="138" y2="10" stroke="#241d3f" stroke-width="3" stroke-linecap="round"/>' +
+          '<circle cx="138" cy="10" r="2.5" fill="#241d3f"/>' +
+          '</svg>';
+      }
+    },
+    "papel-de-carta": {
+      selo: "FOLHA", moto: "BORDA",
+      elem: function () {
+        return '<svg class="art-elem" viewBox="0 0 160 90" role="presentation">' +
+          '<g transform="rotate(-6 80 48)"><rect x="52" y="8" width="56" height="76" rx="3" fill="#fff8e7" stroke="#241d3f" stroke-width="3"/><rect x="58" y="14" width="44" height="64" rx="2" fill="none" stroke="#7e57c2" stroke-width="2.5"/><circle cx="62" cy="18" r="2.5" fill="#e91e63" stroke="#241d3f" stroke-width="1.5"/><circle cx="98" cy="18" r="2.5" fill="#e91e63" stroke="#241d3f" stroke-width="1.5"/><circle cx="62" cy="74" r="2.5" fill="#e91e63" stroke="#241d3f" stroke-width="1.5"/><circle cx="98" cy="74" r="2.5" fill="#e91e63" stroke="#241d3f" stroke-width="1.5"/><circle cx="62" cy="36" r="2" fill="#ffcc80"/><circle cx="62" cy="48" r="2" fill="#ffcc80"/><circle cx="62" cy="60" r="2" fill="#ffcc80"/><circle cx="98" cy="36" r="2" fill="#ffcc80"/><circle cx="98" cy="48" r="2" fill="#ffcc80"/><circle cx="98" cy="60" r="2" fill="#ffcc80"/><rect x="66" y="28" width="28" height="36" rx="2" fill="#fff3e0" stroke="none"/><path d="M92 8 L108 8 L108 24 Z" fill="#ffe0b2" stroke="#241d3f" stroke-width="2.5" stroke-linejoin="round"/><path d="M92 8 L92 24 L108 24" fill="none" stroke="#241d3f" stroke-width="2"/></g>' +
+          '</svg>';
+      }
+    },
   };
 
   function objetoDo(e) {
