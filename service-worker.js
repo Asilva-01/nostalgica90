@@ -3,7 +3,7 @@
    Cache estático para funcionamento offline e carregamento rápido.
    NUNCA bloqueia o jogo: se falhar, a página carrega normal.
    ============================================================ */
-var CACHE = 'nostalgica90-v7';
+var CACHE = 'nostalgica90-v8';
 var ASSETS = [
   './',
   './index.html',
