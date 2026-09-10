@@ -177,6 +177,11 @@
 
   function desenhar() {
     var e = entryAtual();
+    // Desafio diário: sempre limpar partida finalizada ao re-entrar, permitindo jogar de novo
+    if (!modoArquivo && partidaFinalizada()) {
+      localStorage.removeItem(chave("partida_" + diaAtualKey()));
+      partida = null;
+    }
     renderEstatisticas();
     el("chaveDesafio").textContent = "DESAFIO #" + desafioAtual + (modoArquivo ? " (arquivo)" : "");
     // microinteração: entrada do desafio ("troca de programação")
@@ -199,26 +204,7 @@
       pill.innerHTML = '<span class="pill-emoji">' + info.emoji + '</span> ' + (e.cat || "");
     }
     renderChallengeImage(e);
-    if (partidaFinalizada()) {
-      // Se o usuário já venceu o desafio de hoje (não arquivo), perguntar se quer refazer
-      if (!modoArquivo && partida && partida.venceu === true) {
-        var refazer = window.confirm("Você já acertou o desafio de hoje. Deseja refazer?");
-        if (refazer) {
-          // Usuário quer refazer: limpar a partida salva e permitir jogar novamente
-          localStorage.removeItem(chave("partida_" + diaAtualKey()));
-          partida = null;
-          // Continua para renderizar o jogo normalmente (não chama mostrarFim)
-        } else {
-          // Usuário não quer refazer: mostra a tela de fim como está
-          mostrarFim();
-          return;
-        }
-      } else {
-        // Perdeu ou está em arquivo: mostra fim normalmente
-        mostrarFim();
-        return;
-      }
-    }
+    if (partidaFinalizada()) { mostrarFim(); return; }
     renderPistas();
     revelarAte(partida ? partida.pista : 1);
     var campo = el("campo");
