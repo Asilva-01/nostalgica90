@@ -293,14 +293,38 @@
     return arr.join("");
   }
 
-  function textoCompartilhamento(win) {
+  var URL_PUBLICA = "https://asilva-01.github.io/nostalgica90/";
+
+  function urlCompartilhar() {
+    return URL_PUBLICA;
+  }
+
+  function corpoCompartilhamento(win) {
     var e = entryAtual();
-    var n = partida.num;
-    var head = "📺 NOSTÁLGICA 90\n";
+    var pts = pontosDaPista(partida.pista);
+    var seq = stats.seq || 0;
+    var memoria = (e.emoji ? e.emoji + " " : "") + (e.cat || "") + (e.ano ? " \u00b7 " + e.ano : "");
+    var head = "📺 NOST\u00c1LGICA 90\n";
+    var grid = win ? emojiGrid(partida.pista) : emojiGrid(7).replace("🟩", "\u274c");
+    var chamada = "Joga o de hoje e me responde. Ser\u00e1 que voc\u00ea \u00e9 da \u00e9poca?";
     if (win) {
-      return head + "Eu acertei o desafio de hoje dos anos 90!\n🎯 Consegui com " + partida.pista + " de 6 pistas (+" + pontosDaPista(partida.pista) + " pts).\n" + emojiGrid(partida.pista) + "\nSerá que você é da época? 😜\n👉 " + window.location.href;
+      return head +
+        "Eu acertei o desafio de hoje dos anos 90!\n" +
+        memoria + "\n" +
+        "🎯 " + pts + " pts \u00b7 sequ\u00eancia " + seq + "\n" +
+        grid + "\n" +
+        chamada;
     }
-    return head + "Eu joguei o desafio de hoje dos anos 90!\n😵 A resposta era: " + e.resp.toUpperCase() + "\n" + emojiGrid(7) + "\nTenta você! 😜\n👉 " + window.location.href;
+    return head +
+      "Eu joguei o desafio de hoje dos anos 90 e n\u00e3o acertei.\n" +
+      memoria + "\n" +
+      "🔥 sequ\u00eancia " + seq + "\n" +
+      grid + "\n" +
+      chamada;
+  }
+
+  function textoCompartilhamento(win) {
+    return corpoCompartilhamento(win) + "\n👉 " + urlCompartilhar();
   }
 
   function mostrarFim() {
@@ -323,19 +347,27 @@
     revelarAte(6);
 
     var grid = win ? emojiGrid(partida.pista) : emojiGrid(7).replace("🟩", "❌");
+    var arquivoCta = modoArquivo ? '' : (
+      '<button type="button" class="fim-arquivo" onclick="Jogo.verArquivo();var _a=document.getElementById(\'secArquivo\');if(_a)_a.scrollIntoView({behavior:\'smooth\',block:\'start\'});">' +
+      '<span class="fim-arquivo-titulo">\ud83d\udcfc Sua mem\u00f3ria entrou no Arquivo</span>' +
+      '<span class="fim-arquivo-sub">Ver desafios anteriores</span>' +
+      '</button>'
+    );
     fim.innerHTML =
-      '<div class="fim-titulo">' + (win ? "🎉 ACERTOU!" : "📺 NÃO FOI DESSA VEZ!") + '</div>' +
+      '<div class="fim-titulo">' + (win ? "🎉 MEMÓRIA DESBLOQUEADA!" : "📺 NÃO FOI DESSA VEZ!") + '</div>' +
       '<div class="resposta-final">' + e.emoji + ' ' + e.resp + '</div>' +
       '<div class="grid-share" id="gridShare">' + grid + '</div>' +
       '<div class="feedback ' + (win ? "certa" : "errada") + '">' +
       (win ? "VOCÊ LEMBRA! +" + pontosDaPista(partida.pista) + " PONTOS" : "A resposta era acima. Amanhã tem outro!") +
       '</div>' +
-      '<div class="curiosidade" id="curiosidadeBox"><div class="tag">💭 VOCÊ LEMBRA DISSO?</div><p>' + (e.curiosidade || "") + '</p></div>' +
-      '<div class="botoes">' +
-      '<button class="btn btn-whats" onclick="Jogo.shareWhats()">📲 Compartilhar</button>' +
-      '<button class="btn btn-telegram" onclick="Jogo.shareTelegram()">✈️ Telegram</button>' +
-      '<button class="btn btn-azul" onclick="Jogo.copiar()">📋 Copiar resultado</button>' +
-      (modoArquivo ? '' : '<button class="btn btn-pular" onclick="Jogo.verArquivo()">📼 Desafios anteriores</button>') +
+      '<div class="curiosidade curiosidade-destaque" id="curiosidadeBox"><div class="tag">💭 VOCÊ LEMBRA DISSO?</div><p>' + (e.curiosidade || "") + '</p></div>' +
+      '<div class="fim-acoes">' +
+      '<button class="btn btn-whats btn-fim-primario" onclick="Jogo.shareWhats()">📲 COMPARTILHAR</button>' +
+      '<div class="fim-acoes-secundarias">' +
+      '<button class="btn btn-telegram btn-fim-secundario" onclick="Jogo.shareTelegram()">✈️ Telegram</button>' +
+      '<button class="btn btn-azul btn-fim-secundario" onclick="Jogo.copiar()">📋 Copiar</button>' +
+      '</div>' +
+      arquivoCta +
       '</div>';
 
     if (!modoArquivo && win) el("voltarAmanha").classList.remove("hidden");
@@ -344,16 +376,27 @@
   }
 
   /* ---------- compartilhar ---------- */
+  function abrirShare(texto, url) {
+    if (navigator.share) {
+      return navigator.share({ title: "Nost\u00e1lgica 90", text: texto, url: url }).catch(function (err) {
+        if (err && err.name === "AbortError") return;
+        window.open("https://wa.me/?text=" + encodeURIComponent(texto + "\n👉 " + url), "_blank");
+      });
+    }
+    window.open("https://wa.me/?text=" + encodeURIComponent(texto + "\n👉 " + url), "_blank");
+  }
   function shareWhats() {
-    var win = partida.venceu;
-    window.open("https://wa.me/?text=" + encodeURIComponent(textoCompartilhamento(win)), "_blank");
+    var win = !!(partida && partida.venceu);
+    var url = urlCompartilhar();
+    abrirShare(corpoCompartilhamento(win), url);
   }
   function shareTelegram() {
-    var win = partida.venceu;
-    window.open("https://t.me/share/url?url=" + encodeURIComponent(window.location.href) + "&text=" + encodeURIComponent(textoCompartilhamento(win).split("👉")[0]), "_blank");
+    var win = !!(partida && partida.venceu);
+    var url = urlCompartilhar();
+    window.open("https://t.me/share/url?url=" + encodeURIComponent(url) + "&text=" + encodeURIComponent(corpoCompartilhamento(win)), "_blank");
   }
   function copiar() {
-    var win = partida.venceu;
+    var win = !!(partida && partida.venceu);
     var texto = textoCompartilhamento(win);
     function ok() { toast("Resultado copiado! Cola no WhatsApp 😉"); }
     if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -364,7 +407,7 @@
     var ta = document.createElement("textarea");
     ta.value = texto; ta.style.position = "fixed"; ta.style.left = "-9999px";
     document.body.appendChild(ta); ta.select();
-    try { document.execCommand("copy"); toast("Resultado copiado! 😉"); } catch (e) { toast("Não consegui copiar. Use o WhatsApp!"); }
+    try { document.execCommand("copy"); toast("Resultado copiado! 😉"); } catch (e) { toast("N\u00e3o consegui copiar. Use o WhatsApp!"); }
     document.body.removeChild(ta);
   }
 
@@ -378,24 +421,36 @@
     var box = el("galeria");
     if (!box) return;
     box.innerHTML = "";
-    var min = Math.max(REF_NO, desafioHoje - FIM_ULTIMO_DIA);
+    // Arquivo permanente: #1..hoje, sem janela de 7 dias.
+    // Teto em Dados.total() evita repetir #1/#2 quando o calendario passar de 56.
+    var min = REF_NO;
+    var total = (window.Dados && window.Dados.total) ? window.Dados.total() : 56;
+    var maxN = Math.min(desafioHoje, total);
     var idx = 0;
-    for (var n = min; n <= desafioHoje; n++) {
+    for (var n = min; n <= maxN; n++) {
       var e = window.Dados.item(n);
       if (filtro !== "TODOS" && e.cat !== filtro) continue;
       var r = localStorage.getItem(chave("partida_d" + n));
       var rj = r ? JSON.parse(r) : null;
+      var encerrado = !!(rj && (rj.venceu || rj.perdeu));
       var res = "";
       var cls = "";
+      var info = catInfo(e.cat);
       if (rj) {
-        if (rj.venceu) { res = "⭐ " + rj.pista + "/6"; cls = "certa"; }
-        else if (rj.perdeu) { res = "❌"; cls = "nao"; }
+        if (rj.venceu) { res = "\u2b50 " + rj.pista + "/6"; cls = "certa"; }
+        else if (rj.perdeu) { res = "\u274c"; cls = "nao"; }
+      }
+      var visual;
+      if (encerrado && window.Arte && window.Arte.gerar) {
+        visual = '<div class="gal-thumb" aria-hidden="true">' + window.Arte.gerar(e, info) + '</div>';
+      } else {
+        visual = '<div class="gal-capa" aria-hidden="true">' + (info.emoji || e.emoji || "\ud83d\udcfa") + '</div>';
       }
       box.innerHTML +=
-        '<div class="gal-card ' + catInfo(e.cat).classe + '" style="animation-delay:' + (idx * 40) + 'ms" onclick="Jogo.abrirArquivo(' + n + ')">' +
+        '<div class="gal-card ' + info.classe + (encerrado ? " liberado" : " fechado") + '" style="animation-delay:' + (idx * 40) + 'ms" onclick="Jogo.abrirArquivo(' + n + ')">' +
         '<div class="num">#' + n + '</div>' +
-        '<div class="e">' + e.emoji + '</div>' +
-        '<div class="cat">' + e.cat + '</div>' +
+        visual +
+        '<div class="cat">' + (e.cat || "") + '</div>' +
         '<div class="res ' + cls + '">' + res + '</div>' +
         '</div>';
       idx++;

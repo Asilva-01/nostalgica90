@@ -169,7 +169,7 @@ button { font-family: inherit; }
   text-shadow: 2px 2px 0 rgba(0,0,0,0.4);
 }
 .hero-tag { font-family: var(--font-retro); font-size: clamp(22px, 5.4vw, 30px); color: var(--ciano); margin-top: 6px; }
-.hero-acoes { display: grid; gap: 12px; width: min(320px, 88vw); margin: 22px auto 0; }
+.hero-acoes { display: grid; gap: 10px; width: min(320px, 88vw); margin: 22px auto 0; justify-items: center; }
 .btn-hero {
   font-family: var(--font-display); font-size: clamp(15px, 3.4vw, 19px);
   border: 3px solid var(--texto); border-radius: var(--raio-botao); padding: 17px 14px; cursor: pointer;
@@ -180,6 +180,14 @@ button { font-family: inherit; }
 .btn-hero:active { transform: translateY(3px); box-shadow: 0 2px 0 var(--texto); }
 .btn-hero-primario { background: var(--amarelo); color: var(--texto); }
 .btn-hero-som { background: var(--vermelho); color: var(--superficie); }
+.btn-hero-secundario {
+  appearance: none; background: transparent; border: 0; padding: 4px 8px; margin: 0;
+  font-family: var(--font-ui); font-size: 13px; font-weight: 700; color: var(--superficie);
+  opacity: 0.72; text-decoration: underline; text-underline-offset: 3px; cursor: pointer;
+  width: auto; box-shadow: none; text-transform: none; letter-spacing: 0;
+}
+.btn-hero-secundario:hover { opacity: 1; transform: none; }
+.btn-hero-secundario:active { opacity: 0.85; }
 .hero-badge {
   display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap;
   font-family: var(--font-ui); font-size: 14px; font-weight: 700; color: var(--superficie);
@@ -976,6 +984,61 @@ button { font-family: inherit; }
 .curiosidade .tag { font-family: var(--font-display); font-size: 13px; color: var(--vermelho); margin-bottom: 4px; }
 .curiosidade p { font-family: var(--font-ui); font-size: 15px; line-height: 1.35; }
 
+.curiosidade-destaque {
+  border: 2px solid var(--texto);
+  border-left: 8px solid var(--amarelo);
+  box-shadow: var(--sombra-dura-pequena);
+  margin-top: 14px;
+  padding: 14px 14px 12px;
+  background: var(--superficie);
+}
+.curiosidade-destaque .tag { font-size: 14px; letter-spacing: 0.5px; }
+.curiosidade-destaque p { font-size: 16px; line-height: 1.4; font-weight: 700; }
+.fim-acoes { display: grid; gap: 10px; margin-top: 14px; }
+.btn-fim-primario {
+  width: 100%;
+  font-size: clamp(16px, 4vw, 20px);
+  padding: 16px 14px;
+  box-shadow: var(--sombra-dura);
+}
+.fim-acoes-secundarias { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.btn-fim-secundario {
+  font-size: 13px;
+  padding: 10px 8px;
+  opacity: 0.92;
+  box-shadow: var(--sombra-dura-pequena);
+}
+.fim-arquivo {
+  width: 100%;
+  margin-top: 2px;
+  border: 2px dashed var(--texto-suave);
+  border-radius: 12px;
+  background: rgba(255, 230, 0, 0.08);
+  color: var(--texto);
+  padding: 12px 10px;
+  cursor: pointer;
+  text-align: center;
+}
+.fim-arquivo:hover { border-color: var(--amarelo); background: rgba(255, 230, 0, 0.14); }
+.fim-arquivo-titulo {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 15px;
+  color: var(--amarelo);
+  margin-bottom: 2px;
+}
+.fim-arquivo-sub {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--texto-suave);
+}
+@media (max-width: 420px) {
+  .fim-acoes-secundarias { grid-template-columns: 1fr; }
+}
+
+
 /* ---------- SEQUÊNCIA ---------- */
 .semana { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-top: 8px; }
 .dia { text-align: center; font-family: var(--font-ui); font-size: 12px; font-weight: 700; }
@@ -1026,6 +1089,32 @@ button { font-family: inherit; }
 .gal-card .res { font-family: var(--font-retro); font-size: 18px; }
 .gal-card .res.certa { color: #1f9e46; }
 .gal-card .res.nao { color: var(--vermelho); }
+
+.gal-card .gal-capa { font-size: 30px; margin: 6px 0; line-height: 1.1; opacity: 0.9; }
+.gal-card.fechado { opacity: 0.92; }
+.gal-card .gal-thumb {
+  position: relative;
+  height: 72px;
+  margin: 6px 0;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #120a28;
+  pointer-events: none;
+}
+.gal-card .gal-thumb .art-fundo { position: absolute; inset: 0; opacity: 0.35; }
+.gal-card .gal-thumb .art-elem {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.gal-card .gal-thumb .art-faixa,
+.gal-card .gal-thumb .art-moto,
+.gal-card .gal-thumb .art-scan,
+.gal-card .gal-thumb .legenda,
+.gal-card .gal-thumb .img-real { display: none !important; }
+
 
 /* ---------- COMPARTILHAR ---------- */
 .share-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; }
