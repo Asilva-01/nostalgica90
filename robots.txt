@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://asilva-01.github.io/nostalgica90/sitemap.xml
