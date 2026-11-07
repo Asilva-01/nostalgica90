@@ -27,10 +27,15 @@ implementam **a mesma regra**, comparada em `node tools/test_selecao.js`.
    `c=1013904223`) + Fisher–Yates, semente `imul32(ciclo+1, 0x9E3779B9) XOR
    imul32(pool, 0x85EBCA77)`.  
    O dia `pos` do ciclo recebe a fatia `[pos*3, pos*3+3)` dessa permutação.
-4. **Sem repetir no ciclo** enquanto houver desafios: 18×3 = 54 únicos; os
-   `pool % 3` que sobram entram no ciclo seguinte (outro shuffle).
-5. Todo mundo vê a **mesma** rodada no mesmo dia civil.
-6. O bot posta **só o primeiro** da rodada (pista 1, sem gabarito) e convida
+4. **Sem repetir no ciclo** enquanto houver desafios: 18×3 = 54 únicos. Os
+   `pool % 3` que sobram (2, com pool=56) vão para o **início** da permutação
+   do ciclo seguinte — entram de fato nos 54 usados, não só “podem cair”
+   num shuffle novo.
+5. **Arte própria em 1º:** dentro dos 3 do dia, se algum tiver arte em
+   `artes.js` (lista `arte-propria.json`), uma rotação determinística
+   coloca o primeiro desses na posição 1. O bot posta esse primeiro.
+6. Todo mundo vê a **mesma** rodada no mesmo dia civil.
+7. O bot posta **só o primeiro** da rodada (pista 1, sem gabarito) e convida
    a jogar as 3 no site.
 
 O ciclo antigo de 1 desafio (`(n-1) % 56`) deixou de valer neste PR. A
@@ -113,6 +118,18 @@ node tools/test_core.js
 Edite `museum.json` para o acervo. Artes dos desafios: `artes.js` (procedural
 por categoria) ou `image` com crédito. Nada de material oficial de marcas.
 
-Fontes: Bungee, Outfit e Share Tech Mono (OFL), servidas em `assets/fonts/`.
+Fontes OFL locais em `assets/fonts/` (com o texto da licença e o copyright
+ao lado do `.woff2`):
+
+| Família | Arquivo | Licença | Copyright |
+|---|---|---|---|
+| Bungee | `bungee-400.woff2` | `OFL-Bungee.txt` | 2023 The Bungee Project Authors ([djrrb/Bungee](https://github.com/djrrb/Bungee)) |
+| Outfit | `outfit.woff2` | `OFL-Outfit.txt` | 2021 The Outfit Project Authors ([Outfit-Fonts](https://github.com/Outfitio/Outfit-Fonts)) |
+| Share Tech Mono | `share-tech-mono-400.woff2` | `OFL-Share-Tech-Mono.txt` | 2012 Carrois Type Design, Ralph du Carrois |
+
+SIL Open Font License 1.1. Procedência: Google Fonts (`ofl/bungee`,
+`ofl/outfit`, `ofl/sharetechmono`). Subpáginas (`speciais.html`,
+`novelas.html`, `jogar-de-novo.html`) usam as mesmas fontes locais
+(`assets/fonts/local.css`), sem Google Fonts externo.
 
 Feito com saudade dos anos 90.

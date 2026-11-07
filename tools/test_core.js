@@ -47,7 +47,16 @@ global.window.Dados = {
   CAT_EMOJI: { TV:'📺', GAMES:'🎮', CINEMA:'🎬', MÚSICA:'🎵', BRINQUEDOS:'🧸', TECNOLOGIA:'💻', CULTURA:'📼' },
   CAT_COR: { TV:['#d32f2f','#8e0000'], GAMES:['#b026ff','#4a0080'], CINEMA:['#1976d2','#002f6c'], MÚSICA:['#ff2d95','#7a0037'], BRINQUEDOS:['#ff6f00','#8f3a00'], TECNOLOGIA:['#00e5ff','#006c80'], CULTURA:['#388e3c','#0b4a1e'] }
 };
-global.window.Som = { tocar(){}, ativar(){}, prefs:{sfx:true,musica:false,volume:0.8}, alternarSfx(){return true;}, alternarMusica(){return true;}, definirVolume(){} };
+global.window.Som = {
+  tocar(){},
+  ativar(){},
+  silenciar(){ this.prefs.sfx = false; this.prefs.musica = false; },
+  ligarAudioInicial(){ this.prefs.sfx = true; this.prefs.musica = true; },
+  prefs:{sfx:true,musica:false,volume:0.8},
+  alternarSfx(){return true;},
+  alternarMusica(){return true;},
+  definirVolume(){}
+};
 global.window.Efeitos = { confete(){}, glitch(){}, trocaCanal(){} };
 global.window.NostalMusica = { ligar(){}, desligar(){}, definirtema(){}, estaLigada(){ return false; } };
 global.window.Arte = { gerar(e, info){ return '<div class="art-fundo ' + (info.classe||'canal-tv') + '"></div>'; } };
@@ -158,6 +167,19 @@ const musicaSrc = fs.readFileSync(path.join(__dirname, '..', 'musica.js'), 'utf8
 check('musica.js não cria botão próprio', !musicaSrc.includes('criarBotao') && !musicaSrc.includes('btnMusica'));
 check('musica.js não cria overlay próprio', !musicaSrc.includes('criarOverlay') && !musicaSrc.includes('mostrarOverlay'));
 check('musica.js expõe ligar/desligar', musicaSrc.includes('ligar: ligar') && musicaSrc.includes('desligar: desligar'));
+
+// ---------- 4b. ARQUIVO NÃO ALTERA STATS GLOBAIS ----------
+console.log('\n[4b] MODO ARQUIVO');
+const statsAntesArquivo = JSON.parse(JSON.stringify(JSON.parse(store['nostalgia90_stats'])));
+const nArq = nHoje === 1 ? 2 : 1;
+global.window.Jogo.abrirArquivo(nArq);
+for (let i = 0; i < 6; i++) global.window.Jogo.pularPista();
+const statsDepoisArquivo = JSON.parse(store['nostalgia90_stats']);
+check('arquivo não incrementa jogos', statsDepoisArquivo.jogos === statsAntesArquivo.jogos, 'antes=' + statsAntesArquivo.jogos + ' depois=' + statsDepoisArquivo.jogos);
+check('arquivo não incrementa acertos', statsDepoisArquivo.acertos === statsAntesArquivo.acertos);
+check('arquivo não muda pontos globais', statsDepoisArquivo.pontos === statsAntesArquivo.pontos);
+check('arquivo não muda sequência', statsDepoisArquivo.seq === statsAntesArquivo.seq);
+global.window.Jogo.voltarHoje();
 eval(musicaSrc);
 check('NostalMusica.ligar é função', typeof window.NostalMusica.ligar === 'function');
 
@@ -171,6 +193,11 @@ check('arte TV gera elemento SVG', arteTV.includes('<svg'));
 check('arte TV gera faixa com categoria', arteTV.includes(realChallenges[1].cat));
 check('arte TV gera ano', arteTV.includes(realChallenges[1].ano));
 check('arte TV NÃO revela resposta', !arteTV.includes(realChallenges[1].resp));
+check('Arte.temPropria reconhece slugs de OBJETOS', typeof window.Arte.temPropria === 'function' && window.Arte.temPropria({ slug: 'tamagotchi' }));
+check('Arte.temPropria recusa slug sem arte própria', window.Arte.temPropria({ slug: 'tieta' }) === false);
+const slugsArte = window.Arte.slugsProprios();
+const jsonArte = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'arte-propria.json'), 'utf8'));
+check('arte-propria.json bate com artes.js OBJETOS', JSON.stringify(slugsArte.slice().sort()) === JSON.stringify(jsonArte.slice().sort()), 'js=' + slugsArte.length + ' json=' + jsonArte.length);
 const arteGames = window.Arte.gerar(realChallenges.find(c => c.cat === 'GAMES'), { classe: 'cat-GAMES' });
 check('arte GAMES tem fundo próprio', arteGames.includes('pixel-arcade'));
 const arteCinema = window.Arte.gerar(realChallenges.find(c => c.cat === 'CINEMA'), { classe: 'cat-CINEMA' });
@@ -201,6 +228,23 @@ check('som.js sintetiza ui-boot', somSrc.includes("nome === 'ui-boot'"));
 check('som.js sintetiza ui-channel', somSrc.includes("nome === 'ui-channel'"));
 check('som.js sintetiza ui-modem', somSrc.includes("nome === 'ui-modem'"));
 check('som.js sintetiza ui-click', somSrc.includes("nome === 'ui-click'"));
+check('som.js expõe silenciar', somSrc.includes('function silenciar'));
+check('som.js expõe ligarAudioInicial', somSrc.includes('function ligarAudioInicial'));
+
+const audioAntes = store['nostalgia90_audio'];
+store['nostalgia90_audio'] = JSON.stringify({ sfx: true, musica: true, volume: 0.8 });
+eval(somSrc);
+check('silenciar desliga sfx e musica', (function () {
+  window.Som.silenciar();
+  return window.Som.prefs.sfx === false && window.Som.prefs.musica === false;
+})());
+const audioSalvo = JSON.parse(store['nostalgia90_audio'] || '{}');
+check('silenciar persiste sfx/musica desligados', audioSalvo.sfx === false && audioSalvo.musica === false, JSON.stringify(audioSalvo));
+window.Som.ligarAudioInicial();
+const audioLigado = JSON.parse(store['nostalgia90_audio'] || '{}');
+check('ligarAudioInicial persiste sfx+musica ligados', audioLigado.sfx === true && audioLigado.musica === true);
+if (audioAntes === undefined) delete store['nostalgia90_audio'];
+else store['nostalgia90_audio'] = audioAntes;
 
 // ---------- 10. ARTES SEMÂNTICAS DO MUSEU ----------
 console.log('\n[10] MUSEU — ARTES SEMÂNTICAS');

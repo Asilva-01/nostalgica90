@@ -597,5 +597,14 @@ window.Arte = (function () {
     img.outerHTML = html;
   }
 
-  return { gerar: gerar, infoCategoria: infoCategoria, mostrarFallback: mostrarFallback };
+  function temPropria(e) { return !!objetoDo(e); }
+  function slugsProprios() { return Object.keys(OBJETOS); }
+
+  return {
+    gerar: gerar,
+    infoCategoria: infoCategoria,
+    mostrarFallback: mostrarFallback,
+    temPropria: temPropria,
+    slugsProprios: slugsProprios
+  };
 })();

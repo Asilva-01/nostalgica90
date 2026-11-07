@@ -38,8 +38,18 @@
   function numeroDoDia(iso) {
     return window.SelecaoRodada.numeroDoDia(iso);
   }
+  function flagsArte() {
+    var lista = (window.Dados && window.Dados.lista) ? window.Dados.lista() : [];
+    if (window.Arte && window.Arte.temPropria) {
+      return lista.map(function (c) { return !!window.Arte.temPropria(c); });
+    }
+    if (window.SelecaoRodada && window.SelecaoRodada.flagsDeSlugs && window.Arte && window.Arte.slugsProprios) {
+      return window.SelecaoRodada.flagsDeSlugs(lista, window.Arte.slugsProprios());
+    }
+    return lista.map(function () { return false; });
+  }
   function selecaoPara(iso) {
-    return window.SelecaoRodada.rodadaDoDia(iso, poolSize());
+    return window.SelecaoRodada.rodadaDoDia(iso, poolSize(), flagsArte());
   }
 
   var isoHoje = hojeIso();
@@ -183,11 +193,14 @@
   function registrarSlot(s, venceu) {
     if (s.cobrado) return;
     var ganho = venceu ? pontosDaPista(s.pista) : 0;
-    stats.jogos++;
-    if (venceu) {
-      stats.acertos++;
-      stats.pontos = (stats.pontos || 0) + ganho;
-      if (ganho > (stats.melhor || 0)) stats.melhor = ganho;
+    if (!modoArquivo) {
+      stats.jogos++;
+      if (venceu) {
+        stats.acertos++;
+        stats.pontos = (stats.pontos || 0) + ganho;
+        if (ganho > (stats.melhor || 0)) stats.melhor = ganho;
+      }
+      salvarStats();
     }
     s.cobrado = true;
     s.pontos = ganho;
@@ -195,7 +208,6 @@
     rodada.pontosOficiais = rodada.slots.reduce(function (acc, x) {
       return acc + (x.oficial ? x.oficial.pontos : 0);
     }, 0);
-    salvarStats();
   }
 
   function registrarRodadaCompleta() {
@@ -850,9 +862,26 @@
     }
   }
 
+  function syncAudioToggles() {
+    if (!window.Som) return;
+    var sfx = !!window.Som.prefs.sfx;
+    var mus = !!window.Som.prefs.musica;
+    var bSfx = el('btnSfxToggle');
+    var bMus = el('btnMusicaToggle');
+    if (bSfx) {
+      bSfx.setAttribute('aria-pressed', String(sfx));
+      bSfx.classList.toggle('ativo', sfx);
+    }
+    if (bMus) {
+      bMus.setAttribute('aria-pressed', String(mus));
+      bMus.classList.toggle('ativo', mus);
+    }
+  }
+
   function iniciarJogo() {
     if (window.Som) window.Som.ativar();
     if (window.NostalMusica && window.Som && window.Som.prefs.musica) window.NostalMusica.ligar();
+    syncAudioToggles();
     if (el('hero')) el('hero').classList.add('hidden');
     if (el('app')) el('app').classList.remove('hidden');
     isoHoje = hojeIso();
@@ -865,10 +894,15 @@
     desenhar();
   }
 
+  function entrarSemSom() {
+    if (window.Som && window.Som.silenciar) window.Som.silenciar();
+    iniciarJogo();
+  }
+
   function comecarComSom() {
+    if (window.Som && window.Som.ligarAudioInicial) window.Som.ligarAudioInicial();
     iniciarJogo();
     if (window.NostalMusica && window.Som) {
-      window.Som.prefs.musica = true;
       window.NostalMusica.ligar();
       window.Som.tocar('ui-arcade');
     }
@@ -914,7 +948,7 @@
     });
     renderSemana();
     mostrarMuseu();
-    if (el('btnComecar')) el('btnComecar').addEventListener('click', iniciarJogo);
+    if (el('btnComecar')) el('btnComecar').addEventListener('click', entrarSemSom);
     if (el('btnSom')) el('btnSom').addEventListener('click', comecarComSom);
     if (el('btnMusicaToggle')) el('btnMusicaToggle').addEventListener('click', function () {
       if (!window.Som) return;
@@ -936,6 +970,7 @@
 
   window.Jogo = {
     iniciarJogo: iniciarJogo,
+    entrarSemSom: entrarSemSom,
     comecarComSom: comecarComSom,
     enviarResposta: enviarResposta,
     pularPista: pularPista,

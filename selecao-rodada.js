@@ -9,7 +9,10 @@
    Ciclo = floor(pool / 3) dias (18 quando pool=56). Em cada ciclo
    embaralha os índices com LCG 32-bit + Fisher–Yates e entrega
    fatias de 3 SEM repetir enquanto houver desafios sobrando.
-   Os (pool % 3) que sobram entram no ciclo seguinte.
+   Os (pool % 3) que sobram vão para o INÍCIO da permutação do
+   ciclo seguinte (garantidos entre os 54 usados).
+   Dentro dos 3 do dia, se algum tiver arte própria, ele vai
+   para a 1ª posição (rotação, determinística).
    ============================================================ */
 (function (root, factory) {
   var api = factory();
@@ -62,13 +65,11 @@
     return u32(a ^ b);
   }
 
-  function permutacaoCiclo(poolSize, ciclo) {
-    var arr = [];
+  function fisherYates(arr, seed) {
     var i, j, tmp, state;
-    for (i = 0; i < poolSize; i++) arr.push(i);
-    if (poolSize < 2) return arr;
-    state = seedCiclo(ciclo, poolSize);
-    for (i = poolSize - 1; i > 0; i--) {
+    if (arr.length < 2) return arr;
+    state = seed;
+    for (i = arr.length - 1; i > 0; i--) {
       state = lcgNext(state);
       j = state % (i + 1);
       tmp = arr[i];
@@ -78,7 +79,59 @@
     return arr;
   }
 
-  function rodadaDoDia(iso, poolSize) {
+  function permutacaoCiclo(poolSize, ciclo) {
+    var arr = [];
+    var i;
+    for (i = 0; i < poolSize; i++) arr.push(i);
+    return fisherYates(arr, seedCiclo(ciclo, poolSize));
+  }
+
+  /* Ciclo 0: shuffle completo. Ciclo N>0: os (pool%3) não usados
+     do ciclo anterior entram no começo; o resto é reembaralhado. */
+  function permutacaoComCarry(poolSize, ciclo) {
+    var resto = poolSize % ROUND_SIZE;
+    if (resto === 0) return permutacaoCiclo(poolSize, ciclo);
+    var usados = diasPorCiclo(poolSize) * ROUND_SIZE;
+    var arr = permutacaoCiclo(poolSize, 0);
+    var c, leftover, set, rest, i;
+    for (c = 1; c <= ciclo; c++) {
+      leftover = arr.slice(usados);
+      set = Object.create(null);
+      for (i = 0; i < leftover.length; i++) set[leftover[i]] = 1;
+      rest = [];
+      for (i = 0; i < poolSize; i++) if (!set[i]) rest.push(i);
+      fisherYates(rest, seedCiclo(c, poolSize));
+      arr = leftover.concat(rest);
+    }
+    return arr;
+  }
+
+  /* Rotação: o primeiro índice com arte própria vai para a posição 0.
+     Ordem relativa dos demais se mantém. Sem arte no trio: inalterado. */
+  function priorizarArte(indices, temArte) {
+    if (!temArte || !temArte.length || !indices || !indices.length) {
+      return indices ? indices.slice() : [];
+    }
+    var i, first = -1;
+    for (i = 0; i < indices.length; i++) {
+      if (temArte[indices[i]]) { first = i; break; }
+    }
+    if (first <= 0) return indices.slice();
+    return indices.slice(first).concat(indices.slice(0, first));
+  }
+
+  function flagsDeSlugs(lista, slugs) {
+    var set = Object.create(null);
+    var i;
+    if (slugs) {
+      for (i = 0; i < slugs.length; i++) set[slugs[i]] = 1;
+    }
+    return (lista || []).map(function (c) {
+      return !!(c && c.slug && set[c.slug]);
+    });
+  }
+
+  function rodadaDoDia(iso, poolSize, temArte) {
     var size = poolSize | 0;
     if (size < 1) throw new Error('poolSize inválido');
     var n = numeroDoDia(iso);
@@ -87,13 +140,13 @@
     if (idx0 < 0) idx0 = 0;
     var ciclo = Math.floor(idx0 / cicloLen);
     var pos = idx0 % cicloLen;
-    var perm = permutacaoCiclo(size, ciclo);
+    var perm = permutacaoComCarry(size, ciclo);
     var usados = Math.min(cicloLen * ROUND_SIZE, size);
     var inicio = pos * ROUND_SIZE;
     if (inicio >= usados) inicio = usados - ROUND_SIZE;
     if (inicio < 0) inicio = 0;
     var take = Math.min(ROUND_SIZE, usados - inicio, size);
-    var indices = perm.slice(inicio, inicio + take);
+    var indices = priorizarArte(perm.slice(inicio, inicio + take), temArte);
     var ids = indices.map(function (i) { return i + 1; });
     return {
       n: n,
@@ -116,6 +169,9 @@
     diasPorCiclo: diasPorCiclo,
     seedCiclo: seedCiclo,
     permutacaoCiclo: permutacaoCiclo,
+    permutacaoComCarry: permutacaoComCarry,
+    priorizarArte: priorizarArte,
+    flagsDeSlugs: flagsDeSlugs,
     rodadaDoDia: rodadaDoDia
   };
 });

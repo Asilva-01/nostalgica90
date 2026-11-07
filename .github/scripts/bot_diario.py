@@ -23,7 +23,7 @@ REPO = os.path.abspath(os.path.join(AQUI, '..', '..'))
 CHALLENGES_PATH = os.path.join(REPO, 'challenges.json')
 sys.path.insert(0, AQUI)
 
-from selecao_rodada import hoje_iso, rodada_do_dia  # noqa: E402
+from selecao_rodada import hoje_iso, rodada_do_dia, carregar_flags_arte  # noqa: E402
 
 
 def carregar_desafios():
@@ -72,7 +72,8 @@ def montar_texto(n, pista, site):
 def main():
     pool = carregar_desafios()
     iso = hoje_iso()
-    rodada = rodada_do_dia(iso, len(pool))
+    flags = carregar_flags_arte(len(pool))
+    rodada = rodada_do_dia(iso, len(pool), flags)
     idx = rodada["primeiroIndice"]
     primeiro = pool[idx]
     site = os.environ.get("SITE_URL", "")

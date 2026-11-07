@@ -11,12 +11,16 @@ Rodada = 3 desafios. Pool na ordem de challenges.json.
 Ciclo = floor(pool / 3) dias (18 quando pool=56). Em cada ciclo
 embaralha os índices com LCG 32-bit + Fisher–Yates e entrega
 fatias de 3 SEM repetir enquanto houver desafios sobrando.
-Os (pool % 3) que sobram entram no ciclo seguinte.
+Os (pool % 3) que sobram vão para o INÍCIO da permutação do
+ciclo seguinte (garantidos entre os 54 usados).
+Dentro dos 3 do dia, se algum tiver arte própria, ele vai
+para a 1ª posição (rotação, determinística).
 """
 from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from datetime import date, datetime
 
@@ -32,6 +36,11 @@ LCG_C = 1013904223
 MIX_A = 0x9E3779B9
 MIX_B = 0x85EBCA77
 U32 = 0xFFFFFFFF
+
+_AQUI = os.path.dirname(os.path.abspath(__file__))
+_REPO = os.path.abspath(os.path.join(_AQUI, "..", ".."))
+ARTE_PROPRIA_PATH = os.path.join(_REPO, "arte-propria.json")
+CHALLENGES_PATH = os.path.join(_REPO, "challenges.json")
 
 
 def u32(n: int) -> int:
@@ -84,19 +93,68 @@ def seed_ciclo(ciclo: int, pool_size: int) -> int:
     return u32(a ^ b)
 
 
-def permutacao_ciclo(pool_size: int, ciclo: int) -> list[int]:
-    arr = list(range(pool_size))
-    if pool_size < 2:
+def fisher_yates(arr: list[int], seed: int) -> list[int]:
+    if len(arr) < 2:
         return arr
-    state = seed_ciclo(ciclo, pool_size)
-    for i in range(pool_size - 1, 0, -1):
+    state = seed
+    for i in range(len(arr) - 1, 0, -1):
         state = lcg_next(state)
         j = state % (i + 1)
         arr[i], arr[j] = arr[j], arr[i]
     return arr
 
 
-def rodada_do_dia(iso: str, pool_size: int) -> dict:
+def permutacao_ciclo(pool_size: int, ciclo: int) -> list[int]:
+    arr = list(range(pool_size))
+    return fisher_yates(arr, seed_ciclo(ciclo, pool_size))
+
+
+def permutacao_com_carry(pool_size: int, ciclo: int) -> list[int]:
+    resto = pool_size % ROUND_SIZE
+    if resto == 0:
+        return permutacao_ciclo(pool_size, ciclo)
+    usados = dias_por_ciclo(pool_size) * ROUND_SIZE
+    arr = permutacao_ciclo(pool_size, 0)
+    for c in range(1, ciclo + 1):
+        leftover = arr[usados:]
+        leftover_set = set(leftover)
+        rest = [i for i in range(pool_size) if i not in leftover_set]
+        fisher_yates(rest, seed_ciclo(c, pool_size))
+        arr = leftover + rest
+    return arr
+
+
+def priorizar_arte(indices: list[int], tem_arte: list[bool] | None) -> list[int]:
+    if not tem_arte or not indices:
+        return list(indices)
+    first = -1
+    for i, idx in enumerate(indices):
+        if 0 <= idx < len(tem_arte) and tem_arte[idx]:
+            first = i
+            break
+    if first <= 0:
+        return list(indices)
+    return list(indices[first:] + indices[:first])
+
+
+def flags_de_slugs(lista: list[dict], slugs: list[str] | set[str]) -> list[bool]:
+    sset = set(slugs or [])
+    return [bool(item.get("slug") in sset) for item in (lista or [])]
+
+
+def carregar_flags_arte(pool_size: int) -> list[bool] | None:
+    if not os.path.isfile(ARTE_PROPRIA_PATH) or not os.path.isfile(CHALLENGES_PATH):
+        return None
+    with open(ARTE_PROPRIA_PATH, encoding="utf-8") as f:
+        slugs = json.load(f)
+    with open(CHALLENGES_PATH, encoding="utf-8") as f:
+        pool = json.load(f)
+    if len(pool) != int(pool_size):
+        return None
+    return flags_de_slugs(pool, slugs)
+
+
+def rodada_do_dia(iso: str, pool_size: int, tem_arte: list[bool] | None = None) -> dict:
     size = int(pool_size)
     if size < 1:
         raise ValueError("poolSize inválido")
@@ -107,7 +165,7 @@ def rodada_do_dia(iso: str, pool_size: int) -> dict:
         idx0 = 0
     ciclo = idx0 // ciclo_len
     pos = idx0 % ciclo_len
-    perm = permutacao_ciclo(size, ciclo)
+    perm = permutacao_com_carry(size, ciclo)
     usados = min(ciclo_len * ROUND_SIZE, size)
     inicio = pos * ROUND_SIZE
     if inicio >= usados:
@@ -115,7 +173,7 @@ def rodada_do_dia(iso: str, pool_size: int) -> dict:
     if inicio < 0:
         inicio = 0
     take = min(ROUND_SIZE, usados - inicio, size)
-    indices = perm[inicio:inicio + take]
+    indices = priorizar_arte(perm[inicio:inicio + take], tem_arte)
     ids = [i + 1 for i in indices]
     return {
         "n": n,
@@ -146,7 +204,8 @@ def main(argv: list[str] | None = None) -> int:
     if not datas:
         datas.append(hoje_iso())
 
-    resultados = [rodada_do_dia(d, args.pool) for d in datas]
+    flags = carregar_flags_arte(args.pool)
+    resultados = [rodada_do_dia(d, args.pool, flags) for d in datas]
     print(json.dumps(resultados if len(resultados) > 1 else resultados[0], ensure_ascii=False))
     return 0
 

@@ -100,11 +100,29 @@ window.Som = (function () {
     if (prefs.musica && window.NostalMusica) NostalMusica.ligar();
   }
 
+  /* Entrar sem som: desliga SFX e música e persiste, mesmo se a
+     preferência salva estava ligada. */
+  function silenciar() {
+    prefs.sfx = false;
+    prefs.musica = false;
+    salvarPrefs();
+    if (window.NostalMusica) NostalMusica.desligar();
+  }
+
+  /* INSERT COIN: liga SFX + música e persiste. */
+  function ligarAudioInicial() {
+    prefs.sfx = true;
+    prefs.musica = true;
+    salvarPrefs();
+  }
+
   carregarPrefs();
 
   return {
     tocar: tocar,
     ativar: ativar,
+    silenciar: silenciar,
+    ligarAudioInicial: ligarAudioInicial,
     definirVolume: definirVolume,
     alternarSfx: alternarSfx,
     alternarMusica: alternarMusica,
