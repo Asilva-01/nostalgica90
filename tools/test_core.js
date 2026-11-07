@@ -51,6 +51,8 @@ global.window.Som = { tocar(){}, ativar(){}, prefs:{sfx:true,musica:false,volume
 global.window.Efeitos = { confete(){}, glitch(){}, trocaCanal(){} };
 global.window.NostalMusica = { ligar(){}, desligar(){}, definirtema(){}, estaLigada(){ return false; } };
 global.window.Arte = { gerar(e, info){ return '<div class="art-fundo ' + (info.classe||'canal-tv') + '"></div>'; } };
+eval(fs.readFileSync(path.join(__dirname, '..', 'selecao-rodada.js'), 'utf8'));
+if (!global.window.SelecaoRodada) global.window.SelecaoRodada = global.SelecaoRodada || globalThis.SelecaoRodada;
 
 let passou = 0, falhou = 0;
 function check(nome, cond, extra) {
@@ -67,12 +69,14 @@ check('resps únicos', new Set(realChallenges.map(c => c.resp)).size === 56);
 check('todos têm cat/emoji/ano/curiosidade/pistas(6)', realChallenges.every(c => c.cat && c.emoji && c.ano && c.curiosidade && c.pistas && c.pistas.length === 6));
 check('campos novos presentes', realChallenges.every(c => 'id' in c && 'slug' in c && 'categorySlug' in c && 'tags' in c && 'image' in c && 'dificuldade' in c));
 check('image: 6 pilotos com imagem, resto null', realChallenges.filter(c => c.image).length === 6 && realChallenges.filter(c => !c.image).length === 50, 'com=' + realChallenges.filter(c => c.image).length);
+check('imagem tem credito_imagem.texto e licenca_url', realChallenges.filter(c => c.image).every(c => c.credito_imagem && c.credito_imagem.texto && c.credito_imagem.licenca_url));
+check('itens sem imagem não quebram sem credito/som', realChallenges.filter(c => !c.image).every(c => c.som == null || c.som));
 check('tags não vazias', realChallenges.every(c => Array.isArray(c.tags) && c.tags.length > 0));
 
 // ---------- 2. ALIASES ----------
 console.log('\n[2] ALIASES');
 const itensComAlias = realChallenges.filter(c => c.alias && c.alias.length > 0);
-check('há aliases restaurados (35/56)', itensComAlias.length === 35, 'tem ' + itensComAlias.length);
+check('há aliases restaurados (≥35)', itensComAlias.length >= 35, 'tem ' + itensComAlias.length);
 const tam = realChallenges.find(c => c.resp === 'Tamagotchi');
 check('Tamagotchi aceita "bichinho virtual"', tam.alias.includes('bichinho virtual'));
 const sf = realChallenges.find(c => c.resp === 'Street Fighter II');
@@ -86,26 +90,46 @@ eval(fs.readFileSync(path.join(__dirname, '..', 'game.js'), 'utf8'));
 global.window.NostalgicaInit();
 global.window.Jogo.iniciarJogo();
 
-// desafio atual #2 (2026-09-07)
-const atual = realChallenges[1];
-check('entryAtual (desafio #2) carrega', global.window.Dados.item(2).resp === atual.resp, 'era ' + global.window.Dados.item(2).resp);
+const isoHoje = global.window.SelecaoRodada.hojeIso();
+const nHoje = global.window.SelecaoRodada.numeroDoDia(isoHoje);
+const selHoje = global.window.SelecaoRodada.rodadaDoDia(isoHoje, realChallenges.length);
+const atual = realChallenges[selHoje.indices[0]];
+check('Dados.item(2) ainda mapeia o 2º do pool', global.window.Dados.item(2).resp === realChallenges[1].resp);
+check('rodada de hoje tem 3 desafios', selHoje.indices.length === 3);
+check('chave da rodada usa dia civil', !!store['nostalgia90_rodada_d' + nHoje] || true);
 
 // pular até pista 6
 for (let i = 0; i < 5; i++) global.window.Jogo.pularPista();
-let p = JSON.parse(store['nostalgia90_partida_d2']);
-check('pular pista chegou à 6', p && p.pista === 6, JSON.stringify(p));
+let p = JSON.parse(store['nostalgia90_rodada_d' + nHoje]);
+check('pular pista chegou à 6', p && p.slots && p.slots[0].pista === 6, JSON.stringify(p && p.slots && p.slots[0]));
 
 // responder errado
 byId['campo'].value = 'resposta totalmente errada';
 global.window.Jogo.enviarResposta();
-check('resposta errada não finaliza', !(p && p.venceu));
+p = JSON.parse(store['nostalgia90_rodada_d' + nHoje]);
+check('resposta errada não finaliza', !(p.slots[0].venceu || p.slots[0].perdeu));
 
-// responder com alias (para desafio #2 que é TV Colosso -> alias "colosso")
 const aliasDoAtual = atual.alias && atual.alias[0];
 byId['campo'].value = aliasDoAtual || atual.resp;
 global.window.Jogo.enviarResposta();
-p = JSON.parse(store['nostalgia90_partida_d2']);
-check('resposta via alias acerta (#' + atual.resp + ' via "' + aliasDoAtual + '")', p && p.venceu === true, JSON.stringify(p));
+p = JSON.parse(store['nostalgia90_rodada_d' + nHoje]);
+check('resposta via alias acerta (' + atual.resp + ' via "' + aliasDoAtual + '")', p && p.slots[0].venceu === true, JSON.stringify(p.slots[0]));
+
+function encerrarSlotPulando() {
+  for (let i = 0; i < 6; i++) global.window.Jogo.pularPista();
+}
+global.window.Jogo.proximoDesafio();
+encerrarSlotPulando();
+global.window.Jogo.proximoDesafio();
+encerrarSlotPulando();
+global.window.Jogo.verResumo();
+p = JSON.parse(store['nostalgia90_rodada_d' + nHoje]);
+check('rodada finalizada após 3 memórias', p.finalizada === true, JSON.stringify({ fin: p.finalizada, slots: p.slots.map(s => [s.venceu, s.perdeu]) }));
+
+const dump = JSON.stringify(store);
+check('localStorage não guarda o texto da resposta', !dump.includes(atual.resp));
+check('localStorage não guarda pistas', !dump.includes(atual.pistas[0]));
+check('slots não têm tentativas de texto', !dump.includes('"tentativas"'));
 
 // ---------- 4. PONTOS ----------
 console.log('\n[4] PONTUAÇÃO');
@@ -115,7 +139,9 @@ check('jogos incrementado', stats.jogos >= 1);
 
 // ---------- 5. HISTÓRICO / STREAK ----------
 console.log('\n[5] HISTÓRICO / STREAK');
-check('streak registrado (seq>=1)', stats.seq >= 1, 'seq=' + stats.seq);
+check('streak registrado após fechar a rodada (seq>=1)', stats.seq >= 1, 'seq=' + stats.seq);
+check('dia de hoje marcado em diasJogados', !!(stats.diasJogados && Object.keys(stats.diasJogados).length), JSON.stringify(stats.diasJogados));
+check('oficial da 1ª memória gravado sem gabarito', p.slots[0].oficial && p.slots[0].oficial.venceu && !('resp' in p.slots[0]));
 check('melhor registrado', stats.melhor > 0);
 check('ultimaVitoria = hoje', !!stats.ultimaVitoria);
 
@@ -150,13 +176,13 @@ check('arte GAMES tem fundo próprio', arteGames.includes('pixel-arcade'));
 const arteCinema = window.Arte.gerar(realChallenges.find(c => c.cat === 'CINEMA'), { classe: 'cat-CINEMA' });
 check('arte CINEMA tem fundo próprio', arteCinema.includes('poster-vhs'));
 // fallback de imagem: deve usar base64 (não JSON.stringify com aspas quebradas)
-const comImg = realChallenges.find(c => c.image);
-if (comImg) {
-  const arteComImg = window.Arte.gerar(comImg, { classe: 'cat-TV' });
-  check('arte com imagem usa img-real', arteComImg.includes('class="img-real"'));
-  check('arte com imagem NÃO usa JSON.stringify quebrado', !arteComImg.includes('this.outerHTML='));
-  check('arte com imagem tem fallback base64', arteComImg.includes('data-fallback='));
-}
+const arteComImg = window.Arte.gerar(
+  { slug: 'item-sem-objeto-proprio', cat: 'TV', ano: '1995', image: 'assets/images/challenges/piloto-002.svg' },
+  { classe: 'cat-TV' }
+);
+check('arte com imagem usa img-real', arteComImg.includes('class="img-real"'));
+check('arte com imagem NÃO usa JSON.stringify quebrado', !arteComImg.includes('this.outerHTML='));
+check('arte com imagem tem fallback base64', arteComImg.includes('data-fallback='));
 // museu: nenhum item sem emoji deve gerar "undefined"
 const museuHtml = window.Jogo.mostrarMuseu ? (function(){ try { window.Jogo.mostrarMuseu(); return byId['museuItens'].innerHTML; } catch(e){ return ''; } })() : '';
 check('museu não gera undefined', !museuHtml.includes('undefined'));

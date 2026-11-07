@@ -20,6 +20,10 @@
       "nostalgia"
     ],
     "image": "assets/images/challenges/piloto-001.svg",
+      "credito_imagem": {
+        "texto": "Ilustração original Nostálgica 90 (sem marcas registradas)",
+        "licenca_url": "https://creativecommons.org/licenses/by/4.0/"
+      },
     "dificuldade": null,
     "pistas": [
       "Um bichinho de estimação que vivia no seu bolso.",
@@ -50,6 +54,10 @@
       "nostalgia"
     ],
     "image": "assets/images/challenges/piloto-002.svg",
+      "credito_imagem": {
+        "texto": "Ilustração original Nostálgica 90 (sem marcas registradas)",
+        "licenca_url": "https://creativecommons.org/licenses/by/4.0/"
+      },
     "dificuldade": null,
     "pistas": [
       "Um programa infantil famoso na TV aberta brasileira.",
@@ -175,6 +183,10 @@
       "nostalgia"
     ],
     "image": "assets/images/challenges/piloto-006.svg",
+      "credito_imagem": {
+        "texto": "Ilustração original Nostálgica 90 (sem marcas registradas)",
+        "licenca_url": "https://creativecommons.org/licenses/by/4.0/"
+      },
     "dificuldade": null,
     "pistas": [
       "Era pra onde iam os filmes antes do streaming existir.",
@@ -206,6 +218,10 @@
       "nostalgia"
     ],
     "image": "assets/images/challenges/piloto-007.svg",
+      "credito_imagem": {
+        "texto": "Ilustração original Nostálgica 90 (sem marcas registradas)",
+        "licenca_url": "https://creativecommons.org/licenses/by/4.0/"
+      },
     "dificuldade": null,
     "pistas": [
       "O jeito portátil de ouvir os seus CDs.",
@@ -801,6 +817,10 @@
       "nostalgia"
     ],
     "image": "assets/images/challenges/piloto-028.svg",
+      "credito_imagem": {
+        "texto": "Ilustração original Nostálgica 90 (sem marcas registradas)",
+        "licenca_url": "https://creativecommons.org/licenses/by/4.0/"
+      },
     "dificuldade": null,
     "pistas": [
       "O filme mais comentado do fim dos anos 90.",
@@ -1001,6 +1021,10 @@
       "nostalgia"
     ],
     "image": "assets/images/challenges/piloto-035.svg",
+      "credito_imagem": {
+        "texto": "Ilustração original Nostálgica 90 (sem marcas registradas)",
+        "licenca_url": "https://creativecommons.org/licenses/by/4.0/"
+      },
     "dificuldade": null,
     "pistas": [
       "O jogo de luta mais famoso de todos os fliperamas.",

@@ -1,47 +1,177 @@
 /* ============================================================
-   NOSTÁLGICA 90 — Lógica do jogo
-   Preserva o sistema existente (desafio diário, streak, partida
-   por dia, arquivo) e adiciona: pontos por pista, curiosidade,
-   galeria com filtros, museu, hero, compartilhamento novo.
+   NOSTÁLGICA 90 — Lógica do jogo (rodada diária de 3)
+   Seleção: selecao-rodada.js (mesma regra do bot Python).
+   localStorage nunca guarda texto de resposta/pistas/alias.
+   Reentrar no dia não revela gabarito; fluxo já acertou / refazer.
    ============================================================ */
 (function () {
-  /* ---------- referências ---------- */
   function el(id) { return document.getElementById(id); }
 
-  /* ---------- datas / desafio diário (preservado) ---------- */
-  function hojeData() {
+  var ROUND_SIZE = (window.SelecaoRodada && window.SelecaoRodada.ROUND_SIZE) || 3;
+  var URL_PUBLICA = 'https://asilva-01.github.io/nostalgica90/';
+  var PONTOS = { 1: 100, 2: 80, 3: 60, 4: 40, 5: 20, 6: 10 };
+  function pontosDaPista(n) { return PONTOS[n] || 10; }
+
+  function chave(k) { return 'nostalgia90_' + k; }
+
+  function hojeIso() {
+    if (window.SelecaoRodada && window.SelecaoRodada.hojeIso) return window.SelecaoRodada.hojeIso();
     var d = new Date();
-    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
   }
-  function hojeMeiaNoite() { var d = new Date(); return new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime(); }
-  var REF_MS = new Date(2026, 8, 6).getTime();
-  var REF_NO = 1;
-  function numeroDesafioPara(ms) { return REF_NO + Math.round((ms - REF_MS) / 86400000); }
-  var hojeMs = hojeMeiaNoite();
-  var desafioHoje = numeroDesafioPara(hojeMs);
-  var desafioAtual = desafioHoje;
+  function ontemIso(iso) {
+    var p = iso.split('-').map(Number);
+    var dt = new Date(Date.UTC(p[0], p[1] - 1, p[2] - 1));
+    return dt.toISOString().slice(0, 10);
+  }
+  function isoDeDiaN(n) {
+    var ref = (window.SelecaoRodada && window.SelecaoRodada.REF_ISO) || '2026-09-06';
+    var p = ref.split('-').map(Number);
+    var dt = new Date(Date.UTC(p[0], p[1] - 1, p[2] + (n - 1)));
+    return dt.toISOString().slice(0, 10);
+  }
+
+  function poolSize() {
+    var t = (window.Dados && window.Dados.total) ? window.Dados.total() : 0;
+    return t > 0 ? t : 56;
+  }
+  function numeroDoDia(iso) {
+    return window.SelecaoRodada.numeroDoDia(iso);
+  }
+  function selecaoPara(iso) {
+    return window.SelecaoRodada.rodadaDoDia(iso, poolSize());
+  }
+
+  var isoHoje = hojeIso();
+  var desafioHoje = numeroDoDia(isoHoje);
+  var rodadaN = desafioHoje;
+  var isoAtual = isoHoje;
   var modoArquivo = false;
-  var FIM_ULTIMO_DIA = 7;
+  var revelarGabarito = false;
+  var rodada = null;
 
-  var chave = function (k) { return "nostalgia90_" + k; };
-
-  /* ---------- estado (preservado) ---------- */
   function carregarEstado() {
-    var st = localStorage.getItem(chave("stats"));
-    return st ? JSON.parse(st) : { seq: 0, max: 0, jogos: 0, acertos: 0, ultimaVitoria: null, ultimaPartida: null, pontos: 0, melhor: 0 };
+    var st = localStorage.getItem(chave('stats'));
+    var base = { seq: 0, max: 0, jogos: 0, acertos: 0, ultimaVitoria: null, ultimaPartida: null, pontos: 0, melhor: 0, diasJogados: {} };
+    if (!st) return base;
+    try {
+      var o = JSON.parse(st);
+      if (!o.diasJogados || typeof o.diasJogados !== 'object') o.diasJogados = {};
+      return o;
+    } catch (e) { return base; }
   }
   var stats = carregarEstado();
 
-  function diaAtualKey() { return "d" + desafioAtual; }
-  function getPartida() { var p = localStorage.getItem(chave("partida_" + diaAtualKey())); return p ? JSON.parse(p) : null; }
-  function salvarPartida(p) { localStorage.setItem(chave("partida_" + diaAtualKey()), JSON.stringify(p)); }
-  var partida = getPartida();
+  function salvarStats() {
+    localStorage.setItem(chave('stats'), JSON.stringify({
+      seq: stats.seq || 0,
+      max: stats.max || 0,
+      jogos: stats.jogos || 0,
+      acertos: stats.acertos || 0,
+      ultimaVitoria: stats.ultimaVitoria || null,
+      ultimaPartida: stats.ultimaPartida || null,
+      pontos: stats.pontos || 0,
+      melhor: stats.melhor || 0,
+      diasJogados: stats.diasJogados || {}
+    }));
+  }
 
-  function entryAtual() { return window.Dados.item(desafioAtual); }
+  function slotLimpo(id) {
+    return { id: id, pista: 1, venceu: false, perdeu: false, pontos: 0, cobrado: false, oficial: null };
+  }
+
+  function novaRodada(iso) {
+    var sel = selecaoPara(iso);
+    var ids = [];
+    var lista = window.Dados.lista();
+    sel.indices.forEach(function (ix) {
+      var item = lista[ix];
+      ids.push(item && item.id != null ? item.id : (ix + 1));
+    });
+    return {
+      n: sel.n,
+      iso: iso,
+      ids: ids,
+      indice: 0,
+      slots: ids.map(slotLimpo),
+      finalizada: false,
+      pontosOficiais: 0,
+      seqContada: false
+    };
+  }
+
+  function serializarRodada(r) {
+    return {
+      n: r.n,
+      iso: r.iso,
+      ids: r.ids.slice(),
+      indice: r.indice | 0,
+      slots: r.slots.map(function (s) {
+        return {
+          id: s.id,
+          pista: s.pista || 1,
+          venceu: !!s.venceu,
+          perdeu: !!s.perdeu,
+          pontos: s.pontos || 0,
+          cobrado: !!s.cobrado,
+          oficial: s.oficial ? { pista: s.oficial.pista, venceu: !!s.oficial.venceu, perdeu: !!s.oficial.perdeu, pontos: s.oficial.pontos || 0 } : null
+        };
+      }),
+      finalizada: !!r.finalizada,
+      pontosOficiais: r.pontosOficiais || 0,
+      seqContada: !!r.seqContada
+    };
+  }
+
+  function chaveRodada(n) { return chave('rodada_d' + n); }
+
+  function getRodada(n) {
+    var raw = localStorage.getItem(chaveRodada(n));
+    if (!raw) return null;
+    try {
+      var r = JSON.parse(raw);
+      if (!r || !Array.isArray(r.slots) || !Array.isArray(r.ids)) return null;
+      return r;
+    } catch (e) { return null; }
+  }
+
+  function salvarRodada() {
+    if (!rodada) return;
+    localStorage.setItem(chaveRodada(rodada.n), JSON.stringify(serializarRodada(rodada)));
+  }
+
+  function garantirRodada(n, iso) {
+    if (rodada && rodada.n === n) return rodada;
+    var r = getRodada(n);
+    if (r && Array.isArray(r.slots) && r.slots.length) {
+      rodada = r;
+      return rodada;
+    }
+    rodada = novaRodada(iso);
+    return rodada;
+  }
+
+  function slotAtual() {
+    if (!rodada || !rodada.slots || !rodada.slots.length) return { id: 1, pista: 1 };
+    return rodada.slots[rodada.indice] || rodada.slots[0];
+  }
+  function entryAtual() {
+    var s = slotAtual();
+    if (window.Dados.itemPorId) {
+      var byId = window.Dados.itemPorId(s.id);
+      if (byId) return byId;
+    }
+    var lista = window.Dados.lista();
+    for (var i = 0; i < lista.length; i++) if (lista[i].id === s.id) return lista[i];
+    return lista[(s.id - 1 + lista.length) % lista.length];
+  }
+
+  function slotFinalizado(s) { return !!(s && (s.venceu || s.perdeu)); }
+  function partidaFinalizada() { return slotFinalizado(slotAtual()); }
 
   function normalizar(s) {
-    return (s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-      .replace(/[^a-z0-9 ]/g, " ").replace(/\s+/g, " ").trim();
+    return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
   }
   function checarResposta(texto) {
     var e = entryAtual();
@@ -50,466 +180,613 @@
     return (e.alias || []).some(function (a) { return t === normalizar(a); });
   }
 
-  /* ---------- pontos por pista ---------- */
-  var PONTOS = { 1: 100, 2: 80, 3: 60, 4: 40, 5: 20, 6: 10 };
-  function pontosDaPista(n) { return PONTOS[n] || 10; }
-
-  function registrarVitoria(pistasUsadas) {
-    var hoje = hojeData();
-    var ganho = pontosDaPista(pistasUsadas);
+  function registrarSlot(s, venceu) {
+    if (s.cobrado) return;
+    var ganho = venceu ? pontosDaPista(s.pista) : 0;
     stats.jogos++;
-    stats.acertos++;
-    stats.pontos = (stats.pontos || 0) + ganho;
-    if (ganho > (stats.melhor || 0)) stats.melhor = ganho;
-    var ontem = new Date(Date.now() - 86400000);
-    var ontemData = ontem.getFullYear() + "-" + String(ontem.getMonth() + 1).padStart(2, "0") + "-" + String(ontem.getDate()).padStart(2, "0");
-    if (stats.ultimaVitoria === ontemData) stats.seq++;
-    else if (stats.ultimaVitoria !== hoje) stats.seq = 1;
-    stats.ultimaVitoria = hoje;
+    if (venceu) {
+      stats.acertos++;
+      stats.pontos = (stats.pontos || 0) + ganho;
+      if (ganho > (stats.melhor || 0)) stats.melhor = ganho;
+    }
+    s.cobrado = true;
+    s.pontos = ganho;
+    s.oficial = { pista: s.pista, venceu: !!venceu, perdeu: !venceu, pontos: ganho };
+    rodada.pontosOficiais = rodada.slots.reduce(function (acc, x) {
+      return acc + (x.oficial ? x.oficial.pontos : 0);
+    }, 0);
+    salvarStats();
+  }
+
+  function registrarRodadaCompleta() {
+    if (rodada.seqContada) return;
+    if (modoArquivo) {
+      rodada.seqContada = true;
+      salvarRodada();
+      return;
+    }
+    var hoje = isoHoje;
+    var todosOficiais = rodada.slots.every(function (s) { return s.oficial; });
+    if (!todosOficiais) return;
+    var algumAcerto = rodada.slots.some(function (s) { return s.oficial && s.oficial.venceu; });
+    stats.diasJogados = stats.diasJogados || {};
+    stats.diasJogados[hoje] = true;
     stats.ultimaPartida = hoje;
-    if (stats.seq > stats.max) stats.max = stats.seq;
-    localStorage.setItem(chave("stats"), JSON.stringify(stats));
+    if (algumAcerto) {
+      if (stats.ultimaVitoria === ontemIso(hoje)) stats.seq = (stats.seq || 0) + 1;
+      else if (stats.ultimaVitoria !== hoje) stats.seq = 1;
+      stats.ultimaVitoria = hoje;
+    } else {
+      stats.seq = 0;
+    }
+    if (stats.seq > (stats.max || 0)) stats.max = stats.seq;
+    rodada.seqContada = true;
+    salvarStats();
     renderEstatisticas();
     renderSemana();
   }
 
-  function registrarDerrota() {
-    var hoje = hojeData();
-    stats.jogos++;
-    stats.seq = 0;
-    stats.ultimaPartida = hoje;
-    localStorage.setItem(chave("stats"), JSON.stringify(stats));
-    renderEstatisticas();
-    renderSemana();
+  function rodadaTodaFinalizada() {
+    return rodada.slots.every(slotFinalizado);
   }
 
   /* ---------- render ---------- */
   function renderEstatisticas() {
-    el("stSeq").textContent = stats.seq;
-    el("stMax").textContent = stats.max;
-    el("stJog").textContent = stats.jogos;
-    el("stVit").textContent = stats.acertos;
-    el("stPts").textContent = stats.pontos || 0;
+    if (el('stSeq')) el('stSeq').textContent = stats.seq || 0;
+    if (el('stMax')) el('stMax').textContent = stats.max || 0;
+    if (el('stJog')) el('stJog').textContent = stats.jogos || 0;
+    if (el('stVit')) el('stVit').textContent = stats.acertos || 0;
+    if (el('stPts')) el('stPts').textContent = (modoArquivo ? (rodada.pontosOficiais || 0) : (stats.pontos || 0));
+    if (el('stSlot')) el('stSlot').textContent = (rodada.indice + 1) + '/' + rodada.slots.length;
+    if (el('stPtsRodada')) el('stPtsRodada').textContent = rodada.pontosOficiais || 0;
+  }
+
+  function renderProgresso() {
+    var box = el('rodadaProgresso');
+    if (!box) return;
+    box.innerHTML = '';
+    for (var i = 0; i < rodada.slots.length; i++) {
+      var s = rodada.slots[i];
+      var d = document.createElement('span');
+      d.className = 'vhs-tick';
+      if (i === rodada.indice) d.classList.add('atual');
+      if (s.venceu) d.classList.add('ok');
+      else if (s.perdeu) d.classList.add('no');
+      d.setAttribute('aria-label', 'Memória ' + (i + 1) + (s.venceu ? ' acertada' : s.perdeu ? ' encerrada' : i === rodada.indice ? ' atual' : ' a jogar'));
+      d.textContent = String(i + 1);
+      box.appendChild(d);
+    }
   }
 
   function renderSemana() {
-    var box = el("semana");
+    var box = el('semana');
     if (!box) return;
-    var dias = ["DOM", "SEG", "TER", "QUA", "QUI", "SEX", "SÁB"];
+    var dias = ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SÁB'];
     var hoje = new Date();
-    box.innerHTML = "";
+    box.innerHTML = '';
     for (var i = 6; i >= 0; i--) {
       var d = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate() - i);
       var diaLabel = dias[d.getDay()];
-      var ds = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
-      var classe = "dia";
-      if (ds === hojeData()) classe += " hoje";
-      else if (ds > hojeData()) classe += " futuro";
-      else if (stats.ultimaVitoria === ds) classe += " feito";
-      else classe += " futuro";
+      var ds = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+      var classe = 'dia';
+      var feito = !!(stats.diasJogados && stats.diasJogados[ds]);
+      if (ds === isoHoje) classe += ' hoje';
+      else if (ds > isoHoje) classe += ' futuro';
+      else if (feito) classe += ' feito';
+      else classe += ' vazio';
       box.innerHTML +=
         '<div class="' + classe + '"><b>' +
-        (stats.ultimaVitoria === ds ? "✓" : (ds === hojeData() ? "?" : "·")) +
+        (feito ? '✓' : (ds === isoHoje ? '?' : '·')) +
         '</b><small>' + diaLabel + '</small></div>';
     }
   }
 
   function catInfo(cat) {
-    var emoji = window.Dados.CAT_EMOJI[cat] || "📼";
-    var cor = (window.Dados.CAT_COR[cat] || ["#388e3c", "#0b4a1e"]);
-    var classe = "cat-" + (cat || "CULTURA").replace(/\s+/g, "");
+    var emoji = window.Dados.CAT_EMOJI[cat] || '📼';
+    var cor = (window.Dados.CAT_COR[cat] || ['#388e3c', '#0b4a1e']);
+    var classe = 'cat-' + (cat || 'CULTURA').replace(/\s+/g, '');
     return { emoji: emoji, cor: cor, classe: classe };
   }
 
   function renderChallengeImage(e) {
-    var box = el("challengeImg");
+    var box = el('challengeImg');
     if (!box) return;
     var info = catInfo(e.cat);
-    // FASE 2I-A: sistema de artes por categoria (Arte.gerar)
     var html;
-    if (window.Arte && window.Arte.gerar) {
-      html = window.Arte.gerar(e, info);
-    } else {
-      html = '<div class="art-fundo ' + (info.classe || "canal-tv") + '"></div>' +
+    if (window.Arte && window.Arte.gerar) html = window.Arte.gerar(e, info);
+    else {
+      html = '<div class="art-fundo ' + (info.classe || 'canal-tv') + '"></div>' +
         '<div class="tc-emoji">' + info.emoji + '</div>' +
         '<div class="art-scan"></div>';
     }
-    box.innerHTML = html + '<div class="legenda">' + info.emoji + ' ' + (e.cat || "") + ' · ' + (e.ano || "") + '</div>';
+    var credito = '';
+    if (e.image && e.credito_imagem && e.credito_imagem.texto) {
+      credito = '<p class="credito-img">' + e.credito_imagem.texto + '</p>';
+    }
+    box.innerHTML = html + '<div class="legenda">' + info.emoji + ' ' + (e.cat || '') + ' · ' + (e.ano || '') + '</div>' + credito;
   }
 
   function renderPistas() {
-    var e = entryAtual();
-    var box = el("listaPistas");
-    box.innerHTML = "";
+    var box = el('listaPistas');
+    if (!box) return;
+    box.innerHTML = '';
+    box.classList.remove('hidden');
     for (var i = 1; i <= 6; i++) {
-      var div = document.createElement("div");
-      div.className = "pista-linha";
-      div.id = "pista" + i;
-      div.innerHTML = '<span class="n">CLUE 0' + i + '</span> <span class="txt"></span>';
-      div.querySelector(".txt").textContent = e.pistas[i - 1] || "";
+      var div = document.createElement('div');
+      div.className = 'pista-linha';
+      div.id = 'pista' + i;
+      div.innerHTML = '<span class="n">PISTA 0' + i + '</span> <span class="txt"></span>';
       box.appendChild(div);
     }
   }
 
   function revelarAte(n) {
+    var e = entryAtual();
     for (var i = 1; i <= 6; i++) {
-      var el2 = el("pista" + i);
+      var el2 = el('pista' + i);
       if (!el2) continue;
+      var txt = el2.querySelector('.txt');
       if (i <= n) {
-        el2.classList.add("revelada");
-        el2.classList.remove("ativa");
+        if (txt) txt.textContent = (e.pistas && e.pistas[i - 1]) || '';
+        el2.classList.add('revelada');
+        el2.classList.remove('ativa');
         if (i === n && !partidaFinalizada()) {
-          el2.classList.add("ativa");
-          // microinteração: pista recém-liberada
-          el2.classList.remove("pista-nova");
+          el2.classList.add('ativa');
+          el2.classList.remove('pista-nova');
           void el2.offsetWidth;
-          el2.classList.add("pista-nova");
+          el2.classList.add('pista-nova');
         }
-      } else el2.classList.remove("revelada", "ativa");
+      } else {
+        if (txt) txt.textContent = '';
+        el2.classList.remove('revelada', 'ativa');
+      }
     }
-    var pb = el("pontosBarra");
-    if (pb) pb.style.width = ((n - 1) / 5) * 100 + "%";
-    var pp = el("pontosPossiveis");
+    var pb = el('pontosBarra');
+    if (pb) pb.style.width = ((n - 1) / 5) * 100 + '%';
+    var pp = el('pontosPossiveis');
     if (pp) pp.textContent = pontosDaPista(n);
   }
 
-  function partidaFinalizada() { return partida && (partida.venceu === true || partida.perdeu === true); }
+  function mostrarPainel(idVisivel) {
+    ['areaJogo', 'areaFim', 'areaResumo', 'areaRefazer'].forEach(function (id) {
+      var n = el(id);
+      if (!n) return;
+      if (id === idVisivel) n.classList.remove('hidden');
+      else n.classList.add('hidden');
+    });
+  }
 
   function desenhar() {
+    garantirRodada(rodadaN, isoAtual);
     var e = entryAtual();
-    // Desafio diário: sempre limpar partida finalizada ao re-entrar, permitindo jogar de novo
-    if (!modoArquivo && partidaFinalizada()) {
-      localStorage.removeItem(chave("partida_" + diaAtualKey()));
-      partida = null;
-    }
     renderEstatisticas();
-    el("chaveDesafio").textContent = "DESAFIO #" + desafioAtual + (modoArquivo ? " (arquivo)" : "");
-    // microinteração: entrada do desafio ("troca de programação")
-    var secJogo = el("secJogo");
+    renderProgresso();
+    var chaveEl = el('chaveDesafio');
+    if (chaveEl) {
+      chaveEl.textContent = (modoArquivo ? 'ARQUIVO · ' : '') + 'RODADA #' + rodada.n + ' · MEMÓRIA ' + (rodada.indice + 1) + '/' + rodada.slots.length;
+    }
+    var secJogo = el('secJogo');
     if (secJogo) {
-      var base = ["cat-TV","cat-GAMES","cat-CINEMA","cat-MÚSICA","cat-BRINQUEDOS","cat-TECNOLOGIA","cat-CULTURA","cat-c","venceu"];
+      var base = ['cat-TV', 'cat-GAMES', 'cat-CINEMA', 'cat-MÚSICA', 'cat-BRINQUEDOS', 'cat-TECNOLOGIA', 'cat-CULTURA', 'cat-c', 'venceu', 'errou'];
       for (var i = 0; i < base.length; i++) secJogo.classList.remove(base[i]);
       secJogo.classList.add(catInfo(e.cat).classe);
-      // reinicia animação de entrada
-      secJogo.classList.remove("desafio-render");
+      secJogo.classList.remove('desafio-render');
       void secJogo.offsetWidth;
-      secJogo.classList.add("desafio-render", "entra");
+      secJogo.classList.add('desafio-render', 'entra');
     }
-    // atualiza pill de categoria
-    var pill = el("catPill");
+    var pill = el('catPill');
     if (pill) {
       var info = catInfo(e.cat);
-      pill.className = "cat-pill " + info.classe;
-      pill.style.background = "";
-      pill.innerHTML = '<span class="pill-emoji">' + info.emoji + '</span> ' + (e.cat || "");
+      pill.className = 'cat-pill ' + info.classe;
+      pill.innerHTML = '<span class="pill-emoji">' + info.emoji + '</span> ' + (e.cat || '');
     }
     renderChallengeImage(e);
-    if (partidaFinalizada()) { mostrarFim(); return; }
+
+    if (el('arquivoNav')) {
+      if (modoArquivo) el('arquivoNav').classList.remove('hidden');
+      else el('arquivoNav').classList.add('hidden');
+    }
+    if (el('voltarAmanha')) el('voltarAmanha').classList.add('hidden');
+
+    if (rodada.finalizada && !revelarGabarito) {
+      mostrarResumo(false);
+      return;
+    }
+    if (partidaFinalizada() && revelarGabarito) {
+      mostrarFim();
+      return;
+    }
+    if (partidaFinalizada() && !revelarGabarito) {
+      mostrarJaJogou();
+      return;
+    }
+
     renderPistas();
-    revelarAte(partida ? partida.pista : 1);
-    var campo = el("campo");
+    revelarAte(slotAtual().pista || 1);
+    var campo = el('campo');
     if (campo) {
-      campo.value = "";
+      campo.value = '';
       if (!modoArquivo) campo.focus();
     }
-    var respMsg = el("respMsg");
-    if (respMsg) { respMsg.textContent = ""; respMsg.className = "feedback"; }
-    var areaJogo = el("areaJogo");
-    if (areaJogo) areaJogo.classList.remove("hidden");
-    var areaFim = el("areaFim");
-    if (areaFim) areaFim.classList.add("hidden");
-    var cb = el("curiosidadeBox");
-    if (cb) cb.classList.add("hidden");
+    var respMsg = el('respMsg');
+    if (respMsg) { respMsg.textContent = ''; respMsg.className = 'feedback'; }
+    mostrarPainel('areaJogo');
   }
 
   /* ---------- ações ---------- */
   function enviarResposta() {
     if (partidaFinalizada()) return;
-    var campo = el("campo");
-    var texto = campo.value.trim();
-    if (!texto) { toast("Digite uma resposta primeiro!"); return; }
-    if (!partida) partida = { pista: 1, tentativas: [], venceu: false, perdeu: false, num: desafioAtual };
+    var campo = el('campo');
+    var texto = campo ? campo.value.trim() : '';
+    if (!texto) { toast('Digite uma resposta primeiro!'); return; }
+    var s = slotAtual();
+    if (!s.pista) s.pista = 1;
 
     if (checarResposta(texto)) {
-      partida.venceu = true;
-      salvarPartida(partida);
-      registrarVitoria(partida.pista);
-      window.Som.tocar('ui-success');
-      window.Efeitos.confete();
-      // microinteração: card "venceu" + pulso nos pontos
-      var sj = el("secJogo");
-      if (sj) sj.classList.add("venceu");
-      pulsarValor("stPts");
-      pulsarValor("stSeq");
-      campo.value = "";
+      s.venceu = true;
+      registrarSlot(s, true);
+      revelarGabarito = true;
+      if (rodadaTodaFinalizada()) {
+        rodada.finalizada = true;
+        registrarRodadaCompleta();
+      }
+      salvarRodada();
+      if (window.Som) window.Som.tocar('ui-success');
+      if (window.Efeitos) window.Efeitos.confete();
+      var sj = el('secJogo');
+      if (sj) sj.classList.add('venceu');
+      pulsarValor('stPts');
+      pulsarValor('stSeq');
+      if (campo) campo.value = '';
       mostrarFim();
     } else {
-      var msg = el("respMsg");
-      msg.textContent = "❌ NÃO FOI DESSA VEZ! " + (partida.pista < 6 ? "Quer outra pista?" : "Essa era a última pista!");
-      msg.className = "feedback errada";
-      window.Som.tocar('ui-error');
-      window.Efeitos.glitch(msg);
-      salvarPartida(partida);
-      campo.value = "";
-      campo.focus();
+      var msg = el('respMsg');
+      if (msg) {
+        msg.textContent = 'NÃO FOI DESSA VEZ. ' + (s.pista < 6 ? 'Quer outra pista?' : 'Essa era a última pista!');
+        msg.className = 'feedback errada';
+        if (window.Efeitos) window.Efeitos.glitch(msg);
+      }
+      if (window.Som) window.Som.tocar('ui-error');
+      salvarRodada();
+      if (campo) { campo.value = ''; campo.focus(); }
     }
   }
 
-  /* microinteração: pulso breve em um valor de placar */
   function pulsarValor(id) {
     var v = el(id);
     if (!v) return;
-    v.classList.remove("pulso");
+    v.classList.remove('pulso');
     void v.offsetWidth;
-    v.classList.add("pulso");
+    v.classList.add('pulso');
   }
 
   function pularPista() {
     if (partidaFinalizada()) return;
-    if (!partida) partida = { pista: 1, tentativas: [], venceu: false, perdeu: false, num: desafioAtual };
-    var msg = el("respMsg");
-    msg.textContent = "";
-    msg.className = "feedback";
-    if (partida.pista >= 6) {
-      partida.perdeu = true;
-      salvarPartida(partida);
-      registrarDerrota();
-      window.Som.tocar('ui-error');
+    var s = slotAtual();
+    if (!s.pista) s.pista = 1;
+    var msg = el('respMsg');
+    if (msg) { msg.textContent = ''; msg.className = 'feedback'; }
+    if (s.pista >= 6) {
+      s.perdeu = true;
+      registrarSlot(s, false);
+      revelarGabarito = true;
+      if (rodadaTodaFinalizada()) {
+        rodada.finalizada = true;
+        registrarRodadaCompleta();
+      }
+      salvarRodada();
+      if (window.Som) window.Som.tocar('ui-error');
       mostrarFim();
       return;
     }
-    partida.pista++;
-    salvarPartida(partida);
-    window.Som.tocar('ui-reveal');
-    window.Efeitos.trocaCanal(el("listaPistas"));
-    revelarAte(partida.pista);
-    var campo = el("campo");
+    s.pista++;
+    salvarRodada();
+    if (window.Som) window.Som.tocar('ui-reveal');
+    if (window.Efeitos) window.Efeitos.trocaCanal(el('listaPistas'));
+    revelarAte(s.pista);
+    var campo = el('campo');
     if (campo) campo.focus();
   }
 
-  /* ---------- tela final ---------- */
-  function emojiGrid(pistasUsadas) {
-    var arr = [];
-    for (var i = 1; i <= 6; i++) {
-      if (i < pistasUsadas) arr.push("🟨");
-      else if (i === pistasUsadas) arr.push("🟩");
-      else arr.push("⬛");
+  function emojiGridOficial(oficial) {
+    if (!oficial) return '⬛⬛⬛⬛⬛⬛';
+    if (oficial.venceu) {
+      var arr = [];
+      for (var i = 1; i <= 6; i++) {
+        if (i < oficial.pista) arr.push('🟨');
+        else if (i === oficial.pista) arr.push('🟩');
+        else arr.push('⬛');
+      }
+      return arr.join('');
     }
-    return arr.join("");
+    return '🟨🟨🟨🟨🟨🟥';
   }
 
-  var URL_PUBLICA = "https://asilva-01.github.io/nostalgica90/";
-
-  function urlCompartilhar() {
-    return URL_PUBLICA;
-  }
-
-  function corpoCompartilhamento(win) {
-    var e = entryAtual();
-    var pts = pontosDaPista(partida.pista);
+  function corpoCompartilhamento() {
+    var linhas = rodada.slots.map(function (s) { return emojiGridOficial(s.oficial); });
     var seq = stats.seq || 0;
-    var memoria = (e.emoji ? e.emoji + " " : "") + (e.cat || "") + (e.ano ? " \u00b7 " + e.ano : "");
-    var head = "📺 NOST\u00c1LGICA 90\n";
-    var grid = win ? emojiGrid(partida.pista) : emojiGrid(7).replace("🟩", "\u274c");
-    var chamada = "Joga o de hoje e me responde. Ser\u00e1 que voc\u00ea \u00e9 da \u00e9poca?";
-    if (win) {
-      return head +
-        "Eu acertei o desafio de hoje dos anos 90!\n" +
-        memoria + "\n" +
-        "🎯 " + pts + " pts \u00b7 sequ\u00eancia " + seq + "\n" +
-        grid + "\n" +
-        chamada;
-    }
-    return head +
-      "Eu joguei o desafio de hoje dos anos 90 e n\u00e3o acertei.\n" +
-      memoria + "\n" +
-      "🔥 sequ\u00eancia " + seq + "\n" +
-      grid + "\n" +
-      chamada;
+    var pts = rodada.pontosOficiais || 0;
+    return '📺 NOSTÁLGICA 90\n' +
+      'Rodada #' + rodada.n + ' · 3 memórias\n' +
+      linhas.join('\n') + '\n' +
+      '🎯 ' + pts + ' pts · sequência ' + seq + '\n' +
+      'Você lembra dos anos 90?';
   }
 
-  function textoCompartilhamento(win) {
-    return corpoCompartilhamento(win) + "\n👉 " + urlCompartilhar();
+  function textoCompartilhamento() {
+    return corpoCompartilhamento() + '\n👉 ' + URL_PUBLICA;
   }
 
   function mostrarFim() {
     var e = entryAtual();
-    var area = el("areaJogo");
-    var fim = el("areaFim");
-    area.classList.add("hidden");
-    fim.classList.remove("hidden");
-    var win = partida.venceu;
-
-    var lista = el("listaPistas");
+    var s = slotAtual();
+    var fim = el('areaFim');
+    var msg = el('respMsg');
+    if (msg) { msg.textContent = ''; msg.className = 'feedback'; }
+    mostrarPainel('areaFim');
+    if (!fim) return;
+    renderPistas();
+    var win = !!s.venceu;
     for (var i = 1; i <= 6; i++) {
-      var l = el("pista" + i);
+      var l = el('pista' + i);
       if (!l) continue;
-      l.classList.remove("ativa");
-      l.classList.add("revelada");
-      if (win && i === partida.pista) l.classList.add("vencida");
-      if (!win) l.classList.add("perdida");
+      l.classList.remove('ativa');
+      l.classList.add('revelada');
+      if (win && i === s.pista) l.classList.add('vencida');
+      if (!win) l.classList.add('perdida');
     }
     revelarAte(6);
-
-    var grid = win ? emojiGrid(partida.pista) : emojiGrid(7).replace("🟩", "❌");
-    var arquivoCta = modoArquivo ? '' : (
-      '<button type="button" class="fim-arquivo" onclick="Jogo.verArquivo();var _a=document.getElementById(\'secArquivo\');if(_a)_a.scrollIntoView({behavior:\'smooth\',block:\'start\'});">' +
-      '<span class="fim-arquivo-titulo">\ud83d\udcfc Sua mem\u00f3ria entrou no Arquivo</span>' +
-      '<span class="fim-arquivo-sub">Ver desafios anteriores</span>' +
-      '</button>'
-    );
+    var grid = emojiGridOficial(s.oficial || { pista: s.pista, venceu: win, perdeu: !win });
+    var ultimo = rodada.indice >= rodada.slots.length - 1;
+    var cta = ultimo
+      ? '<button type="button" class="btn btn-verde btn-fim-primario" onclick="Jogo.verResumo()">Ver resumo da rodada</button>'
+      : '<button type="button" class="btn btn-verde btn-fim-primario" onclick="Jogo.proximoDesafio()">Próxima memória ➜</button>';
     fim.innerHTML =
-      '<div class="fim-titulo">' + (win ? "🎉 MEMÓRIA DESBLOQUEADA!" : "📺 NÃO FOI DESSA VEZ!") + '</div>' +
-      '<div class="resposta-final">' + e.emoji + ' ' + e.resp + '</div>' +
-      '<div class="grid-share" id="gridShare">' + grid + '</div>' +
-      '<div class="feedback ' + (win ? "certa" : "errada") + '">' +
-      (win ? "VOCÊ LEMBRA! +" + pontosDaPista(partida.pista) + " PONTOS" : "A resposta era acima. Amanhã tem outro!") +
+      '<div class="fim-titulo">' + (win ? 'MEMÓRIA DESBLOQUEADA' : 'FIM DE FITA') + '</div>' +
+      '<div class="resposta-final">' + (e.emoji || '') + ' ' + e.resp + '</div>' +
+      '<div class="grid-share" aria-hidden="true">' + grid + '</div>' +
+      '<div class="feedback ' + (win ? 'certa' : 'errada') + '">' +
+      (win ? 'Você lembra! +' + pontosDaPista(s.pista) + ' pts nesta memória' : 'A resposta era essa. Segue a rodada.') +
       '</div>' +
-      '<div class="curiosidade curiosidade-destaque" id="curiosidadeBox"><div class="tag">💭 VOCÊ LEMBRA DISSO?</div><p>' + (e.curiosidade || "") + '</p></div>' +
-      '<div class="fim-acoes">' +
-      '<button class="btn btn-whats btn-fim-primario" onclick="Jogo.shareWhats()">📲 COMPARTILHAR</button>' +
-      '<div class="fim-acoes-secundarias">' +
-      '<button class="btn btn-telegram btn-fim-secundario" onclick="Jogo.shareTelegram()">✈️ Telegram</button>' +
-      '<button class="btn btn-azul btn-fim-secundario" onclick="Jogo.copiar()">📋 Copiar</button>' +
-      '</div>' +
-      arquivoCta +
+      '<div class="curiosidade curiosidade-destaque"><div class="tag">VOCÊ LEMBRA DISSO?</div><p>' + (e.curiosidade || '') + '</p></div>' +
+      '<div class="fim-acoes">' + cta +
+      '<button type="button" class="btn btn-pular" onclick="Jogo.refazerDesafio()">Refazer esta memória</button>' +
       '</div>';
-
-    if (!modoArquivo && win) el("voltarAmanha").classList.remove("hidden");
-    else el("voltarAmanha").classList.add("hidden");
-    window.scrollTo(0, 0);
+    renderProgresso();
+    renderEstatisticas();
   }
 
-  /* ---------- compartilhar ---------- */
+  function mostrarJaJogou() {
+    var s = slotAtual();
+    var box = el('areaRefazer');
+    var msg = el('respMsg');
+    if (msg) { msg.textContent = ''; msg.className = 'feedback'; }
+    mostrarPainel('areaRefazer');
+    if (el('listaPistas')) el('listaPistas').classList.add('hidden');
+    if (!box) return;
+    var win = !!s.venceu;
+    box.innerHTML =
+      '<div class="fim-titulo">VOCÊ JÁ JOGOU ESTA</div>' +
+      '<p class="ja-jogou-txt">' + (win ? 'Já acertou esta memória hoje.' : 'Esta memória já foi encerrada.') +
+      ' Reentrar não mostra o gabarito.</p>' +
+      '<div class="grid-share" aria-hidden="true">' + emojiGridOficial(s.oficial) + '</div>' +
+      '<div class="fim-acoes">' +
+      '<button type="button" class="btn btn-amarelo btn-fim-primario" onclick="Jogo.refazerDesafio()">Refazer</button>' +
+      (rodada.indice < rodada.slots.length - 1
+        ? '<button type="button" class="btn btn-verde" onclick="Jogo.proximoDesafio()">Continuar a rodada ➜</button>'
+        : '<button type="button" class="btn btn-verde" onclick="Jogo.verResumo()">Ver resumo</button>') +
+      '</div>';
+  }
+
+  function mostrarResumo(fromCta) {
+    revelarGabarito = false;
+    rodada.finalizada = rodadaTodaFinalizada();
+    salvarRodada();
+    var box = el('areaResumo');
+    var msg = el('respMsg');
+    if (msg) { msg.textContent = ''; msg.className = 'feedback'; }
+    if (el('listaPistas')) el('listaPistas').classList.add('hidden');
+    mostrarPainel('areaResumo');
+    if (!box) return;
+    var linhas = rodada.slots.map(function (s, i) {
+      var g = emojiGridOficial(s.oficial);
+      var tag = s.oficial && s.oficial.venceu ? 'ACERTO' : 'ENCERRADA';
+      return '<li class="resumo-item"><span class="resumo-n">FITA ' + (i + 1) + '</span>' +
+        '<span class="resumo-grid">' + g + '</span>' +
+        '<span class="resumo-tag">' + tag + ' · ' + ((s.oficial && s.oficial.pontos) || 0) + ' pts</span></li>';
+    }).join('');
+    var amanha = modoArquivo ? '' :
+      '<p class="voltar-amanha" id="voltarAmanhaResumo">Amanhã tem outra rodada de 3. Volte pra não perder a sequência.</p>';
+    box.innerHTML =
+      '<div class="fim-titulo">FIM DA RODADA #' + rodada.n + '</div>' +
+      '<p class="resumo-lead">3 memórias · ' + (rodada.pontosOficiais || 0) + ' pts · sequência ' + (stats.seq || 0) + '</p>' +
+      '<ul class="resumo-lista">' + linhas + '</ul>' +
+      amanha +
+      '<div class="fim-acoes">' +
+      '<button type="button" class="btn btn-whats btn-fim-primario" onclick="Jogo.shareWhats()">Compartilhar grade</button>' +
+      '<div class="fim-acoes-secundarias">' +
+      '<button type="button" class="btn btn-telegram btn-fim-secundario" onclick="Jogo.shareTelegram()">Telegram</button>' +
+      '<button type="button" class="btn btn-azul btn-fim-secundario" onclick="Jogo.copiar()">Copiar</button>' +
+      '</div>' +
+      '<button type="button" class="btn btn-pular" onclick="Jogo.refazerRodada()">Refazer a rodada</button>' +
+      (modoArquivo ? '' : '<button type="button" class="fim-arquivo" onclick="Jogo.verArquivo();var _a=document.getElementById(\'secArquivo\');if(_a)_a.scrollIntoView({behavior:\'smooth\',block:\'start\'});"><span class="fim-arquivo-titulo">Arquivo da locadora</span><span class="fim-arquivo-sub">Rodadas anteriores, sem gabarito</span></button>') +
+      '</div>';
+    renderProgresso();
+    renderEstatisticas();
+    if (fromCta && window.scrollTo) window.scrollTo(0, 0);
+  }
+
+  function proximoDesafio() {
+    revelarGabarito = false;
+    if (rodada.indice < rodada.slots.length - 1) rodada.indice++;
+    if (rodadaTodaFinalizada()) {
+      rodada.finalizada = true;
+      registrarRodadaCompleta();
+      salvarRodada();
+      mostrarResumo(true);
+      return;
+    }
+    salvarRodada();
+    desenhar();
+    if (window.scrollTo) window.scrollTo(0, 0);
+  }
+
+  function refazerDesafio() {
+    var s = slotAtual();
+    var id = s.id;
+    rodada.slots[rodada.indice] = slotLimpo(id);
+    rodada.slots[rodada.indice].cobrado = !!s.cobrado;
+    rodada.slots[rodada.indice].oficial = s.oficial;
+    rodada.slots[rodada.indice].pontos = s.oficial ? s.oficial.pontos : 0;
+    rodada.finalizada = false;
+    revelarGabarito = false;
+    salvarRodada();
+    desenhar();
+  }
+
+  function refazerRodada() {
+    rodada.slots = rodada.ids.map(function (id, i) {
+      var old = rodada.slots[i] || slotLimpo(id);
+      var n = slotLimpo(id);
+      n.cobrado = !!old.cobrado;
+      n.oficial = old.oficial;
+      n.pontos = old.oficial ? old.oficial.pontos : 0;
+      return n;
+    });
+    rodada.indice = 0;
+    rodada.finalizada = false;
+    revelarGabarito = false;
+    salvarRodada();
+    desenhar();
+  }
+
+  function verResumo() {
+    if (rodadaTodaFinalizada()) {
+      rodada.finalizada = true;
+      registrarRodadaCompleta();
+    }
+    mostrarResumo(true);
+  }
+
   function abrirShare(texto, url) {
     if (navigator.share) {
-      return navigator.share({ title: "Nost\u00e1lgica 90", text: texto, url: url }).catch(function (err) {
-        if (err && err.name === "AbortError") return;
-        window.open("https://wa.me/?text=" + encodeURIComponent(texto + "\n👉 " + url), "_blank");
+      return navigator.share({ title: 'Nostálgica 90', text: texto, url: url }).catch(function (err) {
+        if (err && err.name === 'AbortError') return;
+        window.open('https://wa.me/?text=' + encodeURIComponent(texto + '\n👉 ' + url), '_blank');
       });
     }
-    window.open("https://wa.me/?text=" + encodeURIComponent(texto + "\n👉 " + url), "_blank");
+    window.open('https://wa.me/?text=' + encodeURIComponent(texto + '\n👉 ' + url), '_blank');
   }
-  function shareWhats() {
-    var win = !!(partida && partida.venceu);
-    var url = urlCompartilhar();
-    abrirShare(corpoCompartilhamento(win), url);
-  }
+  function shareWhats() { abrirShare(corpoCompartilhamento(), URL_PUBLICA); }
   function shareTelegram() {
-    var win = !!(partida && partida.venceu);
-    var url = urlCompartilhar();
-    window.open("https://t.me/share/url?url=" + encodeURIComponent(url) + "&text=" + encodeURIComponent(corpoCompartilhamento(win)), "_blank");
+    window.open('https://t.me/share/url?url=' + encodeURIComponent(URL_PUBLICA) + '&text=' + encodeURIComponent(corpoCompartilhamento()), '_blank');
   }
   function copiar() {
-    var win = !!(partida && partida.venceu);
-    var texto = textoCompartilhamento(win);
-    function ok() { toast("Resultado copiado! Cola no WhatsApp 😉"); }
+    var texto = textoCompartilhamento();
+    function ok() { toast('Grade copiada! Cola no WhatsApp.'); }
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(texto).then(ok).catch(function () { copiarFallback(texto); });
     } else copiarFallback(texto);
   }
   function copiarFallback(texto) {
-    var ta = document.createElement("textarea");
-    ta.value = texto; ta.style.position = "fixed"; ta.style.left = "-9999px";
+    var ta = document.createElement('textarea');
+    ta.value = texto; ta.style.position = 'fixed'; ta.style.left = '-9999px';
     document.body.appendChild(ta); ta.select();
-    try { document.execCommand("copy"); toast("Resultado copiado! 😉"); } catch (e) { toast("N\u00e3o consegui copiar. Use o WhatsApp!"); }
+    try { document.execCommand('copy'); toast('Grade copiada.'); } catch (e) { toast('Não consegui copiar. Use o WhatsApp.'); }
     document.body.removeChild(ta);
   }
 
-  /* ---------- arquivo / galeria ---------- */
+  /* ---------- arquivo ---------- */
   function verArquivo() {
-    abrirSecao("secArquivo", true);
-    mostrarGaleria("TODOS");
+    abrirSecao('secArquivo', true);
+    mostrarGaleria('TODOS');
   }
 
   function mostrarGaleria(filtro) {
-    var box = el("galeria");
+    var box = el('galeria');
     if (!box) return;
-    box.innerHTML = "";
-    // Arquivo permanente: #1..hoje, sem janela de 7 dias.
-    // Teto em Dados.total() evita repetir #1/#2 quando o calendario passar de 56.
-    var min = REF_NO;
-    var total = (window.Dados && window.Dados.total) ? window.Dados.total() : 56;
-    var maxN = Math.min(desafioHoje, total);
+    box.innerHTML = '';
+    var min = 1;
+    var maxN = desafioHoje;
     var idx = 0;
-    for (var n = min; n <= maxN; n++) {
-      var e = window.Dados.item(n);
-      if (filtro !== "TODOS" && e.cat !== filtro) continue;
-      var r = localStorage.getItem(chave("partida_d" + n));
-      var rj = r ? JSON.parse(r) : null;
-      var encerrado = !!(rj && (rj.venceu || rj.perdeu));
-      var res = "";
-      var cls = "";
-      var info = catInfo(e.cat);
-      if (rj) {
-        if (rj.venceu) { res = "\u2b50 " + rj.pista + "/6"; cls = "certa"; }
-        else if (rj.perdeu) { res = "\u274c"; cls = "nao"; }
+    for (var n = maxN; n >= min; n--) {
+      var iso = isoDeDiaN(n);
+      var sel = selecaoPara(iso);
+      var lista = window.Dados.lista();
+      var cats = sel.indices.map(function (ix) { return (lista[ix] || {}).cat; });
+      if (filtro !== 'TODOS' && cats.indexOf(filtro) === -1) continue;
+      var saved = getRodada(n);
+      var ticks = '';
+      for (var k = 0; k < ROUND_SIZE; k++) {
+        var st = '·';
+        var cls = 'tick';
+        if (saved && saved.slots && saved.slots[k] && saved.slots[k].oficial) {
+          if (saved.slots[k].oficial.venceu) { st = '✓'; cls += ' ok'; }
+          else { st = '×'; cls += ' no'; }
+        }
+        ticks += '<span class="' + cls + '">' + st + '</span>';
       }
-      var visual;
-      if (encerrado && window.Arte && window.Arte.gerar) {
-        visual = '<div class="gal-thumb" aria-hidden="true">' + window.Arte.gerar(e, info) + '</div>';
-      } else {
-        visual = '<div class="gal-capa" aria-hidden="true">' + (info.emoji || e.emoji || "\ud83d\udcfa") + '</div>';
-      }
+      var pts = saved && saved.pontosOficiais ? saved.pontosOficiais + ' pts' : '3 fitas';
       box.innerHTML +=
-        '<div class="gal-card ' + info.classe + (encerrado ? " liberado" : " fechado") + '" style="animation-delay:' + (idx * 40) + 'ms" onclick="Jogo.abrirArquivo(' + n + ')">' +
+        '<button type="button" class="gal-card vhs-card" style="animation-delay:' + (idx * 30) + 'ms" onclick="Jogo.abrirArquivo(' + n + ')">' +
         '<div class="num">#' + n + '</div>' +
-        visual +
-        '<div class="cat">' + (e.cat || "") + '</div>' +
-        '<div class="res ' + cls + '">' + res + '</div>' +
-        '</div>';
+        '<div class="vhs-lombo" aria-hidden="true"></div>' +
+        '<div class="cat">RODADA</div>' +
+        '<div class="gal-ticks">' + ticks + '</div>' +
+        '<div class="res">' + pts + '</div>' +
+        '</button>';
       idx++;
     }
-    // filtros
-    var fb = el("filtros");
+    var fb = el('filtros');
     if (fb) {
-      fb.innerHTML = '<button class="filtro' + (filtro === "TODOS" ? " ativo" : "") + '" onclick="Jogo.mostrarGaleria(\'TODOS\')">TODOS</button>';
+      fb.innerHTML = '<button type="button" class="filtro' + (filtro === 'TODOS' ? ' ativo' : '') + '" onclick="Jogo.mostrarGaleria(\'TODOS\')">TODAS</button>';
       window.Dados.CATEGORIAS.forEach(function (c) {
-        var cl = "filtro" + (filtro === c ? " ativo" : "") + " " + catInfo(c).classe;
-        fb.innerHTML += '<button class="' + cl + '" onclick="Jogo.mostrarGaleria(\'' + c + '\')">' + (window.Dados.CAT_EMOJI[c] || "") + ' ' + c + '</button>';
+        var cl = 'filtro' + (filtro === c ? ' ativo' : '') + ' ' + catInfo(c).classe;
+        fb.innerHTML += '<button type="button" class="' + cl + '" onclick="Jogo.mostrarGaleria(\'' + c + '\')">' + (window.Dados.CAT_EMOJI[c] || '') + ' ' + c + '</button>';
       });
     }
   }
 
   function abrirArquivo(n) {
-    desafioAtual = n;
-    modoArquivo = true;
-    partida = getPartida();
-    if (!partida) partida = null;
-    window.scrollTo(0, 0);
-    document.getElementById("secArquivo").classList.add("hidden");
-    document.getElementById("secJogo").classList.remove("hidden");
-    el("arquivoNav").classList.remove("hidden");
+    rodadaN = n;
+    isoAtual = isoDeDiaN(n);
+    modoArquivo = n !== desafioHoje;
+    revelarGabarito = false;
+    rodada = garantirRodada(n, isoAtual);
+    if (window.scrollTo) window.scrollTo(0, 0);
+    var arq = el('secArquivo');
+    if (arq) arq.classList.add('secao-aberta');
     desenhar();
   }
 
   function voltarHoje() {
-    desafioAtual = desafioHoje;
+    rodadaN = desafioHoje;
+    isoAtual = isoHoje;
     modoArquivo = false;
-    partida = getPartida();
-    el("arquivoNav").classList.add("hidden");
+    revelarGabarito = false;
+    rodada = garantirRodada(rodadaN, isoAtual);
+    if (el('arquivoNav')) el('arquivoNav').classList.add('hidden');
     desenhar();
   }
 
-  /* ---------- seções colapsáveis ---------- */
   function abrirSecao(id, abrir) {
     var s = el(id);
     if (!s) return;
-    if (abrir === undefined) abrir = s.classList.contains("secao-aberta") ? false : true;
-    if (abrir) s.classList.add("secao-aberta");
-    else s.classList.remove("secao-aberta");
+    if (abrir === undefined) abrir = s.classList.contains('secao-aberta') ? false : true;
+    if (abrir) s.classList.add('secao-aberta');
+    else s.classList.remove('secao-aberta');
   }
 
   /* ---------- museu ---------- */
   function mostrarMuseu(cat) {
-    var box = el("museuItens");
+    var box = el('museuItens');
     var dados = window.Dados.listaMuseu();
     if (!box) return;
-    box.innerHTML = "";
+    box.innerHTML = '';
     var idx = 0;
     dados.forEach(function (g) {
       if (cat && g.cat !== cat) return;
-      var emojiItem = g.emoji || "📼";
+      var emojiItem = g.emoji || '📼';
       g.itens.forEach(function (it) {
         box.innerHTML +=
           '<div class="museu-item ' + catInfo(g.cat).classe + '" style="animation-delay:' + (idx * 45) + 'ms" onclick="Jogo.abrirMuseuItem(\'' + g.cat + '\',\'' + it.nome.replace(/'/g, "\\'") + '\')">' +
@@ -519,7 +796,6 @@
     });
   }
 
-    /* áudio temático por categoria do museu */
   function somMuseu(cat) {
     var sons = {
       'MÚSICA': 'ui-arcade', 'GAMES': 'ui-arcade', 'TECNOLOGIA': 'ui-boot',
@@ -532,104 +808,105 @@
   function abrirMuseuItem(cat, nome) {
     var dados = window.Dados.listaMuseu();
     var alvo = null;
-    var emojiCat = "📼";
+    var emojiCat = '📼';
     dados.forEach(function (g) {
       if (g.cat === cat) emojiCat = g.emoji || emojiCat;
       g.itens.forEach(function (it) { if (g.cat === cat && it.nome === nome) alvo = it; });
     });
     if (!alvo) return;
-    var m = el("modal");
-    // arte semântica (SVG por item) se disponível; senão emoji
+    var m = el('modal');
     var arte = (window.MuseuArtes && window.MuseuArtes.artePorItem) ? window.MuseuArtes.artePorItem(alvo) : null;
     var arteHtml = arte ? arte : ('<div class="arte">' + (alvo.emoji || emojiCat) + '</div>');
-    el("modalCorpo").innerHTML =
+    el('modalCorpo').innerHTML =
       arteHtml +
       '<h3>' + alvo.nome + '</h3>' +
-      '<div class="ano">' + (alvo.ano || "") + ' · ' + cat + '</div>' +
-      '<p>' + (alvo.desc || "") + '</p>' +
-      '<div class="curio">💭 ' + (alvo.curiosidade || "") + '</div>' +
+      '<div class="ano">' + (alvo.ano || '') + ' · ' + cat + '</div>' +
+      '<p>' + (alvo.desc || '') + '</p>' +
+      '<div class="curio"> ' + (alvo.curiosidade || '') + '</div>' +
       '<div class="lembra">VOCÊ LEMBRA DISSO?</div>';
-    m.classList.remove("hidden");
-    // associação semântica de áudio: MÚSICA toca trilha temática; demais tocam som da categoria
+    m.classList.remove('hidden');
     if (cat === 'MÚSICA') {
-      window.Som.ativar();
+      if (window.Som) window.Som.ativar();
       if (window.NostalMusica) window.NostalMusica.definirtema('novela');
       if (window.NostalMusica) window.NostalMusica.ligar();
-      window.Som.prefs.musica = true;
-    } else {
+      if (window.Som) window.Som.prefs.musica = true;
+    } else if (window.Som) {
       window.Som.tocar(somMuseu(cat));
     }
   }
   function fecharModal() {
-    el("modal").classList.add("hidden");
-    // ao fechar, restaura trilha do jogo se estava tocando música
-    if (window.NostalMusica && window.Som.prefs.musica) window.NostalMusica.definirtema('desafio');
+    el('modal').classList.add('hidden');
+    if (window.NostalMusica && window.Som && window.Som.prefs.musica) window.NostalMusica.definirtema('desafio');
   }
 
-  /* abre o detalhe de uma memória (piloto 2I-E) no modal */
   function abrirMemoria(m) {
     if (!m) return;
-    var modal = el("modal");
-    var corpo = el("modalCorpo");
+    var modal = el('modal');
+    var corpo = el('modalCorpo');
     if (corpo && window.Cenas && window.Cenas.detalheMemoria) {
       corpo.innerHTML = window.Cenas.detalheMemoria(m);
-      modal.classList.remove("hidden");
-      // som contextual da memória
+      modal.classList.remove('hidden');
       if (window.Cenas.tocarSom) window.Cenas.tocarSom(m);
     }
   }
 
-  /* ---------- hero / loading ---------- */
   function iniciarJogo() {
-    window.Som.ativar();
-    if (window.NostalMusica && window.Som.prefs.musica) NostalMusica.ligar();
-    el("hero").classList.add("hidden");
-    el("app").classList.remove("hidden");
+    if (window.Som) window.Som.ativar();
+    if (window.NostalMusica && window.Som && window.Som.prefs.musica) window.NostalMusica.ligar();
+    if (el('hero')) el('hero').classList.add('hidden');
+    if (el('app')) el('app').classList.remove('hidden');
+    isoHoje = hojeIso();
+    desafioHoje = numeroDoDia(isoHoje);
+    if (!modoArquivo) {
+      rodadaN = desafioHoje;
+      isoAtual = isoHoje;
+    }
+    garantirRodada(rodadaN, isoAtual);
     desenhar();
   }
 
   function comecarComSom() {
     iniciarJogo();
-    // liga a música se ainda não estava
-    if (window.NostalMusica) { window.Som.prefs.musica = true; NostalMusica.ligar(); window.Som.tocar('ui-arcade'); }
+    if (window.NostalMusica && window.Som) {
+      window.Som.prefs.musica = true;
+      window.NostalMusica.ligar();
+      window.Som.tocar('ui-arcade');
+    }
   }
 
-  /* ---------- toast ---------- */
   function toast(msg) {
-    var t = el("toast");
-    t.textContent = msg; t.classList.add("show");
-    clearTimeout(t._t); t._t = setTimeout(function () { t.classList.remove("show"); }, 2600);
+    var t = el('toast');
+    if (!t) return;
+    t.textContent = msg; t.classList.add('show');
+    clearTimeout(t._t); t._t = setTimeout(function () { t.classList.remove('show'); }, 2600);
   }
 
-  /* ---------- easter egg: Konami ---------- */
   var konami = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
   var kPos = 0;
-  document.addEventListener("keydown", function (ev) {
+  document.addEventListener('keydown', function (ev) {
     if (ev.keyCode === konami[kPos]) { kPos++; if (kPos === konami.length) { kPos = 0; modoCanal90(); } }
     else kPos = 0;
   });
   var crtAtivo = true;
   function modoCanal90() {
     crtAtivo = !crtAtivo;
-    document.body.classList.toggle("sem-crt", !crtAtivo);
-    el("btnCrt").setAttribute("aria-pressed", String(crtAtivo));
-    el("btnCrt").innerHTML = crtAtivo ? "📺" : "🌙";
-    toast(crtAtivo ? "📺 90s MODE ON" : "🌙 90s MODE OFF");
-    window.Som.tocar('ui-channel');
+    document.body.classList.toggle('sem-crt', !crtAtivo);
+    if (el('btnCrt')) {
+      el('btnCrt').setAttribute('aria-pressed', String(crtAtivo));
+      el('btnCrt').innerHTML = crtAtivo ? '📺' : '🌙';
+    }
+    toast(crtAtivo ? '90s MODE ON' : '90s MODE OFF');
+    if (window.Som) window.Som.tocar('ui-channel');
   }
 
-  /* ---------- init ---------- */
   function init() {
-    // toggle CRT
-    el("btnCrt").addEventListener("click", modoCanal90);
-    // enter
-    el("campo").addEventListener("keydown", function (ev) {
-      if (ev.key === "Enter") { ev.preventDefault(); enviarResposta(); }
+    if (el('btnCrt')) el('btnCrt').addEventListener('click', modoCanal90);
+    if (el('campo')) el('campo').addEventListener('keydown', function (ev) {
+      if (ev.key === 'Enter') { ev.preventDefault(); enviarResposta(); }
     });
-    // logo easter egg (5 cliques)
-    var logo = el("topoLogo");
+    var logo = el('topoLogo');
     var cliques = 0, tLogo = null;
-    logo.addEventListener("click", function () {
+    if (logo) logo.addEventListener('click', function () {
       cliques++;
       clearTimeout(tLogo);
       tLogo = setTimeout(function () { cliques = 0; }, 1500);
@@ -637,23 +914,24 @@
     });
     renderSemana();
     mostrarMuseu();
-    // hero actions
-    el("btnComecar").addEventListener("click", iniciarJogo);
-    el("btnSom").addEventListener("click", comecarComSom);
-    // módulos de áudio na UI
-    el("btnMusicaToggle").addEventListener("click", function () {
+    if (el('btnComecar')) el('btnComecar').addEventListener('click', iniciarJogo);
+    if (el('btnSom')) el('btnSom').addEventListener('click', comecarComSom);
+    if (el('btnMusicaToggle')) el('btnMusicaToggle').addEventListener('click', function () {
+      if (!window.Som) return;
       var on = window.Som.alternarMusica();
-      this.setAttribute("aria-pressed", String(on));
-      this.innerHTML = on ? "🎵" : "🎵";
-      this.classList.toggle("ativo", on);
-      toast(on ? "🎵 Música ligada" : "🎵 Música desligada");
+      this.setAttribute('aria-pressed', String(on));
+      this.classList.toggle('ativo', on);
+      toast(on ? 'Música ligada' : 'Música desligada');
     });
-    el("btnSfxToggle").addEventListener("click", function () {
+    if (el('btnSfxToggle')) el('btnSfxToggle').addEventListener('click', function () {
+      if (!window.Som) return;
       var on = window.Som.alternarSfx();
-      this.setAttribute("aria-pressed", String(on));
-      this.classList.toggle("ativo", on);
-      toast(on ? "🔔 Efeitos ligados" : "🔔 Efeitos desligados");
+      this.setAttribute('aria-pressed', String(on));
+      this.classList.toggle('ativo', on);
+      toast(on ? 'Efeitos ligados' : 'Efeitos desligados');
     });
+    var heroMeta = el('heroMetaDia');
+    if (heroMeta) heroMeta.textContent = 'Rodada #' + desafioHoje;
   }
 
   window.Jogo = {
@@ -661,6 +939,10 @@
     comecarComSom: comecarComSom,
     enviarResposta: enviarResposta,
     pularPista: pularPista,
+    proximoDesafio: proximoDesafio,
+    refazerDesafio: refazerDesafio,
+    refazerRodada: refazerRodada,
+    verResumo: verResumo,
     shareWhats: shareWhats,
     shareTelegram: shareTelegram,
     copiar: copiar,

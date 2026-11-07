@@ -1,57 +1,72 @@
-# 🕹️ Nostálgica — O desafio diário dos anos 90
+# Nostálgica 90 — rodada diária dos anos 90
 
-Quiz de retenção diária estilo Wordle: 1 desafio novo por dia, streak, e grade
-de resultado compartilhável. Feito pra trazer o público de volta todo dia.
+Quiz de retenção diária: **3 memórias por dia**, 6 pistas progressivas, pontuação
+da rodada, sequência de dias e grade emoji para compartilhar — sem revelar
+respostas. Identidade visual própria (TV de tubo, VHS, fliperama). Sem logos,
+personagens, vinhetas ou músicas de marca.
 
-## 🚀 Publicação (GitHub Pages)
+## Publicação (GitHub Pages)
 
-O site já está em `index.html`. O GitHub Pages serve a raiz do repositório.
+O site é estático (`index.html` na raiz). GitHub Pages: **Settings → Pages →
+Deploy from a branch** → `main` → `/ (root)`.
 
-1. Crie o repositório (ou use o já criado) com nome `nostalgica90`.
-2. Envie os arquivos para a branch `main` ou `master`.
-3. No GitHub: **Settings → Pages → Source: Deploy from a branch** → branch `main` (ou `master`) → pasta `/ (root)`.
-4. Pronto: seu jogo estará em `https://<usuario>.github.io/nostalgica90/`.
+URL: `https://asilva-01.github.io/nostalgica90/`
 
-## 🤖 Postagem automática diária no Telegram
+## Regra da rodada (fonte única)
 
-O workflow `.github/workflows/telegram-diario.yml` roda todo dia às 09:00 (Brasília)
-e posta automaticamente o desafio do dia num canal do Telegram — sem ação sua.
+O jogo (`selecao-rodada.js`) e o bot (`/.github/scripts/selecao_rodada.py`)
+implementam **a mesma regra**, comparada em `node tools/test_selecao.js`.
 
-### 1. Criar o bot (2 minutos)
-- No Telegram, procure por **@BotFather**.
-- Envie `/newbot`, escolha um nome e um username (terminando em `bot`).
-- O BotFather te devolve um **TOKEN** (ex: `123456:ABC...`). Guarde-o.
+1. **Dia 1** = `2026-09-06` (data civil, sem fuso).  
+   `n = 1 + (data - 2026-09-06)` em dias.  
+   Ex.: `2026-11-01` = dia 57; `2026-11-07` = dia 63.
+2. **Pool** = ordem de `challenges.json` (hoje 56 itens).
+3. **Rodada** = 3 desafios.  
+   Ciclo = `floor(pool / 3)` dias (**18** quando pool=56).  
+   Em cada ciclo, os índices são embaralhados com LCG 32-bit (`a=1664525`,
+   `c=1013904223`) + Fisher–Yates, semente `imul32(ciclo+1, 0x9E3779B9) XOR
+   imul32(pool, 0x85EBCA77)`.  
+   O dia `pos` do ciclo recebe a fatia `[pos*3, pos*3+3)` dessa permutação.
+4. **Sem repetir no ciclo** enquanto houver desafios: 18×3 = 54 únicos; os
+   `pool % 3` que sobram entram no ciclo seguinte (outro shuffle).
+5. Todo mundo vê a **mesma** rodada no mesmo dia civil.
+6. O bot posta **só o primeiro** da rodada (pista 1, sem gabarito) e convida
+   a jogar as 3 no site.
 
-### 2. Criar o canal
-- No Telegram: **New Channel**, dê um nome (ex: "Nostálgica — Anos 90").
-- Adicione o **bot** como administrador do canal (com permissão de postar mensagens).
+O ciclo antigo de 1 desafio (`(n-1) % 56`) deixou de valer neste PR. A
+numeração do dia (`n`) continua a mesma.
 
-### 3. Descobrir o ID do canal
-- Mande qualquer mensagem dentro do canal.
-- Acesse `https://api.telegram.org/bot<SEU_TOKEN>/getUpdates`.
-- Procure por `"chat":{"id":` — o valor (ex: `-1001234567890`) é o `TELEGRAM_CHAT_ID`.
+## Bot do Telegram
 
-### 4. Configurar os segredos no GitHub
-No repositório: **Settings → Secrets and variables → Actions → New repository secret**:
+O workflow `.github/workflows/telegram-diario.yml` **não mudou** (cron
+`0 12 * * *` = 09:00 Brasília; mesmos secrets). Só o script passou a usar a
+regra da rodada.
+
+Secrets (não commitar, não renomear):
 
 | Nome | Valor |
 |---|---|
-| `TELEGRAM_BOT_TOKEN` | o TOKEN do bot (do passo 1) |
-| `TELEGRAM_CHAT_ID` | o id do canal (do passo 3, com o `-100...` completo) |
-| `SITE_URL` | a URL do jogo (ex: `https://asilva-01.github.io/nostalgica90/`) |
+| `TELEGRAM_BOT_TOKEN` | token do @BotFather |
+| `TELEGRAM_CHAT_ID` | id do canal |
+| `SITE_URL` | URL pública do jogo |
 
-### 5. Testar
-Na aba **Actions** do repositório, abra o workflow *"Postar desafio diário no Telegram"* e
-clique em **Run workflow** para rodar manualmente uma vez e confirmar que chega no canal.
+## Estado local (anti-spoiler)
 
-Depois disso, a postagem diária é 100% automática.
+Chave `nostalgia90_rodada_d{N}` guarda só metadados: ids, pista, venceu/perdeu,
+pontos. **Nunca** resposta, alias, pistas ou tentativas.
 
-## ➕ Adicionar mais desafios
+- Reentrar no dia **não revela gabarito**.
+- Se a memória já foi encerrada: “já acertou / já jogou” + **Refazer** ou **Continuar**.
+- Pontos e sequência oficiais congelam na **primeira** conclusão de cada memória / da rodada.
+- A sequência conta **dias** em que a rodada de hoje foi fechada (pelo menos um acerto).
 
-**FONTE ÚNICA:** edite `challenges.json` — o jogo (`index.html` via `data.js`) **e**
-o bot (`bot_diario.py`) leem o mesmo arquivo. O desafio `N` usa `POOL[(N-1) % len(POOL)]`.
+A grade compartilhada tem 3 linhas de 6 emojis (🟨 pista usada, 🟩 acerto, 🟥
+não acertou). Sem nome, categoria ou resposta.
 
-Cada desafio tem os campos:
+## Formato de `challenges.json`
+
+Campos atuais continuam válidos. Opcionais para os próximos PRs (não quebram os 56):
+
 ```json
 {
   "id": 1,
@@ -62,50 +77,42 @@ Cada desafio tem os campos:
   "cat": "BRINQUEDOS",
   "emoji": "🥚",
   "ano": "1996",
-  "curiosidade": "Fato divertido para a seção 'Você lembra?'.",
-  "tags": ["brinquedos", "anos-90", "brasil", "nostalgia"],
+  "curiosidade": "…",
+  "tags": ["brinquedos", "anos-90"],
   "image": null,
   "dificuldade": null,
-  "pistas": ["Pista 1 (vaga)", "Pista 2", "...", "Pista 6 (óbvia)"]
+  "som": null,
+  "credito_imagem": {
+    "texto": "Ilustração original Nostálgica 90",
+    "licenca_url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "pistas": ["…", "…", "…", "…", "…", "…"]
 }
 ```
 
-Para regenerar a normalização (aliases a partir do HTML antigo) rode:
+- `alias`, `dificuldade` (`facil` \| `medio` \| `dificil` ou `null`), `som` e
+  `credito_imagem` são opcionais.
+- Se `image` existir, `credito_imagem.texto` e `credito_imagem.licenca_url`
+  (http/https) são obrigatórios.
+
+Validador:
+
 ```bash
-python tools/normalize_challenges.py
+node tools/validate_challenges.js
 ```
 
-Para rodar o teste de regressão:
+Testes:
+
 ```bash
+node tools/test_selecao.js
 node tools/test_core.js
 ```
 
-Para gerar novos assets (SFX WAV, ícones, OG image) rode:
-```bash
-python tools/generate_assets.py
-```
+## Museu / artes
 
-## 🏛️ Museu dos Anos 90
-Edite `museum.json` (categorias com itens) para ampliar o acervo.
+Edite `museum.json` para o acervo. Artes dos desafios: `artes.js` (procedural
+por categoria) ou `image` com crédito. Nada de material oficial de marcas.
 
-## 🎨 Sistema de Artes dos Desafios (artes.js)
+Fontes: Bungee, Outfit e Share Tech Mono (OFL), servidas em `assets/fonts/`.
 
-Cada desafio tem uma **arte procedural com identidade por categoria** gerada por `artes.js`
-(fundos/texturas próprios + elemento SVG central + faixa categoria·ano + selo). Nada é copiado
-de material protegido — composição original inspirada na época.
-
-Categorias e suas linguagens visuais:
-- **TV** → grade de programação (estética "liguei a TV")
-- **GAMES** → pixel/arcade ("eu jogava isso")
-- **CINEMA** → pôster de VHS/locadora ("eu aluguei esse filme")
-- **MÚSICA** → CD/cassete (preparado)
-- **BRINQUEDOS** → catálogo/embalagem ("eu queria ter esse")
-- **TECNOLOGIA** → monitor CRT ("eu usei isso")
-- **CULTURA** → revista/banca ("fazia parte da minha vida")
-
-O campo `image` no `challenges.json` é usado quando houver uma arte real (ex: `assets/images/challenges/001.webp`).
-Enquanto `image` for `null`, o motor usa a arte procedural.
-
----
-
-Feito com 💜 e saudade dos anos 90.
+Feito com saudade dos anos 90.
