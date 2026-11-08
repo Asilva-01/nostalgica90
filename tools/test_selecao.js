@@ -35,7 +35,7 @@ function addDays(iso, days) {
 const DATAS = [
   '2026-09-06', // dia 1
   '2026-09-07',
-  '2026-09-23', // último dia do 1º ciclo (18 dias: 6..23)
+  '2026-09-23', // ainda no 1º ciclo (52 dias quando pool=156)
   '2026-09-24', // ciclo 2
   '2026-11-01', // antigo wrap do desafio único
   '2026-11-07',
@@ -54,14 +54,15 @@ check('2026-09-07 = dia 2', Selecao.numeroDoDia('2026-09-07') === 2);
 check('2026-11-01 = dia 57', Selecao.numeroDoDia('2026-11-01') === 57, 'foi ' + Selecao.numeroDoDia('2026-11-01'));
 check('2026-11-07 = dia 63', Selecao.numeroDoDia('2026-11-07') === 63, 'foi ' + Selecao.numeroDoDia('2026-11-07'));
 check('diasPorCiclo(56)=18', Selecao.diasPorCiclo(56) === 18);
+check('diasPorCiclo(156)=52', Selecao.diasPorCiclo(156) === 52);
 
 const r1 = rodada('2026-09-06');
 check('rodada dia 1 tem 3 índices', r1.indices.length === 3);
 check('ids = indices+1', r1.ids.every(function (id, i) { return id === r1.indices[i] + 1; }));
 
-check('arte-propria.json tem 28 slugs', arteSlugs.length === 28, 'tem ' + arteSlugs.length);
+check('arte-propria.json tem slugs', arteSlugs.length >= 28, 'tem ' + arteSlugs.length);
 check('todo slug de arte existe no pool', arteSlugs.every(function (s) { return pool.some(function (c) { return c.slug === s; }); }));
-check('flagsDeSlugs marca 28 verdadeiros', TEM_ARTE.filter(Boolean).length === 28, 'n=' + TEM_ARTE.filter(Boolean).length);
+check('flagsDeSlugs marca os slugs de arte', TEM_ARTE.filter(Boolean).length === arteSlugs.length, 'n=' + TEM_ARTE.filter(Boolean).length);
 
 // Sem repetir dentro do ciclo
 const cicloLen = Selecao.diasPorCiclo(POOL);
@@ -80,11 +81,18 @@ check('ciclo 1 deixa (pool%3) de fora', vistos.size === POOL - (POOL % 3), 'úni
 
 const p0 = Selecao.permutacaoComCarry(POOL, 0);
 const p1 = Selecao.permutacaoComCarry(POOL, 1);
-const leftover0 = p0.slice(54);
+const usadosCiclo = cicloLen * 3;
+const leftover0 = p0.slice(usadosCiclo);
 const unused = [];
 for (let i = 0; i < POOL; i++) if (!vistos.has(i)) unused.push(i);
-check('leftovers do ciclo 1 = cauda da permutação', leftover0.length === 2 && leftover0.every(function (ix) { return unused.indexOf(ix) !== -1; }), JSON.stringify({ leftover0: leftover0, unused: unused }));
-check('ciclo 2 começa com os 2 que sobraram', p1[0] === leftover0[0] && p1[1] === leftover0[1], 'p1=' + p1.slice(0, 3).join(',') + ' leftover=' + leftover0.join(','));
+if (POOL % 3 === 0) {
+  check('pool múltiplo de 3: ciclo usa o pool inteiro', leftover0.length === 0 && unused.length === 0);
+  check('permutacaoComCarry resto 0 = permutacaoCiclo', JSON.stringify(p0) === JSON.stringify(Selecao.permutacaoCiclo(POOL, 0)));
+  check('ciclo 2 é shuffle diferente', JSON.stringify(p1) !== JSON.stringify(p0));
+} else {
+  check('leftovers do ciclo 1 = cauda da permutação', leftover0.length === (POOL % 3) && leftover0.every(function (ix) { return unused.indexOf(ix) !== -1; }), JSON.stringify({ leftover0: leftover0, unused: unused }));
+  check('ciclo 2 começa com os que sobraram', leftover0.every(function (ix, i) { return p1[i] === leftover0[i]; }), 'p1=' + p1.slice(0, 3).join(',') + ' leftover=' + leftover0.join(','));
+}
 
 const ciclo2 = new Set();
 for (let d = 0; d < cicloLen; d++) {
@@ -92,8 +100,10 @@ for (let d = 0; d < cicloLen; d++) {
     ciclo2.add(ix);
   });
 }
-check('ciclo 2 também tem 54 únicos', ciclo2.size === 54, 'únicos=' + ciclo2.size);
-check('os 2 que sobraram entram no ciclo 2', leftover0.every(function (ix) { return ciclo2.has(ix); }), 'faltou ' + leftover0.filter(function (ix) { return !ciclo2.has(ix); }).join(','));
+check('ciclo 2 também tem (ciclo*3) únicos', ciclo2.size === usadosCiclo, 'únicos=' + ciclo2.size);
+if (leftover0.length) {
+  check('os que sobraram entram no ciclo 2', leftover0.every(function (ix) { return ciclo2.has(ix); }), 'faltou ' + leftover0.filter(function (ix) { return !ciclo2.has(ix); }).join(','));
+}
 
 // Mesma data = mesma rodada
 const a = rodada('2026-11-07');

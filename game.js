@@ -33,7 +33,7 @@
 
   function poolSize() {
     var t = (window.Dados && window.Dados.total) ? window.Dados.total() : 0;
-    return t > 0 ? t : 56;
+    return t > 0 ? t : 156;
   }
   function numeroDoDia(iso) {
     return window.SelecaoRodada.numeroDoDia(iso);
@@ -300,6 +300,19 @@
     return { emoji: emoji, cor: cor, classe: classe };
   }
 
+  function escHtml(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function temFotoLivre(e) {
+    var c = e && e.credito_imagem;
+    return !!(e && e.image && c && c.autor && c.licenca && c.url_licenca && c.url_origem);
+  }
+
   function renderChallengeImage(e) {
     var box = el('challengeImg');
     if (!box) return;
@@ -311,11 +324,58 @@
         '<div class="tc-emoji">' + info.emoji + '</div>' +
         '<div class="art-scan"></div>';
     }
-    var credito = '';
-    if (e.image && e.credito_imagem && e.credito_imagem.texto) {
-      credito = '<p class="credito-img">' + e.credito_imagem.texto + '</p>';
+    box.innerHTML = html + '<div class="legenda">' + info.emoji + ' ' + (e.cat || '') + ' · ' + (e.ano || '') + '</div>';
+  }
+
+  function montarCartaoRevelacao(e, win) {
+    var selo = win ? 'REVELAÇÃO' : 'ERA ISSO';
+    var figura;
+    if (temFotoLivre(e)) {
+      var cred = e.credito_imagem;
+      var alt = escHtml(e.image_alt || ('Foto relacionada a ' + e.resp));
+      var fonte = '';
+      if (e.image_avif) {
+        fonte = '<source srcset="' + escHtml(e.image_avif) + '" type="image/avif">';
+      }
+      figura =
+        '<figure class="revelacao-figura">' +
+          '<picture>' + fonte +
+            '<img src="' + escHtml(e.image) + '" alt="' + alt + '" loading="lazy" decoding="async" width="960" height="640">' +
+          '</picture>' +
+          '<figcaption class="revelacao-credito">Foto: ' + escHtml(cred.autor) +
+            ' · <a href="' + escHtml(cred.url_licenca) + '" target="_blank" rel="noopener noreferrer">' + escHtml(cred.licenca) + '</a>' +
+            ' · <a href="' + escHtml(cred.url_origem) + '" target="_blank" rel="noopener noreferrer">origem</a>' +
+          '</figcaption>' +
+        '</figure>';
+    } else {
+      var info = catInfo(e.cat);
+      var arte = (window.Arte && window.Arte.gerar) ? window.Arte.gerar(e, info) : '';
+      figura =
+        '<div class="revelacao-arte" role="img" aria-label="Arte original de ' + escHtml(e.resp) + '">' +
+          arte +
+          '<p class="revelacao-credito">Arte original Nostálgica 90</p>' +
+        '</div>';
     }
-    box.innerHTML = html + '<div class="legenda">' + info.emoji + ' ' + (e.cat || '') + ' · ' + (e.ano || '') + '</div>' + credito;
+    var curio = e.curiosidade
+      ? '<div class="curiosidade curiosidade-destaque"><div class="tag">VOCÊ LEMBRA DISSO?</div><p>' + escHtml(e.curiosidade) + '</p></div>'
+      : '';
+    var saiba = e.link_saiba_mais
+      ? '<a class="revelacao-saiba" href="' + escHtml(e.link_saiba_mais) + '" target="_blank" rel="noopener noreferrer">Saiba mais<span class="sr-only"> (abre em nova aba)</span></a>'
+      : '';
+    var aviso = linkAvisoErro(e);
+    return '<article class="cartao-revelacao' + (win ? ' acerto' : ' esgotou') + '" aria-live="polite">' +
+      '<p class="revelacao-selo">' + selo + '</p>' +
+      '<h2 class="revelacao-titulo">' + escHtml(e.emoji || '') + ' ' + escHtml(e.resp) + '</h2>' +
+      figura + curio + saiba + aviso +
+      '</article>';
+  }
+
+  function linkAvisoErro(e) {
+    var title = 'Erro no desafio #' + e.id;
+    var body = 'Desafio: #' + e.id + '\nResposta: ' + (e.resp || '') + '\n\nO que está errado:\n';
+    var href = 'https://github.com/Asilva-01/nostalgica90/issues/new?title=' +
+      encodeURIComponent(title) + '&body=' + encodeURIComponent(body);
+    return '<a class="revelacao-aviso" href="' + escHtml(href) + '" target="_blank" rel="noopener noreferrer">Achou um erro? Avise<span class="sr-only"> (abre uma issue no GitHub, depois da revelação)</span></a>';
   }
 
   function renderPistas() {
@@ -379,7 +439,7 @@
     }
     var secJogo = el('secJogo');
     if (secJogo) {
-      var base = ['cat-TV', 'cat-GAMES', 'cat-CINEMA', 'cat-MÚSICA', 'cat-BRINQUEDOS', 'cat-TECNOLOGIA', 'cat-CULTURA', 'cat-c', 'venceu', 'errou'];
+      var base = ['cat-TV', 'cat-GAMES', 'cat-CINEMA', 'cat-MÚSICA', 'cat-BRINQUEDOS', 'cat-TECNOLOGIA', 'cat-CULTURA', 'cat-ESPORTE', 'cat-c', 'venceu', 'errou'];
       for (var i = 0; i < base.length; i++) secJogo.classList.remove(base[i]);
       secJogo.classList.add(catInfo(e.cat).classe);
       secJogo.classList.remove('desafio-render');
@@ -399,6 +459,7 @@
       else el('arquivoNav').classList.add('hidden');
     }
     if (el('voltarAmanha')) el('voltarAmanha').classList.add('hidden');
+    if (secJogo) secJogo.classList.remove('modo-revelacao');
 
     if (rodada.finalizada && !revelarGabarito) {
       mostrarResumo(false);
@@ -537,35 +598,32 @@
     if (msg) { msg.textContent = ''; msg.className = 'feedback'; }
     mostrarPainel('areaFim');
     if (!fim) return;
-    renderPistas();
     var win = !!s.venceu;
-    for (var i = 1; i <= 6; i++) {
-      var l = el('pista' + i);
-      if (!l) continue;
-      l.classList.remove('ativa');
-      l.classList.add('revelada');
-      if (win && i === s.pista) l.classList.add('vencida');
-      if (!win) l.classList.add('perdida');
-    }
-    revelarAte(6);
+    var sj = el('secJogo');
+    if (sj) sj.classList.add('modo-revelacao');
+    if (el('listaPistas')) el('listaPistas').classList.add('hidden');
     var grid = emojiGridOficial(s.oficial || { pista: s.pista, venceu: win, perdeu: !win });
     var ultimo = rodada.indice >= rodada.slots.length - 1;
     var cta = ultimo
       ? '<button type="button" class="btn btn-verde btn-fim-primario" onclick="Jogo.verResumo()">Ver resumo da rodada</button>'
       : '<button type="button" class="btn btn-verde btn-fim-primario" onclick="Jogo.proximoDesafio()">Próxima memória ➜</button>';
     fim.innerHTML =
-      '<div class="fim-titulo">' + (win ? 'MEMÓRIA DESBLOQUEADA' : 'FIM DE FITA') + '</div>' +
-      '<div class="resposta-final">' + (e.emoji || '') + ' ' + e.resp + '</div>' +
+      montarCartaoRevelacao(e, win) +
       '<div class="grid-share" aria-hidden="true">' + grid + '</div>' +
       '<div class="feedback ' + (win ? 'certa' : 'errada') + '">' +
       (win ? 'Você lembra! +' + pontosDaPista(s.pista) + ' pts nesta memória' : 'A resposta era essa. Segue a rodada.') +
       '</div>' +
-      '<div class="curiosidade curiosidade-destaque"><div class="tag">VOCÊ LEMBRA DISSO?</div><p>' + (e.curiosidade || '') + '</p></div>' +
       '<div class="fim-acoes">' + cta +
       '<button type="button" class="btn btn-pular" onclick="Jogo.refazerDesafio()">Refazer esta memória</button>' +
       '</div>';
     renderProgresso();
     renderEstatisticas();
+    var cartao = fim.querySelector('.cartao-revelacao');
+    if (cartao && cartao.scrollIntoView) {
+      try { cartao.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); } catch (err) {}
+    }
+    var prim = fim.querySelector('.btn-fim-primario');
+    if (prim && prim.focus) prim.focus();
   }
 
   function mostrarJaJogou() {
@@ -812,6 +870,7 @@
     var sons = {
       'MÚSICA': 'ui-arcade', 'GAMES': 'ui-arcade', 'TECNOLOGIA': 'ui-boot',
       'VHS': 'ui-vhs', 'CULTURA': 'ui-vhs', 'TV': 'ui-channel',
+      'ESPORTE': 'ui-apito',
       'CINEMA': 'ui-reveal', 'RÁDIO': 'ui-click', 'BRINQUEDOS': 'ui-success'
     };
     return sons[cat] || 'ui-reveal';
@@ -990,7 +1049,9 @@
     abrirMemoria: abrirMemoria,
     fecharModal: fecharModal,
     abrirSecao: abrirSecao,
-    modoCanal90: modoCanal90
+    modoCanal90: modoCanal90,
+    temFotoLivre: temFotoLivre,
+    montarCartaoRevelacao: montarCartaoRevelacao
   };
 
   window.NostalgicaInit = init;

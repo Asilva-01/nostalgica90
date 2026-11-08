@@ -20,17 +20,16 @@ implementam **a mesma regra**, comparada em `node tools/test_selecao.js`.
 1. **Dia 1** = `2026-09-06` (data civil, sem fuso).  
    `n = 1 + (data - 2026-09-06)` em dias.  
    Ex.: `2026-11-01` = dia 57; `2026-11-07` = dia 63.
-2. **Pool** = ordem de `challenges.json` (hoje 56 itens).
+2. **Pool** = ordem de `challenges.json` (hoje 156 itens).
 3. **Rodada** = 3 desafios.  
-   Ciclo = `floor(pool / 3)` dias (**18** quando pool=56).  
+   Ciclo = `floor(pool / 3)` dias (**52** quando pool=156).  
    Em cada ciclo, os índices são embaralhados com LCG 32-bit (`a=1664525`,
    `c=1013904223`) + Fisher–Yates, semente `imul32(ciclo+1, 0x9E3779B9) XOR
    imul32(pool, 0x85EBCA77)`.  
    O dia `pos` do ciclo recebe a fatia `[pos*3, pos*3+3)` dessa permutação.
-4. **Sem repetir no ciclo** enquanto houver desafios: 18×3 = 54 únicos. Os
-   `pool % 3` que sobram (2, com pool=56) vão para o **início** da permutação
-   do ciclo seguinte — entram de fato nos 54 usados, não só “podem cair”
-   num shuffle novo.
+4. **Sem repetir no ciclo** enquanto houver desafios: 52×3 = 156 únicos (pool
+   múltiplo de 3, sem resto). Se `pool % 3` sobrar, esses índices vão para o
+   **início** da permutação do ciclo seguinte.
 5. **Arte própria em 1º:** dentro dos 3 do dia, se algum tiver arte em
    `artes.js` (lista `arte-propria.json`), uma rotação determinística
    coloca o primeiro desses na posição 1. O bot posta esse primeiro.
@@ -70,7 +69,7 @@ não acertou). Sem nome, categoria ou resposta.
 
 ## Formato de `challenges.json`
 
-Campos atuais continuam válidos. Opcionais para os próximos PRs (não quebram os 56):
+Campos atuais continuam válidos. Opcionais para os próximos PRs (não quebram os 156):
 
 ```json
 {
@@ -84,21 +83,29 @@ Campos atuais continuam válidos. Opcionais para os próximos PRs (não quebram 
   "ano": "1996",
   "curiosidade": "…",
   "tags": ["brinquedos", "anos-90"],
-  "image": null,
+  "image": "assets/images/revelacao/tamagotchi.webp",
+  "image_avif": "assets/images/revelacao/tamagotchi.avif",
+  "image_alt": "Tamagotchi rosa em formato de ovo…",
+  "link_saiba_mais": "https://pt.wikipedia.org/wiki/Tamagotchi",
   "dificuldade": null,
   "som": null,
   "credito_imagem": {
-    "texto": "Ilustração original Nostálgica 90",
-    "licenca_url": "https://creativecommons.org/licenses/by/4.0/"
+    "autor": "Nome de quem fotografou",
+    "licenca": "CC BY-SA 4.0",
+    "url_licenca": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "url_origem": "https://commons.wikimedia.org/wiki/File:Exemplo.jpg"
   },
   "pistas": ["…", "…", "…", "…", "…", "…"]
 }
 ```
 
-- `alias`, `dificuldade` (`facil` \| `medio` \| `dificil` ou `null`), `som` e
-  `credito_imagem` são opcionais.
-- Se `image` existir, `credito_imagem.texto` e `credito_imagem.licenca_url`
-  (http/https) são obrigatórios.
+- `alias`, `dificuldade` (`facil` \| `medio` \| `dificil` ou `null`), `som`,
+  `curiosidade`, `link_saiba_mais` e `credito_imagem` são opcionais.
+- Se `image` existir, `credito_imagem` exige `autor`, `licenca` (Public Domain,
+  CC0, CC BY ou CC BY-SA), `url_licenca` e `url_origem` — todos https. O arquivo
+  precisa existir. A foto só aparece na **revelação** (depois de acertar ou
+  esgotar as pistas); no jogo a arte continua original.
+- Créditos: `CREDITS.md` e `creditos.html`.
 
 Validador:
 
@@ -115,8 +122,9 @@ node tools/test_core.js
 
 ## Museu / artes
 
-Edite `museum.json` para o acervo. Artes dos desafios: `artes.js` (procedural
-por categoria) ou `image` com crédito. Nada de material oficial de marcas.
+Edite `museum.json` para o acervo. Artes dos desafios no jogo: `artes.js`
+(procedural). Foto livre (`image`) só na revelação, com crédito visível. Nada
+de material oficial de marcas, capas ou screenshots.
 
 Fontes OFL locais em `assets/fonts/` (com o texto da licença e o copyright
 ao lado do `.woff2`):

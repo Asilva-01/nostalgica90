@@ -6,11 +6,11 @@
    Dia 1 = 2026-09-06 (data civil, sem fuso).
    Rodada = 3 desafios. Pool na ordem de challenges.json.
 
-   Ciclo = floor(pool / 3) dias (18 quando pool=56). Em cada ciclo
+   Ciclo = floor(pool / 3) dias (52 quando pool=156; 18 quando pool=56). Em cada ciclo
    embaralha os índices com LCG 32-bit + Fisher–Yates e entrega
    fatias de 3 SEM repetir enquanto houver desafios sobrando.
    Os (pool % 3) que sobram vão para o INÍCIO da permutação do
-   ciclo seguinte (garantidos entre os 54 usados).
+   ciclo seguinte (garantidos entre os usados do ciclo novo).
    Dentro dos 3 do dia, se algum tiver arte própria, ele vai
    para a 1ª posição (rotação, determinística).
    ============================================================ */

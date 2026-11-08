@@ -4,11 +4,12 @@
    Uso: node tools/validate_challenges.js
 
    Obrigatório em todo item: id, slug, resp, cat, 6 pistas.
-   Opcional (não quebra os 56 atuais): alias, dificuldade, som,
-   credito_imagem, image, tags, categorySlug, emoji, ano, curiosidade.
+   Opcional: alias, dificuldade, som, curiosidade, link_saiba_mais,
+   image, credito_imagem, image_avif, image_alt, tags, categorySlug.
 
-   Se image for não-nula/não-vazia, credito_imagem.texto e
-   credito_imagem.licenca_url são obrigatórios.
+   Se image for não-nula/não-vazia, credito_imagem precisa de
+   autor, licenca (lista permitida), url_licenca e url_origem (https),
+   e o arquivo precisa existir.
    ============================================================ */
 const fs = require('fs');
 const path = require('path');
@@ -16,6 +17,14 @@ const path = require('path');
 const ROOT = path.join(__dirname, '..');
 const FILE = path.join(ROOT, 'challenges.json');
 const DIFICULDADES_OK = new Set([null, undefined, '', 'facil', 'medio', 'dificil', 'fácil', 'médio', 'difícil']);
+const CAT_OK = new Set(['TV', 'GAMES', 'CINEMA', 'MÚSICA', 'BRINQUEDOS', 'TECNOLOGIA', 'CULTURA', 'ESPORTE']);
+const LICENCAS_OK = new Set([
+  'CC0', 'CC0 1.0',
+  'Public Domain', 'PD',
+  'CC BY', 'CC BY 1.0', 'CC BY 2.0', 'CC BY 2.5', 'CC BY 3.0', 'CC BY 4.0',
+  'CC BY 2.0 br', 'CC BY 3.0 br',
+  'CC BY-SA', 'CC BY-SA 1.0', 'CC BY-SA 2.0', 'CC BY-SA 2.5', 'CC BY-SA 3.0', 'CC BY-SA 4.0'
+]);
 
 function fail(msg, extra) {
   console.error('  ✗ ' + msg + (extra ? ' — ' + extra : ''));
@@ -29,14 +38,22 @@ function isNonEmptyString(v) {
   return typeof v === 'string' && v.trim().length > 0;
 }
 
-function isUrl(v) {
+function isHttps(v) {
   if (!isNonEmptyString(v)) return false;
   try {
     const u = new URL(v);
-    return u.protocol === 'http:' || u.protocol === 'https:';
+    return u.protocol === 'https:';
   } catch (e) {
     return false;
   }
+}
+
+function licencaOk(v) {
+  if (!isNonEmptyString(v)) return false;
+  const n = v.trim().replace(/\s+/g, ' ');
+  if (LICENCAS_OK.has(n)) return true;
+  const upper = n.toUpperCase();
+  return [...LICENCAS_OK].some(function (okLic) { return okLic.toUpperCase() === upper; });
 }
 
 function main() {
@@ -57,6 +74,7 @@ function main() {
   }
 
   let falhas = 0;
+  let comImagem = 0;
   const ids = new Map();
   const slugs = new Map();
 
@@ -97,6 +115,9 @@ function main() {
     if (!isNonEmptyString(c.cat)) {
       fail('cat (categoria) não vazia obrigatória', where);
       falhas++;
+    } else if (!CAT_OK.has(c.cat)) {
+      fail('cat fora do enum conhecido', where + ' cat=' + c.cat);
+      falhas++;
     }
     if (!Array.isArray(c.pistas) || c.pistas.length !== 6) {
       fail('precisa de exatamente 6 pistas', where + ' tem ' + (c.pistas && c.pistas.length));
@@ -136,23 +157,58 @@ function main() {
       }
     }
 
+    if (c.link_saiba_mais != null && c.link_saiba_mais !== '') {
+      if (!isHttps(c.link_saiba_mais)) {
+        fail('link_saiba_mais precisa ser https', where + ' ' + c.link_saiba_mais);
+        falhas++;
+      }
+    }
+
     const temImagem = c.image != null && c.image !== '' && c.image !== false;
     if (temImagem) {
+      comImagem++;
       if (!isNonEmptyString(c.image)) {
         fail('image precisa ser caminho string', where);
         falhas++;
+      } else {
+        const imgPath = path.join(ROOT, c.image);
+        if (!fs.existsSync(imgPath)) {
+          fail('arquivo de image não existe', c.image);
+          falhas++;
+        } else {
+          const st = fs.statSync(imgPath);
+          if (st.size > 80 * 1024) {
+            fail('image acima de 80 KB', c.image + ' ' + st.size);
+            falhas++;
+          }
+        }
+      }
+      if (c.image_avif) {
+        const av = path.join(ROOT, c.image_avif);
+        if (!fs.existsSync(av)) {
+          fail('arquivo de image_avif não existe', c.image_avif);
+          falhas++;
+        }
       }
       const cred = c.credito_imagem;
       if (!cred || typeof cred !== 'object') {
         fail('credito_imagem obrigatório quando há image', where);
         falhas++;
       } else {
-        if (!isNonEmptyString(cred.texto)) {
-          fail('credito_imagem.texto obrigatório quando há image', where);
+        if (!isNonEmptyString(cred.autor)) {
+          fail('credito_imagem.autor obrigatório quando há image', where);
           falhas++;
         }
-        if (!isUrl(cred.licenca_url)) {
-          fail('credito_imagem.licenca_url (http/https) obrigatório quando há image', where);
+        if (!licencaOk(cred.licenca)) {
+          fail('credito_imagem.licenca fora da lista permitida', where + ' ' + cred.licenca);
+          falhas++;
+        }
+        if (!isHttps(cred.url_licenca)) {
+          fail('credito_imagem.url_licenca https obrigatório quando há image', where);
+          falhas++;
+        }
+        if (!isHttps(cred.url_origem)) {
+          fail('credito_imagem.url_origem https obrigatório quando há image', where);
           falhas++;
         }
       }
@@ -163,9 +219,11 @@ function main() {
     ok('ids únicos');
     ok('slugs únicos');
     ok('6 pistas e resposta em todos');
-    ok('créditos de imagem válidos quando há image');
-    ok('campos opcionais (alias, dificuldade, som, credito_imagem) aceitos');
-    console.log('\nVALIDADOR PASS (' + data.length + ' desafios)\n');
+    ok('créditos de imagem válidos quando há image (' + comImagem + ')');
+    ok('arquivos de image existem e cabem em ~80 KB');
+    ok('links https (crédito e saiba mais)');
+    ok('campos opcionais (alias, dificuldade, som, credito_imagem, link_saiba_mais) aceitos');
+    console.log('\nVALIDADOR PASS (' + data.length + ' desafios, ' + comImagem + ' com foto livre)\n');
     process.exit(0);
   }
   console.error('\nVALIDADOR FAIL: ' + falhas + ' erro(s)\n');
