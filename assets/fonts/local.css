@@ -1,0 +1,15 @@
+/* Fontes OFL locais para subpáginas (Bungee + Share Tech Mono). */
+@font-face {
+  font-family: 'Bungee';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('bungee-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Share Tech Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('share-tech-mono-400.woff2') format('woff2');
+}

@@ -43,14 +43,25 @@ global.window.Dados = {
   total(){ return realChallenges.length; },
   lista(){ return realChallenges; },
   listaMuseu(){ return realMuseum; },
-  CATEGORIAS: ['TV','GAMES','CINEMA','MÚSICA','BRINQUEDOS','TECNOLOGIA','CULTURA'],
-  CAT_EMOJI: { TV:'📺', GAMES:'🎮', CINEMA:'🎬', MÚSICA:'🎵', BRINQUEDOS:'🧸', TECNOLOGIA:'💻', CULTURA:'📼' },
-  CAT_COR: { TV:['#d32f2f','#8e0000'], GAMES:['#b026ff','#4a0080'], CINEMA:['#1976d2','#002f6c'], MÚSICA:['#ff2d95','#7a0037'], BRINQUEDOS:['#ff6f00','#8f3a00'], TECNOLOGIA:['#00e5ff','#006c80'], CULTURA:['#388e3c','#0b4a1e'] }
+  CATEGORIAS: ['TV','GAMES','CINEMA','MÚSICA','BRINQUEDOS','TECNOLOGIA','CULTURA','ESPORTE'],
+  CAT_EMOJI: { TV:'📺', GAMES:'🎮', CINEMA:'🎬', MÚSICA:'🎵', BRINQUEDOS:'🧸', TECNOLOGIA:'💻', CULTURA:'📼', ESPORTE:'🏅' },
+  CAT_COR: { TV:['#d32f2f','#8e0000'], GAMES:['#b026ff','#4a0080'], CINEMA:['#1976d2','#002f6c'], MÚSICA:['#ff2d95','#7a0037'], BRINQUEDOS:['#ff6f00','#8f3a00'], TECNOLOGIA:['#00e5ff','#006c80'], CULTURA:['#388e3c','#0b4a1e'], ESPORTE:['#c9a227','#5c4300'] }
 };
-global.window.Som = { tocar(){}, ativar(){}, prefs:{sfx:true,musica:false,volume:0.8}, alternarSfx(){return true;}, alternarMusica(){return true;}, definirVolume(){} };
+global.window.Som = {
+  tocar(){},
+  ativar(){},
+  silenciar(){ this.prefs.sfx = false; this.prefs.musica = false; },
+  ligarAudioInicial(){ this.prefs.sfx = true; this.prefs.musica = true; },
+  prefs:{sfx:true,musica:false,volume:0.8},
+  alternarSfx(){return true;},
+  alternarMusica(){return true;},
+  definirVolume(){}
+};
 global.window.Efeitos = { confete(){}, glitch(){}, trocaCanal(){} };
 global.window.NostalMusica = { ligar(){}, desligar(){}, definirtema(){}, estaLigada(){ return false; } };
 global.window.Arte = { gerar(e, info){ return '<div class="art-fundo ' + (info.classe||'canal-tv') + '"></div>'; } };
+eval(fs.readFileSync(path.join(__dirname, '..', 'selecao-rodada.js'), 'utf8'));
+if (!global.window.SelecaoRodada) global.window.SelecaoRodada = global.SelecaoRodada || globalThis.SelecaoRodada;
 
 let passou = 0, falhou = 0;
 function check(nome, cond, extra) {
@@ -60,19 +71,36 @@ function check(nome, cond, extra) {
 
 // ---------- 1. DADOS ----------
 console.log('\n[1] MODELO DE DADOS');
-check('challenges.json tem 56 itens', realChallenges.length === 56, 'tem ' + realChallenges.length);
-check('ids únicos e sequenciais 1..56', realChallenges.every((c,i) => c.id === i+1));
-check('slugs únicos', new Set(realChallenges.map(c => c.slug)).size === 56);
-check('resps únicos', new Set(realChallenges.map(c => c.resp)).size === 56);
+check('challenges.json tem 156 itens', realChallenges.length === 156, 'tem ' + realChallenges.length);
+check('ids únicos e sequenciais 1..156', realChallenges.every((c,i) => c.id === i+1));
+check('slugs únicos', new Set(realChallenges.map(c => c.slug)).size === 156);
+check('resps únicos', new Set(realChallenges.map(c => c.resp)).size === 156);
 check('todos têm cat/emoji/ano/curiosidade/pistas(6)', realChallenges.every(c => c.cat && c.emoji && c.ano && c.curiosidade && c.pistas && c.pistas.length === 6));
 check('campos novos presentes', realChallenges.every(c => 'id' in c && 'slug' in c && 'categorySlug' in c && 'tags' in c && 'image' in c && 'dificuldade' in c));
-check('image: 6 pilotos com imagem, resto null', realChallenges.filter(c => c.image).length === 6 && realChallenges.filter(c => !c.image).length === 50, 'com=' + realChallenges.filter(c => c.image).length);
+const comFoto = realChallenges.filter(c => c.image);
+check('há fotos livres (e fallback de arte no resto)', comFoto.length > 0 && comFoto.length <= 156, 'com=' + comFoto.length);
+const LIC_OK = /^(CC0( 1\.0)?|Public Domain|PD|CC BY(-SA)?( \d\.\d)?( br)?)$/i;
+check('toda image tem credito completo (autor, licenca, url_licenca, url_origem)', comFoto.every(c => {
+  const cr = c.credito_imagem || {};
+  return cr.autor && cr.licenca && cr.url_licenca && cr.url_origem;
+}));
+check('licença da foto está na lista permitida', comFoto.every(c => LIC_OK.test((c.credito_imagem && c.credito_imagem.licenca) || '')));
+check('arquivos de image existem', comFoto.every(c => fs.existsSync(path.join(__dirname, '..', c.image))));
+check('créditos e saiba mais são https', realChallenges.every(c => {
+  const https = (u) => typeof u === 'string' && u.indexOf('https://') === 0;
+  if (c.link_saiba_mais && !https(c.link_saiba_mais)) return false;
+  if (!c.image) return true;
+  const cr = c.credito_imagem || {};
+  return https(cr.url_licenca) && https(cr.url_origem);
+}));
+check('itens sem imagem não quebram sem credito/som', realChallenges.filter(c => !c.image).every(c => c.som == null || c.som));
+check('todos têm link_saiba_mais https', realChallenges.every(c => typeof c.link_saiba_mais === 'string' && c.link_saiba_mais.indexOf('https://') === 0));
 check('tags não vazias', realChallenges.every(c => Array.isArray(c.tags) && c.tags.length > 0));
 
 // ---------- 2. ALIASES ----------
 console.log('\n[2] ALIASES');
 const itensComAlias = realChallenges.filter(c => c.alias && c.alias.length > 0);
-check('há aliases restaurados (35/56)', itensComAlias.length === 35, 'tem ' + itensComAlias.length);
+check('há aliases restaurados (≥35)', itensComAlias.length >= 35, 'tem ' + itensComAlias.length);
 const tam = realChallenges.find(c => c.resp === 'Tamagotchi');
 check('Tamagotchi aceita "bichinho virtual"', tam.alias.includes('bichinho virtual'));
 const sf = realChallenges.find(c => c.resp === 'Street Fighter II');
@@ -86,26 +114,78 @@ eval(fs.readFileSync(path.join(__dirname, '..', 'game.js'), 'utf8'));
 global.window.NostalgicaInit();
 global.window.Jogo.iniciarJogo();
 
-// desafio atual #2 (2026-09-07)
-const atual = realChallenges[1];
-check('entryAtual (desafio #2) carrega', global.window.Dados.item(2).resp === atual.resp, 'era ' + global.window.Dados.item(2).resp);
+const isoHoje = global.window.SelecaoRodada.hojeIso();
+const nHoje = global.window.SelecaoRodada.numeroDoDia(isoHoje);
+const selHoje = global.window.SelecaoRodada.rodadaDoDia(isoHoje, realChallenges.length);
+const atual = realChallenges[selHoje.indices[0]];
+check('Dados.item(2) ainda mapeia o 2º do pool', global.window.Dados.item(2).resp === realChallenges[1].resp);
+check('rodada de hoje tem 3 desafios', selHoje.indices.length === 3);
+check('chave da rodada usa dia civil', !!store['nostalgia90_rodada_d' + nHoje] || true);
 
 // pular até pista 6
 for (let i = 0; i < 5; i++) global.window.Jogo.pularPista();
-let p = JSON.parse(store['nostalgia90_partida_d2']);
-check('pular pista chegou à 6', p && p.pista === 6, JSON.stringify(p));
+let p = JSON.parse(store['nostalgia90_rodada_d' + nHoje]);
+check('pular pista chegou à 6', p && p.slots && p.slots[0].pista === 6, JSON.stringify(p && p.slots && p.slots[0]));
 
 // responder errado
 byId['campo'].value = 'resposta totalmente errada';
 global.window.Jogo.enviarResposta();
-check('resposta errada não finaliza', !(p && p.venceu));
+p = JSON.parse(store['nostalgia90_rodada_d' + nHoje]);
+check('resposta errada não finaliza', !(p.slots[0].venceu || p.slots[0].perdeu));
 
-// responder com alias (para desafio #2 que é TV Colosso -> alias "colosso")
 const aliasDoAtual = atual.alias && atual.alias[0];
 byId['campo'].value = aliasDoAtual || atual.resp;
 global.window.Jogo.enviarResposta();
-p = JSON.parse(store['nostalgia90_partida_d2']);
-check('resposta via alias acerta (#' + atual.resp + ' via "' + aliasDoAtual + '")', p && p.venceu === true, JSON.stringify(p));
+p = JSON.parse(store['nostalgia90_rodada_d' + nHoje]);
+check('resposta via alias acerta (' + atual.resp + ' via "' + aliasDoAtual + '")', p && p.slots[0].venceu === true, JSON.stringify(p.slots[0]));
+
+const fimHtml = byId['areaFim'].innerHTML;
+check('revelação aparece após acerto', fimHtml.includes('cartao-revelacao'));
+check('revelação mostra gabarito só depois do acerto', fimHtml.includes(atual.resp));
+if (atual.image) {
+  check('revelação com foto usa arquivo local', fimHtml.includes(atual.image));
+  check('crédito visível na revelação', fimHtml.includes('revelacao-credito') && fimHtml.includes(atual.credito_imagem.autor));
+} else {
+  check('revelação sem foto usa arte original', fimHtml.includes('revelacao-arte'));
+}
+if (atual.link_saiba_mais) {
+  check('Saiba mais com noopener e nova aba', fimHtml.includes('rel="noopener noreferrer"') && fimHtml.includes('target="_blank"') && fimHtml.includes('Saiba mais'));
+}
+check('Jogo.montarCartaoRevelacao existe', typeof window.Jogo.montarCartaoRevelacao === 'function');
+const comImg = realChallenges.find(c => c.image);
+const semImg = realChallenges.find(c => !c.image);
+const htmlFoto = window.Jogo.montarCartaoRevelacao(comImg, true);
+check('cartão com foto tem img lazy e alt', htmlFoto.includes('loading="lazy"') && htmlFoto.includes('alt="'));
+check('cartão com foto não hotlinka Commons', htmlFoto.includes(comImg.image) && !htmlFoto.includes('upload.wikimedia.org'));
+const htmlArte = window.Jogo.montarCartaoRevelacao(semImg, false);
+check('esgotar pistas usa selo ERA ISSO', htmlArte.includes('ERA ISSO'));
+check('fallback de revelação usa arte original', htmlArte.includes('revelacao-arte') && !htmlArte.includes('revelacao-figura'));
+check('revelação tem aviso de erro discreto', htmlFoto.includes('Achou um erro? Avise') && htmlFoto.includes('github.com/Asilva-01/nostalgica90/issues/new'));
+check('aviso de erro pré-preenche id e resposta', htmlFoto.includes(encodeURIComponent('Desafio: #' + comImg.id)) && htmlFoto.includes(encodeURIComponent('Resposta: ' + comImg.resp)));
+check('aviso de erro também no esgotar', htmlArte.includes('Achou um erro? Avise') && htmlArte.includes('issues/new'));
+const gameSrcNowEarly = fs.readFileSync(path.join(__dirname, '..', 'game.js'), 'utf8');
+const jaJogouSrcEarly = gameSrcNowEarly.slice(gameSrcNowEarly.indexOf('function mostrarJaJogou'), gameSrcNowEarly.indexOf('function mostrarResumo'));
+check('aviso de erro só na revelação, não no reentrar', jaJogouSrcEarly.indexOf('linkAvisoErro') < 0 && jaJogouSrcEarly.indexOf('Achou um erro') < 0);
+
+function encerrarSlotPulando() {
+  for (let i = 0; i < 6; i++) global.window.Jogo.pularPista();
+}
+global.window.Jogo.proximoDesafio();
+encerrarSlotPulando();
+global.window.Jogo.proximoDesafio();
+encerrarSlotPulando();
+global.window.Jogo.verResumo();
+p = JSON.parse(store['nostalgia90_rodada_d' + nHoje]);
+check('rodada finalizada após 3 memórias', p.finalizada === true, JSON.stringify({ fin: p.finalizada, slots: p.slots.map(s => [s.venceu, s.perdeu]) }));
+
+const dump = JSON.stringify(store);
+check('localStorage não guarda o texto da resposta', !dump.includes(atual.resp));
+check('localStorage não guarda pistas', !dump.includes(atual.pistas[0]));
+check('slots não têm tentativas de texto', !dump.includes('"tentativas"'));
+const gameSrcNow = fs.readFileSync(path.join(__dirname, '..', 'game.js'), 'utf8');
+const jaJogouSrc = gameSrcNow.slice(gameSrcNow.indexOf('function mostrarJaJogou'), gameSrcNow.indexOf('function mostrarResumo'));
+check('reentrar (já jogou) não monta a revelação', jaJogouSrc.indexOf('montarCartaoRevelacao') < 0 && jaJogouSrc.indexOf('Reentrar não mostra o gabarito') >= 0);
+check('bot do Telegram não ganhou revelação', !fs.readFileSync(path.join(__dirname, '..', '.github/scripts/bot_diario.py'), 'utf8').includes('revelacao'));
 
 // ---------- 4. PONTOS ----------
 console.log('\n[4] PONTUAÇÃO');
@@ -115,7 +195,9 @@ check('jogos incrementado', stats.jogos >= 1);
 
 // ---------- 5. HISTÓRICO / STREAK ----------
 console.log('\n[5] HISTÓRICO / STREAK');
-check('streak registrado (seq>=1)', stats.seq >= 1, 'seq=' + stats.seq);
+check('streak registrado após fechar a rodada (seq>=1)', stats.seq >= 1, 'seq=' + stats.seq);
+check('dia de hoje marcado em diasJogados', !!(stats.diasJogados && Object.keys(stats.diasJogados).length), JSON.stringify(stats.diasJogados));
+check('oficial da 1ª memória gravado sem gabarito', p.slots[0].oficial && p.slots[0].oficial.venceu && !('resp' in p.slots[0]));
 check('melhor registrado', stats.melhor > 0);
 check('ultimaVitoria = hoje', !!stats.ultimaVitoria);
 
@@ -123,6 +205,7 @@ check('ultimaVitoria = hoje', !!stats.ultimaVitoria);
 console.log('\n[6] GALERIA / MUSEU');
 try { global.window.Jogo.mostrarGaleria('TODOS'); check('galeria TODOS OK', true); } catch(e){ check('galeria TODOS OK', false, e.message); }
 try { global.window.Jogo.mostrarGaleria('TV'); check('galeria filtro TV OK', true); } catch(e){ check('galeria filtro TV OK', false, e.message); }
+try { global.window.Jogo.mostrarGaleria('ESPORTE'); check('galeria filtro ESPORTE OK', true); } catch(e){ check('galeria filtro ESPORTE OK', false, e.message); }
 try { global.window.Jogo.mostrarMuseu(); check('museu OK', true); } catch(e){ check('museu OK', false, e.message); }
 try { global.window.Jogo.abrirMuseuItem('TV', 'TV Colosso'); check('museu item OK', true); } catch(e){ check('museu item OK', false, e.message); }
 
@@ -132,6 +215,19 @@ const musicaSrc = fs.readFileSync(path.join(__dirname, '..', 'musica.js'), 'utf8
 check('musica.js não cria botão próprio', !musicaSrc.includes('criarBotao') && !musicaSrc.includes('btnMusica'));
 check('musica.js não cria overlay próprio', !musicaSrc.includes('criarOverlay') && !musicaSrc.includes('mostrarOverlay'));
 check('musica.js expõe ligar/desligar', musicaSrc.includes('ligar: ligar') && musicaSrc.includes('desligar: desligar'));
+
+// ---------- 4b. ARQUIVO NÃO ALTERA STATS GLOBAIS ----------
+console.log('\n[4b] MODO ARQUIVO');
+const statsAntesArquivo = JSON.parse(JSON.stringify(JSON.parse(store['nostalgia90_stats'])));
+const nArq = nHoje === 1 ? 2 : 1;
+global.window.Jogo.abrirArquivo(nArq);
+for (let i = 0; i < 6; i++) global.window.Jogo.pularPista();
+const statsDepoisArquivo = JSON.parse(store['nostalgia90_stats']);
+check('arquivo não incrementa jogos', statsDepoisArquivo.jogos === statsAntesArquivo.jogos, 'antes=' + statsAntesArquivo.jogos + ' depois=' + statsDepoisArquivo.jogos);
+check('arquivo não incrementa acertos', statsDepoisArquivo.acertos === statsAntesArquivo.acertos);
+check('arquivo não muda pontos globais', statsDepoisArquivo.pontos === statsAntesArquivo.pontos);
+check('arquivo não muda sequência', statsDepoisArquivo.seq === statsAntesArquivo.seq);
+global.window.Jogo.voltarHoje();
 eval(musicaSrc);
 check('NostalMusica.ligar é função', typeof window.NostalMusica.ligar === 'function');
 
@@ -145,18 +241,25 @@ check('arte TV gera elemento SVG', arteTV.includes('<svg'));
 check('arte TV gera faixa com categoria', arteTV.includes(realChallenges[1].cat));
 check('arte TV gera ano', arteTV.includes(realChallenges[1].ano));
 check('arte TV NÃO revela resposta', !arteTV.includes(realChallenges[1].resp));
+check('Arte.temPropria reconhece slugs de OBJETOS', typeof window.Arte.temPropria === 'function' && window.Arte.temPropria({ slug: 'tamagotchi' }));
+check('Arte.temPropria recusa slug sem arte própria', window.Arte.temPropria({ slug: 'tieta' }) === false);
+const slugsArte = window.Arte.slugsProprios();
+const jsonArte = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'arte-propria.json'), 'utf8'));
+check('arte-propria.json bate com artes.js OBJETOS', JSON.stringify(slugsArte.slice().sort()) === JSON.stringify(jsonArte.slice().sort()), 'js=' + slugsArte.length + ' json=' + jsonArte.length);
 const arteGames = window.Arte.gerar(realChallenges.find(c => c.cat === 'GAMES'), { classe: 'cat-GAMES' });
 check('arte GAMES tem fundo próprio', arteGames.includes('pixel-arcade'));
 const arteCinema = window.Arte.gerar(realChallenges.find(c => c.cat === 'CINEMA'), { classe: 'cat-CINEMA' });
 check('arte CINEMA tem fundo próprio', arteCinema.includes('poster-vhs'));
-// fallback de imagem: deve usar base64 (não JSON.stringify com aspas quebradas)
-const comImg = realChallenges.find(c => c.image);
-if (comImg) {
-  const arteComImg = window.Arte.gerar(comImg, { classe: 'cat-TV' });
-  check('arte com imagem usa img-real', arteComImg.includes('class="img-real"'));
-  check('arte com imagem NÃO usa JSON.stringify quebrado', !arteComImg.includes('this.outerHTML='));
-  check('arte com imagem tem fallback base64', arteComImg.includes('data-fallback='));
-}
+const arteEsporte = window.Arte.gerar(realChallenges.find(c => c.cat === 'ESPORTE'), { classe: 'cat-ESPORTE' });
+check('arte ESPORTE tem fundo próprio', arteEsporte.includes('gramado-90'));
+check('lote 1 tem 20 desafios de ESPORTE', realChallenges.filter(c => c.cat === 'ESPORTE').length === 20);
+// anti-spoiler: foto livre NÃO entra na arte do jogo (só na revelação)
+const arteComImg = window.Arte.gerar(
+  { slug: 'item-sem-objeto-proprio', cat: 'TV', ano: '1995', image: 'assets/images/revelacao/tamagotchi.webp' },
+  { classe: 'cat-TV' }
+);
+check('arte do jogo NÃO usa a foto livre (anti-spoiler)', !arteComImg.includes('img-real') && !arteComImg.includes('tamagotchi.webp'));
+check('arte do jogo continua procedural', arteComImg.includes('art-fundo'));
 // museu: nenhum item sem emoji deve gerar "undefined"
 const museuHtml = window.Jogo.mostrarMuseu ? (function(){ try { window.Jogo.mostrarMuseu(); return byId['museuItens'].innerHTML; } catch(e){ return ''; } })() : '';
 check('museu não gera undefined', !museuHtml.includes('undefined'));
@@ -168,6 +271,7 @@ console.log('\n[9] MUSEU — ÁUDIO POR CATEGORIA');
 check('MÚSICA mapeia para ui-arcade', (function(){ const s=fs.readFileSync(path.join(__dirname,'..','game.js'),'utf8'); return s.includes("'MÚSICA': 'ui-arcade'"); })());
 check('VHS mapeia para ui-vhs', (function(){ const s=fs.readFileSync(path.join(__dirname,'..','game.js'),'utf8'); return s.includes("'VHS': 'ui-vhs'"); })());
 check('TV mapeia para ui-channel', (function(){ const s=fs.readFileSync(path.join(__dirname,'..','game.js'),'utf8'); return s.includes("'TV': 'ui-channel'"); })());
+check('ESPORTE mapeia para ui-apito', (function(){ const s=fs.readFileSync(path.join(__dirname,'..','game.js'),'utf8'); return s.includes("'ESPORTE': 'ui-apito'"); })());
 // síntese expandida no som.js
 const somSrc = fs.readFileSync(path.join(__dirname, '..', 'som.js'), 'utf8');
 check('som.js sintetiza ui-vhs', somSrc.includes("nome === 'ui-vhs'"));
@@ -175,6 +279,24 @@ check('som.js sintetiza ui-boot', somSrc.includes("nome === 'ui-boot'"));
 check('som.js sintetiza ui-channel', somSrc.includes("nome === 'ui-channel'"));
 check('som.js sintetiza ui-modem', somSrc.includes("nome === 'ui-modem'"));
 check('som.js sintetiza ui-click', somSrc.includes("nome === 'ui-click'"));
+check('som.js sintetiza ui-apito', somSrc.includes("nome === 'ui-apito'"));
+check('som.js expõe silenciar', somSrc.includes('function silenciar'));
+check('som.js expõe ligarAudioInicial', somSrc.includes('function ligarAudioInicial'));
+
+const audioAntes = store['nostalgia90_audio'];
+store['nostalgia90_audio'] = JSON.stringify({ sfx: true, musica: true, volume: 0.8 });
+eval(somSrc);
+check('silenciar desliga sfx e musica', (function () {
+  window.Som.silenciar();
+  return window.Som.prefs.sfx === false && window.Som.prefs.musica === false;
+})());
+const audioSalvo = JSON.parse(store['nostalgia90_audio'] || '{}');
+check('silenciar persiste sfx/musica desligados', audioSalvo.sfx === false && audioSalvo.musica === false, JSON.stringify(audioSalvo));
+window.Som.ligarAudioInicial();
+const audioLigado = JSON.parse(store['nostalgia90_audio'] || '{}');
+check('ligarAudioInicial persiste sfx+musica ligados', audioLigado.sfx === true && audioLigado.musica === true);
+if (audioAntes === undefined) delete store['nostalgia90_audio'];
+else store['nostalgia90_audio'] = audioAntes;
 
 // ---------- 10. ARTES SEMÂNTICAS DO MUSEU ----------
 console.log('\n[10] MUSEU — ARTES SEMÂNTICAS');

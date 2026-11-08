@@ -5,15 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Speciais — Os golpes lendários dos fliperamas anos 90</title>
 <meta name="description" content="Guia nostálgico dos golpes especiais de Street Fighter, Mortal Kombat, KOF, Fatal Fury e mais, com a notação clássica dos fliperamas.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/fonts/local.css">
 <style>
   :root {
     --rosa:#ff2d95; --azul:#00e5ff; --amarelo:#ffe600;
     --verde:#39ff14; --roxo:#b026ff; --fundo:#12002b;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'VT323',monospace; background:var(--fundo); color:#fff; overflow-x:hidden; }
+  html, body { overflow-x:hidden; max-width:100%; }
+  body { font-family:'Share Tech Mono',monospace; background:var(--fundo); color:#fff; }
   .bg { position:fixed; inset:0; z-index:-2;
     background:
       radial-gradient(circle at 20% 15%, rgba(255,45,149,.32), transparent 45%),
@@ -24,14 +24,14 @@
   }
   .scanlines { position:fixed; inset:0; z-index:-1; pointer-events:none;
     background:repeating-linear-gradient(0deg, rgba(0,0,0,.15) 0 1px, transparent 1px 3px); opacity:.55; }
-  .wrap { max-width:760px; margin:0 auto; padding:18px 14px 60px; }
-  @keyframes tv { 0%{transform:scale(.2);opacity:0;filter:brightness(5);} 60%{transform:scale(1.04);opacity:1;} 100%{transform:scale(1);} }
+  .wrap { max-width:min(760px, 100%); margin:0 auto; padding:18px 14px 60px; overflow-x:hidden; }
+  @keyframes tv { 0%{transform:scale(.2);opacity:0;filter:brightness(5);} 100%{transform:scale(1);opacity:1;} }
   .tv { animation:tv .5s ease-out; }
 
   .nav { text-align:center; font-size:clamp(17px,3.2vw,21px); margin-bottom:10px; }
   a { color:var(--azul); }
   .logo {
-    font-family:'Press Start 2P',monospace; font-size:clamp(13px,3.4vw,20px);
+    font-family:'Bungee',sans-serif; font-size:clamp(13px,3.4vw,20px);
     color:var(--amarelo); text-shadow:2px 2px 0 var(--rosa),4px 4px 0 var(--azul);
     text-align:center; line-height:1.5; margin:6px 0;
   }
@@ -41,14 +41,14 @@
     box-shadow:0 0 12px rgba(0,229,255,.35), inset 0 0 30px rgba(0,0,0,.4);
     border-radius:12px; padding:16px; margin-bottom:16px; }
   .card h2 {
-    font-family:'Press Start 2P',monospace; font-size:clamp(11px,2.8vw,15px);
+    font-family:'Bungee',sans-serif; font-size:clamp(11px,2.8vw,15px);
     color:var(--amarelo); text-shadow:2px 2px 0 var(--rosa); margin-bottom:10px; line-height:1.6;
   }
   table { width:100%; border-collapse:collapse; font-size:clamp(17px,3.2vw,22px); }
   th, td { text-align:left; padding:7px 6px; border-bottom:1px solid rgba(255,255,255,.15); vertical-align:top; }
   th { color:var(--verde); font-weight:normal; border-bottom:2px solid var(--verde); }
   td.golpe { color:var(--amarelo); }
-  td.cmd { font-family:'Press Start 2P',monospace; font-size:clamp(8px,2.2vw,11px); color:#fff; line-height:1.8; }
+  td.cmd { font-family:'Bungee',sans-serif; font-size:clamp(8px,2.2vw,11px); color:#fff; line-height:1.8; }
 
   .legenda { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; font-size:clamp(16px,3vw,20px); margin-top:6px; }
   .legenda span { background:rgba(0,0,0,.45); border:1px solid rgba(255,255,255,.25); border-radius:6px; padding:2px 8px; }

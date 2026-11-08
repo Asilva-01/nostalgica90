@@ -23,7 +23,7 @@
 - `README.md`, `PROGRESSO.md`
 
 ### Próxima fase sugerida
-FASE 2 — Nova identidade visual (não iniciada).
+FASE 2 — Nova identidade visual + rodada de 3 (este PR).
 
 ---
 ## Histórico anterior (resumo)

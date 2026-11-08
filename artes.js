@@ -106,6 +106,18 @@ window.Arte = (function () {
           '</svg>';
       }
     },
+    ESPORTE: {
+      selo: "JOGO", moto: "APITO",
+      fundo: "gramado-90",
+      elem: function (e, info) {
+        return '<svg class="art-elem" viewBox="0 0 160 90" role="presentation">' +
+          '<rect x="10" y="18" width="140" height="54" rx="4" fill="#2ecf5b" stroke="#e6e9ff" stroke-width="3"/>' +
+          '<line x1="80" y1="18" x2="80" y2="72" stroke="#e6e9ff" stroke-width="2"/>' +
+          '<circle cx="80" cy="45" r="10" fill="none" stroke="#e6e9ff" stroke-width="2"/>' +
+          '<ellipse cx="128" cy="70" rx="16" ry="8" fill="#ffe600" stroke="#241d3f" stroke-width="2"/>' +
+          '</svg>';
+      }
+    },
     CULTURA: {
       selo: "CULTURA", moto: "BANCA",
       fundo: "revista-banca",
@@ -123,6 +135,9 @@ window.Arte = (function () {
     }
   };
 
+  function _svgLote1(inner) {
+    return '<svg class="art-elem" viewBox="0 0 160 90" role="presentation">' + inner + '</svg>';
+  }
   /* Objeto do desafio, nao a categoria. Sem nome da resposta. */
   var OBJETOS = {
     tazo: {
@@ -554,6 +569,606 @@ window.Arte = (function () {
           '</svg>';
       }
     },
+    "bom-dia-cia": {
+      selo: "MANHÃ", moto: "SBT",
+      elem: function () {
+        return _svgLote1('<circle cx="40" cy="28" r="14" fill="#ffe600" stroke="#241d3f" stroke-width="3"/><rect x="70" y="18" width="70" height="48" rx="6" fill="#1a1530" stroke="#e6e9ff" stroke-width="3"/><rect x="76" y="24" width="58" height="32" fill="#4fc3f7"/><rect x="92" y="66" width="26" height="8" fill="#8f93a8"/>');
+      }
+    },
+    "sessao-desenho": {
+      selo: "BLOCO", moto: "MANHÃ",
+      elem: function () {
+        return _svgLote1('<rect x="22" y="20" width="18" height="50" rx="2" fill="#ffe600" stroke="#241d3f" stroke-width="2"/><rect x="44" y="20" width="18" height="50" rx="2" fill="#ff7a1a" stroke="#241d3f" stroke-width="2"/><rect x="66" y="20" width="18" height="50" rx="2" fill="#2f6fed" stroke="#241d3f" stroke-width="2"/><rect x="100" y="28" width="36" height="28" rx="3" fill="#f5f0e8" stroke="#241d3f" stroke-width="3"/>');
+      }
+    },
+    "caverna-do-dragao": {
+      selo: "MASMORRA", moto: "DADO",
+      elem: function () {
+        return _svgLote1('<path d="M18 78 L40 30 Q80 8 120 30 L142 78 Z" fill="#4a3a2a" stroke="#241d3f" stroke-width="3"/><ellipse cx="80" cy="50" rx="22" ry="28" fill="#1a1530"/><polygon points="118,58 130,70 106,70" fill="#f5f0e8" stroke="#241d3f" stroke-width="2"/>');
+      }
+    },
+    "tiny-toons": {
+      selo: "ESCOLA", moto: "WARNER",
+      elem: function () {
+        return _svgLote1('<rect x="28" y="30" width="48" height="36" rx="4" fill="#7d3cff" stroke="#241d3f" stroke-width="3"/><polygon points="28,30 52,14 76,30" fill="#ff7a1a" stroke="#241d3f" stroke-width="3"/><rect x="96" y="38" width="36" height="28" rx="8" fill="#ffe600" stroke="#241d3f" stroke-width="3"/>');
+      }
+    },
+    "animaniacs": {
+      selo: "ESTÚDIO", moto: "TORRE",
+      elem: function () {
+        return _svgLote1('<rect x="30" y="22" width="40" height="50" rx="3" fill="#cfd8e6" stroke="#241d3f" stroke-width="3"/><rect x="38" y="30" width="10" height="10" fill="#81d4fa"/><rect x="52" y="30" width="10" height="10" fill="#81d4fa"/><path d="M88 70 L100 22 L112 70 Z" fill="#e6293c" stroke="#241d3f" stroke-width="3"/>');
+      }
+    },
+    "pica-pau": {
+      selo: "TRONCO", moto: "RISADA",
+      elem: function () {
+        return _svgLote1('<rect x="60" y="14" width="28" height="64" rx="8" fill="#8d6e63" stroke="#241d3f" stroke-width="3"/><circle cx="74" cy="18" r="10" fill="#2e7d32" stroke="#241d3f" stroke-width="2"/><circle cx="50" cy="40" r="4" fill="#1a1530"/><circle cx="50" cy="52" r="4" fill="#1a1530"/><circle cx="50" cy="64" r="4" fill="#1a1530"/>');
+      }
+    },
+    "os-simpsons": {
+      selo: "SOFÁ", moto: "TV",
+      elem: function () {
+        return _svgLote1('<rect x="24" y="48" width="72" height="24" rx="4" fill="#ff7a1a" stroke="#241d3f" stroke-width="3"/><rect x="30" y="40" width="18" height="12" rx="2" fill="#ffb74d" stroke="#241d3f" stroke-width="2"/><rect x="104" y="20" width="36" height="28" rx="3" fill="#1a1530" stroke="#241d3f" stroke-width="3"/><rect x="110" y="26" width="24" height="16" fill="#4fc3f7"/>');
+      }
+    },
+    "angel-menina-das-flores": {
+      selo: "FLOR", moto: "JARDIM",
+      elem: function () {
+        return _svgLote1('<circle cx="80" cy="38" r="16" fill="#ff2d95" stroke="#241d3f" stroke-width="3"/><circle cx="80" cy="38" r="6" fill="#ffe600"/><rect x="76" y="54" width="8" height="22" fill="#2ecf5b" stroke="#241d3f" stroke-width="2"/><path d="M76 64 Q58 58 54 70" fill="none" stroke="#2ecf5b" stroke-width="3"/>');
+      }
+    },
+    "casa-da-angelica": {
+      selo: "CASA", moto: "PORTA",
+      elem: function () {
+        return _svgLote1('<rect x="40" y="36" width="80" height="40" fill="#ffe0b2" stroke="#241d3f" stroke-width="3"/><polygon points="40,36 80,12 120,36" fill="#e6293c" stroke="#241d3f" stroke-width="3"/><rect x="70" y="52" width="20" height="24" fill="#6d4c41"/><circle cx="80" cy="28" r="5" fill="#ff2d95"/>');
+      }
+    },
+    "show-maravilha": {
+      selo: "PALCO", moto: "ESTRELA",
+      elem: function () {
+        return _svgLote1('<rect x="20" y="58" width="120" height="16" fill="#7d3cff" stroke="#241d3f" stroke-width="3"/><polygon points="80,10 88,32 112,32 92,46 100,68 80,54 60,68 68,46 48,32 72,32" fill="#ffe600" stroke="#241d3f" stroke-width="2"/>');
+      }
+    },
+    "he-man": {
+      selo: "ESPADA", moto: "PEDRA",
+      elem: function () {
+        return _svgLote1('<rect x="76" y="8" width="8" height="50" fill="#cfd8e6" stroke="#241d3f" stroke-width="2"/><polygon points="80,4 92,18 68,18" fill="#ffe600" stroke="#241d3f" stroke-width="2"/><path d="M40 78 Q80 50 120 78 L120 86 L40 86 Z" fill="#6d4c41" stroke="#241d3f" stroke-width="3"/>');
+      }
+    },
+    "thundercats": {
+      selo: "RAIO", moto: "RUÍNA",
+      elem: function () {
+        return _svgLote1('<polygon points="88,8 60,40 78,40 56,78 108,36 88,36 112,8" fill="#ffe600" stroke="#241d3f" stroke-width="3"/><rect x="18" y="62" width="28" height="16" fill="#8d6e63" stroke="#241d3f" stroke-width="2"/>');
+      }
+    },
+    "tartarugas-ninja": {
+      selo: "ESGOTO", moto: "PIZZA",
+      elem: function () {
+        return _svgLote1('<circle cx="52" cy="48" r="22" fill="#90a4ae" stroke="#241d3f" stroke-width="3"/><circle cx="52" cy="48" r="8" fill="#1a1530"/><circle cx="118" cy="48" r="20" fill="#ffe600" stroke="#241d3f" stroke-width="3"/><path d="M104 48 L132 48 M118 34 L118 62" stroke="#e65100" stroke-width="2"/>');
+      }
+    },
+    "ducktales": {
+      selo: "BAÚ", moto: "MOEDA",
+      elem: function () {
+        return _svgLote1('<rect x="44" y="36" width="72" height="40" rx="4" fill="#ff7a1a" stroke="#241d3f" stroke-width="3"/><rect x="44" y="28" width="72" height="14" rx="4" fill="#e65100" stroke="#241d3f" stroke-width="3"/><circle cx="80" cy="56" r="8" fill="#ffe600" stroke="#241d3f" stroke-width="2"/>');
+      }
+    },
+    "batman-serie-animada": {
+      selo: "NOITE", moto: "PRÉDIO",
+      elem: function () {
+        return _svgLote1('<rect x="18" y="30" width="18" height="50" fill="#1a1530" stroke="#241d3f" stroke-width="2"/><rect x="42" y="18" width="22" height="62" fill="#263238" stroke="#241d3f" stroke-width="2"/><rect x="70" y="36" width="16" height="44" fill="#1a1530" stroke="#241d3f" stroke-width="2"/><circle cx="128" cy="22" r="12" fill="#cfd8e6" stroke="#241d3f" stroke-width="2"/>');
+      }
+    },
+    "x-men-serie-animada": {
+      selo: "MANSÃO", moto: "JET",
+      elem: function () {
+        return _svgLote1('<rect x="24" y="40" width="70" height="32" fill="#eceff1" stroke="#241d3f" stroke-width="3"/><polygon points="24,40 59,18 94,40" fill="#455a64" stroke="#241d3f" stroke-width="3"/><ellipse cx="126" cy="36" rx="22" ry="8" fill="#90caf9" stroke="#241d3f" stroke-width="2"/>');
+      }
+    },
+    "capitao-planeta": {
+      selo: "GLOBO", moto: "ANÉIS",
+      elem: function () {
+        return _svgLote1('<circle cx="80" cy="46" r="26" fill="#2f6fed" stroke="#241d3f" stroke-width="3"/><ellipse cx="80" cy="46" rx="10" ry="26" fill="none" stroke="#2ecf5b" stroke-width="3"/><path d="M56 40 Q80 28 104 40" fill="none" stroke="#2ecf5b" stroke-width="3"/>');
+      }
+    },
+    "inspetor-bugiganga": {
+      selo: "CASACO", moto: "MOLA",
+      elem: function () {
+        return _svgLote1('<rect x="58" y="28" width="44" height="46" rx="6" fill="#455a64" stroke="#241d3f" stroke-width="3"/><rect x="68" y="12" width="24" height="16" rx="4" fill="#37474f" stroke="#241d3f" stroke-width="2"/><path d="M102 40 C120 28 128 52 112 58" fill="none" stroke="#ffe600" stroke-width="4"/>');
+      }
+    },
+    "disney-club": {
+      selo: "CASTELO", moto: "ROLO",
+      elem: function () {
+        return _svgLote1('<rect x="50" y="40" width="60" height="36" fill="#cfd8e6" stroke="#241d3f" stroke-width="3"/><rect x="44" y="22" width="16" height="54" fill="#90caf9" stroke="#241d3f" stroke-width="2"/><rect x="100" y="16" width="16" height="60" fill="#90caf9" stroke="#241d3f" stroke-width="2"/><polygon points="44,22 52,8 60,22" fill="#e6293c"/><polygon points="100,16 108,4 116,16" fill="#e6293c"/>');
+      }
+    },
+    "passa-ou-repassa": {
+      selo: "PROVA", moto: "BOTÃO",
+      elem: function () {
+        return _svgLote1('<rect x="22" y="30" width="50" height="40" rx="4" fill="#2f6fed" stroke="#241d3f" stroke-width="3"/><rect x="88" y="30" width="50" height="40" rx="4" fill="#e6293c" stroke="#241d3f" stroke-width="3"/><circle cx="47" cy="50" r="8" fill="#ffe600"/><circle cx="113" cy="50" r="8" fill="#ffe600"/>');
+      }
+    },
+    "festival-de-desenhos": {
+      selo: "VINHETA", moto: "GLOBO",
+      elem: function () {
+        return _svgLote1('<rect x="36" y="18" width="88" height="54" rx="6" fill="#1a1530" stroke="#e6e9ff" stroke-width="3"/><circle cx="80" cy="45" r="16" fill="#ffe600" stroke="#241d3f" stroke-width="2"/><rect x="20" y="70" width="120" height="8" fill="#e6293c"/>');
+      }
+    },
+    "angel-mix": {
+      selo: "MESA", moto: "SOL",
+      elem: function () {
+        return _svgLote1('<rect x="28" y="48" width="104" height="22" rx="4" fill="#7d3cff" stroke="#241d3f" stroke-width="3"/><circle cx="48" cy="36" r="10" fill="#ffe600" stroke="#241d3f" stroke-width="2"/><rect x="70" y="30" width="14" height="18" fill="#ff2d95"/><rect x="90" y="30" width="14" height="18" fill="#2ecf5b"/><rect x="110" y="30" width="14" height="18" fill="#2f6fed"/>');
+      }
+    },
+    "changeman": {
+      selo: "ESQUADRÃO", moto: "CINCO",
+      elem: function () {
+        return _svgLote1('<circle cx="28" cy="46" r="12" fill="#e6293c" stroke="#241d3f" stroke-width="3"/><circle cx="54" cy="46" r="12" fill="#2f6fed" stroke="#241d3f" stroke-width="3"/><circle cx="80" cy="46" r="12" fill="#2ecf5b" stroke="#241d3f" stroke-width="3"/><circle cx="106" cy="46" r="12" fill="#ffe600" stroke="#241d3f" stroke-width="3"/><circle cx="132" cy="46" r="12" fill="#ff2d95" stroke="#241d3f" stroke-width="3"/>');
+      }
+    },
+    "flashman": {
+      selo: "PRISMA", moto: "CLARÃO",
+      elem: function () {
+        return _svgLote1('<polygon points="80,10 120,78 40,78" fill="#81d4fa" stroke="#241d3f" stroke-width="3"/><polygon points="80,28 100,70 60,70" fill="#ffe600" opacity="0.7"/>');
+      }
+    },
+    "jiraiya": {
+      selo: "NINJA", moto: "ESTRELA",
+      elem: function () {
+        return _svgLote1('<polygon points="80,16 88,36 110,36 92,50 100,72 80,58 60,72 68,50 50,36 72,36" fill="#cfd8e6" stroke="#241d3f" stroke-width="3"/><rect x="20" y="60" width="36" height="10" fill="#e6293c" stroke="#241d3f" stroke-width="2"/>');
+      }
+    },
+    "jiban": {
+      selo: "AÇO", moto: "DISTINTIVO",
+      elem: function () {
+        return _svgLote1('<polygon points="80,12 108,28 108,60 80,78 52,60 52,28" fill="#90a4ae" stroke="#241d3f" stroke-width="3"/><circle cx="80" cy="46" r="12" fill="#1a1530" stroke="#ffe600" stroke-width="3"/>');
+      }
+    },
+    "shurato": {
+      selo: "MANDALA", moto: "GUARDIÃO",
+      elem: function () {
+        return _svgLote1('<circle cx="80" cy="46" r="28" fill="#7d3cff" stroke="#241d3f" stroke-width="3"/><circle cx="80" cy="46" r="16" fill="#ffe600" stroke="#241d3f" stroke-width="2"/><circle cx="80" cy="46" r="6" fill="#e6293c"/>');
+      }
+    },
+    "samurai-warriors": {
+      selo: "ARMADURA", moto: "CINCO",
+      elem: function () {
+        return _svgLote1('<rect x="22" y="30" width="20" height="36" rx="3" fill="#e6293c" stroke="#241d3f" stroke-width="2"/><rect x="46" y="26" width="20" height="40" rx="3" fill="#2f6fed" stroke="#241d3f" stroke-width="2"/><rect x="70" y="22" width="20" height="44" rx="3" fill="#ffe600" stroke="#241d3f" stroke-width="2"/><rect x="94" y="26" width="20" height="40" rx="3" fill="#2ecf5b" stroke="#241d3f" stroke-width="2"/><rect x="118" y="30" width="20" height="36" rx="3" fill="#7d3cff" stroke="#241d3f" stroke-width="2"/>');
+      }
+    },
+    "yu-yu-hakusho": {
+      selo: "ESPÍRITO", moto: "CADERNO",
+      elem: function () {
+        return _svgLote1('<circle cx="52" cy="40" r="20" fill="#81d4fa" stroke="#241d3f" stroke-width="3" opacity="0.9"/><rect x="88" y="22" width="40" height="52" rx="3" fill="#fff8e7" stroke="#241d3f" stroke-width="3"/><rect x="94" y="32" width="28" height="4" fill="#90a4ae"/><rect x="94" y="42" width="22" height="4" fill="#90a4ae"/>');
+      }
+    },
+    "spielvan": {
+      selo: "TEMPO", moto: "VISOR",
+      elem: function () {
+        return _svgLote1('<path d="M58 16 L102 16 L80 46 Z" fill="#81d4fa" stroke="#241d3f" stroke-width="3"/><path d="M58 76 L102 76 L80 46 Z" fill="#ff7a1a" stroke="#241d3f" stroke-width="3"/><rect x="118" y="30" width="22" height="16" rx="6" fill="#2f6fed" stroke="#241d3f" stroke-width="2"/>');
+      }
+    },
+    "black-kamen-rider": {
+      selo: "VISOR", moto: "MOTO",
+      elem: function () {
+        return _svgLote1('<ellipse cx="80" cy="36" rx="24" ry="20" fill="#1a1530" stroke="#ffe600" stroke-width="3"/><rect x="68" y="32" width="24" height="8" rx="2" fill="#e6293c"/><circle cx="48" cy="70" r="12" fill="#37474f" stroke="#241d3f" stroke-width="3"/><circle cx="112" cy="70" r="12" fill="#37474f" stroke="#241d3f" stroke-width="3"/>');
+      }
+    },
+    "kamen-rider-black-rx": {
+      selo: "SOL", moto: "BIO",
+      elem: function () {
+        return _svgLote1('<circle cx="80" cy="40" r="22" fill="#ffe600" stroke="#241d3f" stroke-width="3"/><rect x="58" y="64" width="44" height="14" rx="4" fill="#1a1530" stroke="#e6293c" stroke-width="3"/>');
+      }
+    },
+    "cybercop": {
+      selo: "CIRCUITO", moto: "CAPACETE",
+      elem: function () {
+        return _svgLote1('<rect x="50" y="18" width="60" height="36" rx="10" fill="#90a4ae" stroke="#241d3f" stroke-width="3"/><rect x="62" y="30" width="36" height="12" rx="3" fill="#00e5ff"/><rect x="40" y="58" width="80" height="16" fill="#1a1530" stroke="#00e5ff" stroke-width="2"/>');
+      }
+    },
+    "winspector": {
+      selo: "SIRENE", moto: "RESGATE",
+      elem: function () {
+        return _svgLote1('<rect x="36" y="36" width="88" height="32" rx="6" fill="#eceff1" stroke="#241d3f" stroke-width="3"/><rect x="56" y="16" width="48" height="20" rx="6" fill="#e6293c" stroke="#241d3f" stroke-width="3"/><circle cx="80" cy="26" r="6" fill="#ffe600"/>');
+      }
+    },
+    "solbrain": {
+      selo: "LAB", moto: "RESGATE",
+      elem: function () {
+        return _svgLote1('<rect x="30" y="22" width="28" height="50" rx="4" fill="#81d4fa" stroke="#241d3f" stroke-width="3"/><ellipse cx="104" cy="40" rx="22" ry="18" fill="#ffe600" stroke="#241d3f" stroke-width="3"/><rect x="92" y="56" width="24" height="16" fill="#2f6fed" stroke="#241d3f" stroke-width="2"/>');
+      }
+    },
+    "maskman": {
+      selo: "MÁSCARA", moto: "LUZ",
+      elem: function () {
+        return _svgLote1('<ellipse cx="40" cy="46" r="14" ry="18" fill="#e6293c" stroke="#241d3f" stroke-width="3"/><ellipse cx="70" cy="46" r="14" ry="18" fill="#2f6fed" stroke="#241d3f" stroke-width="3"/><ellipse cx="100" cy="46" r="14" ry="18" fill="#ffe600" stroke="#241d3f" stroke-width="3"/><ellipse cx="130" cy="46" r="14" ry="18" fill="#2ecf5b" stroke="#241d3f" stroke-width="3"/>');
+      }
+    },
+    "super-campeoes": {
+      selo: "CAMPO", moto: "FAIXA",
+      elem: function () {
+        return _svgLote1('<rect x="20" y="22" width="120" height="50" rx="4" fill="#2ecf5b" stroke="#241d3f" stroke-width="3"/><circle cx="80" cy="47" r="12" fill="none" stroke="#f5f0e8" stroke-width="3"/><rect x="20" y="44" width="120" height="4" fill="#f5f0e8"/><rect x="58" y="70" width="44" height="10" fill="#e6293c"/>');
+      }
+    },
+    "ultraman": {
+      selo: "RAIO", moto: "GIGANTE",
+      elem: function () {
+        return _svgLote1('<rect x="70" y="8" width="20" height="70" fill="#e6293c" stroke="#241d3f" stroke-width="3"/><rect x="64" y="20" width="32" height="12" fill="#cfd8e6" stroke="#241d3f" stroke-width="2"/><circle cx="80" cy="48" r="6" fill="#ffe600" stroke="#241d3f" stroke-width="2"/>');
+      }
+    },
+    "national-kid": {
+      selo: "CAPA", moto: "RAIO",
+      elem: function () {
+        return _svgLote1('<path d="M58 20 L80 8 L102 20 L96 78 L64 78 Z" fill="#e6293c" stroke="#241d3f" stroke-width="3"/><polygon points="110,16 98,40 112,40 90,70 130,34 114,34" fill="#ffe600" stroke="#241d3f" stroke-width="2"/>');
+      }
+    },
+    "lion-man": {
+      selo: "JUBA", moto: "GRUTA",
+      elem: function () {
+        return _svgLote1('<ellipse cx="80" cy="46" rx="34" ry="24" fill="#8d6e63" stroke="#241d3f" stroke-width="3"/><ellipse cx="80" cy="50" rx="18" ry="14" fill="#1a1530"/><circle cx="52" cy="70" r="6" fill="#ff7a1a"/>');
+      }
+    },
+    "sonic": {
+      selo: "TÊNIS", moto: "LOOP",
+      elem: function () {
+        return _svgLote1('<path d="M30 70 Q80 10 130 70" fill="none" stroke="#2f6fed" stroke-width="8"/><rect x="96" y="58" width="36" height="18" rx="6" fill="#e6293c" stroke="#241d3f" stroke-width="3"/><rect x="100" y="70" width="28" height="8" fill="#1a1530"/>');
+      }
+    },
+    "top-gear": {
+      selo: "VOLANTE", moto: "BANDEIRA",
+      elem: function () {
+        return _svgLote1('<circle cx="58" cy="48" r="24" fill="#eceff1" stroke="#241d3f" stroke-width="3"/><circle cx="58" cy="48" r="8" fill="#1a1530"/><rect x="100" y="18" width="36" height="24" fill="#f5f0e8" stroke="#241d3f" stroke-width="2"/><rect x="100" y="18" width="18" height="12" fill="#1a1530"/><rect x="118" y="30" width="18" height="12" fill="#1a1530"/>');
+      }
+    },
+    "super-mario-world": {
+      selo: "MAPA", moto: "COLINA",
+      elem: function () {
+        return _svgLote1('<path d="M10 70 Q40 30 70 70 T130 70 L150 86 L10 86 Z" fill="#2ecf5b" stroke="#241d3f" stroke-width="3"/><rect x="64" y="22" width="32" height="22" rx="3" fill="#7d3cff" stroke="#241d3f" stroke-width="3"/>');
+      }
+    },
+    "donkey-kong-country": {
+      selo: "BARRIL", moto: "SELVA",
+      elem: function () {
+        return _svgLote1('<ellipse cx="80" cy="50" rx="28" ry="30" fill="#a16207" stroke="#241d3f" stroke-width="3"/><path d="M54 40 Q80 32 106 40" fill="none" stroke="#241d3f" stroke-width="3"/><path d="M52 58 Q80 50 108 58" fill="none" stroke="#241d3f" stroke-width="3"/><circle cx="30" cy="22" r="10" fill="#2ecf5b"/>');
+      }
+    },
+    "samurai-shodown": {
+      selo: "KATANA", moto: "FLOR",
+      elem: function () {
+        return _svgLote1('<rect x="28" y="42" width="100" height="8" rx="2" fill="#cfd8e6" stroke="#241d3f" stroke-width="2"/><rect x="20" y="38" width="16" height="16" fill="#6d4c41" stroke="#241d3f" stroke-width="2"/><circle cx="128" cy="24" r="10" fill="#ff2d95" stroke="#241d3f" stroke-width="2"/>');
+      }
+    },
+    "fatal-fury": {
+      selo: "RINGUE", moto: "JAQUETA",
+      elem: function () {
+        return _svgLote1('<rect x="24" y="50" width="112" height="24" fill="#e6293c" stroke="#241d3f" stroke-width="3"/><rect x="58" y="18" width="44" height="36" rx="4" fill="#2f6fed" stroke="#241d3f" stroke-width="3"/>');
+      }
+    },
+    "captain-commando": {
+      selo: "MOEDA", moto: "QUATRO",
+      elem: function () {
+        return _svgLote1('<circle cx="36" cy="46" r="14" fill="#ffe600" stroke="#241d3f" stroke-width="3"/><rect x="60" y="30" width="18" height="34" rx="4" fill="#e6293c" stroke="#241d3f" stroke-width="2"/><rect x="84" y="30" width="18" height="34" rx="4" fill="#2f6fed" stroke="#241d3f" stroke-width="2"/><rect x="108" y="30" width="18" height="34" rx="4" fill="#2ecf5b" stroke="#241d3f" stroke-width="2"/><rect x="132" y="30" width="18" height="34" rx="4" fill="#ff7a1a" stroke="#241d3f" stroke-width="2"/>');
+      }
+    },
+    "cadillacs-e-dinossauros": {
+      selo: "CONVERSÍVEL", moto: "OSSO",
+      elem: function () {
+        return _svgLote1('<path d="M18 58 L70 50 L90 58 L70 70 Z" fill="#e6293c" stroke="#241d3f" stroke-width="3"/><path d="M96 30 L150 24 L150 70 L110 78 Z" fill="#d7ccc8" stroke="#241d3f" stroke-width="3"/>');
+      }
+    },
+    "streets-of-rage": {
+      selo: "RUA", moto: "PUNHO",
+      elem: function () {
+        return _svgLote1('<rect x="10" y="50" width="140" height="24" fill="#37474f"/><rect x="20" y="18" width="28" height="32" fill="#1a1530" stroke="#ffe600" stroke-width="2"/><circle cx="110" cy="40" r="16" fill="#e6293c" stroke="#241d3f" stroke-width="3"/>');
+      }
+    },
+    "golden-axe": {
+      selo: "MACHADO", moto: "POÇÃO",
+      elem: function () {
+        return _svgLote1('<rect x="74" y="28" width="12" height="50" fill="#6d4c41" stroke="#241d3f" stroke-width="2"/><path d="M50 20 L80 36 L50 52 Z" fill="#ffe600" stroke="#241d3f" stroke-width="3"/><path d="M110 20 L80 36 L110 52 Z" fill="#ffe600" stroke="#241d3f" stroke-width="3"/>');
+      }
+    },
+    "super-mario-kart": {
+      selo: "KART", moto: "BANDEIRA",
+      elem: function () {
+        return _svgLote1('<circle cx="48" cy="64" r="12" fill="#1a1530" stroke="#241d3f" stroke-width="3"/><circle cx="108" cy="64" r="12" fill="#1a1530" stroke="#241d3f" stroke-width="3"/><rect x="40" y="40" width="80" height="18" rx="6" fill="#e6293c" stroke="#241d3f" stroke-width="3"/><rect x="118" y="12" width="24" height="16" fill="#f5f0e8" stroke="#241d3f" stroke-width="2"/>');
+      }
+    },
+    "iss-deluxe": {
+      selo: "CAMPO", moto: "16-BIT",
+      elem: function () {
+        return _svgLote1('<rect x="18" y="18" width="124" height="54" rx="4" fill="#2ecf5b" stroke="#241d3f" stroke-width="3"/><circle cx="80" cy="45" r="10" fill="none" stroke="#f5f0e8" stroke-width="3"/><rect x="18" y="42" width="124" height="4" fill="#f5f0e8"/><rect x="54" y="72" width="52" height="10" rx="2" fill="#7d3cff"/>');
+      }
+    },
+    "mega-drive": {
+      selo: "16-BIT", moto: "SEGA",
+      elem: function () {
+        return _svgLote1('<rect x="28" y="28" width="104" height="36" rx="8" fill="#1a1530" stroke="#e6e9ff" stroke-width="3"/><rect x="40" y="40" width="28" height="12" rx="2" fill="#2f6fed"/><circle cx="92" cy="46" r="6" fill="#e6293c"/><circle cx="110" cy="46" r="6" fill="#ffe600"/>');
+      }
+    },
+    "master-system": {
+      selo: "8-BIT", moto: "TECTOY",
+      elem: function () {
+        return _svgLote1('<rect x="36" y="22" width="88" height="46" rx="6" fill="#e6293c" stroke="#241d3f" stroke-width="3"/><rect x="48" y="32" width="40" height="22" rx="2" fill="#1a1530"/><rect x="96" y="36" width="16" height="16" rx="2" fill="#ffe600"/>');
+      }
+    },
+    "nintendo-64": {
+      selo: "CARTUCHO", moto: "ANALÓGICO",
+      elem: function () {
+        return _svgLote1('<rect x="48" y="14" width="64" height="40" rx="4" fill="#2f6fed" stroke="#241d3f" stroke-width="3"/><rect x="60" y="58" width="40" height="22" rx="10" fill="#eceff1" stroke="#241d3f" stroke-width="3"/><circle cx="80" cy="69" r="6" fill="#1a1530"/>');
+      }
+    },
+    "playstation": {
+      selo: "CD", moto: "SÍMBOLOS",
+      elem: function () {
+        return _svgLote1('<rect x="30" y="30" width="100" height="36" rx="6" fill="#eceff1" stroke="#241d3f" stroke-width="3"/><circle cx="62" cy="48" r="12" fill="#cfd8e6" stroke="#241d3f" stroke-width="2"/><rect x="96" y="40" width="10" height="10" fill="#e6293c"/><circle cx="114" cy="45" r="6" fill="none" stroke="#2f6fed" stroke-width="3"/>');
+      }
+    },
+    "crash-bandicoot": {
+      selo: "CAIXOTE", moto: "ILHA",
+      elem: function () {
+        return _svgLote1('<rect x="50" y="28" width="44" height="44" fill="#a16207" stroke="#241d3f" stroke-width="3"/><path d="M50 50 L94 50 M72 28 L72 72" stroke="#241d3f" stroke-width="3"/><ellipse cx="128" cy="70" rx="22" ry="10" fill="#2ecf5b"/>');
+      }
+    },
+    "resident-evil": {
+      selo: "MANSÃO", moto: "MÁQUINA",
+      elem: function () {
+        return _svgLote1('<rect x="24" y="30" width="70" height="46" fill="#37474f" stroke="#241d3f" stroke-width="3"/><polygon points="24,30 59,10 94,30" fill="#1a1530" stroke="#241d3f" stroke-width="3"/><rect x="108" y="40" width="32" height="28" fill="#eceff1" stroke="#241d3f" stroke-width="2"/>');
+      }
+    },
+    "nba-jam": {
+      selo: "CESTA", moto: "FOGO",
+      elem: function () {
+        return _svgLote1('<rect x="70" y="8" width="8" height="36" fill="#ff7a1a" stroke="#241d3f" stroke-width="2"/><ellipse cx="74" cy="48" rx="22" ry="10" fill="none" stroke="#ff7a1a" stroke-width="4"/><path d="M110 70 Q118 40 130 70 Q118 58 110 70" fill="#ff7a1a" stroke="#241d3f" stroke-width="2"/>');
+      }
+    },
+    "sunset-riders": {
+      selo: "CHAPÉU", moto: "CÁCTUS",
+      elem: function () {
+        return _svgLote1('<ellipse cx="56" cy="40" rx="28" ry="8" fill="#6d4c41" stroke="#241d3f" stroke-width="3"/><rect x="44" y="18" width="24" height="22" rx="8" fill="#6d4c41" stroke="#241d3f" stroke-width="2"/><rect x="112" y="36" width="12" height="40" fill="#2ecf5b" stroke="#241d3f" stroke-width="2"/><rect x="100" y="48" width="36" height="8" fill="#2ecf5b"/>');
+      }
+    },
+    "killer-instinct": {
+      selo: "COMBO", moto: "BARRA",
+      elem: function () {
+        return _svgLote1('<rect x="20" y="30" width="120" height="16" rx="4" fill="#1a1530" stroke="#e6293c" stroke-width="3"/><rect x="24" y="34" width="80" height="8" fill="#ffe600"/><rect x="50" y="56" width="24" height="18" rx="4" fill="#e6293c" stroke="#241d3f" stroke-width="2"/><rect x="86" y="56" width="24" height="18" rx="4" fill="#2f6fed" stroke="#241d3f" stroke-width="2"/>');
+      }
+    },
+    "mega-man-x": {
+      selo: "CÁPSULA", moto: "CANHÃO",
+      elem: function () {
+        return _svgLote1('<rect x="36" y="16" width="40" height="60" rx="8" fill="#81d4fa" stroke="#241d3f" stroke-width="3"/><rect x="88" y="36" width="48" height="16" rx="6" fill="#2f6fed" stroke="#241d3f" stroke-width="3"/>');
+      }
+    },
+    "goldeneye-007": {
+      selo: "PISTOLA", moto: "N64",
+      elem: function () {
+        return _svgLote1('<rect x="30" y="40" width="70" height="12" rx="3" fill="#37474f" stroke="#241d3f" stroke-width="3"/><rect x="90" y="28" width="16" height="24" fill="#1a1530" stroke="#241d3f" stroke-width="2"/><rect x="118" y="48" width="28" height="20" rx="8" fill="#eceff1" stroke="#241d3f" stroke-width="2"/>');
+      }
+    },
+    "final-fantasy-vii": {
+      selo: "ORBE", moto: "REATOR",
+      elem: function () {
+        return _svgLote1('<circle cx="48" cy="46" r="18" fill="#2ecf5b" stroke="#241d3f" stroke-width="3"/><circle cx="78" cy="38" r="12" fill="#7d3cff" stroke="#241d3f" stroke-width="2"/><rect x="108" y="18" width="28" height="54" fill="#455a64" stroke="#241d3f" stroke-width="3"/>');
+      }
+    },
+    "art-of-fighting": {
+      selo: "DOJO", moto: "KI",
+      elem: function () {
+        return _svgLote1('<rect x="20" y="50" width="120" height="24" fill="#a16207" stroke="#241d3f" stroke-width="3"/><circle cx="80" cy="32" r="18" fill="#ffe600" stroke="#241d3f" stroke-width="3" opacity="0.85"/><rect x="70" y="22" width="20" height="20" fill="none" stroke="#e6293c" stroke-width="3"/>');
+      }
+    },
+    "guga": {
+      selo: "RAQUETE", moto: "SAIBRO",
+      elem: function () {
+        return _svgLote1('<ellipse cx="70" cy="40" rx="18" ry="24" fill="#ffe600" stroke="#241d3f" stroke-width="3"/><rect x="66" y="62" width="8" height="22" fill="#6d4c41"/><rect x="18" y="78" width="124" height="8" fill="#ff7a1a"/>');
+      }
+    },
+    "oscar-schmidt": {
+      selo: "CESTA", moto: "TRÊS",
+      elem: function () {
+        return _svgLote1('<rect x="74" y="8" width="8" height="40" fill="#ff7a1a" stroke="#241d3f" stroke-width="2"/><ellipse cx="78" cy="52" rx="20" ry="8" fill="none" stroke="#ff7a1a" stroke-width="4"/><circle cx="40" cy="40" r="12" fill="#ff7a1a" stroke="#241d3f" stroke-width="3"/>');
+      }
+    },
+    "hortencia": {
+      selo: "QUADRA", moto: "CESTA",
+      elem: function () {
+        return _svgLote1('<circle cx="70" cy="40" r="18" fill="#ff7a1a" stroke="#241d3f" stroke-width="3"/><rect x="108" y="48" width="28" height="16" rx="6" fill="#f5f0e8" stroke="#241d3f" stroke-width="3"/>');
+      }
+    },
+    "rubens-barrichello": {
+      selo: "CAPACETE", moto: "GRID",
+      elem: function () {
+        return _svgLote1('<ellipse cx="80" cy="42" rx="28" ry="24" fill="#e6293c" stroke="#241d3f" stroke-width="3"/><rect x="58" y="38" width="44" height="12" fill="#1a1530"/><rect x="20" y="72" width="120" height="8" fill="#ffe600"/>');
+      }
+    },
+    "palmeiras": {
+      selo: "MANTO", moto: "BOLA",
+      elem: function () {
+        return _svgLote1('<rect x="24" y="18" width="70" height="54" fill="#2ecf5b" stroke="#241d3f" stroke-width="3"/><circle cx="120" cy="50" r="16" fill="#f5f0e8" stroke="#241d3f" stroke-width="3"/>');
+      }
+    },
+    "sao-paulo": {
+      selo: "TAÇA", moto: "LISTRAS",
+      elem: function () {
+        return _svgLote1('<rect x="20" y="20" width="16" height="50" fill="#f5f0e8"/><rect x="36" y="20" width="10" height="50" fill="#e6293c"/><rect x="46" y="20" width="10" height="50" fill="#1a1530"/><rect x="56" y="20" width="16" height="50" fill="#f5f0e8"/><ellipse cx="118" cy="70" rx="18" ry="6" fill="#ffe600" stroke="#241d3f" stroke-width="2"/><rect x="110" y="36" width="16" height="34" fill="#ffe600" stroke="#241d3f" stroke-width="2"/>');
+      }
+    },
+    "selecao-de-volei": {
+      selo: "REDE", moto: "BOLA",
+      elem: function () {
+        return _svgLote1('<line x1="80" y1="12" x2="80" y2="78" stroke="#241d3f" stroke-width="4"/><path d="M50 20 L110 20 L110 60 L50 60 Z" fill="none" stroke="#cfd8e6" stroke-width="3"/><circle cx="40" cy="70" r="12" fill="#ffe600" stroke="#241d3f" stroke-width="3"/>');
+      }
+    },
+    "magic-paula": {
+      selo: "PASSE", moto: "FAÍSCA",
+      elem: function () {
+        return _svgLote1('<circle cx="62" cy="48" r="16" fill="#ff7a1a" stroke="#241d3f" stroke-width="3"/><polygon points="110,18 116,36 134,36 120,48 126,66 110,54 94,66 100,48 86,36 104,36" fill="#ffe600" stroke="#241d3f" stroke-width="2"/>');
+      }
+    },
+    "gustavo-borges": {
+      selo: "RAIA", moto: "TOUCA",
+      elem: function () {
+        return _svgLote1('<rect x="18" y="20" width="124" height="50" fill="#2f6fed" stroke="#241d3f" stroke-width="3"/><line x1="50" y1="20" x2="50" y2="70" stroke="#f5f0e8" stroke-width="3"/><line x1="80" y1="20" x2="80" y2="70" stroke="#f5f0e8" stroke-width="3"/><line x1="110" y1="20" x2="110" y2="70" stroke="#f5f0e8" stroke-width="3"/><ellipse cx="80" cy="40" rx="10" ry="6" fill="#e6293c"/>');
+      }
+    },
+    "fernando-scherer": {
+      selo: "BLOCO", moto: "50M",
+      elem: function () {
+        return _svgLote1('<rect x="20" y="50" width="120" height="24" fill="#2f6fed" stroke="#241d3f" stroke-width="3"/><rect x="40" y="28" width="36" height="22" fill="#ffe600" stroke="#241d3f" stroke-width="3"/>');
+      }
+    },
+    "jackie-silva": {
+      selo: "PRAIA", moto: "AREIA",
+      elem: function () {
+        return _svgLote1('<rect x="0" y="50" width="160" height="40" fill="#ffe082"/><rect x="0" y="20" width="160" height="30" fill="#4fc3f7"/><circle cx="80" cy="48" r="12" fill="#ffe600" stroke="#241d3f" stroke-width="3"/>');
+      }
+    },
+    "bebeto": {
+      selo: "BERÇO", moto: "GOL",
+      elem: function () {
+        return _svgLote1('<rect x="44" y="36" width="72" height="28" rx="6" fill="#fff8e7" stroke="#241d3f" stroke-width="3"/><rect x="40" y="28" width="8" height="44" fill="#8d6e63"/><rect x="112" y="28" width="8" height="44" fill="#8d6e63"/><circle cx="128" cy="22" r="8" fill="#f5f0e8" stroke="#241d3f" stroke-width="2"/>');
+      }
+    },
+    "dunga": {
+      selo: "FAIXA", moto: "TAÇA",
+      elem: function () {
+        return _svgLote1('<rect x="36" y="40" width="52" height="18" rx="4" fill="#ffe600" stroke="#241d3f" stroke-width="3"/><ellipse cx="118" cy="70" rx="16" ry="6" fill="#ffe600" stroke="#241d3f" stroke-width="2"/><rect x="110" y="28" width="16" height="42" fill="#ffe600" stroke="#241d3f" stroke-width="2"/>');
+      }
+    },
+    "taffarel": {
+      selo: "LUVA", moto: "GOL",
+      elem: function () {
+        return _svgLote1('<rect x="18" y="22" width="8" height="50" fill="#f5f0e8" stroke="#241d3f" stroke-width="2"/><rect x="18" y="22" width="70" height="8" fill="#f5f0e8" stroke="#241d3f" stroke-width="2"/><path d="M100 30 L130 30 L136 70 L94 70 Z" fill="#ffe600" stroke="#241d3f" stroke-width="3"/>');
+      }
+    },
+    "rai": {
+      selo: "CAMISA", moto: "10",
+      elem: function () {
+        return _svgLote1('<rect x="48" y="22" width="64" height="50" rx="8" fill="#ffe600" stroke="#241d3f" stroke-width="3"/><rect x="48" y="22" width="64" height="12" fill="#2ecf5b"/><circle cx="120" cy="60" r="14" fill="#f5f0e8" stroke="#241d3f" stroke-width="3"/>');
+      }
+    },
+    "marcelinho-carioca": {
+      selo: "FALTA", moto: "CURVA",
+      elem: function () {
+        return _svgLote1('<path d="M24 70 Q80 10 136 70" fill="none" stroke="#ffe600" stroke-width="5"/><circle cx="136" cy="70" r="10" fill="#f5f0e8" stroke="#241d3f" stroke-width="3"/>');
+      }
+    },
+    "edmundo": {
+      selo: "FERA", moto: "CHUTEIRA",
+      elem: function () {
+        return _svgLote1('<ellipse cx="70" cy="46" rx="28" ry="20" fill="#ff7a1a" stroke="#241d3f" stroke-width="3"/><rect x="108" y="50" width="32" height="16" rx="6" fill="#1a1530" stroke="#241d3f" stroke-width="3"/>');
+      }
+    },
+    "gremio": {
+      selo: "LISTRAS", moto: "TAÇA",
+      elem: function () {
+        return _svgLote1('<rect x="20" y="18" width="18" height="54" fill="#2f6fed"/><rect x="38" y="18" width="18" height="54" fill="#1a1530"/><rect x="56" y="18" width="18" height="54" fill="#f5f0e8"/><ellipse cx="118" cy="72" rx="16" ry="6" fill="#ffe600" stroke="#241d3f" stroke-width="2"/><rect x="110" y="34" width="16" height="38" fill="#ffe600" stroke="#241d3f" stroke-width="2"/>');
+      }
+    },
+    "emerson-fittipaldi": {
+      selo: "INDY", moto: "QUADRICULADO",
+      elem: function () {
+        return _svgLote1('<rect x="20" y="18" width="16" height="16" fill="#1a1530"/><rect x="36" y="18" width="16" height="16" fill="#f5f0e8"/><rect x="20" y="34" width="16" height="16" fill="#f5f0e8"/><rect x="36" y="34" width="16" height="16" fill="#1a1530"/><path d="M70 58 L130 50 L140 62 L78 70 Z" fill="#e6293c" stroke="#241d3f" stroke-width="3"/>');
+      }
+    },
+    "royce-gracie": {
+      selo: "KIMONO", moto: "TATAME",
+      elem: function () {
+        return _svgLote1('<rect x="0" y="58" width="160" height="32" fill="#e6293c"/><rect x="50" y="16" width="60" height="50" rx="8" fill="#f5f0e8" stroke="#241d3f" stroke-width="3"/><rect x="50" y="30" width="60" height="8" fill="#1a1530"/>');
+      }
+    },
+    "pantanal": {
+      selo: "RIO", moto: "GADO",
+      elem: function () {
+        return _svgLote1('<path d="M0 50 Q40 30 80 50 T160 50 L160 90 L0 90 Z" fill="#2f6fed"/><ellipse cx="50" cy="40" rx="16" ry="10" fill="#eceff1" stroke="#241d3f" stroke-width="2"/><rect x="110" y="28" width="28" height="18" rx="6" fill="#8d6e63" stroke="#241d3f" stroke-width="2"/>');
+      }
+    },
+    "explode-coracao": {
+      selo: "CRISTAL", moto: "CORAÇÃO",
+      elem: function () {
+        return _svgLote1('<polygon points="80,12 100,46 80,80 60,46" fill="#81d4fa" stroke="#241d3f" stroke-width="3"/><path d="M110 30 C110 18 128 18 128 32 C128 48 110 58 110 58 C110 58 92 48 92 32 C92 18 110 18 110 30 Z" fill="#e6293c" stroke="#241d3f" stroke-width="2"/>');
+      }
+    },
+    "a-proxima-vitima": {
+      selo: "CARRO", moto: "?",
+      elem: function () {
+        return _svgLote1('<rect x="24" y="40" width="80" height="24" rx="6" fill="#2a2a2a" stroke="#241d3f" stroke-width="3"/><rect x="28" y="44" width="28" height="10" fill="#90a4ae"/><circle cx="42" cy="68" r="8" fill="#1a1530"/><circle cx="86" cy="68" r="8" fill="#1a1530"/><text x="124" y="58" font-family="VT323" font-size="36" fill="#cfd8e6">?</text>');
+      }
+    },
+    "renascer": {
+      selo: "CACAU", moto: "FAZENDA",
+      elem: function () {
+        return _svgLote1('<ellipse cx="56" cy="46" rx="18" ry="24" fill="#6d4c41" stroke="#241d3f" stroke-width="3"/><rect x="96" y="30" width="40" height="36" fill="#a16207" stroke="#241d3f" stroke-width="3"/><polygon points="96,30 116,14 136,30" fill="#e6293c" stroke="#241d3f" stroke-width="2"/>');
+      }
+    },
+    "vamp": {
+      selo: "CAPA", moto: "DENTE",
+      elem: function () {
+        return _svgLote1('<path d="M40 20 L80 12 L120 20 L112 80 L48 80 Z" fill="#1a1530" stroke="#e6293c" stroke-width="3"/><polygon points="70,44 80,66 90,44" fill="#f5f0e8" stroke="#241d3f" stroke-width="2"/>');
+      }
+    },
+    "a-indomada": {
+      selo: "FAROL", moto: "VILA",
+      elem: function () {
+        return _svgLote1('<rect x="70" y="28" width="20" height="50" fill="#eceff1" stroke="#241d3f" stroke-width="3"/><polygon points="66,28 80,8 94,28" fill="#e6293c" stroke="#241d3f" stroke-width="3"/><rect x="24" y="58" width="28" height="20" fill="#ffcc80" stroke="#241d3f" stroke-width="2"/>');
+      }
+    },
+    "por-amor": {
+      selo: "ANÉIS", moto: "CALÇADA",
+      elem: function () {
+        return _svgLote1('<circle cx="62" cy="40" r="16" fill="none" stroke="#ffe600" stroke-width="5"/><circle cx="86" cy="40" r="16" fill="none" stroke="#cfd8e6" stroke-width="5"/><path d="M10 70 L40 78 L70 70 L100 78 L130 70 L160 78" fill="none" stroke="#e6e9ff" stroke-width="4"/>');
+      }
+    },
+    "torre-de-babel": {
+      selo: "PRÉDIO", moto: "RACHADURA",
+      elem: function () {
+        return _svgLote1('<rect x="48" y="12" width="64" height="66" fill="#90a4ae" stroke="#241d3f" stroke-width="3"/><path d="M70 18 L84 40 L64 50 L88 78" fill="none" stroke="#e6293c" stroke-width="4"/>');
+      }
+    },
+    "malhacao": {
+      selo: "PESO", moto: "ARMÁRIO",
+      elem: function () {
+        return _svgLote1('<rect x="40" y="40" width="80" height="12" rx="4" fill="#90a4ae" stroke="#241d3f" stroke-width="3"/><circle cx="40" cy="46" r="16" fill="#1a1530" stroke="#241d3f" stroke-width="3"/><circle cx="120" cy="46" r="16" fill="#1a1530" stroke="#241d3f" stroke-width="3"/>');
+      }
+    },
+    "marimar": {
+      selo: "CABANA", moto: "MAR",
+      elem: function () {
+        return _svgLote1('<rect x="48" y="36" width="64" height="28" fill="#fff8e7" stroke="#241d3f" stroke-width="3"/><polygon points="48,36 80,16 112,36" fill="#ff7a1a" stroke="#241d3f" stroke-width="3"/><path d="M0 70 Q40 58 80 70 T160 70 L160 90 L0 90 Z" fill="#2f6fed"/>');
+      }
+    },
+    "maria-do-bairro": {
+      selo: "TIGELA", moto: "RUA",
+      elem: function () {
+        return _svgLote1('<ellipse cx="80" cy="50" rx="32" ry="14" fill="#eceff1" stroke="#241d3f" stroke-width="3"/><ellipse cx="80" cy="46" rx="24" ry="8" fill="#ffe082"/><rect x="20" y="64" width="22" height="18" fill="#ffcc80" stroke="#241d3f" stroke-width="2"/><rect x="118" y="60" width="22" height="22" fill="#90caf9" stroke="#241d3f" stroke-width="2"/>');
+      }
+    },
+    "xica-da-silva": {
+      selo: "DIAMANTE", moto: "JANELA",
+      elem: function () {
+        return _svgLote1('<polygon points="80,12 100,36 80,60 60,36" fill="#81d4fa" stroke="#241d3f" stroke-width="3"/><rect x="108" y="40" width="36" height="36" fill="#6d4c41" stroke="#241d3f" stroke-width="3"/><rect x="116" y="48" width="20" height="16" fill="#ffe082"/>');
+      }
+    },
+    "ana-raio-e-ze-trovao": {
+      selo: "RAIO", moto: "SELA",
+      elem: function () {
+        return _svgLote1('<polygon points="70,8 48,40 66,40 44,78 96,36 76,36 98,8" fill="#ffe600" stroke="#241d3f" stroke-width="3"/><ellipse cx="124" cy="58" rx="18" ry="12" fill="#6d4c41" stroke="#241d3f" stroke-width="3"/>');
+      }
+    },
+    "rainha-da-sucata": {
+      selo: "FERRO", moto: "COROA",
+      elem: function () {
+        return _svgLote1('<rect x="30" y="48" width="28" height="22" fill="#90a4ae" stroke="#241d3f" stroke-width="2"/><rect x="62" y="40" width="36" height="30" fill="#78909c" stroke="#241d3f" stroke-width="2"/><polygon points="80,8 88,24 104,24 90,34 96,50 80,40 64,50 70,34 56,24 72,24" fill="#ffe600" stroke="#241d3f" stroke-width="2"/>');
+      }
+    },
+    "perola-negra": {
+      selo: "JOIA", moto: "COLAR",
+      elem: function () {
+        return _svgLote1('<circle cx="80" cy="46" r="16" fill="#1a1530" stroke="#cfd8e6" stroke-width="3"/><path d="M40 28 Q80 8 120 28" fill="none" stroke="#ffe600" stroke-width="4"/><circle cx="40" cy="28" r="4" fill="#ffe600"/><circle cx="120" cy="28" r="4" fill="#ffe600"/>');
+      }
+    },
   };
 
   function objetoDo(e) {
@@ -577,10 +1192,8 @@ window.Arte = (function () {
       '<div class="art-moto">' + moto + '</div>' +
       '<div class="art-scan"></div>'
     );
-    // se houver imagem real, usa (sem spoiler no alt); fallback procedural se falhar
-    if (e.image && !obj) {
-      return '<img class="img-real" src="' + e.image + '" alt="" loading="lazy" data-fallback="' + _b64(fallbackHtml) + '" onerror="Arte.mostrarFallback(this)">';
-    }
+    // A foto livre (e.image) só entra na tela de revelação, depois do
+    // acerto/esgotamento. No jogo a arte é sempre original — anti-spoiler.
     return fallbackHtml;
   }
 
@@ -597,5 +1210,14 @@ window.Arte = (function () {
     img.outerHTML = html;
   }
 
-  return { gerar: gerar, infoCategoria: infoCategoria, mostrarFallback: mostrarFallback };
+  function temPropria(e) { return !!objetoDo(e); }
+  function slugsProprios() { return Object.keys(OBJETOS); }
+
+  return {
+    gerar: gerar,
+    infoCategoria: infoCategoria,
+    mostrarFallback: mostrarFallback,
+    temPropria: temPropria,
+    slugsProprios: slugsProprios
+  };
 })();
