@@ -59,6 +59,15 @@ REJECT_CAT = re.compile(
     re.I,
 )
 
+# Recusados na revisão do PR: frame de vídeo, logo/tela, Super Pac-Man, trademark.
+SKIP_PHOTOS = {
+    "eliana",
+    "street-fighter-ii",
+    "mortal-kombat",
+    "pac-man",
+    "donkey-kong",
+}
+
 # Arquivos preferidos (títulos Commons). Só entram se a licença passar na API.
 PREFERRED = {
     "tamagotchi": ["File:Tamagotchi 1997.jpg", "File:Original Tamagotchi.jpg", "File:Tamagotchi.jpg"],
@@ -516,9 +525,13 @@ def main():
             "image": None,
             "skipped": False,
         }
-        if SEARCHES.get(slug) == [] and slug not in PREFERRED:
+        if slug in SKIP_PHOTOS or (SEARCHES.get(slug) == [] and slug not in PREFERRED):
             rec["skipped"] = True
-            rec["motivo"] = "sem foto livre adequada previsível (programa/marca/screenshot)"
+            rec["motivo"] = (
+                "revisão: foto recusada (screenshot/logo/trademark/dúvida)"
+                if slug in SKIP_PHOTOS
+                else "sem foto livre adequada previsível (programa/marca/screenshot)"
+            )
             report.append(rec)
             print("  skip editorial")
             continue

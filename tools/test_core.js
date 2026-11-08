@@ -79,7 +79,7 @@ check('todos têm cat/emoji/ano/curiosidade/pistas(6)', realChallenges.every(c =
 check('campos novos presentes', realChallenges.every(c => 'id' in c && 'slug' in c && 'categorySlug' in c && 'tags' in c && 'image' in c && 'dificuldade' in c));
 const comFoto = realChallenges.filter(c => c.image);
 check('há fotos livres (e fallback de arte no resto)', comFoto.length > 0 && comFoto.length <= 56, 'com=' + comFoto.length);
-const LIC_OK = /^(CC0( 1\.0)?|Public Domain|PD|CC BY(-SA)?( \d\.\d)?)$/i;
+const LIC_OK = /^(CC0( 1\.0)?|Public Domain|PD|CC BY(-SA)?( \d\.\d)?( br)?)$/i;
 check('toda image tem credito completo (autor, licenca, url_licenca, url_origem)', comFoto.every(c => {
   const cr = c.credito_imagem || {};
   return cr.autor && cr.licenca && cr.url_licenca && cr.url_origem;

@@ -12,7 +12,7 @@
     "cat": "BRINQUEDOS",
     "emoji": "🥚",
     "ano": "1996",
-    "curiosidade": "A febre dos bichinhos virtuais fez a Mídia parar: escolas proibiram os aparelhos porque bipavam durante a aula.",
+    "curiosidade": "Os aparelhos bipavam no meio da aula e muitas escolas acabaram proibindo os bichinhos virtuais.",
     "tags": [
       "brinquedos",
       "anos-90",
@@ -53,7 +53,7 @@
     "cat": "TV",
     "emoji": "🐶",
     "ano": "1993",
-    "curiosidade": "A 'TV do cão' foi o primeiro programa infantil da Globo feito só para crianças, com plateia de verdade e cachorros dublados.",
+    "curiosidade": "A 'TV do cão' era um programa infantil da Globo apresentado por cães fantoches, com plateia de crianças.",
     "tags": [
       "tv",
       "anos-90",
@@ -174,7 +174,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": "assets/images/revelacao/eliana.webp",
+    "image": null,
     "dificuldade": null,
     "pistas": [
       "Uma apresentadora loira que reinava aos domingos.",
@@ -184,17 +184,7 @@
       "A garotada repetia seu grito de guerra o tempo todo.",
       "'É pimba!' — dizia a loira mais famosa da TV infantil."
     ],
-    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Eliana",
-    "image_avif": "assets/images/revelacao/eliana.avif",
-    "image_alt": "A apresentadora Eliana em aparição pública",
-    "credito_imagem": {
-      "autor": "Humor Multishow",
-      "licenca": "CC BY 3.0",
-      "url_licenca": "https://creativecommons.org/licenses/by/3.0",
-      "url_origem": "https://commons.wikimedia.org/wiki/File:Eliana_2018.jpg",
-      "texto": "Humor Multishow · CC BY 3.0",
-      "licenca_url": "https://creativecommons.org/licenses/by/3.0"
-    }
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Eliana"
   },
   {
     "id": 6,
@@ -433,11 +423,11 @@
     "image_alt": "Xuxa Meneghel em evento público na Câmara dos Deputados",
     "credito_imagem": {
       "autor": "Gabriela Korossy / Câmara dos Deputados",
-      "licenca": "CC BY 2.0",
-      "url_licenca": "https://creativecommons.org/licenses/by/2.0/br/deed.en",
+      "licenca": "CC BY 2.0 br",
+      "url_licenca": "https://creativecommons.org/licenses/by/2.0/br/",
       "url_origem": "https://commons.wikimedia.org/wiki/File:Xuxa_Meneghel,_2014.jpg",
-      "texto": "Gabriela Korossy / Câmara dos Deputados · CC BY 2.0",
-      "licenca_url": "https://creativecommons.org/licenses/by/2.0/br/deed.en"
+      "texto": "Gabriela Korossy / Câmara dos Deputados · CC BY 2.0 br",
+      "licenca_url": "https://creativecommons.org/licenses/by/2.0/br/"
     }
   },
   {
@@ -452,7 +442,7 @@
     "cat": "BRINQUEDOS",
     "emoji": "🃏",
     "ano": "1972",
-    "curiosidade": "O jogo de comparar números nasceu na Inglaterra e virou febre nas rodas de amigos e famílias brasileiras.",
+    "curiosidade": "Jogo de cartas em que cada uma traz atributos com números: quem tem o maior na categoria escolhida leva a rodada.",
     "tags": [
       "brinquedos",
       "anos-90",
@@ -484,7 +474,7 @@
     "cat": "GAMES",
     "emoji": "🎮",
     "ano": "1989",
-    "curiosidade": "O Game Boy da Nintendo vendia milhões graças a um jogo de blocos que caiam: o Tetris.",
+    "curiosidade": "O Game Boy da Nintendo vendia milhões graças a um jogo de blocos que caíam: o Tetris.",
     "tags": [
       "games",
       "anos-90",
@@ -636,7 +626,7 @@
     "cat": "CULTURA",
     "emoji": "⚽",
     "ano": "1994",
-    "curiosidade": "O Baixinho foi o artilheiro do tetra em 1994, marcando 5 gols e sendo eleito o melhor do mundo.",
+    "curiosidade": "O Baixinho foi o artilheiro da seleção brasileira na Copa de 1994.",
     "tags": [
       "cultura",
       "anos-90",
@@ -696,11 +686,11 @@
     "image_alt": "Ronaldo Nazário em aparição pública",
     "credito_imagem": {
       "autor": "Antônio Cruz/ABr (cropped by Abu_badali)",
-      "licenca": "CC BY 3.0",
-      "url_licenca": "https://creativecommons.org/licenses/by/3.0/br/deed.en",
+      "licenca": "CC BY 3.0 br",
+      "url_licenca": "https://creativecommons.org/licenses/by/3.0/br/",
       "url_origem": "https://commons.wikimedia.org/wiki/File:Ronaldo.jpeg",
-      "texto": "Antônio Cruz/ABr (cropped by Abu_badali) · CC BY 3.0",
-      "licenca_url": "https://creativecommons.org/licenses/by/3.0/br/deed.en"
+      "texto": "Antônio Cruz/ABr (cropped by Abu_badali) · CC BY 3.0 br",
+      "licenca_url": "https://creativecommons.org/licenses/by/3.0/br/"
     }
   },
   {
@@ -796,7 +786,7 @@
     "cat": "GAMES",
     "emoji": "⚡",
     "ano": "1996",
-    "curiosidade": "A febre dos monstrinhos explodiu com 'Preciso pegá-los!' e virou o maior fenômeno de mídia dos anos 90.",
+    "curiosidade": "A febre dos monstrinhos explodiu no Brasil com o lema da abertura: 'Temos que pegar!'.",
     "tags": [
       "games",
       "anos-90",
@@ -811,7 +801,7 @@
       "Um ratinho elétrico amarelo virou símbolo mundial.",
       "Cada criatura tinha um tipo e evoluía ao subir de nível.",
       "Pokébolas e ginásios dominavam a rotina das crianças.",
-      "'Preciso pegá-los!' era o lema da geração."
+      "'Temos que pegar!' era o lema da abertura no Brasil."
     ],
     "link_saiba_mais": "https://pt.wikipedia.org/wiki/Pok%C3%A9mon"
   },
@@ -824,7 +814,7 @@
     "cat": "GAMES",
     "emoji": "🦖",
     "ano": "1997",
-    "curiosidade": "Os monstrinhos digitais rivalizaram com Pokémon e marcaram as manhãs com o dispositivo de pulso.",
+    "curiosidade": "Os monstrinhos digitais nasceram no Japão no fim dos anos 90, no brinquedo virtual e depois no desenho.",
     "tags": [
       "games",
       "anos-90",
@@ -1000,7 +990,7 @@
     "cat": "CINEMA",
     "emoji": "🚢",
     "ano": "1997",
-    "curiosidade": "O filme de James Cameron foi o de maior bilheteria da época e popularizou a frase “o coração do oceano”.",
+    "curiosidade": "No filme de James Cameron, o Coração do Oceano é o colar azul que Rose usa a bordo.",
     "tags": [
       "cinema",
       "anos-90",
@@ -1148,7 +1138,7 @@
     "cat": "TV",
     "emoji": "🤖",
     "ano": "1985",
-    "curiosidade": "O tokusatsu japonês abriu caminho para Jiraiya e companhia no Brasil, com o robô dourado.",
+    "curiosidade": "O tokusatsu japonês fez sucesso na TV brasileira e abriu caminho para outros heróis do gênero no país.",
     "tags": [
       "tv",
       "anos-90",
@@ -1198,11 +1188,11 @@
     "image_alt": "Silvio Santos acenando em Brasília, em evento público",
     "credito_imagem": {
       "autor": "Antonio Cruz/ABr",
-      "licenca": "CC BY 3.0",
-      "url_licenca": "https://creativecommons.org/licenses/by/3.0/br/deed.en",
+      "licenca": "CC BY 3.0 br",
+      "url_licenca": "https://creativecommons.org/licenses/by/3.0/br/",
       "url_origem": "https://commons.wikimedia.org/wiki/File:Silvio_Santos1.jpg",
-      "texto": "Antonio Cruz/ABr · CC BY 3.0",
-      "licenca_url": "https://creativecommons.org/licenses/by/3.0/br/deed.en"
+      "texto": "Antonio Cruz/ABr · CC BY 3.0 br",
+      "licenca_url": "https://creativecommons.org/licenses/by/3.0/br/"
     }
   },
   {
@@ -1214,7 +1204,7 @@
     "cat": "TV",
     "emoji": "🎪",
     "ano": "1980",
-    "curiosidade": "Gugu comandou o Domingo Legal e criou quadros inesquecíveis como a 'Garota do Tempo'.",
+    "curiosidade": "Gugu comandou o Domingo Legal no SBT, um dos programas de auditório mais vistos aos domingos nos anos 90.",
     "tags": [
       "tv",
       "anos-90",
@@ -1227,7 +1217,7 @@
       "Apresentador que rivalizava com Silvio Santos aos domingos.",
       "Comandava o 'Domingo Legal' no SBT.",
       "Quadros de dança, brincadeiras e muita música.",
-      "Sua 'Garota do Tempo' marcou época.",
+      "Ficou famoso pelos quadros de auditório no Domingo Legal.",
       "Mudou de emissora e desafiou a audiência dominical.",
       "Seu nome era de um personagem japonês da sogra."
     ],
@@ -1264,15 +1254,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": "assets/images/revelacao/street-fighter-ii.webp",
-    "credito_imagem": {
-      "autor": "John Turner",
-      "licenca": "CC BY 2.0",
-      "url_licenca": "https://creativecommons.org/licenses/by/2.0",
-      "url_origem": "https://commons.wikimedia.org/wiki/File:Street_Fighter_II_arcade_machine.jpg",
-      "texto": "John Turner · CC BY 2.0",
-      "licenca_url": "https://creativecommons.org/licenses/by/2.0"
-    },
+    "image": null,
     "dificuldade": null,
     "pistas": [
       "O jogo de luta mais famoso de todos os fliperamas.",
@@ -1282,9 +1264,7 @@
       "Dois jogadores se enfrentavam disputando o salão.",
       "'Hadouken!' e 'Shoryuken!' ecoavam pelo fliperama."
     ],
-    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Street_Fighter_II",
-    "image_avif": "assets/images/revelacao/street-fighter-ii.avif",
-    "image_alt": "Fliperama de Street Fighter II, gabinete arcade com dois controles"
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Street_Fighter_II"
   },
   {
     "id": 36,
@@ -1305,7 +1285,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": "assets/images/revelacao/mortal-kombat.webp",
+    "image": null,
     "dificuldade": null,
     "pistas": [
       "O jogo de luta mais polêmico dos anos 90.",
@@ -1315,17 +1295,7 @@
       "Scorpion, Raiden e Liu Kang estavam no elenco.",
       "No Brasil, o jogo até virou caso de polícia e foi apreendido."
     ],
-    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Mortal_Kombat",
-    "image_avif": "assets/images/revelacao/mortal-kombat.avif",
-    "image_alt": "Painel de controles de um fliperama de Mortal Kombat II",
-    "credito_imagem": {
-      "autor": "Rhys Moult",
-      "licenca": "CC BY-SA 2.0",
-      "url_licenca": "https://creativecommons.org/licenses/by-sa/2.0",
-      "url_origem": "https://commons.wikimedia.org/wiki/File:Mortal_Kombat_II_arcade_cabinet.jpg",
-      "texto": "Rhys Moult · CC BY-SA 2.0",
-      "licenca_url": "https://creativecommons.org/licenses/by-sa/2.0"
-    }
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Mortal_Kombat"
   },
   {
     "id": 37,
@@ -1550,14 +1520,14 @@
     "cat": "GAMES",
     "emoji": "🟡",
     "ano": "1980",
-    "curiosidade": "O labirinto amarelo com os fantasmas Blinky, Pinky, Inky e Clyde é o jogo mais famoso da história.",
+    "curiosidade": "O círculo amarelo no labirinto azul, perseguido pelos fantasmas, virou um dos símbolos do fliperama.",
     "tags": [
       "games",
       "anos-90",
       "brasil",
       "nostalgia"
     ],
-    "image": "assets/images/revelacao/pac-man.webp",
+    "image": null,
     "dificuldade": null,
     "pistas": [
       "O círculo amarelo que virou símbolo do fliperama.",
@@ -1567,17 +1537,7 @@
       "Os fantasmas tinham nome: Blinky, Pinky, Inky e Clyde.",
       "Foi criado pra atrair as meninas pros fliperamas."
     ],
-    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Pac-Man",
-    "image_avif": "assets/images/revelacao/pac-man.avif",
-    "image_alt": "Fliperama Super Pac-Man, gabinete azul com o personagem na frente",
-    "credito_imagem": {
-      "autor": "Marshall Astor",
-      "licenca": "CC BY-SA 2.0",
-      "url_licenca": "https://creativecommons.org/licenses/by-sa/2.0",
-      "url_origem": "https://commons.wikimedia.org/wiki/File:Super_Pac-Man_-_Bally_Midway_Namco_arcade_cabinet.jpg",
-      "texto": "Marshall Astor · CC BY-SA 2.0",
-      "licenca_url": "https://creativecommons.org/licenses/by-sa/2.0"
-    }
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Pac-Man"
   },
   {
     "id": 43,
@@ -1597,7 +1557,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": "assets/images/revelacao/donkey-kong.webp",
+    "image": null,
     "dificuldade": null,
     "pistas": [
       "O jogo que apresentou o maior herói dos videogames.",
@@ -1607,17 +1567,7 @@
       "O macaco era o grande vilão da trama.",
       "O gorila foi batizado em homenagem a um primata famoso."
     ],
-    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Donkey_Kong_(jogo_eletr%C3%B4nico)",
-    "image_avif": "assets/images/revelacao/donkey-kong.avif",
-    "image_alt": "Fliperama de Donkey Kong, gabinete azul da Nintendo",
-    "credito_imagem": {
-      "autor": "Joshua Driggs (ZapWizard) (take photo), bayo (remove the background)",
-      "licenca": "CC BY-SA 2.0",
-      "url_licenca": "https://creativecommons.org/licenses/by-sa/2.0",
-      "url_origem": "https://commons.wikimedia.org/wiki/File:Donkey_Kong_arcade.jpg",
-      "texto": "Joshua Driggs (ZapWizard) (take photo), bayo (remove the background) · CC BY-SA 2.0",
-      "licenca_url": "https://creativecommons.org/licenses/by-sa/2.0"
-    }
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Donkey_Kong_(jogo_eletr%C3%B4nico)"
   },
   {
     "id": 44,
@@ -1896,7 +1846,7 @@
     "cat": "TV",
     "emoji": "👯",
     "ano": "1993",
-    "curiosidade": "As gêmeas Ruth e Raquel e o inesquecível Tonho da Lua no mar de Pipa.",
+    "curiosidade": "As gêmeas Ruth e Raquel e o inesquecível Tonho da Lua marcaram a novela de Ivani Ribeiro.",
     "tags": [
       "tv",
       "anos-90",
@@ -1926,7 +1876,7 @@
     "cat": "TV",
     "emoji": "👻",
     "ano": "1994",
-    "curiosidade": "A novela de Glória Perez sobre vida após a morte e reencarnação, com a estrada no céu.",
+    "curiosidade": "A novela de Ivani Ribeiro falava de vida após a morte e reencarnação, com a abertura da estrada no céu.",
     "tags": [
       "tv",
       "anos-90",
@@ -1936,7 +1886,7 @@
     "image": null,
     "dificuldade": null,
     "pistas": [
-      "Novela de Glória Perez sobre o que existe depois da morte.",
+      "Novela de Ivani Ribeiro sobre o que existe depois da morte.",
       "Abordava reencarnação e vida espiritual.",
       "Um romance atravessado por um espírito vingativo.",
       "Foi exibida na faixa das 18h da Globo.",
@@ -1985,8 +1935,8 @@
     ],
     "cat": "TV",
     "emoji": "🏫",
-    "ano": "1989",
-    "curiosidade": "A Escola Mundial, a professora Helena e o Cirilo apaixonado pela Maria Joaquina.",
+    "ano": "1991",
+    "curiosidade": "Na versão do SBT em 1991, a professora da Escola Mundial era Jimena; Cirilo vivia apaixonado pela Maria Joaquina.",
     "tags": [
       "tv",
       "anos-90",
@@ -1998,7 +1948,7 @@
     "pistas": [
       "Novela infantil exibida no SBT com grande sucesso.",
       "A turma estudava na Escola Mundial.",
-      "A professora chamava-se Helena e era adorada.",
+      "A professora chamava-se Jimena e era adorada.",
       "Cirilo vivia apaixonado pela Maria Joaquina.",
       "'Bate, bate no coração' marcava a abertura.",
       "Valeu, professora! Era o grito mais famoso da garotada."
