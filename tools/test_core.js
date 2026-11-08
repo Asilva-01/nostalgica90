@@ -71,14 +71,14 @@ function check(nome, cond, extra) {
 
 // ---------- 1. DADOS ----------
 console.log('\n[1] MODELO DE DADOS');
-check('challenges.json tem 56 itens', realChallenges.length === 56, 'tem ' + realChallenges.length);
-check('ids únicos e sequenciais 1..56', realChallenges.every((c,i) => c.id === i+1));
-check('slugs únicos', new Set(realChallenges.map(c => c.slug)).size === 56);
-check('resps únicos', new Set(realChallenges.map(c => c.resp)).size === 56);
+check('challenges.json tem 156 itens', realChallenges.length === 156, 'tem ' + realChallenges.length);
+check('ids únicos e sequenciais 1..156', realChallenges.every((c,i) => c.id === i+1));
+check('slugs únicos', new Set(realChallenges.map(c => c.slug)).size === 156);
+check('resps únicos', new Set(realChallenges.map(c => c.resp)).size === 156);
 check('todos têm cat/emoji/ano/curiosidade/pistas(6)', realChallenges.every(c => c.cat && c.emoji && c.ano && c.curiosidade && c.pistas && c.pistas.length === 6));
 check('campos novos presentes', realChallenges.every(c => 'id' in c && 'slug' in c && 'categorySlug' in c && 'tags' in c && 'image' in c && 'dificuldade' in c));
 const comFoto = realChallenges.filter(c => c.image);
-check('há fotos livres (e fallback de arte no resto)', comFoto.length > 0 && comFoto.length <= 56, 'com=' + comFoto.length);
+check('há fotos livres (e fallback de arte no resto)', comFoto.length > 0 && comFoto.length <= 156, 'com=' + comFoto.length);
 const LIC_OK = /^(CC0( 1\.0)?|Public Domain|PD|CC BY(-SA)?( \d\.\d)?( br)?)$/i;
 check('toda image tem credito completo (autor, licenca, url_licenca, url_origem)', comFoto.every(c => {
   const cr = c.credito_imagem || {};

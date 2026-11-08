@@ -33,7 +33,7 @@
 
   function poolSize() {
     var t = (window.Dados && window.Dados.total) ? window.Dados.total() : 0;
-    return t > 0 ? t : 56;
+    return t > 0 ? t : 156;
   }
   function numeroDoDia(iso) {
     return window.SelecaoRodada.numeroDoDia(iso);

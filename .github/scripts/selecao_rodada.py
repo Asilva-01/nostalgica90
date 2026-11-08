@@ -8,11 +8,11 @@ Documentação: README.md (seção "Regra da rodada")
 Dia 1 = 2026-09-06 (data civil, sem fuso).
 Rodada = 3 desafios. Pool na ordem de challenges.json.
 
-Ciclo = floor(pool / 3) dias (18 quando pool=56). Em cada ciclo
+Ciclo = floor(pool / 3) dias (52 quando pool=156; 18 quando pool=56). Em cada ciclo
 embaralha os índices com LCG 32-bit + Fisher–Yates e entrega
 fatias de 3 SEM repetir enquanto houver desafios sobrando.
 Os (pool % 3) que sobram vão para o INÍCIO da permutação do
-ciclo seguinte (garantidos entre os 54 usados).
+ciclo seguinte (garantidos entre os usados do ciclo novo).
 Dentro dos 3 do dia, se algum tiver arte própria, ele vai
 para a 1ª posição (rotação, determinística).
 """
@@ -191,7 +191,7 @@ def rodada_do_dia(iso: str, pool_size: int, tem_arte: list[bool] | None = None) 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Seleção da rodada diária Nostálgica 90")
     parser.add_argument("--datas", default="", help="Datas ISO separadas por vírgula")
-    parser.add_argument("--pool", type=int, default=56, help="Tamanho do pool")
+    parser.add_argument("--pool", type=int, default=None, help="Tamanho do pool (default: len(challenges.json))")
     parser.add_argument("--json", action="store_true", dest="as_json", help="Imprime JSON")
     parser.add_argument("data", nargs="?", help="Uma data ISO (atalho)")
     args = parser.parse_args(argv)
@@ -204,8 +204,12 @@ def main(argv: list[str] | None = None) -> int:
     if not datas:
         datas.append(hoje_iso())
 
-    flags = carregar_flags_arte(args.pool)
-    resultados = [rodada_do_dia(d, args.pool, flags) for d in datas]
+    pool = args.pool
+    if pool is None:
+        with open(CHALLENGES_PATH, encoding="utf-8") as f:
+            pool = len(json.load(f))
+    flags = carregar_flags_arte(pool)
+    resultados = [rodada_do_dia(d, pool, flags) for d in datas]
     print(json.dumps(resultados if len(resultados) > 1 else resultados[0], ensure_ascii=False))
     return 0
 

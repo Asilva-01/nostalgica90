@@ -20,17 +20,16 @@ implementam **a mesma regra**, comparada em `node tools/test_selecao.js`.
 1. **Dia 1** = `2026-09-06` (data civil, sem fuso).  
    `n = 1 + (data - 2026-09-06)` em dias.  
    Ex.: `2026-11-01` = dia 57; `2026-11-07` = dia 63.
-2. **Pool** = ordem de `challenges.json` (hoje 56 itens).
+2. **Pool** = ordem de `challenges.json` (hoje 156 itens).
 3. **Rodada** = 3 desafios.  
-   Ciclo = `floor(pool / 3)` dias (**18** quando pool=56).  
+   Ciclo = `floor(pool / 3)` dias (**52** quando pool=156).  
    Em cada ciclo, os índices são embaralhados com LCG 32-bit (`a=1664525`,
    `c=1013904223`) + Fisher–Yates, semente `imul32(ciclo+1, 0x9E3779B9) XOR
    imul32(pool, 0x85EBCA77)`.  
    O dia `pos` do ciclo recebe a fatia `[pos*3, pos*3+3)` dessa permutação.
-4. **Sem repetir no ciclo** enquanto houver desafios: 18×3 = 54 únicos. Os
-   `pool % 3` que sobram (2, com pool=56) vão para o **início** da permutação
-   do ciclo seguinte — entram de fato nos 54 usados, não só “podem cair”
-   num shuffle novo.
+4. **Sem repetir no ciclo** enquanto houver desafios: 52×3 = 156 únicos (pool
+   múltiplo de 3, sem resto). Se `pool % 3` sobrar, esses índices vão para o
+   **início** da permutação do ciclo seguinte.
 5. **Arte própria em 1º:** dentro dos 3 do dia, se algum tiver arte em
    `artes.js` (lista `arte-propria.json`), uma rotação determinística
    coloca o primeiro desses na posição 1. O bot posta esse primeiro.
@@ -70,7 +69,7 @@ não acertou). Sem nome, categoria ou resposta.
 
 ## Formato de `challenges.json`
 
-Campos atuais continuam válidos. Opcionais para os próximos PRs (não quebram os 56):
+Campos atuais continuam válidos. Opcionais para os próximos PRs (não quebram os 156):
 
 ```json
 {
