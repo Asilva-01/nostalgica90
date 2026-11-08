@@ -362,11 +362,20 @@
     var saiba = e.link_saiba_mais
       ? '<a class="revelacao-saiba" href="' + escHtml(e.link_saiba_mais) + '" target="_blank" rel="noopener noreferrer">Saiba mais<span class="sr-only"> (abre em nova aba)</span></a>'
       : '';
+    var aviso = linkAvisoErro(e);
     return '<article class="cartao-revelacao' + (win ? ' acerto' : ' esgotou') + '" aria-live="polite">' +
       '<p class="revelacao-selo">' + selo + '</p>' +
       '<h2 class="revelacao-titulo">' + escHtml(e.emoji || '') + ' ' + escHtml(e.resp) + '</h2>' +
-      figura + curio + saiba +
+      figura + curio + saiba + aviso +
       '</article>';
+  }
+
+  function linkAvisoErro(e) {
+    var title = 'Erro no desafio #' + e.id;
+    var body = 'Desafio: #' + e.id + '\nResposta: ' + (e.resp || '') + '\n\nO que está errado:\n';
+    var href = 'https://github.com/Asilva-01/nostalgica90/issues/new?title=' +
+      encodeURIComponent(title) + '&body=' + encodeURIComponent(body);
+    return '<a class="revelacao-aviso" href="' + escHtml(href) + '" target="_blank" rel="noopener noreferrer">Achou um erro? Avise<span class="sr-only"> (abre uma issue no GitHub, depois da revelação)</span></a>';
   }
 
   function renderPistas() {

@@ -160,6 +160,12 @@ check('cartão com foto não hotlinka Commons', htmlFoto.includes(comImg.image) 
 const htmlArte = window.Jogo.montarCartaoRevelacao(semImg, false);
 check('esgotar pistas usa selo ERA ISSO', htmlArte.includes('ERA ISSO'));
 check('fallback de revelação usa arte original', htmlArte.includes('revelacao-arte') && !htmlArte.includes('revelacao-figura'));
+check('revelação tem aviso de erro discreto', htmlFoto.includes('Achou um erro? Avise') && htmlFoto.includes('github.com/Asilva-01/nostalgica90/issues/new'));
+check('aviso de erro pré-preenche id e resposta', htmlFoto.includes(encodeURIComponent('Desafio: #' + comImg.id)) && htmlFoto.includes(encodeURIComponent('Resposta: ' + comImg.resp)));
+check('aviso de erro também no esgotar', htmlArte.includes('Achou um erro? Avise') && htmlArte.includes('issues/new'));
+const gameSrcNowEarly = fs.readFileSync(path.join(__dirname, '..', 'game.js'), 'utf8');
+const jaJogouSrcEarly = gameSrcNowEarly.slice(gameSrcNowEarly.indexOf('function mostrarJaJogou'), gameSrcNowEarly.indexOf('function mostrarResumo'));
+check('aviso de erro só na revelação, não no reentrar', jaJogouSrcEarly.indexOf('linkAvisoErro') < 0 && jaJogouSrcEarly.indexOf('Achou um erro') < 0);
 
 function encerrarSlotPulando() {
   for (let i = 0; i < 6; i++) global.window.Jogo.pularPista();

@@ -648,6 +648,14 @@ button { font-family: inherit; }
 }
 .revelacao-saiba:hover { transform: translateY(-2px); text-decoration: none; }
 .revelacao-saiba:focus-visible { outline: 4px solid var(--ambar); outline-offset: 2px; }
+.revelacao-aviso {
+  display: block; text-align: center;
+  font-family: var(--font-retro); font-size: 12px; line-height: 1.4;
+  color: #9aa89e; margin-top: 10px;
+  text-decoration: underline; text-underline-offset: 3px;
+}
+.revelacao-aviso:hover { color: var(--ciano); }
+.revelacao-aviso:focus-visible { outline: 3px solid var(--ambar); outline-offset: 2px; }
 @media (max-width: 480px) {
   .revelacao-figura picture, .revelacao-figura img {
     max-height: min(46vw, 210px);
