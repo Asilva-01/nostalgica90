@@ -93,6 +93,10 @@ PREFERRED = {
     "pac-man": ["File:PacMan.jpg", "File:Pac-Man arcade.jpg"],
     "donkey-kong": ["File:Donkey Kong arcade.jpg", "File:Nintendo-Donkey-Kong-Arcade.jpg"],
     "papel-de-carta": ["File:Letter writing paper.jpg", "File:Stationery.jpg"],
+    "mega-drive": ["File:Sega-Mega-Drive-JP-Mk1-Console-Set.jpg", "File:Sega-Genesis-Mk2-6button.jpg"],
+    "master-system": ["File:Sega-Master-System-Set.jpg", "File:Master-System-Console.jpg"],
+    "nintendo-64": ["File:Nintendo-64-wController-L.jpg", "File:N64-Console-Set.jpg"],
+    "playstation": ["File:PSX-Console-wController.jpg", "File:PlayStation-SCPH-1000-with-controller.jpg"],
 }
 
 SEARCHES = {
@@ -152,6 +156,10 @@ SEARCHES = {
     "chiquititas": [],
     "carrossel": [],
     "eramos-seis": [],
+    "mega-drive": ["Sega Mega Drive console", "Sega Genesis console Evan-Amos"],
+    "master-system": ["Sega Master System console Evan-Amos", "Master System console"],
+    "nintendo-64": ["Nintendo 64 console Evan-Amos", "N64 console controller"],
+    "playstation": ["PlayStation SCPH-1000 console Evan-Amos", "original PlayStation console"],
 }
 
 WIKI_TITLES = {
@@ -506,10 +514,18 @@ def pick_file(slug: str) -> tuple[dict | None, list[str]]:
 
 
 def main():
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--slugs", default="", help="Só estes slugs, separados por vírgula")
+    args = parser.parse_args()
+    only = {s.strip() for s in args.slugs.split(",") if s.strip()}
+
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     challenges = json.loads((ROOT / "challenges.json").read_text(encoding="utf-8"))
     report = []
     for c in challenges:
+        if only and c["slug"] not in only:
+            continue
         slug = c["slug"]
         print("→", c["id"], slug, flush=True)
         link = None

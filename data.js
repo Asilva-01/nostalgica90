@@ -69,9 +69,9 @@ window.Dados = (function () {
     return null;
   }
 
-  var CATEGORIAS = ["TV", "GAMES", "CINEMA", "MÚSICA", "BRINQUEDOS", "TECNOLOGIA", "CULTURA"];
-  var CAT_EMOJI = { TV: "📺", GAMES: "🎮", CINEMA: "🎬", MÚSICA: "🎵", BRINQUEDOS: "🧸", TECNOLOGIA: "💻", CULTURA: "📼" };
-  var CAT_COR = { TV: ["#d32f2f", "#8e0000"], GAMES: ["#b026ff", "#4a0080"], CINEMA: ["#1976d2", "#002f6c"], MÚSICA: ["#ff2d95", "#7a0037"], BRINQUEDOS: ["#ff6f00", "#8f3a00"], TECNOLOGIA: ["#00e5ff", "#006c80"], CULTURA: ["#388e3c", "#0b4a1e"] };
+  var CATEGORIAS = ["TV", "GAMES", "CINEMA", "MÚSICA", "BRINQUEDOS", "TECNOLOGIA", "CULTURA", "ESPORTE"];
+  var CAT_EMOJI = { TV: "📺", GAMES: "🎮", CINEMA: "🎬", MÚSICA: "🎵", BRINQUEDOS: "🧸", TECNOLOGIA: "💻", CULTURA: "📼", ESPORTE: "🏅" };
+  var CAT_COR = { TV: ["#d32f2f", "#8e0000"], GAMES: ["#b026ff", "#4a0080"], CINEMA: ["#1976d2", "#002f6c"], MÚSICA: ["#ff2d95", "#7a0037"], BRINQUEDOS: ["#ff6f00", "#8f3a00"], TECNOLOGIA: ["#00e5ff", "#006c80"], CULTURA: ["#388e3c", "#0b4a1e"], ESPORTE: ["#c9a227", "#5c4300"] };
 
   return {
     carregar: carregar,

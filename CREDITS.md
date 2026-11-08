@@ -5,7 +5,7 @@ Só entram arquivos com licença verificada na página do arquivo:
 **Public Domain**, **CC0**, **CC BY** ou **CC BY-SA**.
 Cópias locais em WebP/AVIF (até ~80 KB). Sem hotlink.
 
-**29 de 56 desafios** têm foto livre. Os demais usam arte original (`artes.js`).
+**33 de 156 desafios** têm foto livre (lote 1: quatro consoles Evan-Amos em PD; desenhos, tokusatsu, jogos com personagem e atletas ficaram sem foto — licença, logo ou direito de imagem em dúvida). Os demais usam arte original (`artes.js`).
 
 Página no site: [creditos.html](creditos.html).
 
@@ -40,6 +40,10 @@ Página no site: [creditos.html](creditos.html).
 | 39. Rádio FM | `assets/images/revelacao/radio-fm.webp` | CC BY-SA 4.0 | YoloBoscaiolo | [File:Sony_Walkman_WM-FX151_Personal_Cassette_Tape_Portable_Stereo_Radio_FM_AM_Tuner.jpg](https://commons.wikimedia.org/wiki/File:Sony_Walkman_WM-FX151_Personal_Cassette_Tape_Portable_Stereo_Radio_FM_AM_Tuner.jpg) |
 | 40. Metal Slug | `assets/images/revelacao/metal-slug.webp` | CC BY-SA 3.0 | Piotrus | [File:Mus%C3%A9e_M%C3%A9canique_222.JPG](https://commons.wikimedia.org/wiki/File:Mus%C3%A9e_M%C3%A9canique_222.JPG) |
 | 41. Neo Geo | `assets/images/revelacao/neo-geo.webp` | CC BY-SA 3.0 | Evan-Amos | [File:Neo-Geo-AES-Console-Set.jpg](https://commons.wikimedia.org/wiki/File:Neo-Geo-AES-Console-Set.jpg) |
+| 109. Mega Drive | `assets/images/revelacao/mega-drive.webp` | Public Domain | Evan-Amos | [File:Sega-Mega-Drive-JP-Mk1-Console-Set.jpg](https://commons.wikimedia.org/wiki/File:Sega-Mega-Drive-JP-Mk1-Console-Set.jpg) |
+| 110. Master System | `assets/images/revelacao/master-system.webp` | Public Domain | Evan-Amos | [File:Sega-Master-System-Set.jpg](https://commons.wikimedia.org/wiki/File:Sega-Master-System-Set.jpg) |
+| 111. Nintendo 64 | `assets/images/revelacao/nintendo-64.webp` | Public Domain | Evan-Amos | [File:Nintendo-64-wController-L.jpg](https://commons.wikimedia.org/wiki/File:Nintendo-64-wController-L.jpg) |
+| 112. PlayStation | `assets/images/revelacao/playstation.webp` | Public Domain | Evan-Amos | [File:PSX-Console-wController.jpg](https://commons.wikimedia.org/wiki/File:PSX-Console-wController.jpg) |
 | 46. Time Crisis | `assets/images/revelacao/time-crisis.webp` | CC BY-SA 3.0 | Coentor | [File:Time_crisis_2_cabinets.jpg](https://commons.wikimedia.org/wiki/File:Time_crisis_2_cabinets.jpg) |
 | 49. Tieta | `assets/images/revelacao/tieta.webp` | Public Domain | Bernard Gotfryd | [File:Jorge_Amado,_gtfy.00010.jpg](https://commons.wikimedia.org/wiki/File:Jorge_Amado,_gtfy.00010.jpg) |
 
@@ -74,6 +78,8 @@ Quando não há foto livre adequada (programas, novelas, marcas, screenshots, ca
 - 54. Chiquititas
 - 55. Carrossel
 - 56. Éramos Seis
+
+Lote 1 (ids 57–156): arte original em `artes.js` para todos os 100 novos desafios. Fotos livres só nos quatro consoles acima (Mega Drive, Master System, Nintendo 64, PlayStation). Sem foto de personagem, vinheta, capa, screenshot ou atleta (direito de imagem / logo / incerteza de licença).
 
 ## Fontes
 

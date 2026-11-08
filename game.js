@@ -33,7 +33,7 @@
 
   function poolSize() {
     var t = (window.Dados && window.Dados.total) ? window.Dados.total() : 0;
-    return t > 0 ? t : 56;
+    return t > 0 ? t : 156;
   }
   function numeroDoDia(iso) {
     return window.SelecaoRodada.numeroDoDia(iso);
@@ -362,11 +362,20 @@
     var saiba = e.link_saiba_mais
       ? '<a class="revelacao-saiba" href="' + escHtml(e.link_saiba_mais) + '" target="_blank" rel="noopener noreferrer">Saiba mais<span class="sr-only"> (abre em nova aba)</span></a>'
       : '';
+    var aviso = linkAvisoErro(e);
     return '<article class="cartao-revelacao' + (win ? ' acerto' : ' esgotou') + '" aria-live="polite">' +
       '<p class="revelacao-selo">' + selo + '</p>' +
       '<h2 class="revelacao-titulo">' + escHtml(e.emoji || '') + ' ' + escHtml(e.resp) + '</h2>' +
-      figura + curio + saiba +
+      figura + curio + saiba + aviso +
       '</article>';
+  }
+
+  function linkAvisoErro(e) {
+    var title = 'Erro no desafio #' + e.id;
+    var body = 'Desafio: #' + e.id + '\nResposta: ' + (e.resp || '') + '\n\nO que está errado:\n';
+    var href = 'https://github.com/Asilva-01/nostalgica90/issues/new?title=' +
+      encodeURIComponent(title) + '&body=' + encodeURIComponent(body);
+    return '<a class="revelacao-aviso" href="' + escHtml(href) + '" target="_blank" rel="noopener noreferrer">Achou um erro? Avise<span class="sr-only"> (abre uma issue no GitHub, depois da revelação)</span></a>';
   }
 
   function renderPistas() {
@@ -430,7 +439,7 @@
     }
     var secJogo = el('secJogo');
     if (secJogo) {
-      var base = ['cat-TV', 'cat-GAMES', 'cat-CINEMA', 'cat-MÚSICA', 'cat-BRINQUEDOS', 'cat-TECNOLOGIA', 'cat-CULTURA', 'cat-c', 'venceu', 'errou'];
+      var base = ['cat-TV', 'cat-GAMES', 'cat-CINEMA', 'cat-MÚSICA', 'cat-BRINQUEDOS', 'cat-TECNOLOGIA', 'cat-CULTURA', 'cat-ESPORTE', 'cat-c', 'venceu', 'errou'];
       for (var i = 0; i < base.length; i++) secJogo.classList.remove(base[i]);
       secJogo.classList.add(catInfo(e.cat).classe);
       secJogo.classList.remove('desafio-render');
@@ -861,6 +870,7 @@
     var sons = {
       'MÚSICA': 'ui-arcade', 'GAMES': 'ui-arcade', 'TECNOLOGIA': 'ui-boot',
       'VHS': 'ui-vhs', 'CULTURA': 'ui-vhs', 'TV': 'ui-channel',
+      'ESPORTE': 'ui-apito',
       'CINEMA': 'ui-reveal', 'RÁDIO': 'ui-click', 'BRINQUEDOS': 'ui-success'
     };
     return sons[cat] || 'ui-reveal';

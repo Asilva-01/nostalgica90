@@ -17,6 +17,7 @@ const path = require('path');
 const ROOT = path.join(__dirname, '..');
 const FILE = path.join(ROOT, 'challenges.json');
 const DIFICULDADES_OK = new Set([null, undefined, '', 'facil', 'medio', 'dificil', 'fácil', 'médio', 'difícil']);
+const CAT_OK = new Set(['TV', 'GAMES', 'CINEMA', 'MÚSICA', 'BRINQUEDOS', 'TECNOLOGIA', 'CULTURA', 'ESPORTE']);
 const LICENCAS_OK = new Set([
   'CC0', 'CC0 1.0',
   'Public Domain', 'PD',
@@ -113,6 +114,9 @@ function main() {
     }
     if (!isNonEmptyString(c.cat)) {
       fail('cat (categoria) não vazia obrigatória', where);
+      falhas++;
+    } else if (!CAT_OK.has(c.cat)) {
+      fail('cat fora do enum conhecido', where + ' cat=' + c.cat);
       falhas++;
     }
     if (!Array.isArray(c.pistas) || c.pistas.length !== 6) {
