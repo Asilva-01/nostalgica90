@@ -430,7 +430,7 @@
     }
     var secJogo = el('secJogo');
     if (secJogo) {
-      var base = ['cat-TV', 'cat-GAMES', 'cat-CINEMA', 'cat-MÚSICA', 'cat-BRINQUEDOS', 'cat-TECNOLOGIA', 'cat-CULTURA', 'cat-c', 'venceu', 'errou'];
+      var base = ['cat-TV', 'cat-GAMES', 'cat-CINEMA', 'cat-MÚSICA', 'cat-BRINQUEDOS', 'cat-TECNOLOGIA', 'cat-CULTURA', 'cat-ESPORTE', 'cat-c', 'venceu', 'errou'];
       for (var i = 0; i < base.length; i++) secJogo.classList.remove(base[i]);
       secJogo.classList.add(catInfo(e.cat).classe);
       secJogo.classList.remove('desafio-render');
@@ -861,6 +861,7 @@
     var sons = {
       'MÚSICA': 'ui-arcade', 'GAMES': 'ui-arcade', 'TECNOLOGIA': 'ui-boot',
       'VHS': 'ui-vhs', 'CULTURA': 'ui-vhs', 'TV': 'ui-channel',
+      'ESPORTE': 'ui-apito',
       'CINEMA': 'ui-reveal', 'RÁDIO': 'ui-click', 'BRINQUEDOS': 'ui-success'
     };
     return sons[cat] || 'ui-reveal';

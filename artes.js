@@ -106,6 +106,18 @@ window.Arte = (function () {
           '</svg>';
       }
     },
+    ESPORTE: {
+      selo: "JOGO", moto: "APITO",
+      fundo: "gramado-90",
+      elem: function (e, info) {
+        return '<svg class="art-elem" viewBox="0 0 160 90" role="presentation">' +
+          '<rect x="10" y="18" width="140" height="54" rx="4" fill="#2ecf5b" stroke="#e6e9ff" stroke-width="3"/>' +
+          '<line x1="80" y1="18" x2="80" y2="72" stroke="#e6e9ff" stroke-width="2"/>' +
+          '<circle cx="80" cy="45" r="10" fill="none" stroke="#e6e9ff" stroke-width="2"/>' +
+          '<ellipse cx="128" cy="70" rx="16" ry="8" fill="#ffe600" stroke="#241d3f" stroke-width="2"/>' +
+          '</svg>';
+      }
+    },
     CULTURA: {
       selo: "CULTURA", moto: "BANCA",
       fundo: "revista-banca",
@@ -744,7 +756,7 @@ window.Arte = (function () {
       }
     },
     "kamen-rider-black-rx": {
-      selo: "SOL", moto: "RX",
+      selo: "SOL", moto: "BIO",
       elem: function () {
         return _svgLote1('<circle cx="80" cy="40" r="22" fill="#ffe600" stroke="#241d3f" stroke-width="3"/><rect x="58" y="64" width="44" height="14" rx="4" fill="#1a1530" stroke="#e6293c" stroke-width="3"/>');
       }
@@ -762,7 +774,7 @@ window.Arte = (function () {
       }
     },
     "solbrain": {
-      selo: "LAB", moto: "DOURADO",
+      selo: "LAB", moto: "RESGATE",
       elem: function () {
         return _svgLote1('<rect x="30" y="22" width="28" height="50" rx="4" fill="#81d4fa" stroke="#241d3f" stroke-width="3"/><ellipse cx="104" cy="40" rx="22" ry="18" fill="#ffe600" stroke="#241d3f" stroke-width="3"/><rect x="92" y="56" width="24" height="16" fill="#2f6fed" stroke="#241d3f" stroke-width="2"/>');
       }
@@ -840,7 +852,7 @@ window.Arte = (function () {
       }
     },
     "cadillacs-e-dinossauros": {
-      selo: "NADOADEIRA", moto: "OSSO",
+      selo: "CONVERSÍVEL", moto: "OSSO",
       elem: function () {
         return _svgLote1('<path d="M18 58 L70 50 L90 58 L70 70 Z" fill="#e6293c" stroke="#241d3f" stroke-width="3"/><path d="M96 30 L150 24 L150 70 L110 78 Z" fill="#d7ccc8" stroke="#241d3f" stroke-width="3"/>');
       }
@@ -960,7 +972,7 @@ window.Arte = (function () {
       }
     },
     "hortencia": {
-      selo: "QUADRA", moto: "TÊNIS",
+      selo: "QUADRA", moto: "CESTA",
       elem: function () {
         return _svgLote1('<circle cx="70" cy="40" r="18" fill="#ff7a1a" stroke="#241d3f" stroke-width="3"/><rect x="108" y="48" width="28" height="16" rx="6" fill="#f5f0e8" stroke="#241d3f" stroke-width="3"/>');
       }
@@ -1082,7 +1094,7 @@ window.Arte = (function () {
     "a-proxima-vitima": {
       selo: "CARRO", moto: "?",
       elem: function () {
-        return _svgLote1('<rect x="24" y="40" width="80" height="24" rx="6" fill="#ffe600" stroke="#241d3f" stroke-width="3"/><circle cx="42" cy="68" r="8" fill="#1a1530"/><circle cx="86" cy="68" r="8" fill="#1a1530"/><text x="124" y="58" font-family="VT323" font-size="36" fill="#ffe600">?</text>');
+        return _svgLote1('<rect x="24" y="40" width="80" height="24" rx="6" fill="#2a2a2a" stroke="#241d3f" stroke-width="3"/><rect x="28" y="44" width="28" height="10" fill="#90a4ae"/><circle cx="42" cy="68" r="8" fill="#1a1530"/><circle cx="86" cy="68" r="8" fill="#1a1530"/><text x="124" y="58" font-family="VT323" font-size="36" fill="#cfd8e6">?</text>');
       }
     },
     "renascer": {

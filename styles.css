@@ -505,6 +505,11 @@ button { font-family: inherit; }
 .art-fundo.revista-banca {
   background: repeating-linear-gradient(90deg, rgba(255,210,30,0.06) 0 20px, transparent 20px 40px), linear-gradient(160deg, #332a08, #0a0f2a);
 }
+.art-fundo.gramado-90 {
+  background:
+    repeating-linear-gradient(90deg, rgba(46,207,91,0.12) 0 16px, rgba(14,90,40,0.18) 16px 32px),
+    linear-gradient(160deg, #1a3a18, #0a0f2a);
+}
 .art-fundo.canal-tv { background: linear-gradient(160deg, #e6293c, #8e0015); }
 
 #listaPistas { margin-top: 10px; }
@@ -531,6 +536,7 @@ button { font-family: inherit; }
 .cat-BRINQUEDOS { --cat-cor: #ff7a1a; --cat-escura: #a34600; }
 .cat-TECNOLOGIA { --cat-cor: #00c8c8; --cat-escura: #006c6c; }
 .cat-CULTURA { --cat-cor: #2ee56a; --cat-escura: #0f7a33; }
+.cat-ESPORTE { --cat-cor: #e6c84a; --cat-escura: #5c4300; }
 .cat-VHS { --cat-cor: #5a5480; --cat-escura: #2a2544; }
 .cat-RÁDIO { --cat-cor: #ff7a1a; --cat-escura: #8a3a00; }
 .cat-pill {

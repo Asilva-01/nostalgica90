@@ -43,9 +43,9 @@ global.window.Dados = {
   total(){ return realChallenges.length; },
   lista(){ return realChallenges; },
   listaMuseu(){ return realMuseum; },
-  CATEGORIAS: ['TV','GAMES','CINEMA','MÚSICA','BRINQUEDOS','TECNOLOGIA','CULTURA'],
-  CAT_EMOJI: { TV:'📺', GAMES:'🎮', CINEMA:'🎬', MÚSICA:'🎵', BRINQUEDOS:'🧸', TECNOLOGIA:'💻', CULTURA:'📼' },
-  CAT_COR: { TV:['#d32f2f','#8e0000'], GAMES:['#b026ff','#4a0080'], CINEMA:['#1976d2','#002f6c'], MÚSICA:['#ff2d95','#7a0037'], BRINQUEDOS:['#ff6f00','#8f3a00'], TECNOLOGIA:['#00e5ff','#006c80'], CULTURA:['#388e3c','#0b4a1e'] }
+  CATEGORIAS: ['TV','GAMES','CINEMA','MÚSICA','BRINQUEDOS','TECNOLOGIA','CULTURA','ESPORTE'],
+  CAT_EMOJI: { TV:'📺', GAMES:'🎮', CINEMA:'🎬', MÚSICA:'🎵', BRINQUEDOS:'🧸', TECNOLOGIA:'💻', CULTURA:'📼', ESPORTE:'🏅' },
+  CAT_COR: { TV:['#d32f2f','#8e0000'], GAMES:['#b026ff','#4a0080'], CINEMA:['#1976d2','#002f6c'], MÚSICA:['#ff2d95','#7a0037'], BRINQUEDOS:['#ff6f00','#8f3a00'], TECNOLOGIA:['#00e5ff','#006c80'], CULTURA:['#388e3c','#0b4a1e'], ESPORTE:['#c9a227','#5c4300'] }
 };
 global.window.Som = {
   tocar(){},
@@ -199,6 +199,7 @@ check('ultimaVitoria = hoje', !!stats.ultimaVitoria);
 console.log('\n[6] GALERIA / MUSEU');
 try { global.window.Jogo.mostrarGaleria('TODOS'); check('galeria TODOS OK', true); } catch(e){ check('galeria TODOS OK', false, e.message); }
 try { global.window.Jogo.mostrarGaleria('TV'); check('galeria filtro TV OK', true); } catch(e){ check('galeria filtro TV OK', false, e.message); }
+try { global.window.Jogo.mostrarGaleria('ESPORTE'); check('galeria filtro ESPORTE OK', true); } catch(e){ check('galeria filtro ESPORTE OK', false, e.message); }
 try { global.window.Jogo.mostrarMuseu(); check('museu OK', true); } catch(e){ check('museu OK', false, e.message); }
 try { global.window.Jogo.abrirMuseuItem('TV', 'TV Colosso'); check('museu item OK', true); } catch(e){ check('museu item OK', false, e.message); }
 
@@ -243,6 +244,9 @@ const arteGames = window.Arte.gerar(realChallenges.find(c => c.cat === 'GAMES'),
 check('arte GAMES tem fundo próprio', arteGames.includes('pixel-arcade'));
 const arteCinema = window.Arte.gerar(realChallenges.find(c => c.cat === 'CINEMA'), { classe: 'cat-CINEMA' });
 check('arte CINEMA tem fundo próprio', arteCinema.includes('poster-vhs'));
+const arteEsporte = window.Arte.gerar(realChallenges.find(c => c.cat === 'ESPORTE'), { classe: 'cat-ESPORTE' });
+check('arte ESPORTE tem fundo próprio', arteEsporte.includes('gramado-90'));
+check('lote 1 tem 20 desafios de ESPORTE', realChallenges.filter(c => c.cat === 'ESPORTE').length === 20);
 // anti-spoiler: foto livre NÃO entra na arte do jogo (só na revelação)
 const arteComImg = window.Arte.gerar(
   { slug: 'item-sem-objeto-proprio', cat: 'TV', ano: '1995', image: 'assets/images/revelacao/tamagotchi.webp' },
@@ -261,6 +265,7 @@ console.log('\n[9] MUSEU — ÁUDIO POR CATEGORIA');
 check('MÚSICA mapeia para ui-arcade', (function(){ const s=fs.readFileSync(path.join(__dirname,'..','game.js'),'utf8'); return s.includes("'MÚSICA': 'ui-arcade'"); })());
 check('VHS mapeia para ui-vhs', (function(){ const s=fs.readFileSync(path.join(__dirname,'..','game.js'),'utf8'); return s.includes("'VHS': 'ui-vhs'"); })());
 check('TV mapeia para ui-channel', (function(){ const s=fs.readFileSync(path.join(__dirname,'..','game.js'),'utf8'); return s.includes("'TV': 'ui-channel'"); })());
+check('ESPORTE mapeia para ui-apito', (function(){ const s=fs.readFileSync(path.join(__dirname,'..','game.js'),'utf8'); return s.includes("'ESPORTE': 'ui-apito'"); })());
 // síntese expandida no som.js
 const somSrc = fs.readFileSync(path.join(__dirname, '..', 'som.js'), 'utf8');
 check('som.js sintetiza ui-vhs', somSrc.includes("nome === 'ui-vhs'"));
@@ -268,6 +273,7 @@ check('som.js sintetiza ui-boot', somSrc.includes("nome === 'ui-boot'"));
 check('som.js sintetiza ui-channel', somSrc.includes("nome === 'ui-channel'"));
 check('som.js sintetiza ui-modem', somSrc.includes("nome === 'ui-modem'"));
 check('som.js sintetiza ui-click', somSrc.includes("nome === 'ui-click'"));
+check('som.js sintetiza ui-apito', somSrc.includes("nome === 'ui-apito'"));
 check('som.js expõe silenciar', somSrc.includes('function silenciar'));
 check('som.js expõe ligarAudioInicial', somSrc.includes('function ligarAudioInicial'));
 
