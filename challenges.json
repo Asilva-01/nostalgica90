@@ -19,11 +19,15 @@
       "brasil",
       "nostalgia"
     ],
-    "image": "assets/images/challenges/piloto-001.svg",
-      "credito_imagem": {
-        "texto": "Ilustração original Nostálgica 90 (sem marcas registradas)",
-        "licenca_url": "https://creativecommons.org/licenses/by/4.0/"
-      },
+    "image": "assets/images/revelacao/tamagotchi.webp",
+    "credito_imagem": {
+      "autor": "Tomasz Sienicki",
+      "licenca": "CC BY-SA 3.0",
+      "url_licenca": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:Tamagotchi_0124_ubt.jpeg",
+      "texto": "Tomasz Sienicki · CC BY-SA 3.0",
+      "licenca_url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
     "dificuldade": null,
     "pistas": [
       "Um bichinho de estimação que vivia no seu bolso.",
@@ -32,7 +36,10 @@
       "Se você descuidasse, ele ficava doente. E o pior: podia morrer.",
       "Era um ovinho de plástico com telinha e três botõezinhos.",
       "A febre dos bichinhos virtuais que tomou conta da garotada."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Tamagotchi",
+    "image_avif": "assets/images/revelacao/tamagotchi.avif",
+    "image_alt": "Tamagotchi rosa em formato de ovo, com tela LCD, três botões e corrente de metal"
   },
   {
     "id": 2,
@@ -53,11 +60,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": "assets/images/challenges/piloto-002.svg",
-      "credito_imagem": {
-        "texto": "Ilustração original Nostálgica 90 (sem marcas registradas)",
-        "licenca_url": "https://creativecommons.org/licenses/by/4.0/"
-      },
+    "image": null,
     "dificuldade": null,
     "pistas": [
       "Um programa infantil famoso na TV aberta brasileira.",
@@ -66,7 +69,8 @@
       "A plateia era formada por crianças que iam à gravação.",
       "O apresentador canino recebia convidados e fazia perguntas.",
       "'Au au!' — o cão gigante que comandava a atração da Globo."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/TV_Colosso"
   },
   {
     "id": 3,
@@ -87,7 +91,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/tazo.webp",
     "dificuldade": null,
     "pistas": [
       "Discos de papelão que viraram guerra nos recreios.",
@@ -96,7 +100,18 @@
       "Ganhava quem fizesse o disco do outro virar de cabeça pra baixo.",
       "Alguns eram brilhantes, raros e valiam 'status' na escola.",
       "A febre dos discos colecionáveis dos anos 90."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Tazo",
+    "image_avif": "assets/images/revelacao/tazo.avif",
+    "image_alt": "Crianças jogando discos de leite no chão, brincadeira da mesma família dos Tazos",
+    "credito_imagem": {
+      "autor": "Jewel457",
+      "licenca": "CC BY-SA 3.0",
+      "url_licenca": "https://creativecommons.org/licenses/by-sa/3.0",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:Kids_playing_pogs.jpeg",
+      "texto": "Jewel457 · CC BY-SA 3.0",
+      "licenca_url": "https://creativecommons.org/licenses/by-sa/3.0"
+    }
   },
   {
     "id": 4,
@@ -118,7 +133,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/super-nintendo.webp",
     "dificuldade": null,
     "pistas": [
       "Console que dominou as salas de estar no começo dos anos 90.",
@@ -127,7 +142,18 @@
       "Um de seus jogos mais amados era a corrida do encanador bigodudo.",
       "O rival da época respondia pelo nome Mega Drive.",
       "A sigla SNES revela tudo: é o console da Nintendo superpoderoso."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Super_Nintendo_Entertainment_System",
+    "image_avif": "assets/images/revelacao/super-nintendo.avif",
+    "image_alt": "Console Super Nintendo cinza com um controle ao lado",
+    "credito_imagem": {
+      "autor": "Evan-Amos",
+      "licenca": "Public Domain",
+      "url_licenca": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:SNES-Mod1-Console-Set.jpg",
+      "texto": "Evan-Amos · Public Domain",
+      "licenca_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+    }
   },
   {
     "id": 5,
@@ -141,14 +167,14 @@
     "cat": "TV",
     "emoji": "🎤",
     "ano": "1991",
-    "curiosidade": "O bordão 'É pimba!' nasceu de um trocadilho e virou marca registrada da apresentadora no SBT.",
+    "curiosidade": "A apresentadora estreou no SBT ainda adolescente e comandou programas infantis ao longo dos anos 90.",
     "tags": [
       "tv",
       "anos-90",
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/eliana.webp",
     "dificuldade": null,
     "pistas": [
       "Uma apresentadora loira que reinava aos domingos.",
@@ -157,7 +183,18 @@
       "Tinha uma assistente que era uma boneca falante.",
       "A garotada repetia seu grito de guerra o tempo todo.",
       "'É pimba!' — dizia a loira mais famosa da TV infantil."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Eliana",
+    "image_avif": "assets/images/revelacao/eliana.avif",
+    "image_alt": "A apresentadora Eliana em aparição pública",
+    "credito_imagem": {
+      "autor": "Humor Multishow",
+      "licenca": "CC BY 3.0",
+      "url_licenca": "https://creativecommons.org/licenses/by/3.0",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:Eliana_2018.jpg",
+      "texto": "Humor Multishow · CC BY 3.0",
+      "licenca_url": "https://creativecommons.org/licenses/by/3.0"
+    }
   },
   {
     "id": 6,
@@ -182,11 +219,15 @@
       "brasil",
       "nostalgia"
     ],
-    "image": "assets/images/challenges/piloto-006.svg",
-      "credito_imagem": {
-        "texto": "Ilustração original Nostálgica 90 (sem marcas registradas)",
-        "licenca_url": "https://creativecommons.org/licenses/by/4.0/"
-      },
+    "image": "assets/images/revelacao/fita-vhs.webp",
+    "credito_imagem": {
+      "autor": "Jacek Halicki",
+      "licenca": "CC BY-SA 4.0",
+      "url_licenca": "https://creativecommons.org/licenses/by-sa/4.0",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:2023_Kaseta_VHS,_magnetofonowa_i_minikaseta.jpg",
+      "texto": "Jacek Halicki · CC BY-SA 4.0",
+      "licenca_url": "https://creativecommons.org/licenses/by-sa/4.0"
+    },
     "dificuldade": null,
     "pistas": [
       "Era pra onde iam os filmes antes do streaming existir.",
@@ -195,7 +236,10 @@
       "Esquecer de rebobinar era pecado na locadora.",
       "Era uma caixinha preta retangular com dois carretéis e uma fita.",
       "As iniciais VHS dizem tudo: Video Home System."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Video_Home_System",
+    "image_avif": "assets/images/revelacao/fita-vhs.avif",
+    "image_alt": "Fita VHS preta ao lado de uma fita cassete e uma minicassete"
   },
   {
     "id": 7,
@@ -217,11 +261,15 @@
       "brasil",
       "nostalgia"
     ],
-    "image": "assets/images/challenges/piloto-007.svg",
-      "credito_imagem": {
-        "texto": "Ilustração original Nostálgica 90 (sem marcas registradas)",
-        "licenca_url": "https://creativecommons.org/licenses/by/4.0/"
-      },
+    "image": "assets/images/revelacao/discman.webp",
+    "credito_imagem": {
+      "autor": "Mikus",
+      "licenca": "CC BY-SA 4.0",
+      "url_licenca": "https://creativecommons.org/licenses/by-sa/4.0",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:Sony-Discman-D-E307CK.jpg",
+      "texto": "Mikus · CC BY-SA 4.0",
+      "licenca_url": "https://creativecommons.org/licenses/by-sa/4.0"
+    },
     "dificuldade": null,
     "pistas": [
       "O jeito portátil de ouvir os seus CDs.",
@@ -230,7 +278,10 @@
       "Se você andasse rápido demais, a música pulava.",
       "Antes do MP3 player, era esse o presente dos sonhos.",
       "O nome veio da Sony: 'disc' + 'man', o homem do CD."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Discman",
+    "image_avif": "assets/images/revelacao/discman.avif",
+    "image_alt": "Tocador portátil de CD Sony Discman visto de cima"
   },
   {
     "id": 8,
@@ -252,7 +303,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/walkman.webp",
     "dificuldade": null,
     "pistas": [
       "O pai de todos os tocadores portáteis de música.",
@@ -261,7 +312,18 @@
       "Funcionava com duas pilhas AA e um fone de ouvido.",
       "O aparelho que fez a juventude andar 'cantando' pela rua.",
       "O nome em inglês significa literalmente 'homem que caminha'."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Walkman",
+    "image_avif": "assets/images/revelacao/walkman.avif",
+    "image_alt": "Walkman Sony TPS-L2 azul, o primeiro modelo de fita cassete portátil",
+    "credito_imagem": {
+      "autor": "Binarysequence",
+      "licenca": "CC BY-SA 4.0",
+      "url_licenca": "https://creativecommons.org/licenses/by-sa/4.0",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:Original_Sony_Walkman_TPS-L2.JPG",
+      "texto": "Binarysequence · CC BY-SA 4.0",
+      "licenca_url": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
   },
   {
     "id": 9,
@@ -292,7 +354,8 @@
       "Os picolés de limão e as paletas eram os campeões de venda.",
       "O nome começa com a letra K.",
       "A gigante dos picolés e sorvetes, parceira da Nestlé no Brasil."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Kibon"
   },
   {
     "id": 10,
@@ -313,7 +376,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/bombril.webp",
     "dificuldade": null,
     "pistas": [
       "Produto de limpeza que virou estrela da publicidade.",
@@ -322,7 +385,18 @@
       "O slogan garantia que ele tinha 'mil e uma utilidades'.",
       "É a famosa lã de aço que tira o queimado da panela.",
       "O 'palhaço' dos comerciais limpava panelas de verdade."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Bombril",
+    "image_avif": "assets/images/revelacao/bombril.avif",
+    "image_alt": "Palha de aço, o tipo de produto associado à marca Bombril",
+    "credito_imagem": {
+      "autor": "Sciencephotos",
+      "licenca": "CC BY-SA 4.0",
+      "url_licenca": "https://creativecommons.org/licenses/by-sa/4.0",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:Steel_wool.jpg",
+      "texto": "Sciencephotos · CC BY-SA 4.0",
+      "licenca_url": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
   },
   {
     "id": 11,
@@ -344,7 +418,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/xuxa.webp",
     "dificuldade": null,
     "pistas": [
       "A maior rainha do público infantil dos anos 90.",
@@ -353,7 +427,18 @@
       "Ganhava o mundo: fez sucesso também fora do Brasil.",
       "Seu programa tinha nomes como 'Xou', 'Parque' e 'H'.",
       "Loira dos cabelos compridos, tinha um baú de surpresas."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Xuxa",
+    "image_avif": "assets/images/revelacao/xuxa.avif",
+    "image_alt": "Xuxa Meneghel em evento público na Câmara dos Deputados",
+    "credito_imagem": {
+      "autor": "Gabriela Korossy / Câmara dos Deputados",
+      "licenca": "CC BY 2.0",
+      "url_licenca": "https://creativecommons.org/licenses/by/2.0/br/deed.en",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:Xuxa_Meneghel,_2014.jpg",
+      "texto": "Gabriela Korossy / Câmara dos Deputados · CC BY 2.0",
+      "licenca_url": "https://creativecommons.org/licenses/by/2.0/br/deed.en"
+    }
   },
   {
     "id": 12,
@@ -383,7 +468,8 @@
       "Quem tivesse o maior número na categoria escolhida vencia a rodada.",
       "Existiam versões de carros, dinossauros, animais e times.",
       "O clássico jogo de 'comparar números' das rodas de amigos."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Super_Trunfo"
   },
   {
     "id": 13,
@@ -405,7 +491,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/game-boy.webp",
     "dificuldade": null,
     "pistas": [
       "Console portátil que cabia na palma da mão.",
@@ -414,7 +500,18 @@
       "Um dos jogos mais famosos era o quebra-cabeça de bloquinhos caindo.",
       "Você jogava escondido debaixo da carteira na aula.",
       "Duas palavras em inglês: jogo + menino, da Nintendo."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Game_Boy",
+    "image_avif": "assets/images/revelacao/game-boy.avif",
+    "image_alt": "Game Boy original da Nintendo, portátil cinza com tela verde",
+    "credito_imagem": {
+      "autor": "Evan-Amos",
+      "licenca": "Public Domain",
+      "url_licenca": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:Game-Boy-FL.jpg",
+      "texto": "Evan-Amos · Public Domain",
+      "licenca_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+    }
   },
   {
     "id": 14,
@@ -432,7 +529,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/senna.webp",
     "dificuldade": null,
     "pistas": [
       "O maior ídolo do automobilismo brasileiro de todos os tempos.",
@@ -441,7 +538,18 @@
       "A rivalidade com o piloto francês 'Professor' ficou mundial.",
       "Na chuva, diziam que ele enxergava o que ninguém via.",
       "Em Interlagos, venceu a corrida de 1991 emocionando o país."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Ayrton_Senna",
+    "image_avif": "assets/images/revelacao/senna.avif",
+    "image_alt": "Ayrton Senna a bordo da McLaren no Grande Prêmio do Canadá de 1988",
+    "credito_imagem": {
+      "autor": "Paul Lannuier, USA",
+      "licenca": "CC BY-SA 2.0",
+      "url_licenca": "https://creativecommons.org/licenses/by-sa/2.0",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:Ayrton_Senna_1988_Canada.jpg",
+      "texto": "Paul Lannuier, USA · CC BY-SA 2.0",
+      "licenca_url": "https://creativecommons.org/licenses/by-sa/2.0"
+    }
   },
   {
     "id": 15,
@@ -459,7 +567,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/formula-1.webp",
     "dificuldade": null,
     "pistas": [
       "A categoria máxima do automobilismo mundial nos anos 90.",
@@ -468,7 +576,18 @@
       "O campeonato de 1994 teve um fim trágico em Ímola.",
       "Era transmitida e comentada com paixão por um locutor brasileiro.",
       "Schumacher, Prost e Senna marcaram a década."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/F%C3%B3rmula_1",
+    "image_avif": "assets/images/revelacao/formula-1.avif",
+    "image_alt": "Carro de Fórmula 1 de Nigel Mansell no Grande Prêmio dos EUA de 1991",
+    "credito_imagem": {
+      "autor": "Stuart Seeger, USA",
+      "licenca": "CC BY 2.0",
+      "url_licenca": "https://creativecommons.org/licenses/by/2.0",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:Nigel_Mansell_1991_USA_2.jpg",
+      "texto": "Stuart Seeger, USA · CC BY 2.0",
+      "licenca_url": "https://creativecommons.org/licenses/by/2.0"
+    }
   },
   {
     "id": 16,
@@ -486,7 +605,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/copa-do-mundo.webp",
     "dificuldade": null,
     "pistas": [
       "O evento que parava o Brasil inteiro a cada quatro anos.",
@@ -495,7 +614,18 @@
       "Em 1998 foi na França e terminou num final sonhado, mas perdido.",
       "A taça, as músicas de incentivo e os enfeites de louro.",
       "O Brasil sonhava com o pentacampeonato a cada edição."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Copa_do_Mundo_FIFA_de_1994",
+    "image_avif": "assets/images/revelacao/copa-do-mundo.avif",
+    "image_alt": "Taça da Copa do Mundo FIFA em exposição no museu",
+    "credito_imagem": {
+      "autor": "Ank Kumar",
+      "licenca": "CC BY-SA 4.0",
+      "url_licenca": "https://creativecommons.org/licenses/by-sa/4.0",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:FIFA_World_Cup_Trophy_(Ank_Kumar,_Infosys_Limited)_03.jpg",
+      "texto": "Ank Kumar · CC BY-SA 4.0",
+      "licenca_url": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
   },
   {
     "id": 17,
@@ -513,7 +643,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/romario.webp",
     "dificuldade": null,
     "pistas": [
       "Atacante baixinho que foi o herói do tetra em 1994.",
@@ -522,7 +652,18 @@
       "Suas frases polêmicas também faziam parte do show.",
       "Marcava gol até parecendo parado, movendo só o pé.",
       "Artilheiro da seleção que conquistou a Copa dos EUA."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Rom%C3%A1rio",
+    "image_avif": "assets/images/revelacao/romario.avif",
+    "image_alt": "Romário em foto oficial pública",
+    "credito_imagem": {
+      "autor": "Agência Senado",
+      "licenca": "CC BY 2.0",
+      "url_licenca": "https://creativecommons.org/licenses/by/2.0",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:Senadores_da_57%C2%AA_Legislatura_(52689451805).jpg",
+      "texto": "Agência Senado · CC BY 2.0",
+      "licenca_url": "https://creativecommons.org/licenses/by/2.0"
+    }
   },
   {
     "id": 18,
@@ -533,14 +674,14 @@
     "cat": "CULTURA",
     "emoji": "⚽",
     "ano": "1997",
-    "curiosidade": "O Fenômeno explodiu no Barcelona e na Inter, e se consagrou em 2002 com o penta.",
+    "curiosidade": "O Fenômeno explodiu no Barcelona e na Inter ainda nos anos 90, antes da consagração nas Copas seguintes.",
     "tags": [
       "cultura",
       "anos-90",
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/ronaldo.webp",
     "dificuldade": null,
     "pistas": [
       "Atacante que explodiu como 'Fenômeno' ainda muito jovem.",
@@ -549,7 +690,18 @@
       "Rápido, forte e letal, vestia a camisa 9.",
       "Passou por PSV, Barcelona, Inter de Milão e Real Madrid.",
       "Reinventou a função de centroavante nos anos 90."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Ronaldo_Naz%C3%A1rio",
+    "image_avif": "assets/images/revelacao/ronaldo.avif",
+    "image_alt": "Ronaldo Nazário em aparição pública",
+    "credito_imagem": {
+      "autor": "Antônio Cruz/ABr (cropped by Abu_badali)",
+      "licenca": "CC BY 3.0",
+      "url_licenca": "https://creativecommons.org/licenses/by/3.0/br/deed.en",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:Ronaldo.jpeg",
+      "texto": "Antônio Cruz/ABr (cropped by Abu_badali) · CC BY 3.0",
+      "licenca_url": "https://creativecommons.org/licenses/by/3.0/br/deed.en"
+    }
   },
   {
     "id": 19,
@@ -576,7 +728,8 @@
       "Lutas e mais lutas cheias de transformações de poder.",
       "A rivalidade com o príncipe dos sayajins movia a saga.",
       "As esferas mágicas invocavam um dragão que atendia pedidos."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Dragon_Ball_Z"
   },
   {
     "id": 20,
@@ -603,7 +756,8 @@
       "Lutavam em nome da deusa Atena.",
       "Golpes épicos como 'Meteoro de Pégaso'.",
       "Santuário, Poseidon e Hades eram as grandes sagas."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Os_Cavaleiros_do_Zod%C3%ADaco"
   },
   {
     "id": 21,
@@ -630,7 +784,8 @@
       "Cada guerreira tinha um planeta do sistema solar.",
       "Um gato lunar de duas cores era sua companheira.",
       "Ela lutava 'em nome da lua' pela justiça e pelo amor."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Sailor_Moon"
   },
   {
     "id": 22,
@@ -657,7 +812,8 @@
       "Cada criatura tinha um tipo e evoluía ao subir de nível.",
       "Pokébolas e ginásios dominavam a rotina das crianças.",
       "'Preciso pegá-los!' era o lema da geração."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Pok%C3%A9mon"
   },
   {
     "id": 23,
@@ -684,7 +840,8 @@
       "As crianças entravam num 'mundo digital'.",
       "Usavam um dispositivo de pulso para os monstrinhos.",
       "A abertura nacional fez sucesso nas manhãs de TV."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Digimon"
   },
   {
     "id": 24,
@@ -702,7 +859,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/chaves.webp",
     "dificuldade": null,
     "pistas": [
       "A turma de uma vila muito pobre que divertia a garotada.",
@@ -711,7 +868,18 @@
       "As piadas giravam em torno de comida e 'essas pessoas'.",
       "Era reprisado infinitamente na TV brasileira.",
       "'Foi sem querer querendo!' era o grito mais famoso."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/El_Chavo_del_Ocho",
+    "image_avif": "assets/images/revelacao/chaves.avif",
+    "image_alt": "Roberto Gómez Bolaños, criador e intérprete de Chaves, em evento público",
+    "credito_imagem": {
+      "autor": "Al Vazquez",
+      "licenca": "CC BY 3.0",
+      "url_licenca": "https://creativecommons.org/licenses/by/3.0",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:Roberto_G%C3%B3mez_Bola%C3%B1os_2008.jpg",
+      "texto": "Al Vazquez · CC BY 3.0",
+      "licenca_url": "https://creativecommons.org/licenses/by/3.0"
+    }
   },
   {
     "id": 25,
@@ -735,7 +903,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/videolocadora.webp",
     "dificuldade": null,
     "pistas": [
       "Sexta à noite começava na calçada, olhando as capas atrás do vidro.",
@@ -744,7 +912,18 @@
       "No balcão tinha cartão de sócio, prazo de devolução e a bronca se atrasasse.",
       "Esquecer de voltar a fita pro começo podia render cobrança extra.",
       "Antes do DVD e do streaming, era o lugar do bairro onde se “alugava o filme da noite”."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Locadora_de_v%C3%ADdeo",
+    "image_avif": "assets/images/revelacao/videolocadora.avif",
+    "image_alt": "Interior de uma locadora de vídeo, com prateleiras de filmes e o balcão",
+    "credito_imagem": {
+      "autor": "D Coetzee",
+      "licenca": "CC0 1.0",
+      "url_licenca": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:Scarecrow_Video_movie_rental_store_interior.jpg",
+      "texto": "D Coetzee · CC0 1.0",
+      "licenca_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
   },
   {
     "id": 26,
@@ -762,7 +941,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/turma-da-monica.webp",
     "dificuldade": null,
     "pistas": [
       "As histórias em quadrinhos infantis mais famosas do Brasil.",
@@ -771,7 +950,18 @@
       "O coelhinho branco sempre aparecia com uma cenoura.",
       "O menino que trocava R por L chamava-se Cebolinha.",
       "A turma morava no Bairro do Limoeiro."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Turma_da_M%C3%B4nica",
+    "image_avif": "assets/images/revelacao/turma-da-monica.avif",
+    "image_alt": "Mauricio de Sousa, criador da Turma da Mônica, em evento público",
+    "credito_imagem": {
+      "autor": "Tânia Rêgo/ABr",
+      "licenca": "CC BY 3.0",
+      "url_licenca": "https://creativecommons.org/licenses/by/3.0/br/deed.en",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:Mauricio_de_Sousa_17_Bienal_do_Livro_7.jpg",
+      "texto": "Tânia Rêgo/ABr · CC BY 3.0",
+      "licenca_url": "https://creativecommons.org/licenses/by/3.0/br/deed.en"
+    }
   },
   {
     "id": 27,
@@ -798,7 +988,8 @@
       "Ensinava português, matemática e ciências de forma divertida.",
       "Era produção da TV Cultura de São Paulo.",
       "Sua abertura marcou a infância de milhões no Brasil."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Castelo_R%C3%A1-Tim-Bum"
   },
   {
     "id": 28,
@@ -809,18 +1000,22 @@
     "cat": "CINEMA",
     "emoji": "🚢",
     "ano": "1997",
-    "curiosidade": "O filme de James Cameron foi o mais caro de sua época e virou o maior blockbuster de todos os tempos.",
+    "curiosidade": "O filme de James Cameron foi o de maior bilheteria da época e popularizou a frase “o coração do oceano”.",
     "tags": [
       "cinema",
       "anos-90",
       "brasil",
       "nostalgia"
     ],
-    "image": "assets/images/challenges/piloto-028.svg",
-      "credito_imagem": {
-        "texto": "Ilustração original Nostálgica 90 (sem marcas registradas)",
-        "licenca_url": "https://creativecommons.org/licenses/by/4.0/"
-      },
+    "image": "assets/images/revelacao/titanic.webp",
+    "credito_imagem": {
+      "autor": "Francis Godolphin Osbourne Stuart",
+      "licenca": "Public Domain",
+      "url_licenca": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:RMS_Titanic_3.jpg",
+      "texto": "Francis Godolphin Osbourne Stuart · Public Domain",
+      "licenca_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+    },
     "dificuldade": null,
     "pistas": [
       "O filme mais comentado do fim dos anos 90.",
@@ -829,7 +1024,10 @@
       "O navio choca contra um iceberg no Atlântico.",
       "A música tema, cantada por Celine Dion, virou hino.",
       "O coração de um passageiro sobrevivia ao naufrágio."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Titanic_(filme_de_1997)",
+    "image_avif": "assets/images/revelacao/titanic.avif",
+    "image_alt": "O transatlântico RMS Titanic fotografado em 1912"
   },
   {
     "id": 29,
@@ -847,7 +1045,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/jurassic-park.webp",
     "dificuldade": null,
     "pistas": [
       "Filme que trouxe os dinossauros de volta à vida.",
@@ -856,7 +1054,18 @@
       "O lema 'A vida encontra um jeito' ficou famoso.",
       "Resultado da mente do diretor de 'Tubarão' e 'ET'.",
       "Uma família corria dos dinossauros no parque."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Jurassic_Park",
+    "image_avif": "assets/images/revelacao/jurassic-park.avif",
+    "image_alt": "Esqueleto de Tyrannosaurus rex em museu de história natural",
+    "credito_imagem": {
+      "autor": "Robosorne",
+      "licenca": "CC BY-SA 3.0",
+      "url_licenca": "https://creativecommons.org/licenses/by-sa/3.0",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:Tyrannosaurus_rex_skeleton_(cast_of_specimen_MOR_555)_at_Cleveland_Museum_of_Natural_History.jpg",
+      "texto": "Robosorne · CC BY-SA 3.0",
+      "licenca_url": "https://creativecommons.org/licenses/by-sa/3.0"
+    }
   },
   {
     "id": 30,
@@ -880,7 +1089,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/orelhao.webp",
     "dificuldade": null,
     "pistas": [
       "Na calçada, às vezes tinha gente esperando a vez com a mão no bolso.",
@@ -889,7 +1098,18 @@
       "Se do outro lado estava ocupado, o bipe insistente virava paciência (ou desistência).",
       "Em emergência sem crédito, a saída era pedir para a outra pessoa pagar a ligação.",
       "Antes do celular no bolso de todo mundo, a rua falava por essas cabines espalhadas pela cidade."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Orelh%C3%A3o",
+    "image_avif": "assets/images/revelacao/orelhao.avif",
+    "image_alt": "Dois orelhões brasileiros, as cabines ovoides de telefone público",
+    "credito_imagem": {
+      "autor": "RedrumCarol",
+      "licenca": "CC BY-SA 4.0",
+      "url_licenca": "https://creativecommons.org/licenses/by-sa/4.0",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:Orelh%C3%A3o_Caraguatatuba_Brazil_2025.jpg",
+      "texto": "RedrumCarol · CC BY-SA 4.0",
+      "licenca_url": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
   },
   {
     "id": 31,
@@ -916,7 +1136,8 @@
       "Os monstros cresciam quando perdiam em tamanho pequeno.",
       "Os Megazords combinavam os robôs de todos.",
       "'É hora de morfar!' virou grito de guerra infantil."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Power_Rangers"
   },
   {
     "id": 32,
@@ -943,7 +1164,8 @@
       "Surgiu no fim dos anos 80 e marcou gerações.",
       "Abril caminho para outros tokusatsus na TV aberta.",
       "Formava dupla de heróis com um guardião."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Jaspion"
   },
   {
     "id": 33,
@@ -961,7 +1183,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/silvio-santos.webp",
     "dificuldade": null,
     "pistas": [
       "Maior apresentador e dono de uma emissora brasileira.",
@@ -970,7 +1192,18 @@
       "A plateia gritava seu nome como torcida.",
       "Comandava o próprio canal por décadas.",
       "As moças da plateia eram as dançarinas do programa."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Silvio_Santos",
+    "image_avif": "assets/images/revelacao/silvio-santos.avif",
+    "image_alt": "Silvio Santos acenando em Brasília, em evento público",
+    "credito_imagem": {
+      "autor": "Antonio Cruz/ABr",
+      "licenca": "CC BY 3.0",
+      "url_licenca": "https://creativecommons.org/licenses/by/3.0/br/deed.en",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:Silvio_Santos1.jpg",
+      "texto": "Antonio Cruz/ABr · CC BY 3.0",
+      "licenca_url": "https://creativecommons.org/licenses/by/3.0/br/deed.en"
+    }
   },
   {
     "id": 34,
@@ -988,7 +1221,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/gugu-liberato.webp",
     "dificuldade": null,
     "pistas": [
       "Apresentador que rivalizava com Silvio Santos aos domingos.",
@@ -997,7 +1230,18 @@
       "Sua 'Garota do Tempo' marcou época.",
       "Mudou de emissora e desafiou a audiência dominical.",
       "Seu nome era de um personagem japonês da sogra."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Gugu_Liberato",
+    "image_avif": "assets/images/revelacao/gugu-liberato.avif",
+    "image_alt": "Gugu Liberato em aparição pública com convidados",
+    "credito_imagem": {
+      "autor": "Flávio Landau",
+      "licenca": "CC BY-SA 2.0",
+      "url_licenca": "https://creativecommons.org/licenses/by-sa/2.0",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:Gugu_Liberato_2019_(48914569762).jpg",
+      "texto": "Flávio Landau · CC BY-SA 2.0",
+      "licenca_url": "https://creativecommons.org/licenses/by-sa/2.0"
+    }
   },
   {
     "id": 35,
@@ -1020,11 +1264,15 @@
       "brasil",
       "nostalgia"
     ],
-    "image": "assets/images/challenges/piloto-035.svg",
-      "credito_imagem": {
-        "texto": "Ilustração original Nostálgica 90 (sem marcas registradas)",
-        "licenca_url": "https://creativecommons.org/licenses/by/4.0/"
-      },
+    "image": "assets/images/revelacao/street-fighter-ii.webp",
+    "credito_imagem": {
+      "autor": "John Turner",
+      "licenca": "CC BY 2.0",
+      "url_licenca": "https://creativecommons.org/licenses/by/2.0",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:Street_Fighter_II_arcade_machine.jpg",
+      "texto": "John Turner · CC BY 2.0",
+      "licenca_url": "https://creativecommons.org/licenses/by/2.0"
+    },
     "dificuldade": null,
     "pistas": [
       "O jogo de luta mais famoso de todos os fliperamas.",
@@ -1033,7 +1281,10 @@
       "Tinha versões Champion Edition e Turbo.",
       "Dois jogadores se enfrentavam disputando o salão.",
       "'Hadouken!' e 'Shoryuken!' ecoavam pelo fliperama."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Street_Fighter_II",
+    "image_avif": "assets/images/revelacao/street-fighter-ii.avif",
+    "image_alt": "Fliperama de Street Fighter II, gabinete arcade com dois controles"
   },
   {
     "id": 36,
@@ -1054,7 +1305,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/mortal-kombat.webp",
     "dificuldade": null,
     "pistas": [
       "O jogo de luta mais polêmico dos anos 90.",
@@ -1063,7 +1314,18 @@
       "Sub-Zero congelava o adversário para o golpe fatal.",
       "Scorpion, Raiden e Liu Kang estavam no elenco.",
       "No Brasil, o jogo até virou caso de polícia e foi apreendido."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Mortal_Kombat",
+    "image_avif": "assets/images/revelacao/mortal-kombat.avif",
+    "image_alt": "Painel de controles de um fliperama de Mortal Kombat II",
+    "credito_imagem": {
+      "autor": "Rhys Moult",
+      "licenca": "CC BY-SA 2.0",
+      "url_licenca": "https://creativecommons.org/licenses/by-sa/2.0",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:Mortal_Kombat_II_arcade_cabinet.jpg",
+      "texto": "Rhys Moult · CC BY-SA 2.0",
+      "licenca_url": "https://creativecommons.org/licenses/by-sa/2.0"
+    }
   },
   {
     "id": 37,
@@ -1085,7 +1347,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/the-king-of-fighters.webp",
     "dificuldade": null,
     "pistas": [
       "A luta da SNK que dominava os fliperamas nos anos 90.",
@@ -1094,7 +1356,18 @@
       "Kyo, Iori e a rivalidade das famílias centenárias.",
       "As versões '96, '98 e '2002 são as mais lembradas.",
       "No final, um chefe soltava raios e esmagava o chão."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/The_King_of_Fighters",
+    "image_avif": "assets/images/revelacao/the-king-of-fighters.avif",
+    "image_alt": "Gabinete arcade Neo Geo MVS, hardware em que rodava The King of Fighters",
+    "credito_imagem": {
+      "autor": "Bryan Kreutz / Bryankreutz 77 at en.wikipedia",
+      "licenca": "CC BY-SA 3.0",
+      "url_licenca": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:Neo_Geo_6_port_arcade_cabinet.jpg",
+      "texto": "Bryan Kreutz / Bryankreutz 77 at en.wikipedia · CC BY-SA 3.0",
+      "licenca_url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    }
   },
   {
     "id": 38,
@@ -1118,7 +1391,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/internet-discada.webp",
     "dificuldade": null,
     "pistas": [
       "Em casa, “entrar” não era instantâneo: tinha uma espera com barulho próprio.",
@@ -1127,7 +1400,18 @@
       "Baixar qualquer coisa pedia paciência; às vezes a noite inteira.",
       "Se a conexão caísse no meio, lá ia você ouvir de novo aquele ritual de chiados até religar.",
       "Era assim que muita casa brasileira conheceu a rede: pelo telefone, devagar e com chiado."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Linha_discada",
+    "image_avif": "assets/images/revelacao/internet-discada.avif",
+    "image_alt": "Modem de internet discada 56K, aparelho bege com painel azul",
+    "credito_imagem": {
+      "autor": "Werwerton2525",
+      "licenca": "CC BY-SA 4.0",
+      "url_licenca": "https://creativecommons.org/licenses/by-sa/4.0",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:Dial-up_%D0%BC%D0%BE%D0%B4%D0%B5%D0%BC_Acorp_Sprinter@56k_USB%2B_(Ver2.0).jpg",
+      "texto": "Werwerton2525 · CC BY-SA 4.0",
+      "licenca_url": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
   },
   {
     "id": 39,
@@ -1144,14 +1428,14 @@
     "cat": "MÚSICA",
     "emoji": "📻",
     "ano": "1990",
-    "curiosidade": "O drama coletivo: gravar o hit e perder os primeiros segundos porque o “rec” atrasou um instante.",
+    "curiosidade": "Gravar o hit da parada em fita cassete era ritual: o “rec” atrasava e os primeiros segundos sempre se perdiam.",
     "tags": [
       "musica",
       "anos-90",
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/radio-fm.webp",
     "dificuldade": null,
     "pistas": [
       "No quarto, a antena (ou a posição do aparelho) decidia se a música vinha limpa ou chiada.",
@@ -1160,7 +1444,18 @@
       "A manhã começava com voz conhecida, vinheta e a “parada” do dia.",
       "Você girava o botão até encontrar a frequência certa, marcada no dial.",
       "Antes da playlist no bolso, a trilha sonora da casa e da rua vinha dessa faixa do dial."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/R%C3%A1dio_FM",
+    "image_avif": "assets/images/revelacao/radio-fm.avif",
+    "image_alt": "Walkman Sony com sintonizador de rádio FM e AM",
+    "credito_imagem": {
+      "autor": "YoloBoscaiolo",
+      "licenca": "CC BY-SA 4.0",
+      "url_licenca": "https://creativecommons.org/licenses/by-sa/4.0",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:Sony_Walkman_WM-FX151_Personal_Cassette_Tape_Portable_Stereo_Radio_FM_AM_Tuner.jpg",
+      "texto": "YoloBoscaiolo · CC BY-SA 4.0",
+      "licenca_url": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
   },
   {
     "id": 40,
@@ -1180,7 +1475,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/metal-slug.webp",
     "dificuldade": null,
     "pistas": [
       "O jogo de tiro mais frenético dos fliperamas.",
@@ -1189,7 +1484,18 @@
       "Reféns resgatados soltavam itens e armas.",
       "'Heavy Machine Gun!' tocava ao pegar a arma.",
       "A animação era tão boa que você morria só de admirar."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Metal_Slug",
+    "image_avif": "assets/images/revelacao/metal-slug.avif",
+    "image_alt": "Fliperama SNK com Metal Slug no Musée Mécanique",
+    "credito_imagem": {
+      "autor": "Piotrus",
+      "licenca": "CC BY-SA 3.0",
+      "url_licenca": "https://creativecommons.org/licenses/by-sa/3.0",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:Mus%C3%A9e_M%C3%A9canique_222.JPG",
+      "texto": "Piotrus · CC BY-SA 3.0",
+      "licenca_url": "https://creativecommons.org/licenses/by-sa/3.0"
+    }
   },
   {
     "id": 41,
@@ -1210,7 +1516,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/neo-geo.webp",
     "dificuldade": null,
     "pistas": [
       "O sistema da SNK que era fliperama E videogame.",
@@ -1219,7 +1525,18 @@
       "Os cartuchos custavam mais que o próprio console.",
       "KOF, Metal Slug e Samurai Shodown nasceram nele.",
       "'100 Mega Shock!' era o seu grito de guerra."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Neo_Geo",
+    "image_avif": "assets/images/revelacao/neo-geo.avif",
+    "image_alt": "Console Neo Geo AES preto com o joystick arcade ao lado",
+    "credito_imagem": {
+      "autor": "Evan-Amos",
+      "licenca": "CC BY-SA 3.0",
+      "url_licenca": "https://creativecommons.org/licenses/by-sa/3.0",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:Neo-Geo-AES-Console-Set.jpg",
+      "texto": "Evan-Amos · CC BY-SA 3.0",
+      "licenca_url": "https://creativecommons.org/licenses/by-sa/3.0"
+    }
   },
   {
     "id": 42,
@@ -1240,7 +1557,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/pac-man.webp",
     "dificuldade": null,
     "pistas": [
       "O círculo amarelo que virou símbolo do fliperama.",
@@ -1249,7 +1566,18 @@
       "A bolinha maior o deixava invencível por instantes.",
       "Os fantasmas tinham nome: Blinky, Pinky, Inky e Clyde.",
       "Foi criado pra atrair as meninas pros fliperamas."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Pac-Man",
+    "image_avif": "assets/images/revelacao/pac-man.avif",
+    "image_alt": "Fliperama Super Pac-Man, gabinete azul com o personagem na frente",
+    "credito_imagem": {
+      "autor": "Marshall Astor",
+      "licenca": "CC BY-SA 2.0",
+      "url_licenca": "https://creativecommons.org/licenses/by-sa/2.0",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:Super_Pac-Man_-_Bally_Midway_Namco_arcade_cabinet.jpg",
+      "texto": "Marshall Astor · CC BY-SA 2.0",
+      "licenca_url": "https://creativecommons.org/licenses/by-sa/2.0"
+    }
   },
   {
     "id": 43,
@@ -1269,7 +1597,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/donkey-kong.webp",
     "dificuldade": null,
     "pistas": [
       "O jogo que apresentou o maior herói dos videogames.",
@@ -1278,7 +1606,18 @@
       "Na época, o herói era um simples carpinteiro.",
       "O macaco era o grande vilão da trama.",
       "O gorila foi batizado em homenagem a um primata famoso."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Donkey_Kong_(jogo_eletr%C3%B4nico)",
+    "image_avif": "assets/images/revelacao/donkey-kong.avif",
+    "image_alt": "Fliperama de Donkey Kong, gabinete azul da Nintendo",
+    "credito_imagem": {
+      "autor": "Joshua Driggs (ZapWizard) (take photo), bayo (remove the background)",
+      "licenca": "CC BY-SA 2.0",
+      "url_licenca": "https://creativecommons.org/licenses/by-sa/2.0",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:Donkey_Kong_arcade.jpg",
+      "texto": "Joshua Driggs (ZapWizard) (take photo), bayo (remove the background) · CC BY-SA 2.0",
+      "licenca_url": "https://creativecommons.org/licenses/by-sa/2.0"
+    }
   },
   {
     "id": 44,
@@ -1311,7 +1650,8 @@
       "Envelope combinando fechava o pacote; às vezes o recado ia de mão em mão.",
       "Servia para amizade, segredo, desculpa e até declaração — tudo escrito à mão.",
       "Antes do SMS e do chat, a paquera e o segredo da escola andavam no papel estampado."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Papel_de_carta"
   },
   {
     "id": 45,
@@ -1340,7 +1680,8 @@
       "Nasceu de um projeto que seria um 'Street Fighter'.",
       "O prefeito Haggar usava um suplex devastador.",
       "Uma gangue de rua tomava conta da cidade."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Final_Fight"
   },
   {
     "id": 46,
@@ -1360,7 +1701,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/time-crisis.webp",
     "dificuldade": null,
     "pistas": [
       "O jogo de tiro com arma de plástico do fliperama.",
@@ -1369,7 +1710,18 @@
       "O vilão 'Wild Dog' atirava de qualquer canto.",
       "Se não se escondesse, morria em segundos.",
       "O relógio e a tensão eram o tempero da diversão."
-    ]
+    ],
+    "link_saiba_mais": "https://en.wikipedia.org/wiki/Time_Crisis",
+    "image_avif": "assets/images/revelacao/time-crisis.avif",
+    "image_alt": "Gabinetes arcade de Time Crisis II com pistolas e pedal",
+    "credito_imagem": {
+      "autor": "Coentor",
+      "licenca": "CC BY-SA 3.0",
+      "url_licenca": "https://creativecommons.org/licenses/by-sa/3.0",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:Time_crisis_2_cabinets.jpg",
+      "texto": "Coentor · CC BY-SA 3.0",
+      "licenca_url": "https://creativecommons.org/licenses/by-sa/3.0"
+    }
   },
   {
     "id": 47,
@@ -1398,7 +1750,8 @@
       "A filha ambiciosa queria ganhar dinheiro a qualquer custo.",
       "A mãe vendia comida na praia pra sobreviver.",
       "A pergunta do século ficou guardada até o último capítulo."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Vale_Tudo_(telenovela)"
   },
   {
     "id": 48,
@@ -1427,7 +1780,8 @@
       "A viúva mais famosa da TV morava na cidade.",
       "O bordão da época brincava: 'Quem matou o Roque?'",
       "Marcou gerações com a disputa entre o herói e o coronel."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Roque_Santeiro"
   },
   {
     "id": 49,
@@ -1448,7 +1802,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/tieta.webp",
     "dificuldade": null,
     "pistas": [
       "Novela baseada em obra de Jorge Amado.",
@@ -1457,7 +1811,18 @@
       "O irmão dela era o delegado 'cheiroso' da cidade.",
       "Os caprinos eram os personagens mais 'cheirosos' da trama.",
       "Uma das novelas mais libertadoras e divertidas da Globo."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Tieta_(telenovela)",
+    "image_avif": "assets/images/revelacao/tieta.avif",
+    "image_alt": "O escritor Jorge Amado, autor do romance em que a novela Tieta se baseia",
+    "credito_imagem": {
+      "autor": "Bernard Gotfryd",
+      "licenca": "Public Domain",
+      "url_licenca": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "url_origem": "https://commons.wikimedia.org/wiki/File:Jorge_Amado,_gtfy.00010.jpg",
+      "texto": "Bernard Gotfryd · Public Domain",
+      "licenca_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+    }
   },
   {
     "id": 50,
@@ -1471,7 +1836,7 @@
     "cat": "TV",
     "emoji": "🐂",
     "ano": "1996",
-    "curiosidade": "Bruno, Luana e a abertura 'Admirável Gado Novo' marcaram a novela de Zeca Pagodinho.",
+    "curiosidade": "A abertura com “Admirável Gado Novo”, de Zé Ramalho, ficou tão marcada quanto a trama de Bruno e Luana.",
     "tags": [
       "tv",
       "anos-90",
@@ -1487,7 +1852,8 @@
       "Antônio Fagundes vivia o personagem principal.",
       "A música 'Admirável Gado Novo' marcou a abertura.",
       "Boi, terra, paixão e muita lágrima na Globo dos anos 90."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/O_Rei_do_Gado"
   },
   {
     "id": 51,
@@ -1516,7 +1882,8 @@
       "Mostrava o trabalho árduo nas fazendas de café.",
       "A música tema cantava sobre saudade e esperança.",
       "Uma das novelas mais bonitas e marcantes do fim dos anos 90."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Terra_Nostra"
   },
   {
     "id": 52,
@@ -1545,7 +1912,8 @@
       "O personagem Tonho da Lua era um sonhador inesquecível.",
       "O mar, a praia e a lua eram cenário constante.",
       "A pergunta era sempre: qual das duas você vai encontrar?"
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Mulheres_de_Areia"
   },
   {
     "id": 53,
@@ -1574,7 +1942,8 @@
       "Foi exibida na faixa das 18h da Globo.",
       "A abertura mostrava uma estrada no céu.",
       "Mexia com fé, medo e a crença de milhões de telespectadores."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/A_Viagem_(1994)"
   },
   {
     "id": 54,
@@ -1603,7 +1972,8 @@
       "Tinha mensagens de amizade e esperança em cada capítulo.",
       "As meninas usavam roupinhas combinando.",
       "A música de abertura virou hino das crianças dos anos 90."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Chiquititas_(SBT)"
   },
   {
     "id": 55,
@@ -1632,7 +2002,8 @@
       "Cirilo vivia apaixonado pela Maria Joaquina.",
       "'Bate, bate no coração' marcava a abertura.",
       "Valeu, professora! Era o grito mais famoso da garotada."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Carrossel_(telenovela)"
   },
   {
     "id": 56,
@@ -1661,6 +2032,7 @@
       "Foi exibida pelo SBT em meados dos anos 90.",
       "A casa e a mesa da família eram cenário de toda a trama.",
       "Uma história simples e emocionante de família brasileira."
-    ]
+    ],
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/%C3%89ramos_Seis_(1994)"
   }
 ]

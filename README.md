@@ -84,21 +84,29 @@ Campos atuais continuam válidos. Opcionais para os próximos PRs (não quebram 
   "ano": "1996",
   "curiosidade": "…",
   "tags": ["brinquedos", "anos-90"],
-  "image": null,
+  "image": "assets/images/revelacao/tamagotchi.webp",
+  "image_avif": "assets/images/revelacao/tamagotchi.avif",
+  "image_alt": "Tamagotchi rosa em formato de ovo…",
+  "link_saiba_mais": "https://pt.wikipedia.org/wiki/Tamagotchi",
   "dificuldade": null,
   "som": null,
   "credito_imagem": {
-    "texto": "Ilustração original Nostálgica 90",
-    "licenca_url": "https://creativecommons.org/licenses/by/4.0/"
+    "autor": "Nome de quem fotografou",
+    "licenca": "CC BY-SA 4.0",
+    "url_licenca": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "url_origem": "https://commons.wikimedia.org/wiki/File:Exemplo.jpg"
   },
   "pistas": ["…", "…", "…", "…", "…", "…"]
 }
 ```
 
-- `alias`, `dificuldade` (`facil` \| `medio` \| `dificil` ou `null`), `som` e
-  `credito_imagem` são opcionais.
-- Se `image` existir, `credito_imagem.texto` e `credito_imagem.licenca_url`
-  (http/https) são obrigatórios.
+- `alias`, `dificuldade` (`facil` \| `medio` \| `dificil` ou `null`), `som`,
+  `curiosidade`, `link_saiba_mais` e `credito_imagem` são opcionais.
+- Se `image` existir, `credito_imagem` exige `autor`, `licenca` (Public Domain,
+  CC0, CC BY ou CC BY-SA), `url_licenca` e `url_origem` — todos https. O arquivo
+  precisa existir. A foto só aparece na **revelação** (depois de acertar ou
+  esgotar as pistas); no jogo a arte continua original.
+- Créditos: `CREDITS.md` e `creditos.html`.
 
 Validador:
 
@@ -115,8 +123,9 @@ node tools/test_core.js
 
 ## Museu / artes
 
-Edite `museum.json` para o acervo. Artes dos desafios: `artes.js` (procedural
-por categoria) ou `image` com crédito. Nada de material oficial de marcas.
+Edite `museum.json` para o acervo. Artes dos desafios no jogo: `artes.js`
+(procedural). Foto livre (`image`) só na revelação, com crédito visível. Nada
+de material oficial de marcas, capas ou screenshots.
 
 Fontes OFL locais em `assets/fonts/` (com o texto da licença e o copyright
 ao lado do `.woff2`):

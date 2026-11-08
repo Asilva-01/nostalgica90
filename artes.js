@@ -577,10 +577,8 @@ window.Arte = (function () {
       '<div class="art-moto">' + moto + '</div>' +
       '<div class="art-scan"></div>'
     );
-    // se houver imagem real, usa (sem spoiler no alt); fallback procedural se falhar
-    if (e.image && !obj) {
-      return '<img class="img-real" src="' + e.image + '" alt="" loading="lazy" data-fallback="' + _b64(fallbackHtml) + '" onerror="Arte.mostrarFallback(this)">';
-    }
+    // A foto livre (e.image) só entra na tela de revelação, depois do
+    // acerto/esgotamento. No jogo a arte é sempre original — anti-spoiler.
     return fallbackHtml;
   }
 
