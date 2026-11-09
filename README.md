@@ -32,19 +32,49 @@ implementam **a mesma regra**, comparada em `node tools/test_selecao.js`.
    **início** da permutação do ciclo seguinte.
 5. **Arte própria em 1º:** dentro dos 3 do dia, se algum tiver arte em
    `artes.js` (lista `arte-propria.json`), uma rotação determinística
-   coloca o primeiro desses na posição 1. O bot posta esse primeiro.
+   coloca o primeiro desses na posição 1. O bot das 09:00 posta esse primeiro.
 6. Todo mundo vê a **mesma** rodada no mesmo dia civil.
-7. O bot posta **só o primeiro** da rodada (pista 1, sem gabarito) e convida
-   a jogar as 3 no site.
+7. O bot posta **os 3 da rodada em horários diferentes** (pista 1 de cada
+   um, sem gabarito) e convida a jogar a rodada completa no site.
 
 O ciclo antigo de 1 desafio (`(n-1) % 56`) deixou de valer neste PR. A
 numeração do dia (`n`) continua a mesma.
 
+## Respostas (digitação flexível)
+
+A comparação vive em `resposta.js` (o jogo só consome). Depois de minúsculas,
+sem acento e só alfanumérico:
+
+1. Igualdade com a resposta ou um alias (artigos iniciais o/a/os/as ignorados).
+2. Um typo curto (distância de edição 1, ou 2 em nomes longos).
+3. Trecho substancial (≥60% do candidato) ou token distintivo no pool.
+   Fragmentos curtos/ambíguos (`super`, `park`, `copa`) **não** acertam.
+
+Digitação livre continua o caminho padrão e **preserva** 100/80/60/40/20/10.
+Depois de **2 erros** no mesmo desafio aparecem 4 alternativas (a certa + 3
+plausíveis, embaralhadas). Acertar por alternativa vale **metade**. Refazer
+não mostra as alternativas (não entrega o gabarito) e não mexe nos pontos
+oficiais.
+
 ## Bot do Telegram
 
-O workflow `.github/workflows/telegram-diario.yml` **não mudou** (cron
-`0 12 * * *` = 09:00 Brasília; mesmos secrets). Só o script passou a usar a
-regra da rodada.
+Três disparos por dia, fuso `America/Sao_Paulo` (UTC-3 o ano todo):
+
+| Brasília | UTC (cron) | Memória da rodada |
+|---|---|---|
+| 09:00 | `0 12 * * *` | 1ª |
+| 14:00 | `0 17 * * *` | 2ª |
+| 18:00 | `0 21 * * *` | 3ª |
+
+Cada postagem traz só a **pista 1** daquela memória, o número da rodada e o
+link do site. Sem gabarito, alias, categoria isolada ou dica que entregue o
+nome. As três mensagens são diferentes.
+
+O cron do GitHub Actions **pode atrasar** alguns minutos; o slot vem da
+expressão que disparou o job (`github.event.schedule`), não do relógio.
+
+Teste manual (Actions → *Postar desafio diário no Telegram* → Run workflow):
+escolha `1`, `2`, `3` ou `todas`. `todas` envia as três, com 2 s entre elas.
 
 Secrets (não commitar, não renomear):
 
@@ -120,6 +150,8 @@ Testes:
 
 ```bash
 node tools/test_selecao.js
+node tools/test_resposta.js
+node tools/test_telegram.js
 node tools/test_core.js
 ```
 

@@ -13,6 +13,7 @@ var ASSETS = [
   './sitemap.xml',
   './styles.css',
   './selecao-rodada.js',
+  './resposta.js',
   './arte-propria.json',
   './assets/fonts/local.css',
   './assets/fonts/bungee-400.woff2',

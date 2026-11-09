@@ -1,6 +1,7 @@
 /* ============================================================
    NOSTÁLGICA 90 — Lógica do jogo (rodada diária de 3)
    Seleção: selecao-rodada.js (mesma regra do bot Python).
+   Respostas: resposta.js (aliases, artigos, typo, token distintivo).
    localStorage nunca guarda texto de resposta/pistas/alias.
    Reentrar no dia não revela gabarito; fluxo já acertou / refazer.
    ============================================================ */
@@ -9,8 +10,14 @@
 
   var ROUND_SIZE = (window.SelecaoRodada && window.SelecaoRodada.ROUND_SIZE) || 3;
   var URL_PUBLICA = 'https://asilva-01.github.io/nostalgica90/';
-  var PONTOS = { 1: 100, 2: 80, 3: 60, 4: 40, 5: 20, 6: 10 };
-  function pontosDaPista(n) { return PONTOS[n] || 10; }
+  var R = window.Resposta || {};
+  var ERROS_PARA_ALTERNATIVAS = R.ERROS_PARA_ALTERNATIVAS || 2;
+  function pontosDaPista(n) {
+    return R.pontosDaPista ? R.pontosDaPista(n) : ({ 1: 100, 2: 80, 3: 60, 4: 40, 5: 20, 6: 10 }[n] || 10);
+  }
+  function pontosDaAlternativa(n) {
+    return R.pontosDaAlternativa ? R.pontosDaAlternativa(n) : Math.floor(pontosDaPista(n) / 2);
+  }
 
   function chave(k) { return 'nostalgia90_' + k; }
 
@@ -87,7 +94,7 @@
   }
 
   function slotLimpo(id) {
-    return { id: id, pista: 1, venceu: false, perdeu: false, pontos: 0, cobrado: false, oficial: null };
+    return { id: id, pista: 1, venceu: false, perdeu: false, pontos: 0, cobrado: false, oficial: null, erros: 0 };
   }
 
   function novaRodada(iso) {
@@ -117,6 +124,7 @@
       ids: r.ids.slice(),
       indice: r.indice | 0,
       slots: r.slots.map(function (s) {
+        var of = s.oficial;
         return {
           id: s.id,
           pista: s.pista || 1,
@@ -124,7 +132,14 @@
           perdeu: !!s.perdeu,
           pontos: s.pontos || 0,
           cobrado: !!s.cobrado,
-          oficial: s.oficial ? { pista: s.oficial.pista, venceu: !!s.oficial.venceu, perdeu: !!s.oficial.perdeu, pontos: s.oficial.pontos || 0 } : null
+          erros: s.erros || 0,
+          oficial: of ? {
+            pista: of.pista,
+            venceu: !!of.venceu,
+            perdeu: !!of.perdeu,
+            pontos: of.pontos || 0,
+            via: of.via || null
+          } : null
         };
       }),
       finalizada: !!r.finalizada,
@@ -179,20 +194,30 @@
   function slotFinalizado(s) { return !!(s && (s.venceu || s.perdeu)); }
   function partidaFinalizada() { return slotFinalizado(slotAtual()); }
 
-  function normalizar(s) {
-    return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
-  }
   function checarResposta(texto) {
     var e = entryAtual();
-    var t = normalizar(texto);
-    if (t === normalizar(e.resp)) return true;
-    return (e.alias || []).some(function (a) { return t === normalizar(a); });
+    var pool = (window.Dados && window.Dados.lista) ? window.Dados.lista() : [];
+    if (R.corresponde) return R.corresponde(texto, e, pool);
+    var t = (texto || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
+    var n = function (s) {
+      return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
+    };
+    if (t === n(e.resp)) return true;
+    return (e.alias || []).some(function (a) { return t === n(a); });
   }
 
-  function registrarSlot(s, venceu) {
+  function podeMostrarAlternativas(s) {
+    if (!s || s.cobrado || s.oficial || slotFinalizado(s)) return false;
+    return (s.erros || 0) >= ERROS_PARA_ALTERNATIVAS;
+  }
+
+  function registrarSlot(s, venceu, viaAlternativa) {
     if (s.cobrado) return;
-    var ganho = venceu ? pontosDaPista(s.pista) : 0;
+    var ganho = venceu
+      ? (viaAlternativa ? pontosDaAlternativa(s.pista) : pontosDaPista(s.pista))
+      : 0;
     if (!modoArquivo) {
       stats.jogos++;
       if (venceu) {
@@ -204,7 +229,13 @@
     }
     s.cobrado = true;
     s.pontos = ganho;
-    s.oficial = { pista: s.pista, venceu: !!venceu, perdeu: !venceu, pontos: ganho };
+    s.oficial = {
+      pista: s.pista,
+      venceu: !!venceu,
+      perdeu: !venceu,
+      pontos: ganho,
+      via: venceu ? (viaAlternativa ? 'alternativa' : 'digitacao') : 'esgotou'
+    };
     rodada.pontosOficiais = rodada.slots.reduce(function (acc, x) {
       return acc + (x.oficial ? x.oficial.pontos : 0);
     }, 0);
@@ -428,8 +459,23 @@
     }
     var pb = el('pontosBarra');
     if (pb) pb.style.width = ((n - 1) / 5) * 100 + '%';
+    atualizarPontosInfo(n);
+  }
+
+  function atualizarPontosInfo(n) {
+    var s = slotAtual();
+    var pista = n || (s && s.pista) || 1;
     var pp = el('pontosPossiveis');
-    if (pp) pp.textContent = pontosDaPista(n);
+    var lab = el('pontosLabel');
+    var comAlt = podeMostrarAlternativas(s);
+    if (pp) {
+      pp.textContent = comAlt
+        ? (pontosDaPista(pista) + ' · alt. ' + pontosDaAlternativa(pista))
+        : String(pontosDaPista(pista));
+    }
+    if (lab) {
+      lab.textContent = comAlt ? 'Pontos desta pista (digitação · alternativa)' : 'Pontos desta pista';
+    }
   }
 
   function mostrarPainel(idVisivel) {
@@ -497,9 +543,41 @@
     var respMsg = el('respMsg');
     if (respMsg) { respMsg.textContent = ''; respMsg.className = 'feedback'; }
     mostrarPainel('areaJogo');
+    renderAlternativas();
   }
 
   /* ---------- ações ---------- */
+  function finalizarAcerto(s, viaAlternativa) {
+    s.venceu = true;
+    registrarSlot(s, true, !!viaAlternativa);
+    revelarGabarito = true;
+    if (rodadaTodaFinalizada()) {
+      rodada.finalizada = true;
+      registrarRodadaCompleta();
+    }
+    salvarRodada();
+    if (window.Som) window.Som.tocar('ui-success');
+    if (window.Efeitos) window.Efeitos.confete();
+    var sj = el('secJogo');
+    if (sj) sj.classList.add('venceu');
+    pulsarValor('stPts');
+    pulsarValor('stSeq');
+    var campo = el('campo');
+    if (campo) campo.value = '';
+    mostrarFim();
+  }
+
+  function mensagemErro(s) {
+    var extra = s.pista < 6 ? 'Quer outra pista?' : 'Essa era a última pista!';
+    if (podeMostrarAlternativas(s)) {
+      return 'NÃO FOI DESSA VEZ. Digite de novo (pontos cheios) ou escolha uma alternativa (vale metade).';
+    }
+    if ((s.erros || 0) === ERROS_PARA_ALTERNATIVAS - 1) {
+      return 'NÃO FOI DESSA VEZ. Mais um erro e aparecem 4 alternativas (valem metade dos pontos). ' + extra;
+    }
+    return 'NÃO FOI DESSA VEZ. ' + extra;
+  }
+
   function enviarResposta() {
     if (partidaFinalizada()) return;
     var campo = el('campo');
@@ -509,33 +587,68 @@
     if (!s.pista) s.pista = 1;
 
     if (checarResposta(texto)) {
-      s.venceu = true;
-      registrarSlot(s, true);
-      revelarGabarito = true;
-      if (rodadaTodaFinalizada()) {
-        rodada.finalizada = true;
-        registrarRodadaCompleta();
-      }
-      salvarRodada();
-      if (window.Som) window.Som.tocar('ui-success');
-      if (window.Efeitos) window.Efeitos.confete();
-      var sj = el('secJogo');
-      if (sj) sj.classList.add('venceu');
-      pulsarValor('stPts');
-      pulsarValor('stSeq');
-      if (campo) campo.value = '';
-      mostrarFim();
+      finalizarAcerto(s, false);
     } else {
+      s.erros = (s.erros || 0) + 1;
       var msg = el('respMsg');
       if (msg) {
-        msg.textContent = 'NÃO FOI DESSA VEZ. ' + (s.pista < 6 ? 'Quer outra pista?' : 'Essa era a última pista!');
+        msg.textContent = mensagemErro(s);
         msg.className = 'feedback errada';
         if (window.Efeitos) window.Efeitos.glitch(msg);
       }
       if (window.Som) window.Som.tocar('ui-error');
       salvarRodada();
+      renderAlternativas();
+      atualizarPontosInfo(s.pista);
       if (campo) { campo.value = ''; campo.focus(); }
     }
+  }
+
+  function renderAlternativas() {
+    var box = el('areaAlternativas');
+    if (!box) return;
+    var s = slotAtual();
+    if (!podeMostrarAlternativas(s)) {
+      box.innerHTML = '';
+      box.classList.add('hidden');
+      return;
+    }
+    var e = entryAtual();
+    var pool = (window.Dados && window.Dados.lista) ? window.Dados.lista() : [];
+    var opcoes = R.alternativasPlausiveis
+      ? R.alternativasPlausiveis(e, pool, 3)
+      : [e.resp];
+    box.classList.remove('hidden');
+    box.innerHTML =
+      '<p class="alternativas-aviso">Errou duas vezes. Continue digitando para os pontos cheios ou escolha uma opção — alternativas valem metade.</p>' +
+      '<div class="alternativas-grid">' +
+      opcoes.map(function (nome) {
+        return '<button type="button" class="btn btn-alternativa" onclick=\'Jogo.escolherAlternativa(' +
+          JSON.stringify(String(nome)) + ')\'>' + escHtml(nome) + '</button>';
+      }).join('') +
+      '</div>';
+  }
+
+  function escolherAlternativa(nome) {
+    if (partidaFinalizada()) return;
+    var s = slotAtual();
+    if (!podeMostrarAlternativas(s)) return;
+    var e = entryAtual();
+    var n = R.normalizar ? R.normalizar(nome) : String(nome || '').toLowerCase();
+    var certa = R.normalizar ? R.normalizar(e.resp) : String(e.resp || '').toLowerCase();
+    if (n === certa) {
+      finalizarAcerto(s, true);
+      return;
+    }
+    s.erros = (s.erros || 0) + 1;
+    var msg = el('respMsg');
+    if (msg) {
+      msg.textContent = 'Essa alternativa não é. Tente outra ou digite a resposta (digitação vale mais pontos).';
+      msg.className = 'feedback errada';
+      if (window.Efeitos) window.Efeitos.glitch(msg);
+    }
+    if (window.Som) window.Som.tocar('ui-error');
+    salvarRodada();
   }
 
   function pulsarValor(id) {
@@ -615,16 +728,27 @@
     var sj = el('secJogo');
     if (sj) sj.classList.add('modo-revelacao');
     if (el('listaPistas')) el('listaPistas').classList.add('hidden');
+    if (el('areaAlternativas')) {
+      el('areaAlternativas').innerHTML = '';
+      el('areaAlternativas').classList.add('hidden');
+    }
     var grid = emojiGridOficial(s.oficial || { pista: s.pista, venceu: win, perdeu: !win });
     var ultimo = rodada.indice >= rodada.slots.length - 1;
     var cta = ultimo
       ? '<button type="button" class="btn btn-verde btn-fim-primario" onclick="Jogo.verResumo()">Ver resumo da rodada</button>'
       : '<button type="button" class="btn btn-verde btn-fim-primario" onclick="Jogo.proximoDesafio()">Próxima memória ➜</button>';
+    var viaAlt = !!(s.oficial && s.oficial.via === 'alternativa');
+    var ptsGanhos = (s.oficial && s.oficial.pontos != null) ? s.oficial.pontos : (win ? pontosDaPista(s.pista) : 0);
+    var msgPts = win
+      ? (viaAlt
+        ? 'Você lembra! +' + ptsGanhos + ' pts nesta memória (alternativas valem metade da digitação)'
+        : 'Você lembra! +' + ptsGanhos + ' pts nesta memória')
+      : 'A resposta era essa. Segue a rodada.';
     fim.innerHTML =
       montarCartaoRevelacao(e, win) +
       '<div class="grid-share" aria-hidden="true">' + grid + '</div>' +
       '<div class="feedback ' + (win ? 'certa' : 'errada') + '">' +
-      (win ? 'Você lembra! +' + pontosDaPista(s.pista) + ' pts nesta memória' : 'A resposta era essa. Segue a rodada.') +
+      msgPts +
       '</div>' +
       '<div class="fim-acoes">' + cta +
       '<button type="button" class="btn btn-pular" onclick="Jogo.refazerDesafio()">Refazer esta memória</button>' +
@@ -1045,6 +1169,7 @@
     entrarSemSom: entrarSemSom,
     comecarComSom: comecarComSom,
     enviarResposta: enviarResposta,
+    escolherAlternativa: escolherAlternativa,
     pularPista: pularPista,
     proximoDesafio: proximoDesafio,
     refazerDesafio: refazerDesafio,

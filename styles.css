@@ -553,6 +553,21 @@ button { font-family: inherit; }
 .pontos-barra > div { height: 100%; width: 0; background: linear-gradient(90deg, var(--rec), var(--ambar), var(--insert)); transition: width 0.4s; }
 
 .entrada { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; position: relative; z-index: 2; }
+.alternativas { flex: 1 1 100%; margin-top: 8px; }
+.alternativas-aviso {
+  font-family: var(--font-ui); font-size: 14px; line-height: 1.35;
+  color: var(--fosforo-dim); text-align: center; margin-bottom: 8px;
+}
+.alternativas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.btn-alternativa {
+  background: var(--superficie-2); color: #1d1824; text-transform: none;
+  letter-spacing: 0; font-family: var(--font-ui); font-size: 15px;
+  font-weight: 700; white-space: normal; line-height: 1.25;
+}
+.btn-alternativa:hover { background: var(--ambar); }
+@media (max-width: 520px) {
+  .alternativas-grid { grid-template-columns: 1fr; }
+}
 .entrada input[type=text] {
   flex: 1; min-width: 150px; font-family: var(--font-retro); font-size: clamp(20px, 5vw, 26px);
   padding: 12px 14px; border: 3px solid #1d1824; background: var(--superficie); color: #1d1824; outline: none;

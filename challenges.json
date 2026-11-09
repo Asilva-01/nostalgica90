@@ -515,7 +515,12 @@
     "slug": "senna",
     "categorySlug": "cultura",
     "resp": "Senna",
-    "alias": [],
+    "alias": [
+      "ayrton senna",
+      "airton senna",
+      "ayrton senna da silva",
+      "senna da silva"
+    ],
     "cat": "CULTURA",
     "emoji": "🏎️",
     "ano": "1990",
@@ -553,7 +558,13 @@
     "slug": "formula-1",
     "categorySlug": "cultura",
     "resp": "Fórmula 1",
-    "alias": [],
+    "alias": [
+      "formula 1",
+      "f1",
+      "formula um",
+      "fórmula um",
+      "grande premio de formula 1"
+    ],
     "cat": "CULTURA",
     "emoji": "🏁",
     "ano": "1950",
@@ -591,7 +602,12 @@
     "slug": "copa-do-mundo",
     "categorySlug": "cultura",
     "resp": "Copa do Mundo",
-    "alias": [],
+    "alias": [
+      "copa do mundo fifa",
+      "mundial de futebol",
+      "copa do mundo de futebol",
+      "mundial da fifa"
+    ],
     "cat": "CULTURA",
     "emoji": "⚽",
     "ano": "1994",
@@ -629,7 +645,12 @@
     "slug": "romario",
     "categorySlug": "cultura",
     "resp": "Romário",
-    "alias": [],
+    "alias": [
+      "romario",
+      "baixinho",
+      "romario de souza faria",
+      "romário baixinho"
+    ],
     "cat": "CULTURA",
     "emoji": "⚽",
     "ano": "1994",
@@ -667,7 +688,14 @@
     "slug": "ronaldo",
     "categorySlug": "cultura",
     "resp": "Ronaldo",
-    "alias": [],
+    "alias": [
+      "ronaldo fenomeno",
+      "ronaldo fenômeno",
+      "o fenomeno",
+      "o fenômeno",
+      "ronaldo nazario",
+      "ronaldo nazario de lima"
+    ],
     "cat": "CULTURA",
     "emoji": "⚽",
     "ano": "1997",
@@ -705,7 +733,14 @@
     "slug": "dragon-ball-z",
     "categorySlug": "tv",
     "resp": "Dragon Ball Z",
-    "alias": [],
+    "alias": [
+      "dragon ball z",
+      "dbz",
+      "dragonball z",
+      "dragon ball",
+      "dragonball",
+      "bola de dragao"
+    ],
     "cat": "TV",
     "emoji": "🐉",
     "ano": "1989",
@@ -733,7 +768,13 @@
     "slug": "cavaleiros-do-zodiaco",
     "categorySlug": "tv",
     "resp": "Cavaleiros do Zodíaco",
-    "alias": [],
+    "alias": [
+      "cavaleiros do zodiaco",
+      "os cavaleiros do zodiaco",
+      "saint seiya",
+      "cdz",
+      "cavaleiros do zodiaco de ouro"
+    ],
     "cat": "TV",
     "emoji": "🛡️",
     "ano": "1986",
@@ -761,7 +802,12 @@
     "slug": "sailor-moon",
     "categorySlug": "tv",
     "resp": "Sailor Moon",
-    "alias": [],
+    "alias": [
+      "sailor moon",
+      "guerreira da lua",
+      "sailor moon cristal",
+      "usagi tsukino"
+    ],
     "cat": "TV",
     "emoji": "🌙",
     "ano": "1992",
@@ -789,7 +835,13 @@
     "slug": "pokemon",
     "categorySlug": "games",
     "resp": "Pokémon",
-    "alias": [],
+    "alias": [
+      "pokemon",
+      "pokemons",
+      "pokémon",
+      "pocket monsters",
+      "pokemon anime"
+    ],
     "cat": "GAMES",
     "emoji": "⚡",
     "ano": "1996",
@@ -817,7 +869,12 @@
     "slug": "digimon",
     "categorySlug": "games",
     "resp": "Digimon",
-    "alias": [],
+    "alias": [
+      "digimon",
+      "digimons",
+      "digital monsters",
+      "digimon adventure"
+    ],
     "cat": "GAMES",
     "emoji": "🦖",
     "ano": "1997",
@@ -845,7 +902,14 @@
     "slug": "chaves",
     "categorySlug": "tv",
     "resp": "Chaves",
-    "alias": [],
+    "alias": [
+      "chaves",
+      "o chaves",
+      "el chavo",
+      "el chavo del ocho",
+      "programa do chaves",
+      "chavo"
+    ],
     "cat": "TV",
     "emoji": "🛢️",
     "ano": "1972",
@@ -927,7 +991,13 @@
     "slug": "turma-da-monica",
     "categorySlug": "cultura",
     "resp": "Turma da Mônica",
-    "alias": [],
+    "alias": [
+      "turma da monica",
+      "mônica",
+      "monica",
+      "monica e cebolinha",
+      "turma da monica e cebolinha"
+    ],
     "cat": "CULTURA",
     "emoji": "🐰",
     "ano": "1963",
@@ -965,7 +1035,13 @@
     "slug": "castelo-ra-tim-bum",
     "categorySlug": "tv",
     "resp": "Castelo Rá-Tim-Bum",
-    "alias": [],
+    "alias": [
+      "castelo ra tim bum",
+      "castelo ratimbum",
+      "ratimbum",
+      "castelo rá-tim-bum",
+      "castelo rátimbum"
+    ],
     "cat": "TV",
     "emoji": "🏰",
     "ano": "1994",
@@ -1000,7 +1076,11 @@
     "slug": "titanic",
     "categorySlug": "cinema",
     "resp": "Titanic",
-    "alias": [],
+    "alias": [
+      "titanic",
+      "filme titanic",
+      "titanic 1997"
+    ],
     "cat": "CINEMA",
     "emoji": "🚢",
     "ano": "1997",
@@ -1038,7 +1118,13 @@
     "slug": "jurassic-park",
     "categorySlug": "cinema",
     "resp": "Jurassic Park",
-    "alias": [],
+    "alias": [
+      "jurassic park",
+      "parque dos dinossauros",
+      "parque jurassico",
+      "jurassic park o filme",
+      "jurassic"
+    ],
     "cat": "CINEMA",
     "emoji": "🦕",
     "ano": "1993",
@@ -1120,7 +1206,12 @@
     "slug": "power-rangers",
     "categorySlug": "tv",
     "resp": "Power Rangers",
-    "alias": [],
+    "alias": [
+      "power rangers",
+      "power ranger",
+      "mighty morphin",
+      "mighty morphin power rangers"
+    ],
     "cat": "TV",
     "emoji": "⚡",
     "ano": "1993",
@@ -1148,7 +1239,12 @@
     "slug": "jaspion",
     "categorySlug": "tv",
     "resp": "Jaspion",
-    "alias": [],
+    "alias": [
+      "jaspion",
+      "o fantastico jaspion",
+      "o fantástico jaspion",
+      "jaspion o fantastico"
+    ],
     "cat": "TV",
     "emoji": "🤖",
     "ano": "1985",
@@ -1176,7 +1272,13 @@
     "slug": "silvio-santos",
     "categorySlug": "tv",
     "resp": "Silvio Santos",
-    "alias": [],
+    "alias": [
+      "silvio santos",
+      "sílvio santos",
+      "senor abravanel",
+      "programa silvio santos",
+      "silvio"
+    ],
     "cat": "TV",
     "emoji": "💰",
     "ano": "1963",
@@ -1214,7 +1316,12 @@
     "slug": "gugu-liberato",
     "categorySlug": "tv",
     "resp": "Gugu Liberato",
-    "alias": [],
+    "alias": [
+      "gugu",
+      "gugu liberato",
+      "programa do gugu",
+      "antonio oliveira gugu"
+    ],
     "cat": "TV",
     "emoji": "🎪",
     "ano": "1980",
