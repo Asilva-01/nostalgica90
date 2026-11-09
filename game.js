@@ -308,9 +308,16 @@
       .replace(/"/g, '&quot;');
   }
 
+  function ehArteOriginal(e) {
+    var c = e && e.credito_imagem;
+    return !!(c && (c.tipo === 'arte-original' || c.licenca === 'Arte original'));
+  }
+
   function temFotoLivre(e) {
     var c = e && e.credito_imagem;
-    return !!(e && e.image && c && c.autor && c.licenca && c.url_licenca && c.url_origem);
+    if (!(e && e.image && c && c.autor && c.licenca)) return false;
+    if (ehArteOriginal(e)) return true;
+    return !!(c.url_licenca && c.url_origem);
   }
 
   function renderChallengeImage(e) {
@@ -332,20 +339,26 @@
     var figura;
     if (temFotoLivre(e)) {
       var cred = e.credito_imagem;
-      var alt = escHtml(e.image_alt || ('Foto relacionada a ' + e.resp));
+      var original = ehArteOriginal(e);
+      var altPadrao = original
+        ? ('Ilustração original de ' + e.resp)
+        : ('Foto relacionada a ' + e.resp);
+      var alt = escHtml(e.image_alt || altPadrao);
       var fonte = '';
       if (e.image_avif) {
         fonte = '<source srcset="' + escHtml(e.image_avif) + '" type="image/avif">';
       }
+      var caption = original
+        ? 'Arte original Nostálgica 90.'
+        : ('Foto: ' + escHtml(cred.autor) +
+            ' · <a href="' + escHtml(cred.url_licenca) + '" target="_blank" rel="noopener noreferrer">' + escHtml(cred.licenca) + '</a>' +
+            ' · <a href="' + escHtml(cred.url_origem) + '" target="_blank" rel="noopener noreferrer">origem</a>');
       figura =
         '<figure class="revelacao-figura">' +
           '<picture>' + fonte +
             '<img src="' + escHtml(e.image) + '" alt="' + alt + '" loading="lazy" decoding="async" width="960" height="640">' +
           '</picture>' +
-          '<figcaption class="revelacao-credito">Foto: ' + escHtml(cred.autor) +
-            ' · <a href="' + escHtml(cred.url_licenca) + '" target="_blank" rel="noopener noreferrer">' + escHtml(cred.licenca) + '</a>' +
-            ' · <a href="' + escHtml(cred.url_origem) + '" target="_blank" rel="noopener noreferrer">origem</a>' +
-          '</figcaption>' +
+          '<figcaption class="revelacao-credito">' + caption + '</figcaption>' +
         '</figure>';
     } else {
       var info = catInfo(e.cat);
@@ -353,7 +366,7 @@
       figura =
         '<div class="revelacao-arte" role="img" aria-label="Arte original de ' + escHtml(e.resp) + '">' +
           arte +
-          '<p class="revelacao-credito">Arte original Nostálgica 90</p>' +
+          '<p class="revelacao-credito">Arte original Nostálgica 90.</p>' +
         '</div>';
     }
     var curio = e.curiosidade

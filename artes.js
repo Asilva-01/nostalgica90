@@ -10,7 +10,7 @@
      FAIXA   → identificação (categoria · ano)
      SELO    → badge da categoria
    A resposta do desafio NUNCA aparece (evita spoiler).
-   Se e.image existir, exibe a imagem real no lugar.
+   e.image nunca entra aqui: a foto/ilustração só aparece na revelação.
    ============================================================ */
 window.Arte = (function () {
 

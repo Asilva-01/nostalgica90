@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Créditos — Nostálgica 90</title>
-<meta name="description" content="Créditos das fotos de licença livre (Wikimedia Commons) usadas na tela de revelação da Nostálgica 90.">
+<meta name="description" content="Créditos das fotos de licença livre e das ilustrações originais usadas na tela de revelação da Nostálgica 90.">
 <link rel="stylesheet" href="styles.css">
 <style>
   .creditos-wrap { max-width: 720px; margin: 0 auto; padding: 18px 14px 48px; }
@@ -27,11 +27,17 @@
   <p class="nav" style="text-align:center"><a href="index.html">← Voltar ao jogo</a></p>
   <h1>Créditos</h1>
   <p>Fotos da revelação: Wikimedia Commons, licença verificada na página do arquivo (Public Domain, CC0, CC BY ou CC BY-SA). Servidas localmente. Sem hotlink de material oficial.</p>
+  <p>Ilustrações originais da Nostálgica 90 entram só na revelação, com crédito próprio — não são fotos licenciadas de terceiros.</p>
   <p id="resumo"></p>
   <ul class="creditos-lista" id="listaFotos"></ul>
   <div class="creditos-arte">
-    <h2 class="fim-titulo">Arte original</h2>
-    <p>Os desafios sem foto livre adequada usam a arte de <code>artes.js</code>.</p>
+    <h2 class="fim-titulo">Ilustrações originais</h2>
+    <p>Arte original da Nostálgica 90, só na tela de revelação.</p>
+    <ul class="creditos-lista" id="listaOriginais"></ul>
+  </div>
+  <div class="creditos-arte">
+    <h2 class="fim-titulo">Arte procedural</h2>
+    <p>Os desafios sem foto livre nem ilustração usam a arte de <code>artes.js</code>.</p>
     <ul id="listaArte"></ul>
   </div>
   <p style="margin-top:18px">Fontes OFL: Bungee, Outfit e Share Tech Mono em <code>assets/fonts/</code>.</p>
@@ -44,14 +50,24 @@
     return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   }
   function go(lista) {
-    var fotos = lista.filter(function (c) { return c.image && c.credito_imagem; });
+    function original(c) {
+      var cr = c.credito_imagem || {};
+      return cr.tipo === 'arte-original' || cr.licenca === 'Arte original';
+    }
+    var fotos = lista.filter(function (c) { return c.image && c.credito_imagem && !original(c); });
+    var originais = lista.filter(function (c) { return c.image && original(c); });
     var arte = lista.filter(function (c) { return !c.image; });
-    document.getElementById('resumo').textContent = fotos.length + ' de ' + lista.length + ' desafios com foto livre.';
+    document.getElementById('resumo').textContent =
+      fotos.length + ' fotos livres e ' + originais.length + ' ilustrações originais em ' + lista.length + ' desafios.';
     document.getElementById('listaFotos').innerHTML = fotos.map(function (c) {
       var cr = c.credito_imagem;
       return '<li class="creditos-item"><b>' + esc(c.id + '. ' + c.resp) + '</b>' +
         'Foto: ' + esc(cr.autor) + ' · <a href="' + esc(cr.url_licenca) + '" rel="noopener noreferrer" target="_blank">' + esc(cr.licenca) + '</a>' +
         ' · <a href="' + esc(cr.url_origem) + '" rel="noopener noreferrer" target="_blank">origem</a></li>';
+    }).join('');
+    document.getElementById('listaOriginais').innerHTML = originais.map(function (c) {
+      return '<li class="creditos-item"><b>' + esc(c.id + '. ' + c.resp) + '</b>' +
+        'Arte original Nostálgica 90.</li>';
     }).join('');
     document.getElementById('listaArte').innerHTML = arte.map(function (c) {
       return '<li>' + esc(c.id + '. ' + c.resp) + '</li>';

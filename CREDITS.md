@@ -5,7 +5,11 @@ Só entram arquivos com licença verificada na página do arquivo:
 **Public Domain**, **CC0**, **CC BY** ou **CC BY-SA**.
 Cópias locais em WebP/AVIF (até ~80 KB). Sem hotlink.
 
-**33 de 156 desafios** têm foto livre (lote 1: quatro consoles Evan-Amos em PD; desenhos, tokusatsu, jogos com personagem e atletas ficaram sem foto — licença, logo ou direito de imagem em dúvida). Os demais usam arte original (`artes.js`).
+Há também **ilustrações originais da Nostálgica 90** (não são fotos de acervo).
+Elas só aparecem na revelação, com crédito `Arte original Nostálgica 90.`.
+
+**33 de 156 desafios** têm foto livre (lote 1: quatro consoles Evan-Amos em PD).
+**16 desafios** têm ilustração original. Os demais usam arte procedural (`artes.js`).
 
 Página no site: [creditos.html](creditos.html).
 
@@ -47,27 +51,45 @@ Página no site: [creditos.html](creditos.html).
 | 46. Time Crisis | `assets/images/revelacao/time-crisis.webp` | CC BY-SA 3.0 | Coentor | [File:Time_crisis_2_cabinets.jpg](https://commons.wikimedia.org/wiki/File:Time_crisis_2_cabinets.jpg) |
 | 49. Tieta | `assets/images/revelacao/tieta.webp` | Public Domain | Bernard Gotfryd | [File:Jorge_Amado,_gtfy.00010.jpg](https://commons.wikimedia.org/wiki/File:Jorge_Amado,_gtfy.00010.jpg) |
 
-## Arte original (fallback)
+## Ilustrações originais (revelação)
 
-Quando não há foto livre adequada (programas, novelas, marcas, screenshots, capas, logos, trademark), a revelação usa a arte procedural de `artes.js`.
+Não são fotos licenciadas de terceiros. Autor: Nostálgica 90. Licença: arte original do projeto.
+Sem Creative Commons inventada e sem URL de Commons.
+
+| Desafio | Arquivo |
+|---|---|
+| 9. Kibon | `assets/images/revelacao/kibon.webp` |
+| 27. Castelo Rá-Tim-Bum | `assets/images/revelacao/castelo-ra-tim-bum.webp` |
+| 35. Street Fighter II | `assets/images/revelacao/street-fighter-ii.webp` |
+| 36. Mortal Kombat | `assets/images/revelacao/mortal-kombat.webp` |
+| 43. Donkey Kong | `assets/images/revelacao/donkey-kong.webp` |
+| 44. Papel de carta | `assets/images/revelacao/papel-de-carta.webp` |
+| 59. Caverna do Dragão | `assets/images/revelacao/caverna-do-dragao.webp` |
+| 98. Top Gear | `assets/images/revelacao/top-gear.webp` |
+| 100. Donkey Kong Country | `assets/images/revelacao/donkey-kong-country.webp` |
+| 105. Streets of Rage | `assets/images/revelacao/streets-of-rage.webp` |
+| 107. Super Mario Kart | `assets/images/revelacao/super-mario-kart.webp` |
+| 108. ISS Deluxe | `assets/images/revelacao/iss-deluxe.webp` |
+| 114. Resident Evil | `assets/images/revelacao/resident-evil.webp` |
+| 115. NBA Jam | `assets/images/revelacao/nba-jam.webp` |
+| 119. GoldenEye 007 | `assets/images/revelacao/goldeneye-007.webp` |
+| 120. Final Fantasy VII | `assets/images/revelacao/final-fantasy-vii.webp` |
+
+## Arte procedural (fallback)
+
+Quando não há foto livre nem ilustração original, a revelação usa a arte de `artes.js`.
 
 - 2. TV Colosso
 - 5. Eliana (frame de vídeo / screenshot + aviso de direito de imagem)
-- 9. Kibon
 - 12. Super Trunfo
 - 19. Dragon Ball Z
 - 20. Cavaleiros do Zodíaco
 - 21. Sailor Moon
 - 22. Pokémon
 - 23. Digimon
-- 27. Castelo Rá-Tim-Bum
 - 31. Power Rangers
 - 32. Jaspion
-- 35. Street Fighter II (logo/tela dominam)
-- 36. Mortal Kombat (logo MK em primeiro plano)
 - 42. Pac-Man (arte de Super Pac-Man)
-- 43. Donkey Kong (marcado trademarked)
-- 44. Papel de carta
 - 45. Final Fight
 - 47. Vale Tudo
 - 48. Roque Santeiro
@@ -79,7 +101,7 @@ Quando não há foto livre adequada (programas, novelas, marcas, screenshots, ca
 - 55. Carrossel
 - 56. Éramos Seis
 
-Lote 1 (ids 57–156): arte original em `artes.js` para todos os 100 novos desafios. Fotos livres só nos quatro consoles acima (Mega Drive, Master System, Nintendo 64, PlayStation). Sem foto de personagem, vinheta, capa, screenshot ou atleta (direito de imagem / logo / incerteza de licença).
+Lote 1 (ids 57–156): fotos livres só nos quatro consoles acima (Mega Drive, Master System, Nintendo 64, PlayStation). Ilustrações originais nos desafios listados nesta página. Sem foto de personagem, vinheta, capa, screenshot ou atleta de terceiros (direito de imagem / logo / incerteza de licença).
 
 ## Fontes
 
