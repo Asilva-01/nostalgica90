@@ -79,20 +79,47 @@ check('todos têm cat/emoji/ano/curiosidade/pistas(6)', realChallenges.every(c =
 check('campos novos presentes', realChallenges.every(c => 'id' in c && 'slug' in c && 'categorySlug' in c && 'tags' in c && 'image' in c && 'dificuldade' in c));
 const comFoto = realChallenges.filter(c => c.image);
 check('há fotos livres (e fallback de arte no resto)', comFoto.length > 0 && comFoto.length <= 156, 'com=' + comFoto.length);
-const LIC_OK = /^(CC0( 1\.0)?|Public Domain|PD|CC BY(-SA)?( \d\.\d)?( br)?)$/i;
-check('toda image tem credito completo (autor, licenca, url_licenca, url_origem)', comFoto.every(c => {
+const LIC_OK = /^(CC0( 1\.0)?|Public Domain|PD|CC BY(-SA)?( \d\.\d)?( br)?|Arte original)$/i;
+const ehOriginal = (c) => {
   const cr = c.credito_imagem || {};
-  return cr.autor && cr.licenca && cr.url_licenca && cr.url_origem;
+  return cr.tipo === 'arte-original' || cr.licenca === 'Arte original';
+};
+check('toda image tem credito com autor e licenca', comFoto.every(c => {
+  const cr = c.credito_imagem || {};
+  return cr.autor && cr.licenca;
 }));
-check('licença da foto está na lista permitida', comFoto.every(c => LIC_OK.test((c.credito_imagem && c.credito_imagem.licenca) || '')));
+check('foto livre tem url_licenca e url_origem', comFoto.filter(c => !ehOriginal(c)).every(c => {
+  const cr = c.credito_imagem || {};
+  return cr.url_licenca && cr.url_origem;
+}));
+check('licença da imagem está na lista permitida', comFoto.every(c => LIC_OK.test((c.credito_imagem && c.credito_imagem.licenca) || '')));
 check('arquivos de image existem', comFoto.every(c => fs.existsSync(path.join(__dirname, '..', c.image))));
 check('créditos e saiba mais são https', realChallenges.every(c => {
   const https = (u) => typeof u === 'string' && u.indexOf('https://') === 0;
   if (c.link_saiba_mais && !https(c.link_saiba_mais)) return false;
   if (!c.image) return true;
   const cr = c.credito_imagem || {};
+  if (ehOriginal(c)) {
+    if (cr.url_licenca && !https(cr.url_licenca)) return false;
+    if (cr.url_origem && !https(cr.url_origem)) return false;
+    return true;
+  }
   return https(cr.url_licenca) && https(cr.url_origem);
 }));
+const slugsOriginais = [
+  'iss-deluxe', 'donkey-kong', 'donkey-kong-country', 'top-gear',
+  'street-fighter-ii', 'nba-jam', 'super-mario-kart', 'resident-evil',
+  'final-fantasy-vii', 'goldeneye-007', 'castelo-ra-tim-bum', 'papel-de-carta',
+  'caverna-do-dragao', 'mortal-kombat', 'streets-of-rage', 'kibon'
+];
+check('16 ilustrações originais no lote da revelação', slugsOriginais.every(slug => {
+  const c = realChallenges.find(x => x.slug === slug);
+  return c && ehOriginal(c) && c.image === 'assets/images/revelacao/' + slug + '.webp' &&
+    c.image_avif === 'assets/images/revelacao/' + slug + '.avif' &&
+    c.image_alt && c.credito_imagem.autor === 'Nostálgica 90' &&
+    fs.existsSync(path.join(__dirname, '..', c.image)) &&
+    fs.existsSync(path.join(__dirname, '..', c.image_avif));
+}), 'faltou algum slug/arquivo');
 check('itens sem imagem não quebram sem credito/som', realChallenges.filter(c => !c.image).every(c => c.som == null || c.som));
 check('todos têm link_saiba_mais https', realChallenges.every(c => typeof c.link_saiba_mais === 'string' && c.link_saiba_mais.indexOf('https://') === 0));
 check('tags não vazias', realChallenges.every(c => Array.isArray(c.tags) && c.tags.length > 0));
@@ -152,11 +179,22 @@ if (atual.link_saiba_mais) {
   check('Saiba mais com noopener e nova aba', fimHtml.includes('rel="noopener noreferrer"') && fimHtml.includes('target="_blank"') && fimHtml.includes('Saiba mais'));
 }
 check('Jogo.montarCartaoRevelacao existe', typeof window.Jogo.montarCartaoRevelacao === 'function');
-const comImg = realChallenges.find(c => c.image);
+const comImg = realChallenges.find(c => c.image && !ehOriginal(c));
 const semImg = realChallenges.find(c => !c.image);
 const htmlFoto = window.Jogo.montarCartaoRevelacao(comImg, true);
 check('cartão com foto tem img lazy e alt', htmlFoto.includes('loading="lazy"') && htmlFoto.includes('alt="'));
 check('cartão com foto não hotlinka Commons', htmlFoto.includes(comImg.image) && !htmlFoto.includes('upload.wikimedia.org'));
+check('cartão com foto livre diz Foto', htmlFoto.includes('Foto:'));
+const arteOrig = realChallenges.find(c => c.slug === 'iss-deluxe');
+const htmlOrig = window.Jogo.montarCartaoRevelacao(arteOrig, true);
+check('revelação de ilustração original mostra o arquivo local', htmlOrig.includes(arteOrig.image) && htmlOrig.includes('revelacao-figura'));
+check('revelação de ilustração original credita arte original', htmlOrig.includes('Arte original Nostálgica 90.'));
+check('revelação de ilustração original não trata como foto de acervo', !htmlOrig.includes('Foto:') && !htmlOrig.includes('commons.wikimedia.org'));
+check('papel-de-carta agora usa ilustração original, não foto licenciada', (function () {
+  const p = realChallenges.find(c => c.slug === 'papel-de-carta');
+  return ehOriginal(p) && p.credito_imagem.autor === 'Nostálgica 90' &&
+    p.image === 'assets/images/revelacao/papel-de-carta.webp';
+})());
 const htmlArte = window.Jogo.montarCartaoRevelacao(semImg, false);
 check('esgotar pistas usa selo ERA ISSO', htmlArte.includes('ERA ISSO'));
 check('fallback de revelação usa arte original', htmlArte.includes('revelacao-arte') && !htmlArte.includes('revelacao-figura'));

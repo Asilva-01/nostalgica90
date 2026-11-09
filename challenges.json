@@ -335,7 +335,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/kibon.webp",
     "dificuldade": null,
     "pistas": [
       "Marca de sorvete que mandava no verão brasileiro.",
@@ -345,7 +345,14 @@
       "O nome começa com a letra K.",
       "A gigante dos picolés e sorvetes, parceira da Nestlé no Brasil."
     ],
-    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Kibon"
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Kibon",
+    "image_avif": "assets/images/revelacao/kibon.avif",
+    "image_alt": "Carrinho de sorvete de madeira na praia ao entardecer, com picolés e copinhos coloridos no freezer de vidro, sombrinhas listradas ao fundo",
+    "credito_imagem": {
+      "autor": "Nostálgica 90",
+      "licenca": "Arte original",
+      "tipo": "arte-original"
+    }
   },
   {
     "id": 10,
@@ -969,7 +976,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/castelo-ra-tim-bum.webp",
     "dificuldade": null,
     "pistas": [
       "Programa infantil gravado num castelo roxo.",
@@ -979,7 +986,14 @@
       "Era produção da TV Cultura de São Paulo.",
       "Sua abertura marcou a infância de milhões no Brasil."
     ],
-    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Castelo_R%C3%A1-Tim-Bum"
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Castelo_R%C3%A1-Tim-Bum",
+    "image_avif": "assets/images/revelacao/castelo-ra-tim-bum.avif",
+    "image_alt": "Castelo colorido à noite, com torres, telescópio, frascos de laboratório e um pátio de ladrilhos sob um céu estrelado",
+    "credito_imagem": {
+      "autor": "Nostálgica 90",
+      "licenca": "Arte original",
+      "tipo": "arte-original"
+    }
   },
   {
     "id": 28,
@@ -1254,7 +1268,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/street-fighter-ii.webp",
     "dificuldade": null,
     "pistas": [
       "O jogo de luta mais famoso de todos os fliperamas.",
@@ -1264,7 +1278,14 @@
       "Dois jogadores se enfrentavam disputando o salão.",
       "'Hadouken!' e 'Shoryuken!' ecoavam pelo fliperama."
     ],
-    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Street_Fighter_II"
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Street_Fighter_II",
+    "image_avif": "assets/images/revelacao/street-fighter-ii.avif",
+    "image_alt": "Dois lutadores se enfrentam numa rua molhada à noite, um de quimono branco e outro de regata, ao lado de um barril e letreiros de néon",
+    "credito_imagem": {
+      "autor": "Nostálgica 90",
+      "licenca": "Arte original",
+      "tipo": "arte-original"
+    }
   },
   {
     "id": 36,
@@ -1285,7 +1306,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/mortal-kombat.webp",
     "dificuldade": null,
     "pistas": [
       "O jogo de luta mais polêmico dos anos 90.",
@@ -1295,7 +1316,14 @@
       "Scorpion, Raiden e Liu Kang estavam no elenco.",
       "No Brasil, o jogo até virou caso de polícia e foi apreendido."
     ],
-    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Mortal_Kombat"
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Mortal_Kombat",
+    "image_avif": "assets/images/revelacao/mortal-kombat.avif",
+    "image_alt": "Dois guerreiros se encaram num pátio de ruínas sob a lua cheia, um de capa marrom e outro de capuz azul, com um raio no céu",
+    "credito_imagem": {
+      "autor": "Nostálgica 90",
+      "licenca": "Arte original",
+      "tipo": "arte-original"
+    }
   },
   {
     "id": 37,
@@ -1557,7 +1585,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/donkey-kong.webp",
     "dificuldade": null,
     "pistas": [
       "O jogo que apresentou o maior herói dos videogames.",
@@ -1567,7 +1595,14 @@
       "O macaco era o grande vilão da trama.",
       "O gorila foi batizado em homenagem a um primata famoso."
     ],
-    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Donkey_Kong_(jogo_eletr%C3%B4nico)"
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Donkey_Kong_(jogo_eletr%C3%B4nico)",
+    "image_avif": "assets/images/revelacao/donkey-kong.avif",
+    "image_alt": "Estrutura industrial de aço enferrujado à noite, com rampas, um gancho de guindaste e barris de madeira rolando",
+    "credito_imagem": {
+      "autor": "Nostálgica 90",
+      "licenca": "Arte original",
+      "tipo": "arte-original"
+    }
   },
   {
     "id": 44,
@@ -1591,7 +1626,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/papel-de-carta.webp",
     "dificuldade": null,
     "pistas": [
       "Vinham em bloquinhos coloridos, às vezes com cheiro, guardados como tesouro na pasta.",
@@ -1601,7 +1636,14 @@
       "Servia para amizade, segredo, desculpa e até declaração — tudo escrito à mão.",
       "Antes do SMS e do chat, a paquera e o segredo da escola andavam no papel estampado."
     ],
-    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Papel_de_carta"
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Papel_de_carta",
+    "image_avif": "assets/images/revelacao/papel-de-carta.avif",
+    "image_alt": "Papel de carta rosa com flores e adesivos holográficos, envelope combinando, caneta glitter e figurinhas sobre uma mesa de madeira",
+    "credito_imagem": {
+      "autor": "Nostálgica 90",
+      "licenca": "Arte original",
+      "tipo": "arte-original"
+    }
   },
   {
     "id": 45,
@@ -2076,7 +2118,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/caverna-do-dragao.webp",
     "dificuldade": "facil",
     "pistas": [
       "Um grupo de jovens cai de um brinquedo de parque num mundo de magia.",
@@ -2086,7 +2128,14 @@
       "Passou na Globo e voltou em tantas reprises que virou memória coletiva.",
       "O nome em português misturava um buraco na pedra e uma criatura alada."
     ],
-    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Dungeons_%26_Dragons_(s%C3%A9rie_animada)"
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Dungeons_%26_Dragons_(s%C3%A9rie_animada)",
+    "image_avif": "assets/images/revelacao/caverna-do-dragao.avif",
+    "image_alt": "Corredor de pedra com tocha, mochila de couro, mapa no chão e a sombra de um dragão projetada no fundo do arco",
+    "credito_imagem": {
+      "autor": "Nostálgica 90",
+      "licenca": "Arte original",
+      "tipo": "arte-original"
+    }
   },
   {
     "id": 60,
@@ -3392,7 +3441,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/top-gear.webp",
     "dificuldade": "facil",
     "pistas": [
       "Corrida de Super Nintendo em que você viajava por vários países.",
@@ -3402,7 +3451,14 @@
       "Quem chegava entre os cinco primeiros avançava de etapa.",
       "O título em inglês era o mesmo da marcha mais alta do câmbio."
     ],
-    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Top_Gear_(jogo_eletr%C3%B4nico)"
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Top_Gear_(jogo_eletr%C3%B4nico)",
+    "image_avif": "assets/images/revelacao/top-gear.avif",
+    "image_alt": "Dois carros esportivos, um vermelho e um azul, aceleram numa curva molhada à noite, com a cidade iluminada ao fundo",
+    "credito_imagem": {
+      "autor": "Nostálgica 90",
+      "licenca": "Arte original",
+      "tipo": "arte-original"
+    }
   },
   {
     "id": 99,
@@ -3458,7 +3514,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/donkey-kong-country.webp",
     "dificuldade": "facil",
     "pistas": [
       "Aventura de Super Nintendo com um gorila e um macaco menor.",
@@ -3468,7 +3524,14 @@
       "Saiu em 1994 e fez o SNES parecer geração seguinte.",
       "O jogo de plataforma pré-renderizado do Super Nintendo: o gorila de gravata e seu companheiro de boné."
     ],
-    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Donkey_Kong_Country"
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Donkey_Kong_Country",
+    "image_avif": "assets/images/revelacao/donkey-kong-country.avif",
+    "image_alt": "Selva tropical ao entardecer, com trilho, vagonete de mina, cachoeira e um cacho de bananas em primeiro plano",
+    "credito_imagem": {
+      "autor": "Nostálgica 90",
+      "licenca": "Arte original",
+      "tipo": "arte-original"
+    }
   },
   {
     "id": 101,
@@ -3625,7 +3688,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/streets-of-rage.webp",
     "dificuldade": "medio",
     "pistas": [
       "Briga de rua em 16 bits da Sega, no console do ouriço.",
@@ -3635,7 +3698,14 @@
       "Saiu em 1991 e ganhou sequências ainda no mesmo console.",
       "O nome em inglês era ruas da fúria."
     ],
-    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Streets_of_Rage"
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Streets_of_Rage",
+    "image_avif": "assets/images/revelacao/streets-of-rage.avif",
+    "image_alt": "Dois homens de jaqueta vermelha e azul caminham sob a chuva numa rua de néon, com um contêiner de lixo e reflexos coloridos no asfalto",
+    "credito_imagem": {
+      "autor": "Nostálgica 90",
+      "licenca": "Arte original",
+      "tipo": "arte-original"
+    }
   },
   {
     "id": 106,
@@ -3691,7 +3761,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/super-mario-kart.webp",
     "dificuldade": "facil",
     "pistas": [
       "Corrida de Super Nintendo com personagens da casa do encanador.",
@@ -3701,7 +3771,14 @@
       "Havia arco-íris, praia e castelo entre os circuitos.",
       "A corrida de Super Nintendo com casca de tartaruga e o encanador ao volante."
     ],
-    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Super_Mario_Kart"
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Super_Mario_Kart",
+    "image_avif": "assets/images/revelacao/super-mario-kart.avif",
+    "image_alt": "Quatro karts coloridos (vermelho, azul, amarelo e verde) numa estrada de campo, com bandeiras quadriculadas e caixotes de madeira",
+    "credito_imagem": {
+      "autor": "Nostálgica 90",
+      "licenca": "Arte original",
+      "tipo": "arte-original"
+    }
   },
   {
     "id": 108,
@@ -3724,7 +3801,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/iss-deluxe.webp",
     "dificuldade": "medio",
     "pistas": [
       "Futebol de Super Nintendo que muita gente achava melhor que o da EA.",
@@ -3734,7 +3811,14 @@
       "No Japão a linha tinha outro nome, de narração ao vivo.",
       "O cartucho de futebol da Konami para Super Nintendo que a garotada copiava na locadora."
     ],
-    "link_saiba_mais": "https://pt.wikipedia.org/wiki/International_Superstar_Soccer_Deluxe"
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/International_Superstar_Soccer_Deluxe",
+    "image_avif": "assets/images/revelacao/iss-deluxe.avif",
+    "image_alt": "Dois jogadores de futebol, um de verde e outro de branco, disputam a bola num estádio lotado ao entardecer; um Super Nintendo cinza aparece em primeiro plano",
+    "credito_imagem": {
+      "autor": "Nostálgica 90",
+      "licenca": "Arte original",
+      "tipo": "arte-original"
+    }
   },
   {
     "id": 109,
@@ -3965,7 +4049,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/resident-evil.webp",
     "dificuldade": "medio",
     "pistas": [
       "Terror de console em que a munição e a tinta de fita eram raras.",
@@ -3975,7 +4059,14 @@
       "A Capcom lançou em 1996 no PlayStation.",
       "O survival do PlayStation na mansão, da Capcom, que no Japão tinha outro título."
     ],
-    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Resident_Evil_(jogo_eletr%C3%B4nico_de_1996)"
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Resident_Evil_(jogo_eletr%C3%B4nico_de_1996)",
+    "image_avif": "assets/images/revelacao/resident-evil.avif",
+    "image_alt": "Corredor sombrio de mansão com papel de parede descascado, máquina de escrever sobre uma mesa e uma porta entreaberta com névoa esverdeada",
+    "credito_imagem": {
+      "autor": "Nostálgica 90",
+      "licenca": "Arte original",
+      "tipo": "arte-original"
+    }
   },
   {
     "id": 115,
@@ -3997,7 +4088,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/nba-jam.webp",
     "dificuldade": "medio",
     "pistas": [
       "Basquete de fliperama em que a cesta pegava fogo.",
@@ -4007,7 +4098,14 @@
       "Tinha a licença da liga americana, mas o tom era de desenho.",
       "Basquete de fliperama da Midway: dois contra dois e a cesta pegava fogo."
     ],
-    "link_saiba_mais": "https://pt.wikipedia.org/wiki/NBA_Jam"
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/NBA_Jam",
+    "image_avif": "assets/images/revelacao/nba-jam.avif",
+    "image_alt": "Jogador de basquete de uniforme vermelho voa para enterrar a bola, observado por um adversário de azul numa arena lotada",
+    "credito_imagem": {
+      "autor": "Nostálgica 90",
+      "licenca": "Arte original",
+      "tipo": "arte-original"
+    }
   },
   {
     "id": 116,
@@ -4131,7 +4229,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/goldeneye-007.webp",
     "dificuldade": "medio",
     "pistas": [
       "Tiro em primeira pessoa de um console de cartucho, com quatro na TV.",
@@ -4141,7 +4239,14 @@
       "Havia silenciador, relógio eletromagnético e instalações russas.",
       "O título misturava o olho dourado com o número do agente."
     ],
-    "link_saiba_mais": "https://pt.wikipedia.org/wiki/GoldenEye_007_(jogo_eletr%C3%B4nico_de_1997)"
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/GoldenEye_007_(jogo_eletr%C3%B4nico_de_1997)",
+    "image_avif": "assets/images/revelacao/goldeneye-007.avif",
+    "image_alt": "Visão em primeira pessoa de mãos de luvas pretas apontando uma pistola com silenciador num corredor de concreto iluminado por lâmpadas fluorescentes",
+    "credito_imagem": {
+      "autor": "Nostálgica 90",
+      "licenca": "Arte original",
+      "tipo": "arte-original"
+    }
   },
   {
     "id": 120,
@@ -4164,7 +4269,7 @@
       "brasil",
       "nostalgia"
     ],
-    "image": null,
+    "image": "assets/images/revelacao/final-fantasy-vii.webp",
     "dificuldade": "medio",
     "pistas": [
       "RPG de CD em que um mercenário de espada enorme desertava de uma empresa.",
@@ -4174,7 +4279,14 @@
       "A cidade-reator e a florista da igreja eram o começo da jornada.",
       "O título era a sétima numeração de uma série japonesa de fantasia."
     ],
-    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Final_Fantasy_VII"
+    "link_saiba_mais": "https://pt.wikipedia.org/wiki/Final_Fantasy_VII",
+    "image_avif": "assets/images/revelacao/final-fantasy-vii.avif",
+    "image_alt": "Cidade industrial à noite sob céu roxo, com ruas iluminadas e um reator circular enorme ao fundo",
+    "credito_imagem": {
+      "autor": "Nostálgica 90",
+      "licenca": "Arte original",
+      "tipo": "arte-original"
+    }
   },
   {
     "id": 121,

@@ -8,8 +8,9 @@
    image, credito_imagem, image_avif, image_alt, tags, categorySlug.
 
    Se image for não-nula/não-vazia, credito_imagem precisa de
-   autor, licenca (lista permitida), url_licenca e url_origem (https),
-   e o arquivo precisa existir.
+   autor e licenca. Foto livre: licenca CC/PD + url_licenca e
+   url_origem https. Ilustração original: licenca "Arte original"
+   (tipo arte-original); URLs de Commons não são exigidas.
    ============================================================ */
 const fs = require('fs');
 const path = require('path');
@@ -23,7 +24,8 @@ const LICENCAS_OK = new Set([
   'Public Domain', 'PD',
   'CC BY', 'CC BY 1.0', 'CC BY 2.0', 'CC BY 2.5', 'CC BY 3.0', 'CC BY 4.0',
   'CC BY 2.0 br', 'CC BY 3.0 br',
-  'CC BY-SA', 'CC BY-SA 1.0', 'CC BY-SA 2.0', 'CC BY-SA 2.5', 'CC BY-SA 3.0', 'CC BY-SA 4.0'
+  'CC BY-SA', 'CC BY-SA 1.0', 'CC BY-SA 2.0', 'CC BY-SA 2.5', 'CC BY-SA 3.0', 'CC BY-SA 4.0',
+  'Arte original'
 ]);
 
 function fail(msg, extra) {
@@ -54,6 +56,10 @@ function licencaOk(v) {
   if (LICENCAS_OK.has(n)) return true;
   const upper = n.toUpperCase();
   return [...LICENCAS_OK].some(function (okLic) { return okLic.toUpperCase() === upper; });
+}
+
+function ehArteOriginal(cred) {
+  return !!(cred && (cred.tipo === 'arte-original' || cred.licenca === 'Arte original'));
 }
 
 function main() {
@@ -203,13 +209,28 @@ function main() {
           fail('credito_imagem.licenca fora da lista permitida', where + ' ' + cred.licenca);
           falhas++;
         }
-        if (!isHttps(cred.url_licenca)) {
-          fail('credito_imagem.url_licenca https obrigatório quando há image', where);
-          falhas++;
-        }
-        if (!isHttps(cred.url_origem)) {
-          fail('credito_imagem.url_origem https obrigatório quando há image', where);
-          falhas++;
+        if (ehArteOriginal(cred)) {
+          if (cred.licenca !== 'Arte original') {
+            fail('ilustração original deve usar licenca "Arte original"', where + ' ' + cred.licenca);
+            falhas++;
+          }
+          if (cred.url_licenca && !isHttps(cred.url_licenca)) {
+            fail('credito_imagem.url_licenca, se houver, precisa ser https', where);
+            falhas++;
+          }
+          if (cred.url_origem && !isHttps(cred.url_origem)) {
+            fail('credito_imagem.url_origem, se houver, precisa ser https', where);
+            falhas++;
+          }
+        } else {
+          if (!isHttps(cred.url_licenca)) {
+            fail('credito_imagem.url_licenca https obrigatório quando há image', where);
+            falhas++;
+          }
+          if (!isHttps(cred.url_origem)) {
+            fail('credito_imagem.url_origem https obrigatório quando há image', where);
+            falhas++;
+          }
         }
       }
     }
@@ -219,11 +240,11 @@ function main() {
     ok('ids únicos');
     ok('slugs únicos');
     ok('6 pistas e resposta em todos');
-    ok('créditos de imagem válidos quando há image (' + comImagem + ')');
+    ok('créditos de imagem válidos quando há image (' + comImagem + ', foto livre ou arte original)');
     ok('arquivos de image existem e cabem em ~80 KB');
     ok('links https (crédito e saiba mais)');
     ok('campos opcionais (alias, dificuldade, som, credito_imagem, link_saiba_mais) aceitos');
-    console.log('\nVALIDADOR PASS (' + data.length + ' desafios, ' + comImagem + ' com foto livre)\n');
+    console.log('\nVALIDADOR PASS (' + data.length + ' desafios, ' + comImagem + ' com imagem na revelação)\n');
     process.exit(0);
   }
   console.error('\nVALIDADOR FAIL: ' + falhas + ' erro(s)\n');

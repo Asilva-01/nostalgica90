@@ -101,10 +101,13 @@ Campos atuais continuam válidos. Opcionais para os próximos PRs (não quebram 
 
 - `alias`, `dificuldade` (`facil` \| `medio` \| `dificil` ou `null`), `som`,
   `curiosidade`, `link_saiba_mais` e `credito_imagem` são opcionais.
-- Se `image` existir, `credito_imagem` exige `autor`, `licenca` (Public Domain,
-  CC0, CC BY ou CC BY-SA), `url_licenca` e `url_origem` — todos https. O arquivo
-  precisa existir. A foto só aparece na **revelação** (depois de acertar ou
-  esgotar as pistas); no jogo a arte continua original.
+- Se `image` existir, `credito_imagem` exige `autor` e `licenca`. Foto livre:
+  licença Public Domain, CC0, CC BY ou CC BY-SA, mais `url_licenca` e
+  `url_origem` https. Ilustração original da Nostálgica 90: `licenca` =
+  `Arte original` (e `tipo`: `arte-original`); não inventar Creative Commons
+  nem URL de Commons. O arquivo precisa existir. A imagem só aparece na
+  **revelação** (depois de acertar ou esgotar as pistas); no jogo a arte
+  continua original (`Arte.gerar` nunca usa `e.image`).
 - Créditos: `CREDITS.md` e `creditos.html`.
 
 Validador:
