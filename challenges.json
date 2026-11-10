@@ -867,7 +867,7 @@
   {
     "id": 23,
     "slug": "digimon",
-    "categorySlug": "games",
+    "categorySlug": "tv",
     "resp": "Digimon",
     "alias": [
       "digimon",
@@ -875,12 +875,12 @@
       "digital monsters",
       "digimon adventure"
     ],
-    "cat": "GAMES",
+    "cat": "TV",
     "emoji": "🦖",
     "ano": "1997",
     "curiosidade": "Os monstrinhos digitais nasceram no Japão no fim dos anos 90, no brinquedo virtual e depois no desenho.",
     "tags": [
-      "games",
+      "tv",
       "anos-90",
       "brasil",
       "nostalgia"
@@ -1320,7 +1320,7 @@
       "gugu",
       "gugu liberato",
       "programa do gugu",
-      "antonio oliveira gugu"
+      "antonio martins luiz de oliveira"
     ],
     "cat": "TV",
     "emoji": "🎪",

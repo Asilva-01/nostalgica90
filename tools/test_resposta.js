@@ -37,6 +37,9 @@ check('airton senna (grafia popular) acerta Senna', ok('airton senna', 'Senna'))
 check('dbz acerta Dragon Ball Z', ok('dbz', 'Dragon Ball Z'));
 check('saint seiya acerta Cavaleiros do Zodíaco', ok('saint seiya', 'Cavaleiros do Zodíaco'));
 check('gugu acerta Gugu Liberato', ok('gugu', 'Gugu Liberato'));
+const gugu = item('Gugu Liberato');
+check('Gugu não tem o nome completo errado', !gugu.alias.some(a => /antonio oliveira/i.test(a)), JSON.stringify(gugu.alias));
+check('Gugu aceita o nome civil correto', ok('antonio martins luiz de oliveira', 'Gugu Liberato'));
 check('sf2 continua acertando Street Fighter II', ok('sf2', 'Street Fighter II'));
 check('bichinho virtual continua acertando Tamagotchi', ok('bichinho virtual', 'Tamagotchi'));
 
@@ -77,6 +80,13 @@ check('sem duplicata', new Set(a1).size === 4);
 check('embaralho determinístico', a1.join('|') === a2.join('|'));
 const cats = a1.filter(n => n !== 'Senna').map(n => pool.find(c => c.resp === n).cat);
 check('distratores preferem a mesma categoria', cats.filter(c => c === senna.cat).length >= 1, cats.join(','));
+const digimon = item('Digimon');
+check('Digimon é TV, não GAMES (não vira distrator de fliperama)', digimon.cat === 'TV' && digimon.categorySlug === 'tv');
+const issAlts = Resposta.alternativasPlausiveis(item('ISS Deluxe'), pool, 3);
+const snesAlts = Resposta.alternativasPlausiveis(item('Super Nintendo'), pool, 3);
+check('Digimon não aparece nas alternativas de ISS Deluxe', issAlts.indexOf('Digimon') < 0, issAlts.join('|'));
+check('Digimon não aparece nas alternativas de Super Nintendo', snesAlts.indexOf('Digimon') < 0, snesAlts.join('|'));
+check('distratores de ISS Deluxe são GAMES', issAlts.filter(n => n !== 'ISS Deluxe').every(n => pool.find(c => c.resp === n).cat === 'GAMES'), issAlts.join('|'));
 
 console.log('\n[resposta] os 19 antigos têm alias');
 const ids19 = [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 26, 27, 28, 29, 31, 32, 33, 34];

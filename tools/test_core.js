@@ -256,6 +256,12 @@ check('reentrar (já jogou) não monta a revelação', jaJogouSrc.indexOf('monta
 const botSrc = fs.readFileSync(path.join(__dirname, '..', '.github/scripts/bot_diario.py'), 'utf8');
 check('bot do Telegram não ganhou revelação', !botSrc.includes('revelacao'));
 check('bot tem 3 horários (slots 0/1/2)', botSrc.includes('0 12 * * *') && botSrc.includes('0 17 * * *') && botSrc.includes('0 21 * * *'));
+const swSrc = fs.readFileSync(path.join(__dirname, '..', 'service-worker.js'), 'utf8');
+check('service worker v17', swSrc.includes("CACHE = 'nostalgica90-v17'"));
+check('SW precache inclui resposta.js', swSrc.includes('./resposta.js'));
+check('SW precache inclui ilustração nova (iss-deluxe.webp)', swSrc.includes('iss-deluxe.webp') && swSrc.includes('castelo-ra-tim-bum.avif'));
+check('Gugu não usa alias com nome errado', !realChallenges.find(c => c.resp === 'Gugu Liberato').alias.some(a => /antonio oliveira/i.test(a)));
+check('Digimon saiu de GAMES (é TV)', realChallenges.find(c => c.resp === 'Digimon').cat === 'TV');
 
 // ---------- 4. PONTOS ----------
 console.log('\n[4] PONTUAÇÃO');
