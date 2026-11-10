@@ -260,7 +260,9 @@ const swSrc = fs.readFileSync(path.join(__dirname, '..', 'service-worker.js'), '
 check('service worker v17', swSrc.includes("CACHE = 'nostalgica90-v17'"));
 check('SW precache inclui resposta.js', swSrc.includes('./resposta.js'));
 check('SW precache inclui ilustração nova (iss-deluxe.webp)', swSrc.includes('iss-deluxe.webp') && swSrc.includes('castelo-ra-tim-bum.avif'));
-check('Gugu não usa alias com nome errado', !realChallenges.find(c => c.resp === 'Gugu Liberato').alias.some(a => /antonio oliveira/i.test(a)));
+check('Gugu não usa alias com nome errado', !realChallenges.find(c => c.resp === 'Gugu Liberato').alias.some(a => /antonio oliveira|martins luiz/i.test(a)));
+check('Gugu tem o nome civil certo', realChallenges.find(c => c.resp === 'Gugu Liberato').alias.includes('antonio augusto moraes liberato'));
+check('Digimon pista 2 não está quebrada', realChallenges.find(c => c.resp === 'Digimon').pistas[1] === 'Os monstrinhos evoluíam para formas cada vez mais fortes.');
 check('Digimon saiu de GAMES (é TV)', realChallenges.find(c => c.resp === 'Digimon').cat === 'TV');
 
 // ---------- 4. PONTOS ----------

@@ -38,8 +38,9 @@ check('dbz acerta Dragon Ball Z', ok('dbz', 'Dragon Ball Z'));
 check('saint seiya acerta Cavaleiros do Zodíaco', ok('saint seiya', 'Cavaleiros do Zodíaco'));
 check('gugu acerta Gugu Liberato', ok('gugu', 'Gugu Liberato'));
 const gugu = item('Gugu Liberato');
-check('Gugu não tem o nome completo errado', !gugu.alias.some(a => /antonio oliveira/i.test(a)), JSON.stringify(gugu.alias));
-check('Gugu aceita o nome civil correto', ok('antonio martins luiz de oliveira', 'Gugu Liberato'));
+check('Gugu não tem nome completo errado', !gugu.alias.some(a => /antonio oliveira|martins luiz/i.test(a)), JSON.stringify(gugu.alias));
+check('Gugu aceita Antônio Augusto Moraes Liberato', ok('antonio augusto moraes liberato', 'Gugu Liberato'));
+check('Gugu aceita Antônio Augusto de Moraes Liberato', ok('antonio augusto de moraes liberato', 'Gugu Liberato'));
 check('sf2 continua acertando Street Fighter II', ok('sf2', 'Street Fighter II'));
 check('bichinho virtual continua acertando Tamagotchi', ok('bichinho virtual', 'Tamagotchi'));
 
