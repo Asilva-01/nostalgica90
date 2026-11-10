@@ -62,6 +62,8 @@ global.window.NostalMusica = { ligar(){}, desligar(){}, definirtema(){}, estaLig
 global.window.Arte = { gerar(e, info){ return '<div class="art-fundo ' + (info.classe||'canal-tv') + '"></div>'; } };
 eval(fs.readFileSync(path.join(__dirname, '..', 'selecao-rodada.js'), 'utf8'));
 if (!global.window.SelecaoRodada) global.window.SelecaoRodada = global.SelecaoRodada || globalThis.SelecaoRodada;
+eval(fs.readFileSync(path.join(__dirname, '..', 'resposta.js'), 'utf8'));
+if (!global.window.Resposta) global.window.Resposta = global.Resposta || globalThis.Resposta;
 
 let passou = 0, falhou = 0;
 function check(nome, cond, extra) {
@@ -128,12 +130,16 @@ check('tags não vazias', realChallenges.every(c => Array.isArray(c.tags) && c.t
 console.log('\n[2] ALIASES');
 const itensComAlias = realChallenges.filter(c => c.alias && c.alias.length > 0);
 check('há aliases restaurados (≥35)', itensComAlias.length >= 35, 'tem ' + itensComAlias.length);
+check('todos os 156 têm alias', itensComAlias.length === 156, 'tem ' + itensComAlias.length);
 const tam = realChallenges.find(c => c.resp === 'Tamagotchi');
 check('Tamagotchi aceita "bichinho virtual"', tam.alias.includes('bichinho virtual'));
 const sf = realChallenges.find(c => c.resp === 'Street Fighter II');
 check('Street Fighter II aceita "sf2"', sf.alias.includes('sf2'));
 check('Street Fighter II aceita "street fighter 2"', sf.alias.includes('street fighter 2'));
 check('Éramos Seis aceita "eramos seis"', realChallenges.find(c => c.resp === 'Éramos Seis').alias.includes('eramos seis'));
+const senna = realChallenges.find(c => c.resp === 'Senna');
+check('Senna aceita "ayrton senna"', senna.alias.includes('ayrton senna'));
+check('Chaves aceita "o chaves"', realChallenges.find(c => c.resp === 'Chaves').alias.includes('o chaves'));
 
 // ---------- 3. MOTOR (checarResposta via carregar game.js) ----------
 console.log('\n[3] MOTOR DO JOGO');
@@ -159,6 +165,12 @@ byId['campo'].value = 'resposta totalmente errada';
 global.window.Jogo.enviarResposta();
 p = JSON.parse(store['nostalgia90_rodada_d' + nHoje]);
 check('resposta errada não finaliza', !(p.slots[0].venceu || p.slots[0].perdeu));
+byId['campo'].value = 'outro palpite generico xyz';
+global.window.Jogo.enviarResposta();
+p = JSON.parse(store['nostalgia90_rodada_d' + nHoje]);
+check('dois erros ainda não finalizam', !(p.slots[0].venceu || p.slots[0].perdeu));
+check('dois erros mostram 4 alternativas', (byId['areaAlternativas'].innerHTML.match(/btn-alternativa/g) || []).length === 4);
+check('aviso de alternativas em pt-BR', byId['areaAlternativas'].innerHTML.includes('valem metade'));
 
 const aliasDoAtual = atual.alias && atual.alias[0];
 byId['campo'].value = aliasDoAtual || atual.resp;
@@ -209,6 +221,24 @@ function encerrarSlotPulando() {
   for (let i = 0; i < 6; i++) global.window.Jogo.pularPista();
 }
 global.window.Jogo.proximoDesafio();
+const slot2 = realChallenges[selHoje.indices[1]];
+byId['campo'].value = 'quase mas nao';
+global.window.Jogo.enviarResposta();
+byId['campo'].value = 'ainda errado demais';
+global.window.Jogo.enviarResposta();
+check('2ª memória mostra alternativas após 2 erros', (byId['areaAlternativas'].innerHTML.match(/btn-alternativa/g) || []).length === 4);
+global.window.Jogo.escolherAlternativa(slot2.resp);
+p = JSON.parse(store['nostalgia90_rodada_d' + nHoje]);
+check('acerto por alternativa vale metade (pista 1 = 50)', p.slots[1].oficial && p.slots[1].oficial.pontos === 50, JSON.stringify(p.slots[1].oficial));
+check('via alternativa registrada', p.slots[1].oficial && p.slots[1].oficial.via === 'alternativa');
+check('acerto por alternativa não grava gabarito no storage', !JSON.stringify(p.slots[1]).includes(slot2.resp));
+
+global.window.Jogo.refazerDesafio();
+p = JSON.parse(store['nostalgia90_rodada_d' + nHoje]);
+check('refazer não desconta pontos oficiais', p.slots[1].oficial && p.slots[1].oficial.pontos === 50);
+check('refazer não revela alternativas (cobrado)', !byId['areaAlternativas'].innerHTML.includes('btn-alternativa'));
+check('refazer não mostra gabarito', !!(byId['areaFim'].classList._s && byId['areaFim'].classList._s.hidden));
+
 encerrarSlotPulando();
 global.window.Jogo.proximoDesafio();
 encerrarSlotPulando();
@@ -223,7 +253,17 @@ check('slots não têm tentativas de texto', !dump.includes('"tentativas"'));
 const gameSrcNow = fs.readFileSync(path.join(__dirname, '..', 'game.js'), 'utf8');
 const jaJogouSrc = gameSrcNow.slice(gameSrcNow.indexOf('function mostrarJaJogou'), gameSrcNow.indexOf('function mostrarResumo'));
 check('reentrar (já jogou) não monta a revelação', jaJogouSrc.indexOf('montarCartaoRevelacao') < 0 && jaJogouSrc.indexOf('Reentrar não mostra o gabarito') >= 0);
-check('bot do Telegram não ganhou revelação', !fs.readFileSync(path.join(__dirname, '..', '.github/scripts/bot_diario.py'), 'utf8').includes('revelacao'));
+const botSrc = fs.readFileSync(path.join(__dirname, '..', '.github/scripts/bot_diario.py'), 'utf8');
+check('bot do Telegram não ganhou revelação', !botSrc.includes('revelacao'));
+check('bot tem 3 horários (slots 0/1/2)', botSrc.includes('0 12 * * *') && botSrc.includes('0 17 * * *') && botSrc.includes('0 21 * * *'));
+const swSrc = fs.readFileSync(path.join(__dirname, '..', 'service-worker.js'), 'utf8');
+check('service worker v17', swSrc.includes("CACHE = 'nostalgica90-v17'"));
+check('SW precache inclui resposta.js', swSrc.includes('./resposta.js'));
+check('SW precache inclui ilustração nova (iss-deluxe.webp)', swSrc.includes('iss-deluxe.webp') && swSrc.includes('castelo-ra-tim-bum.avif'));
+check('Gugu não usa alias com nome errado', !realChallenges.find(c => c.resp === 'Gugu Liberato').alias.some(a => /antonio oliveira|martins luiz/i.test(a)));
+check('Gugu tem o nome civil certo', realChallenges.find(c => c.resp === 'Gugu Liberato').alias.includes('antonio augusto moraes liberato'));
+check('Digimon pista 2 não está quebrada', realChallenges.find(c => c.resp === 'Digimon').pistas[1] === 'Os monstrinhos evoluíam para formas cada vez mais fortes.');
+check('Digimon saiu de GAMES (é TV)', realChallenges.find(c => c.resp === 'Digimon').cat === 'TV');
 
 // ---------- 4. PONTOS ----------
 console.log('\n[4] PONTUAÇÃO');

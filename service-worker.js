@@ -3,7 +3,7 @@
    Cache estático para funcionamento offline e carregamento rápido.
    NUNCA bloqueia o jogo: se falhar, a página carrega normal.
    ============================================================ */
-var CACHE = 'nostalgica90-v16';
+var CACHE = 'nostalgica90-v17';
 var ASSETS = [
   './',
   './index.html',
@@ -13,6 +13,7 @@ var ASSETS = [
   './sitemap.xml',
   './styles.css',
   './selecao-rodada.js',
+  './resposta.js',
   './arte-propria.json',
   './assets/fonts/local.css',
   './assets/fonts/bungee-400.woff2',
@@ -52,7 +53,39 @@ var ASSETS = [
   './assets/memory/videolocadora.svg',
   './assets/memory/orelhao.svg',
   './assets/memory/street-fighter-2.svg',
-  './assets/memory/windows-95.svg'
+  './assets/memory/windows-95.svg',
+  './assets/images/revelacao/iss-deluxe.webp',
+  './assets/images/revelacao/iss-deluxe.avif',
+  './assets/images/revelacao/donkey-kong.webp',
+  './assets/images/revelacao/donkey-kong.avif',
+  './assets/images/revelacao/donkey-kong-country.webp',
+  './assets/images/revelacao/donkey-kong-country.avif',
+  './assets/images/revelacao/top-gear.webp',
+  './assets/images/revelacao/top-gear.avif',
+  './assets/images/revelacao/street-fighter-ii.webp',
+  './assets/images/revelacao/street-fighter-ii.avif',
+  './assets/images/revelacao/nba-jam.webp',
+  './assets/images/revelacao/nba-jam.avif',
+  './assets/images/revelacao/super-mario-kart.webp',
+  './assets/images/revelacao/super-mario-kart.avif',
+  './assets/images/revelacao/resident-evil.webp',
+  './assets/images/revelacao/resident-evil.avif',
+  './assets/images/revelacao/final-fantasy-vii.webp',
+  './assets/images/revelacao/final-fantasy-vii.avif',
+  './assets/images/revelacao/goldeneye-007.webp',
+  './assets/images/revelacao/goldeneye-007.avif',
+  './assets/images/revelacao/castelo-ra-tim-bum.webp',
+  './assets/images/revelacao/castelo-ra-tim-bum.avif',
+  './assets/images/revelacao/papel-de-carta.webp',
+  './assets/images/revelacao/papel-de-carta.avif',
+  './assets/images/revelacao/caverna-do-dragao.webp',
+  './assets/images/revelacao/caverna-do-dragao.avif',
+  './assets/images/revelacao/mortal-kombat.webp',
+  './assets/images/revelacao/mortal-kombat.avif',
+  './assets/images/revelacao/streets-of-rage.webp',
+  './assets/images/revelacao/streets-of-rage.avif',
+  './assets/images/revelacao/kibon.webp',
+  './assets/images/revelacao/kibon.avif'
 ];
 
 self.addEventListener('install', function (e) {

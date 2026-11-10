@@ -2,9 +2,24 @@ name: Postar desafio diário no Telegram
 
 on:
   schedule:
-    # Roda todo dia às 09:00 (horário de Brasília / UTC-3 = 12:00 UTC)
-    - cron: "0 12 * * *"
-  workflow_dispatch: {}   # permite rodar manualmente na aba Actions
+    # Horários em America/Sao_Paulo (UTC-3 o ano todo).
+    # O cron do GitHub Actions pode atrasar alguns minutos; o slot
+    # vem da expressão abaixo, não do relógio do job.
+    - cron: "0 12 * * *"   # 09:00 Brasília — memória 1 da rodada
+    - cron: "0 17 * * *"   # 14:00 Brasília — memória 2 da rodada
+    - cron: "0 21 * * *"   # 18:00 Brasília — memória 3 da rodada
+  workflow_dispatch:
+    inputs:
+      memoria:
+        description: "Qual memória da rodada postar (1 = 9h, 2 = 14h, 3 = 18h, ou as três)"
+        required: true
+        default: "1"
+        type: choice
+        options:
+          - "1"
+          - "2"
+          - "3"
+          - "todas"
 
 jobs:
   postar:
@@ -21,4 +36,5 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           SITE_URL: ${{ secrets.SITE_URL }}
+          POST_SLOT: ${{ github.event.inputs.memoria || github.event.schedule }}
         run: python .github/scripts/bot_diario.py

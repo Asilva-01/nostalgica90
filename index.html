@@ -168,7 +168,7 @@
             </div>
             <div class="challenge-img" id="challengeImg" aria-label="Arte do desafio"></div>
             <div class="pontos-info">
-              <span>Pontos desta pista</span><span><b id="pontosPossiveis">100</b> pts</span>
+              <span id="pontosLabel">Pontos desta pista</span><span><b id="pontosPossiveis">100</b> pts</span>
             </div>
             <div class="pontos-barra"><div id="pontosBarra"></div></div>
             <div id="listaPistas"></div>
@@ -179,6 +179,7 @@
               <input type="text" id="campo" placeholder="Sua resposta…" autocomplete="off" autocapitalize="off" maxlength="40" aria-label="Sua resposta">
               <button type="button" class="btn btn-verde" onclick="Jogo.enviarResposta()">OK</button>
               <button type="button" class="btn btn-pular" onclick="Jogo.pularPista()">Próx. pista</button>
+              <div id="areaAlternativas" class="alternativas hidden"></div>
             </div>
             <div class="botoes hidden" id="areaFim"></div>
             <div class="botoes hidden" id="areaResumo"></div>
@@ -259,6 +260,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="selecao-rodada.js"></script>
+<script src="resposta.js"></script>
 <script src="data.js"></script>
 <script src="artes.js?v=4"></script>
 <script src="museu-artes.js"></script>
